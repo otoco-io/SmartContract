@@ -1,3 +1,13 @@
+# DAI Payment POC
+- **SimpleDAIReceiver.sol**
+- It' a small test for receiving DAI.
+- First, We use User to approve correct DAI amount to the Conotract (price).
+- Then we can call our contract function to receive DAI (Received DAI belongs to our contract not owner).
+- We can use contract owner to withdraw DAI. (After this step DAI belongs to owner) 
+- Tested on Remix already.
+- Default DAI Address is on Kovan test network.
+- We will update features description next commit. (Maybe)
+
 # POC 01
 It is verifying how we can build the contract for some idea. 
 
