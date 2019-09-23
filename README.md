@@ -1,3 +1,9 @@
+# (POC 02)DAI Series Factory POC - 2019/09
+It is verifying how can we receive ERC20 Token then create the series contract for Payer. 
+- **DAI_Version/OtoCorp.sol**
+- **DAI_Version/Series.sol**
+---
+
 # DAI Payment POC
 - **SimpleDAIReceiver.sol**
 - It' a small test for receiving DAI.
@@ -7,10 +13,10 @@
 - Tested on Remix already.
 - Default DAI Address is on Kovan test network.
 - We will update features description next commit. (Maybe)
+---
 
 # POC 01
 It is verifying how we can build the contract for some idea. 
-
 e.g. create a contract via a contract.
 
 ---
