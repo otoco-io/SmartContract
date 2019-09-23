@@ -1,7 +1,7 @@
-# (POC 02)DAI Series Factory POC - 2019/09
+# (POC 02) Series Factory with ERC20 Token Payment - 2019/09
 It is verifying how can we receive ERC20 Token then create the series contract for Payer. 
-- **DAI_Version/OtoCorp.sol**
-- **DAI_Version/Series.sol**
+- **ERC20_Version/OtoCorp.sol**
+- **ERC20_Version/Series.sol**
 ---
 
 # DAI Payment POC
