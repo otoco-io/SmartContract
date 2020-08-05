@@ -1,6 +1,8 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: UNLICENSED
 
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/ownership/Ownable.sol";
+pragma solidity ^0.6.12;
+
+import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 import "github.com/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 
 import "./Series.sol";
@@ -19,7 +21,7 @@ contract OtoCorp is Ownable {
     
     constructor(IERC20 _tkn) public {
         tkn = _tkn;
-        tknSeriesFee = 10**18;
+        tknSeriesFee = 0**18;
     }
     
     function withdrawTkn() external onlyOwner {
@@ -27,7 +29,7 @@ contract OtoCorp is Ownable {
         emit TokenWithdrawn(owner(), balanceTkn());
     }
     
-    function createSeries(string memory seriesName) public {
+    function createSeries(string memory seriesName) public payable {
         require(tkn.transferFrom(msg.sender, address(this), tknSeriesFee));
         emit ReceiveTokenFrom(msg.sender, tknSeriesFee);
         Series newContract = new Series(seriesName);
