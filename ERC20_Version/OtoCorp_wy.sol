@@ -11,7 +11,7 @@ contract OtoCorp is Ownable {
     
     uint256 private tknSeriesFee;
     IERC20 private tkn;
-    uint private seriesIndex = 1223345542;
+    uint private seriesIndex = 1;
     mapping(address=>address[]) seriesOfMembers;
     
     event TokenAddrChanged(address _oldTknAddr, address _newTknAddr);
