@@ -33,7 +33,7 @@ contract OtoCorp is Ownable {
     function createSeries(string memory seriesName) public payable {
         require(tkn.transferFrom(msg.sender, address(this), tknSeriesFee));
         emit ReceiveTokenFrom(msg.sender, tknSeriesFee);
-        seriesName = string(abi.encodePacked(seriesName, ' Series ', getIndex()));
+        seriesName = string(abi.encodePacked(seriesName, ' - Series ', getIndex()));
         Series newContract = new Series(seriesName);
         seriesIndex ++;
         seriesOfMembers[msg.sender].push(address(newContract));
