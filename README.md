@@ -35,3 +35,8 @@ It seems some simple interaction, but can help us to understand how we can imple
 - **constructor**: Sets some attribute to initialize a Series.
 - **getCreator**: Get creator address.
 - **setMember**: Set a member.
+
+## Main-net Deploys
+
+**Delaware**: 0x24870e04F2573a132B695c48eB9ff2F3C8b0f410
+**Wyoming**: 0x366e6a4e17875049670c9714CA33dC2F20cD1d37

@@ -3,7 +3,7 @@
 pragma solidity ^0.6.12;
 
 import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
-import "github.com/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
+import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
 
 import "./Series.sol";
 
@@ -11,6 +11,7 @@ contract OtoCorp is Ownable {
     
     uint256 private tknSeriesFee;
     IERC20 private tkn;
+    uint private seriesIndex = 1;
     mapping(address=>address[]) seriesOfMembers;
     
     event TokenAddrChanged(address _oldTknAddr, address _newTknAddr);
@@ -32,7 +33,9 @@ contract OtoCorp is Ownable {
     function createSeries(string memory seriesName) public payable {
         require(tkn.transferFrom(msg.sender, address(this), tknSeriesFee));
         emit ReceiveTokenFrom(msg.sender, tknSeriesFee);
+        seriesName = string(abi.encodePacked(seriesName, ' - Series ', getIndex()));
         Series newContract = new Series(seriesName);
+        seriesIndex ++;
         seriesOfMembers[msg.sender].push(address(newContract));
         newContract.transferOwnership(msg.sender);
         emit NewSeriesCreated(address(newContract), newContract.owner(), newContract.getName());
@@ -62,4 +65,26 @@ contract OtoCorp is Ownable {
         return seriesOfMembers[msg.sender];
     }
     
+    function getIndex() public view returns (string memory) {
+        return uint2str(seriesIndex);
+    }
+    
+    function uint2str(uint _i) internal pure returns (string memory _uintAsString) {
+        if (_i == 0) {
+            return "0";
+        }
+        uint j = _i;
+        uint len;
+        while (j != 0) {
+            len++;
+            j /= 10;
+        }
+        bytes memory bstr = new bytes(len);
+        uint k = len - 1;
+        while (_i != 0) {
+            bstr[k--] = byte(uint8(48 + _i % 10));
+            _i /= 10;
+        }
+        return string(bstr);
+    }
 }
