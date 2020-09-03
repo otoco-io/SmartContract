@@ -36,6 +36,7 @@ contract SharesToken is Context, IERC20, Ownable {
     using SafeMath for uint256;
     using Address for address;
 
+    address private _ico;
     string public otocoPlugin = 'token';
 
     mapping (address => uint256) private _balances;
@@ -77,6 +78,19 @@ contract SharesToken is Context, IERC20, Ownable {
      */
     function name() public view returns (string memory) {
         return _name;
+    }
+
+    /**
+     * @dev Returns the ico related to the token.
+     */
+    function ico() public view returns (address) {
+        return _ico;
+    }
+    /**
+     * @dev Set the ico related to the token.
+     */
+    function setIco(address _address) public onlyOwner {
+        _ico = _address;
     }
 
     /**
