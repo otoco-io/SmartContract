@@ -2,11 +2,10 @@
 
 pragma solidity ^0.6.12;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/GSN/Context.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/math/SafeMath.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Address.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
+import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
+import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
+import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/math/SafeMath.sol";
+import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Address.sol";
 
 /**
  * @dev Implementation of the {IERC20} interface.
@@ -32,11 +31,10 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
  * functions have been added to mitigate the well-known issues around setting
  * allowances. See {IERC20-approve}.
  */
-contract SharesToken is Context, IERC20, Ownable {
+contract MembershipToken is Context, IERC20 {
     using SafeMath for uint256;
     using Address for address;
 
-    address private _ico;
     string public otocoPlugin = 'token';
 
     mapping (address => uint256) private _balances;
@@ -44,12 +42,9 @@ contract SharesToken is Context, IERC20, Ownable {
     mapping (address => mapping (address => uint256)) private _allowances;
 
     uint256 private _totalSupply;
-
     string private _name;
     string private _symbol;
     uint8 private _decimals;
-    
-    Ownable private _series;
 
     /**
      * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
@@ -60,17 +55,18 @@ contract SharesToken is Context, IERC20, Ownable {
      * All three of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor (string memory name, string memory symbol, uint256 supply, address series) public {
+    
+    modifier NotInitialized() {
+        require(_totalSupply == 0, "Error: Contract already initialized");
+        _;
+    }
+    
+    function initialize (string memory name, string memory symbol, uint256 supply, address member) NotInitialized public {
         _name = name;
         _symbol = symbol;
         _decimals = 0;
         _totalSupply = supply;
-        _balances[msg.sender] = supply;
-        _series = Ownable(series);
-    }
-    
-    function transferSeriesOwnership () public onlyOwner {
-        _series.transferOwnership(msg.sender);
+        _balances[member] = supply;
     }
 
     /**
@@ -78,19 +74,6 @@ contract SharesToken is Context, IERC20, Ownable {
      */
     function name() public view returns (string memory) {
         return _name;
-    }
-
-    /**
-     * @dev Returns the ico related to the token.
-     */
-    function ico() public view returns (address) {
-        return _ico;
-    }
-    /**
-     * @dev Set the ico related to the token.
-     */
-    function setIco(address _address) public onlyOwner {
-        _ico = _address;
     }
 
     /**
