@@ -1,9 +1,19 @@
-// Abstract contract for the full ERC 20 Token standard
-// https://github.com/ethereum/EIPs/issues/20
+// SPDX-License-Identifier: UNLICENSED
+
 pragma solidity ^0.6.0;
 
 import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
-import "./MembershipToken.sol";
+
+contract Token {
+    uint256 private _totalSupply;
+    
+    modifier NotInitialized() {
+        require(_totalSupply == 0, "Error: Contract already initialized");
+        _;
+    }
+    
+    function initialize (string memory name, string memory symbol, uint256 supply, address member) NotInitialized public {}
+}
 
 contract TokenFactory is Ownable {
 
@@ -24,9 +34,9 @@ contract TokenFactory is Ownable {
     }
     
     function createERC20(uint256 _supply, string memory _name, string memory _symbol, address _series) OnlySeriesOwner(_series) public returns (address) {
-        MembershipToken newToken = MembershipToken(createClone(_tokenContract));
-        newToken.initialize(_name, _symbol, _supply, msg.sender);
+        Token newToken = Token(createClone(_tokenContract));
         seriesToken[_series] = address(newToken);
+        newToken.initialize(_name, _symbol, _supply, msg.sender);
         return address(newToken);
     }
 

@@ -31,11 +31,12 @@ import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/uti
  * functions have been added to mitigate the well-known issues around setting
  * allowances. See {IERC20-approve}.
  */
-contract MembershipToken is Context, IERC20 {
+contract Token is Context, IERC20 {
     using SafeMath for uint256;
     using Address for address;
 
-    string public otocoPlugin = 'token';
+    // Logged when the owner of a node assigns a new owner to a subnode.
+    event Initialized(address member, uint timestamp);
 
     mapping (address => uint256) private _balances;
 
@@ -67,6 +68,7 @@ contract MembershipToken is Context, IERC20 {
         _decimals = 0;
         _totalSupply = supply;
         _balances[member] = supply;
+        emit Initialized(member, now);
     }
 
     /**
@@ -226,29 +228,11 @@ contract MembershipToken is Context, IERC20 {
         emit Transfer(sender, recipient, amount);
     }
 
-    /** @dev Creates `amount` tokens and assigns them to `account`, increasing
-     * the total supply.
-     *
-     * Emits a {Transfer} event with `from` set to the zero address.
-     *
-     * Requirements
-     *
-     * - `to` cannot be the zero address.
-     */
-    function _mint(address account, uint256 amount) internal virtual {
-        require(account != address(0), "ERC20: mint to the zero address");
-
-        _beforeTokenTransfer(address(0), account, amount);
-
-        _totalSupply = _totalSupply.add(amount);
-        _balances[account] = _balances[account].add(amount);
-        emit Transfer(address(0), account, amount);
-    }
 
     /**
-     * @dev Sets `amount` as the allowance of `spender` over the `owner`s tokens.
+     * @dev Sets `amount` as the allowance of `spender` over the `owner` s tokens.
      *
-     * This is internal function is equivalent to `approve`, and can be used to
+     * This internal function is equivalent to `approve`, and can be used to
      * e.g. set automatic allowances for certain subsystems, etc.
      *
      * Emits an {Approval} event.
@@ -264,6 +248,17 @@ contract MembershipToken is Context, IERC20 {
 
         _allowances[owner][spender] = amount;
         emit Approval(owner, spender, amount);
+    }
+
+    /**
+     * @dev Sets {decimals} to a value other than the default one of 18.
+     *
+     * WARNING: This function should only be called from the constructor. Most
+     * applications that interact with token contracts will not expect
+     * {decimals} to ever change, and may work incorrectly if it does.
+     */
+    function _setupDecimals(uint8 decimals_) internal {
+        _decimals = decimals_;
     }
 
     /**
