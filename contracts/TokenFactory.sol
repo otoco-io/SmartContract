@@ -1,29 +1,31 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.6.0;
 
-import "@openzeppelin/contracts-ethereum-package/contracts/access/Ownable.sol";
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 import "./Token.sol";
-import "./utils/IOwnable.sol";
 
-contract TokenFactory is OwnableUpgradeSafe {
+contract TokenFactory is OwnableUpgradeable {
 
-    mapping(address => address) public seriesToken;
+    event MultisigCreated(address indexed series, address value);
+
     address private _tokenContract; 
 
-    constructor(address token) public {
-        _tokenContract = token;
-    }
-    
-    modifier OnlySeriesOwner(address _series) {
-        require(IOwnable(_series).owner() == _msgSender(), "Error: Only Series Owner could deploy tokens");
+    modifier onlySeriesOwner(address _series) {
+        require(OwnableUpgradeable(_series).owner() == _msgSender(), "Error: Only Series Owner could deploy tokens");
         _;
+    }
+
+    function initialize(address token) external {
+        __Ownable_init();
+        _tokenContract = token;
     }
 
     function updateTokenContract(address newAddress) onlyOwner public {
         _tokenContract = newAddress;
     }
     
-    function createERC20(uint256 _supply, string memory _name, string memory _symbol, address _series) OnlySeriesOwner(_series) public returns (address) {
+    function createERC20(uint256 _supply, string memory _name, string memory _symbol, address _series) onlySeriesOwner(_series) public returns (address) {
         SeriesToken newToken = SeriesToken(createClone(_tokenContract));
         seriesToken[_series] = address(newToken);
         newToken.initialize(_name, _symbol, _supply, msg.sender);

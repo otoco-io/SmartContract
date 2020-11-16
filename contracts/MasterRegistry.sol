@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.6.0;
 
-// import './utils/OtocoMasterCopy.sol';
-import './utils/OtocoMasterCopy.sol';
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 /**
  * Master Registry Contract.
  */
-contract MasterRegistry is OtocoMasterCopy {
+contract MasterRegistry is Initializable, OwnableUpgradeable {
 
     event RecordChanged(address indexed series, uint8 indexed key, address value);
     event ContentChanged(address indexed series, uint8 indexed key, string value);
@@ -102,7 +102,7 @@ contract MasterRegistry is OtocoMasterCopy {
     }
 
     function isSeriesOwner(address _series) private view returns (bool) {
-        return OwnableUpgradeSafe(_series).owner() == _msgSender();
+        return OwnableUpgradeable(_series).owner() == _msgSender();
     }
 
     function isRecordItself(address _series, uint8 _key) private view returns (bool) {
