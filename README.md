@@ -54,6 +54,8 @@ master.CreateSeries('Teste', {from:accounts[1]})
 let myseries = await master.mySeries({from:accounts[1]})
 // Create hex parameters to setup Gnosis-safe
 let setupParametersEncoded = web3.eth.abi.encodeFunctionCall(GnosisSafe.abi[36], [[accounts[1]], 1, '0x0000000000000000000000000000000000000000', '0x0', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', 0, '0x0000000000000000000000000000000000000000']);
+
+let setupParametersEncoded = web3.eth.abi.encodeFunctionCall(MasterRegistry.abi[5], []);
 // Get multisig factory instance
 const factory = await MultisigFactory.deployed();
 // Create Gnosis safe wallet

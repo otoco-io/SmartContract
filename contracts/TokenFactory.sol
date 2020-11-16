@@ -1,12 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.6.0;
 
-// import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/access/Ownable.sol";
-
-contract SeriesToken {
-    function initialize (string memory name, string memory symbol, uint256 supply, address member) public {}
-}
+import "./Token.sol";
+import "./utils/IOwnable.sol";
 
 contract TokenFactory is OwnableUpgradeSafe {
 
@@ -18,7 +15,7 @@ contract TokenFactory is OwnableUpgradeSafe {
     }
     
     modifier OnlySeriesOwner(address _series) {
-        require(OwnableUpgradeSafe(_series).owner() == _msgSender(), "Error: Only Series Owner could deploy tokens");
+        require(IOwnable(_series).owner() == _msgSender(), "Error: Only Series Owner could deploy tokens");
         _;
     }
 

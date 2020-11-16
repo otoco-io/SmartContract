@@ -1,11 +1,20 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.6.0;
 
-import "@ensdomains/ens/contracts/ENS.sol";
-import "@ensdomains/resolver/contracts/Resolver.sol";
+import "./utils/IOwnable.sol";
 
-interface Ownable {
-    function owner() external view returns (address);
+interface ENS {
+    function setSubnodeRecord(bytes32 node, bytes32 label, address owner, address resolver, uint64 ttl) external;
+    function setSubnodeOwner(bytes32 node, bytes32 label, address owner) external returns(bytes32);
+    function setOwner(bytes32 node, address owner) external;
+    function owner(bytes32 node) external view returns (address);
 }
+
+interface Resolver{
+    function setAddr(bytes32 node, address addr) external;
+    function setAddr(bytes32 node, uint coinType, bytes calldata a) external;
+}
+
 
 /**
  * A registrar that allocates subdomains to the first person to claim them.
@@ -23,7 +32,7 @@ contract OtocoRegistrar {
         _;
     }
     
-    modifier only_series_manager(Ownable series) {
+    modifier only_series_manager(IOwnable series) {
         require(series.owner() == msg.sender, 'Not the series manager.');
         _;
     }
@@ -57,7 +66,7 @@ contract OtocoRegistrar {
      * @param domain The string containing the domain.
      * @param target Series contract that addr attribute will point.
      */
-    function registerAndStore(string memory domain, Ownable target) public only_series_manager(target) {
+    function registerAndStore(string memory domain, IOwnable target) public only_series_manager(target) {
         bytes32 label = keccak256(abi.encodePacked(domain));
         register(label, msg.sender, address(target));
         seriesDomains[address(target)].push(domain);
