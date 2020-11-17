@@ -5,9 +5,9 @@ import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 import "./Token.sol";
 
-contract TokenFactory is OwnableUpgradeable {
+contract TokenFactory is Initializable, OwnableUpgradeable {
 
-    event MultisigCreated(address indexed series, address value);
+    event TokenCreated(address indexed series, address value);
 
     address private _tokenContract; 
 
@@ -27,8 +27,8 @@ contract TokenFactory is OwnableUpgradeable {
     
     function createERC20(uint256 _supply, string memory _name, string memory _symbol, address _series) onlySeriesOwner(_series) public returns (address) {
         SeriesToken newToken = SeriesToken(createClone(_tokenContract));
-        seriesToken[_series] = address(newToken);
         newToken.initialize(_name, _symbol, _supply, msg.sender);
+        emit TokenCreated(_series, address(newToken));
         return address(newToken);
     }
 

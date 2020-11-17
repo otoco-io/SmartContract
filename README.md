@@ -68,7 +68,7 @@ let myGnosisSafe = await factory.safes(myseries);
 
 [Gnosis-Safe Docs](https://gnosis-safe.readthedocs.io/_/downloads/en/v1.0.0/pdf/)
 
-[Upgradable Gnosis-safe app](https://blog.openzeppelin.com/upgrades-app-for-gnosis-safe/)
+[Upgradable Gnosis-safe app](https://docs.openzeppelin.com/contracts/3.x/upgradeable)
 
 [Solidity DelegateProxy Contracts](https://blog.gnosis.pm/solidity-delegateproxy-contracts-e09957d0f201)
 

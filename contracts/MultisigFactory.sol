@@ -5,19 +5,20 @@ import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 import "./utils/GnosisSafeProxy.sol";
 
-contract MultisigFactory is Initializable, OwnableUpgradable {
+contract MultisigFactory is Initializable, OwnableUpgradeable {
 
     event MultisigCreated(address indexed series, address value);
 
     address private _gnosisMasterCopy; 
 
     modifier onlySeriesOwner(address _series) {
-        require(OwnableUpgradable(_series).owner() == _msgSender(), "Error: Only Series Owner could deploy tokens");
+        require(OwnableUpgradeable(_series).owner() == _msgSender(), "Error: Only Series Owner could deploy tokens");
         _;
     }
 
-    function initialize() external {
+    function initialize(address masterCopy) external {
         __Ownable_init();
+        _gnosisMasterCopy = masterCopy;
     }
 
     function updateGnosisMasterCopy(address newAddress) onlyOwner public {
@@ -31,6 +32,6 @@ contract MultisigFactory is Initializable, OwnableUpgradable {
             assembly {
                 if eq(call(gas(), proxy, 0, add(data, 0x20), mload(data), 0, 0), 0) { revert(0,0) }
             }
-        safes[_series] = address(proxy);
+        emit MultisigCreated(_series, address(proxy));
     }
 }
