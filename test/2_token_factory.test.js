@@ -56,6 +56,17 @@ contract('Token Factory', (accounts) => {
     expect(last.returnValues.value).to.be.equals(tokenAddress); 
   })
 
+  it('Check Balances from Created token', async function () {
+    let seriesAddress = await this.otocorpInstance.mySeries({from:accounts[1]});
+    let past = await this.factory.getPastEvents('TokenCreated', {filter:{series:seriesAddress[0]}});
+    let tokenAddress = past[past.length-1].returnValues.value;
+    let deployedToken = await Token.at(tokenAddress);
+    let notOwnerBalance = new web3.utils.BN(await deployedToken.balanceOf(accounts[0]));
+    let ownerBalance = new web3.utils.BN(await deployedToken.balanceOf(accounts[1]));
+    expect(notOwnerBalance.toString()).to.be.equals('0'); 
+    expect(ownerBalance.toString()).to.be.equals('100000'); 
+  })
+
   it('Throws error trying to transfer ownership from NOT OWNER', async function () {
     try {
       await this.factory.transferOwnership(accounts[3], {from:accounts[2]});

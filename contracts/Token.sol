@@ -62,7 +62,7 @@ contract SeriesToken is Context, IERC20 {
     function initialize (string memory name, string memory symbol, uint256 supply, address member) NotInitialized public {
         _name = name;
         _symbol = symbol;
-        _decimals = 0;
+        _decimals = 18;
         _totalSupply = supply;
         _balances[member] = supply;
         emit Initialized(member, now);
