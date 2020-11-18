@@ -43,8 +43,14 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
         _;
     }
 
-    function initialize() external {
+    function initialize(address[] calldata previousSeries, address[] calldata previousTokens) external {
+        require(previousSeries.length == previousTokens.length, 'Previous series size different than previous tokens size.');
         __Ownable_init();
+        // Migrating previous tokens
+        for (uint i = 0; i < previousSeries.length; i++ ) {
+            records[previousSeries[i]][1] = previousTokens[i];
+            emit RecordChanged(previousSeries[i], 1, previousTokens[i]);
+        }
     }
 
     /**

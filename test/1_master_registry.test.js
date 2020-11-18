@@ -8,19 +8,20 @@ const MasterRegistryV2 = artifacts.require('MasterRegistryV2');
 const OtoCorp = artifacts.require('OtoCorp');
 const Series = artifacts.require('Series');
 const Token = artifacts.require('SeriesToken');
+var previousData = require('../migrations_data/tokens.ropsten.json') 
 
 // Start test block
 contract('MasterRegistry', async (accounts) => {
   before(async function () {
     // Deploy token
-    this.tokenInstance = await Token.new();
+    this.tokenInstance = await Token.deployed();
     // Deploy Master Contract
-    this.otocorpInstance = await OtoCorp.new(this.tokenInstance.address);
+    this.otocorpInstance = await OtoCorp.deployed();
     // Create series
     await this.otocorpInstance.createSeries('First Entity', {from:accounts[1]});
     await this.otocorpInstance.createSeries('Second Entity', {from:accounts[2]});
     // Create Master Registry
-    this.registry = await deployProxy(MasterRegistry);
+    this.registry = await deployed();
   });
  
   it('Should Exist First Company', async function () {
@@ -40,6 +41,15 @@ contract('MasterRegistry', async (accounts) => {
   it('Check for Registry Owner', async function () {
     let owner = await this.registry.owner();
     expect(owner).to.equal(accounts[0]);
+  });
+
+  it('Check for Factory Migrated Tokens', async function () {
+    let registryEvents = await this.factory.getPastEvents( 'RecordChanged', { fromBlock: 0, toBlock: 'latest' } );
+    for (let ev of registryEvents){
+      expect(web3.utils.isAddress(ev.returnValues.series)).to.be.equals(true); 
+      expect(web3.utils.isAddress(ev.returnValues.value)).to.be.equals(true);
+    }
+    expect(registryEvents.length).to.be.above(0);
   });
 
   it('Throws error trying to transfer ownership from not owner', async function () {
@@ -65,4 +75,5 @@ contract('MasterRegistry', async (accounts) => {
     let testVariable = web3.utils.BN(await instance.testVariable());
     expect(testVariable.toString()).to.equal('42');
   });
+
 });
