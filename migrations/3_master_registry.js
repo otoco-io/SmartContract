@@ -15,5 +15,5 @@ module.exports = async function (deployer, network, accounts) {
     previousTokens.push(data[1]);
   });
   const instance = await deployProxy(MasterRegistry, [previousSeries, previousTokens], { deployer });
-  console.log('Deployed', instance.address);
+  console.log('Master Registry Address', instance.address);
 };

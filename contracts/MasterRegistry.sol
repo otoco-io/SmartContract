@@ -8,15 +8,15 @@ import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
  */
 contract MasterRegistry is Initializable, OwnableUpgradeable {
 
-    event RecordChanged(address indexed series, uint8 indexed key, address value);
-    event ContentChanged(address indexed series, uint8 indexed key, string value);
+    event RecordChanged(address indexed series, uint16 indexed key, address value);
+    event ContentChanged(address indexed series, uint16 indexed key, string value);
 
     // Mapping PluginID => Pluggin contract address
-    mapping(uint8=>address) private plugins;
+    mapping(uint16=>address) private plugins;
     // Mapping Series Address => PluginID => Deployd Contract Address 
-    mapping(address=>mapping(uint8=>address)) private records;
+    mapping(address=>mapping(uint16=>address)) private records;
     // Mapping Series Address => PluginID => Content
-    mapping(address=>mapping(uint8=>string)) private contents;
+    mapping(address=>mapping(uint16=>string)) private contents;
 
     /**
      * Modifier that only allow the following entities change content:
@@ -26,10 +26,10 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
      * @param _series The plugin index to update.
      * @param _key The new address where remains the plugin.
      */
-    modifier authorizedRecord(address _series, uint8 _key) {
+    modifier authorizedRecord(address _series, uint16 _key) {
         require(isSeriesOwner(_series) ||
         isRecordItself(_series, _key) || 
-        isRecordPlugin(_series, _key), "Not authorized");
+        isRecordPlugin(_series, _key), "Not Authorized: Caller is not series owner, plugin or record itself");
         _;
     }
     
@@ -38,8 +38,8 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
      * @param _series The plugin index to update.
      * @param _key The new address where remains the plugin.
      */
-    modifier onlySeriesOwner(address _series, uint8 _key) {
-        require(isSeriesOwner(_series), "Not authorized");
+    modifier onlySeriesOwner(address _series, uint16 _key) {
+        require(isSeriesOwner(_series), "Not Authorized: Caller is not series owner");
         _;
     }
 
@@ -60,7 +60,7 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
      * @param key The key to set.
      * @param value The text data value to set.
      */
-    function setRecord(address series, uint8 key, address value) public authorizedRecord(series, key) {
+    function setRecord(address series, uint16 key, address value) public authorizedRecord(series, key) {
         records[series][key] = value;
         emit RecordChanged(series, key, value);
     }
@@ -71,7 +71,7 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
      * @param key The text data key to query.
      * @return The associated text data.
      */
-    function getRecord(address series, uint8 key) public view returns (address) {
+    function getRecord(address series, uint16 key) public view returns (address) {
         return records[series][key];
     }
 
@@ -82,7 +82,7 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
      * @param key The key to set.
      * @param value The text data value to set.
      */
-    function setContent(address series, uint8 key, string memory value) public onlySeriesOwner(series, key) {
+    function setContent(address series, uint16 key, string memory value) public onlySeriesOwner(series, key) {
         contents[series][key] = value;
         emit ContentChanged(series, key, value);
     }
@@ -93,7 +93,7 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
      * @param key The text data key to query.
      * @return The associated text data.
      */
-    function getContent(address series, uint8 key) public view returns (string memory) {
+    function getContent(address series, uint16 key) public view returns (string memory) {
         return contents[series][key];
     }
 
@@ -103,7 +103,7 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
      * @param pluginID The plugin index to update.
      * @param pluginAddress The new address where remains the plugin.
      */
-    function setPluginController(uint8 pluginID, address pluginAddress) public onlyOwner {
+    function setPluginController(uint16 pluginID, address pluginAddress) public onlyOwner {
         plugins[pluginID] = pluginAddress;
     }
 
@@ -111,11 +111,11 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
         return OwnableUpgradeable(_series).owner() == _msgSender();
     }
 
-    function isRecordItself(address _series, uint8 _key) private view returns (bool) {
+    function isRecordItself(address _series, uint16 _key) private view returns (bool) {
         return records[_series][_key] == _msgSender();
     }
 
-    function isRecordPlugin(address _series, uint8 _key) private view returns (bool) {
+    function isRecordPlugin(address _series, uint16 _key) private view returns (bool) {
         return _msgSender() == plugins[_key] && records[_series][_key] == address(0);
     }
 }

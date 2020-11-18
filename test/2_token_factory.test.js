@@ -3,10 +3,9 @@ const { expect } = require('chai');
 const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 
 const OtoCorp = artifacts.require('OtoCorp');
-const Series = artifacts.require('Series');
+const MasterRegistry = artifacts.require('MasterRegistry');
 const Token = artifacts.require('SeriesToken');
 const TokenFactory = artifacts.require('TokenFactory');
-var previousData = require('../migrations_data/tokens.ropsten.json') 
 
 // Start test block
 contract('Token Factory', (accounts) => {
@@ -15,9 +14,11 @@ contract('Token Factory', (accounts) => {
     this.tokenInstance = await Token.deployed();
     // Deploy Master Contract
     this.otocorpInstance = await OtoCorp.deployed();
+    // Create series
+    await this.otocorpInstance.createSeries('First Entity', {from:accounts[1]});
+    await this.otocorpInstance.createSeries('Second Entity', {from:accounts[2]});
     // Create token Factory
     this.factory = await TokenFactory.deployed();
-    console.log('FACTORY ADDRESS:',this.factory.address)
   });
 
   it('Check for Factory Owner', async function () {
@@ -34,7 +35,28 @@ contract('Token Factory', (accounts) => {
     expect(factoryEvents.length).to.be.above(0);
   });
 
-  it('Throws error trying to transfer ownership from not owner', async function () {
+  it('Check creating token from NOT SERIES OWNER', async function () {
+    let seriesAddress = await this.otocorpInstance.mySeries({from:accounts[1]});
+    try {
+      await this.factory.createERC20(100000, 'Test Token', 'TTOK', seriesAddress[0]);
+    } catch (err) {
+      expect(err.reason).to.be.equals('Error: Only Series Owner could deploy tokens');
+    }
+  })
+
+  it('Check creating token from SERIES OWNER', async function () {
+    let registry = await MasterRegistry.deployed();
+    let seriesAddress = await this.otocorpInstance.mySeries({from:accounts[1]});
+    await this.factory.createERC20(100000, 'Test Token', 'TTOK', seriesAddress[0], {from:accounts[1]});
+    let past = await this.factory.getPastEvents('TokenCreated', {filter:{series:seriesAddress[0]}});
+    let tokenAddress = past[past.length-1].returnValues.value;
+    past = await registry.getPastEvents('RecordChanged');
+    let last = past[past.length-1];
+    expect(last.returnValues.series).to.be.equals(seriesAddress[0]); 
+    expect(last.returnValues.value).to.be.equals(tokenAddress); 
+  })
+
+  it('Throws error trying to transfer ownership from NOT OWNER', async function () {
     try {
       await this.factory.transferOwnership(accounts[3], {from:accounts[2]});
     } catch (err) {

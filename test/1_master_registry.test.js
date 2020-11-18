@@ -21,7 +21,7 @@ contract('MasterRegistry', async (accounts) => {
     await this.otocorpInstance.createSeries('First Entity', {from:accounts[1]});
     await this.otocorpInstance.createSeries('Second Entity', {from:accounts[2]});
     // Create Master Registry
-    this.registry = await deployed();
+    this.registry = await MasterRegistry.deployed();
   });
  
   it('Should Exist First Company', async function () {
@@ -44,12 +44,48 @@ contract('MasterRegistry', async (accounts) => {
   });
 
   it('Check for Factory Migrated Tokens', async function () {
-    let registryEvents = await this.factory.getPastEvents( 'RecordChanged', { fromBlock: 0, toBlock: 'latest' } );
+    let registryEvents = await this.registry.getPastEvents( 'RecordChanged', { fromBlock: 0, toBlock: 'latest' } );
     for (let ev of registryEvents){
       expect(web3.utils.isAddress(ev.returnValues.series)).to.be.equals(true); 
       expect(web3.utils.isAddress(ev.returnValues.value)).to.be.equals(true);
     }
     expect(registryEvents.length).to.be.above(0);
+  });
+
+  it('Set record from NOT SERIES OWNER', async function () {
+    let series = await this.otocorpInstance.mySeries({from:accounts[1]});
+    try {
+      await this.registry.setRecord(series[0], 1, '0x0000000000000000000000000000000000000000', {from:accounts[2]});
+    } catch (err) {
+      expect(err.reason).to.be.equals('Not Authorized: Caller is not series owner, plugin or record itself');
+    }
+  })
+
+  it('Set record from series owner', async function () {
+    let series = await this.otocorpInstance.mySeries({from:accounts[1]});
+    await this.registry.setRecord(series[0], 1, '0x0000000000000000000000000000000000000001', {from:accounts[1]});
+    past = await this.registry.getPastEvents('RecordChanged');
+    let last = past.pop();
+    expect(last.returnValues.series).to.be.equals(series[0]); 
+    expect(last.returnValues.value).to.be.equals('0x0000000000000000000000000000000000000001'); 
+  });
+
+  it('Set content from NOT SERIES OWNER', async function () {
+    let series = await this.otocorpInstance.mySeries({from:accounts[1]});
+    try {
+      await this.registry.setContent(series[0], 1, 'this will not work...', {from:accounts[2]});
+    } catch (err) {
+      expect(err.reason).to.be.equals('Not Authorized: Caller is not series owner');
+    }
+  })
+
+  it('Set content from series owner', async function () {
+    let series = await this.otocorpInstance.mySeries({from:accounts[1]});
+    await this.registry.setContent(series[0], 1, 'this will work!', {from:accounts[1]});
+    past = await this.registry.getPastEvents('ContentChanged');
+    let last = past.pop();
+    expect(last.returnValues.series).to.be.equals(series[0]); 
+    expect(last.returnValues.value).to.be.equals('this will work!'); 
   });
 
   it('Throws error trying to transfer ownership from not owner', async function () {

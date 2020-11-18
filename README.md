@@ -43,27 +43,6 @@ Deploy multisig contracts on behalf of Series, having the first key the owner of
 
 **Current Master Copy Reference**: 0x34cfac646f301356faa8b21e94227e3583fe3f5f
 
-Multisig Truffle Console Test:
-```js
- let accounts = await web3.eth.getAccounts()
-// Get Master contract
-let master = await MasterContract.at('Master address previously deployed');
-// Deploy one series
-master.CreateSeries('Teste', {from:accounts[1]})
-// Store my series address to a variable
-let myseries = await master.mySeries({from:accounts[1]})
-// Create hex parameters to setup Gnosis-safe
-let setupParametersEncoded = web3.eth.abi.encodeFunctionCall(GnosisSafe.abi[36], [[accounts[1]], 1, '0x0000000000000000000000000000000000000000', '0x0', '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000', 0, '0x0000000000000000000000000000000000000000']);
-
-let setupParametersEncoded = web3.eth.abi.encodeFunctionCall(MasterRegistry.abi[5], []);
-// Get multisig factory instance
-const factory = await MultisigFactory.deployed();
-// Create Gnosis safe wallet
-factory.createProxy(myseries, setupParametersEncoded, {from:accounts[1]});
-// Get my wallet from factory
-let myGnosisSafe = await factory.safes(myseries);
-```
-
 ## References:
 
 [Gnosis-Safe Docs](https://gnosis-safe.readthedocs.io/_/downloads/en/v1.0.0/pdf/)
@@ -73,3 +52,5 @@ let myGnosisSafe = await factory.safes(myseries);
 [Solidity DelegateProxy Contracts](https://blog.gnosis.pm/solidity-delegateproxy-contracts-e09957d0f201)
 
 [Generating Payload for Gnosis-Safe transactions](https://ethereum.stackexchange.com/questions/82981/how-to-generate-data-payload-for-a-smart-contract-transaction-programmatically)
+
+[List of transactions by address using Etherscan API](http://api.etherscan.io/api?module=account&action=tokentx&address=0x9f7dd5ea934d188a599567ee104e97fa46cb4496&startblock=0&endblock=999999999&sort=asc&apikey=YourApiKeyToken)
