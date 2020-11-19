@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: MIT
+pragma solidity 0.6.0;
 
-pragma solidity ^0.6.12;
-
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/math/SafeMath.sol";
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Address.sol";
+import "@openzeppelin/contracts/GSN/Context.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
 /**
  * @dev Implementation of the {IERC20} interface.
@@ -31,9 +29,8 @@ import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/uti
  * functions have been added to mitigate the well-known issues around setting
  * allowances. See {IERC20-approve}.
  */
-contract Token is Context, IERC20 {
+contract SeriesToken is Context, IERC20 {
     using SafeMath for uint256;
-    using Address for address;
 
     // Logged when the owner of a node assigns a new owner to a subnode.
     event Initialized(address member, uint timestamp);
@@ -65,7 +62,7 @@ contract Token is Context, IERC20 {
     function initialize (string memory name, string memory symbol, uint256 supply, address member) NotInitialized public {
         _name = name;
         _symbol = symbol;
-        _decimals = 0;
+        _decimals = 18;
         _totalSupply = supply;
         _balances[member] = supply;
         emit Initialized(member, now);

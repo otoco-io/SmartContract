@@ -1,10 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
+pragma solidity 0.6.0;
 
-pragma solidity ^0.6.12;
-
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
-import "github.com/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
-
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./Series.sol";
 
 contract OtoCorp is Ownable {
