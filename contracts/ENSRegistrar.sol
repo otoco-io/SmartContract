@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.6.0;
 
-import "./utils/IOwnable.sol";
+import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 
 interface ENS {
     function setSubnodeRecord(bytes32 node, bytes32 label, address owner, address resolver, uint64 ttl) external;
@@ -19,8 +20,10 @@ interface Resolver{
 /**
  * A registrar that allocates subdomains to the first person to claim them.
  */
-contract OtocoRegistrar {
+contract ENSRegistrar is Initializable, OwnableUpgradeable {
     
+    event NameClaimed(address indexed series, string value);
+
     ENS ens;
     bytes32 rootNode;
     Resolver defaultResolver;
@@ -32,7 +35,7 @@ contract OtocoRegistrar {
         _;
     }
     
-    modifier only_series_manager(IOwnable series) {
+    modifier only_series_manager(OwnableUpgradeable series) {
         require(series.owner() == msg.sender, 'Not the series manager.');
         _;
     }
@@ -42,34 +45,42 @@ contract OtocoRegistrar {
      * @param ensAddr The address of the ENS registry.
      * @param node The node that this registrar administers.
      */
-    constructor(ENS ensAddr, Resolver resolverAddr, bytes32 node ) public {
+    function initialize(ENS ensAddr, Resolver resolverAddr, bytes32 node, address[] calldata previousSeries, bytes32[] calldata previousDomains) external {
+        require(previousSeries.length == previousDomains.length, 'Previous series size different than previous tokens size.');
+        __Ownable_init();
         ens = ensAddr;
         rootNode = node;
         defaultResolver = resolverAddr;
+        for (uint i = 0; i < previousSeries.length; i++ ) {
+            emit NameClaimed(previousSeries[i], bytes32ToString(previousDomains[i]));
+            seriesDomains[previousSeries[i]].push(bytes32ToString(previousDomains[i]));
+        }
     }
 
     /**
      * Register a name, or change the owner of an existing registration.
      * @param label The hash of the label to register.
      * @param owner The address of the new owner(Series Manager).
-     * @param target Series contract that addr attribute will point.
+     * @param addr Address to redirect domain
      */
-    function register(bytes32 label, address owner, address target) public only_owner(label) {
+    function register(bytes32 label, address owner, address addr) public only_owner(label) {
         bytes32 node = keccak256(abi.encodePacked(rootNode, label));
         ens.setSubnodeRecord(rootNode, label, address(this), address(defaultResolver) ,63072000);
-        defaultResolver.setAddr(node, target);
+        defaultResolver.setAddr(node, addr);
         ens.setOwner(node, owner);
     }
     
     /**
      * Register a name, and store the domain to reverse lookup.
      * @param domain The string containing the domain.
-     * @param target Series contract that addr attribute will point.
+     * @param target Series contract that registry will point.
+     * @param addr Address to redirect domain
      */
-    function registerAndStore(string memory domain, IOwnable target) public only_series_manager(target) {
+    function registerAndStore(string memory domain, OwnableUpgradeable target, address addr) public only_series_manager(target) {
         bytes32 label = keccak256(abi.encodePacked(domain));
-        register(label, msg.sender, address(target));
+        register(label, msg.sender, addr);
         seriesDomains[address(target)].push(domain);
+        emit NameClaimed(address(target), domain);
     }
     
     function resolve(address addr, uint8 index) public view returns(string memory) {
@@ -78,5 +89,17 @@ contract OtocoRegistrar {
     
     function ownedDomains(address addr) public view returns(uint) {
         return seriesDomains[addr].length;
+    }
+
+    function bytes32ToString(bytes32 _bytes32) public pure returns (string memory) {
+        uint8 i = 0;
+        while(i < 32 && _bytes32[i] != 0) {
+            i++;
+        }
+        bytes memory bytesArray = new bytes(i);
+        for (i = 0; i < 32 && _bytes32[i] != 0; i++) {
+            bytesArray[i] = _bytes32[i];
+        }
+        return string(bytesArray);
     }
 }
