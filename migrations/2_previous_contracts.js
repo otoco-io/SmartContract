@@ -2,7 +2,7 @@ const OtoCorp = artifacts.require('OtoCorp');
 const Token = artifacts.require('SeriesToken');
 
 module.exports = async function (deployer, network, accounts) {
-  if (network == 'main') return;
+  if (network.substring(0,4) == 'main') return;
   await deployer.deploy(Token);
   let token = await Token.deployed();
   await token.initialize('Dai test', 'DAI', 100000000, accounts[0]);

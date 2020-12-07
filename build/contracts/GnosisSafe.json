@@ -28499,8 +28499,8 @@
         }
       },
       "links": {},
-      "address": "0xDA99d58D3B96e4fdcd7c3981869Ec7B7F65ea257",
-      "transactionHash": "0x17357187e2bf524202495d5250370613bac7420526ba91f504329e20a4301cf7"
+      "address": "0xaD97eE02e3aA5B59D051969447BEEE771C1B6AfF",
+      "transactionHash": "0x331dbf5c9c735d6251eac83f1275f20e147d9bb7a4af910fa8e14ed8ef17198c"
     },
     "73799": {
       "events": {
@@ -28685,7 +28685,7 @@
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-20T13:16:48.475Z",
+  "updatedAt": "2020-12-07T17:39:01.403Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Stefan George - <stefan@gnosis.io>Richard Meissner - <richard@gnosis.io>Ricardo Guilherme Schmidt - (Status Research & Development GmbH) - Gas Token Payment",

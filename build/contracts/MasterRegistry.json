@@ -81,7 +81,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -166,7 +167,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -213,7 +215,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -8158,6 +8161,82 @@
     "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {
+        "0x3e5cb35232b9847a30ff70662e1419f2e5fe64e95098da905eaf3b67924b6954": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "series",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint16",
+              "name": "key",
+              "type": "uint16"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "value",
+              "type": "string"
+            }
+          ],
+          "name": "ContentChanged",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x1ec93fbaf16b55afda845ed8b38d373f803e0be3b2de82ae11ef55e35c2fb509": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "series",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint16",
+              "name": "key",
+              "type": "uint16"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "value",
+              "type": "address"
+            }
+          ],
+          "name": "RecordChanged",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x54dED98a6720EcEAA54EB0F858c81737CDe9FF9E",
+      "transactionHash": "0x02db8dca18a3d81f1556cc9fcd48e6767349cd95a5535baaf3e8456910ac96b7"
+    },
     "3": {
       "events": {
         "0x3e5cb35232b9847a30ff70662e1419f2e5fe64e95098da905eaf3b67924b6954": {
@@ -8357,11 +8436,12 @@
         }
       },
       "links": {},
-      "address": "0x8F315deDB2E7A127BbCf80A7af1Dd12922a428d6"
+      "address": "0x86982835D1416a3566e9fBA55ADD06AD7f504911"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-28T13:59:07.909Z",
+  "updatedAt": "2020-12-07T17:39:01.384Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "getContent(address,uint16)": {

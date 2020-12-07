@@ -66,11 +66,21 @@ module.exports = {
        provider: () => new HDWalletProvider(mnemonicRopsten, `https://ropsten.infura.io/v3/f2e6a40391274a0793c63e923de0a170`),
        network_id: 3,       // Ropsten's id
        gas: 5500000,        // Ropsten has a lower block limit than mainnet
+       gasPrice: 20000000000,
        confirmations: 1,    // # of confs to wait between deployments. (default: 0)
        timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
        skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
      },
 
+     main: {
+       provider: () => new HDWalletProvider(mnemonicMain, `https://mainnet.infura.io/v3/f2e6a40391274a0793c63e923de0a170`),
+       network_id: 1,       // Mainnet's id
+       gas: 5500000,        // Ropsten has a lower block limit than mainnet
+       gasPrice: 20000000000,
+       confirmations: 1,    // # of confs to wait between deployments. (default: 0)
+       timeoutBlocks:200,  // # of blocks before a deployment times out  (minimum/default: 50)
+       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+     },
     // Useful for private networks
     // private: {
       // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),

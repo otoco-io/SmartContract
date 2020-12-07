@@ -50,7 +50,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -173,7 +174,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -192,7 +194,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -211,7 +214,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.6.0+commit.26b70077\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"series\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"name\":\"NameClaimed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_bytes32\",\"type\":\"bytes32\"}],\"name\":\"bytes32ToString\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract ENS\",\"name\":\"ensAddr\",\"type\":\"address\"},{\"internalType\":\"contract Resolver\",\"name\":\"resolverAddr\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"},{\"internalType\":\"address[]\",\"name\":\"previousSeries\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"previousDomains\",\"type\":\"bytes32[]\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"ownedDomains\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"label\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"register\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"domain\",\"type\":\"string\"},{\"internalType\":\"contract OwnableUpgradeable\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"registerAndStore\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"name\":\"resolve\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"initialize(address,address,bytes32,address[],bytes32[])\":{\"params\":{\"ensAddr\":\"The address of the ENS registry.\",\"node\":\"The node that this registrar administers.\"}},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"register(bytes32,address,address)\":{\"params\":{\"addr\":\"Address to redirect domain\",\"label\":\"The hash of the label to register.\",\"owner\":\"The address of the new owner(Series Manager).\"}},\"registerAndStore(string,address,address)\":{\"params\":{\"addr\":\"Address to redirect domain\",\"domain\":\"The string containing the domain.\",\"target\":\"Series contract that registry will point.\"}},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}}},\"userdoc\":{\"methods\":{\"initialize(address,address,bytes32,address[],bytes32[])\":{\"notice\":\"Constructor.\"},\"register(bytes32,address,address)\":{\"notice\":\"Register a name, or change the owner of an existing registration.\"},\"registerAndStore(string,address,address)\":{\"notice\":\"Register a name, and store the domain to reverse lookup.\"}},\"notice\":\"A registrar that allocates subdomains to the first person to claim them.\"}},\"settings\":{\"compilationTarget\":{\"/Users/filipemsoccol/Documents/doiim/otoco-smart-contracts/contracts/ENSRegistrar.sol\":\"ENSRegistrar\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/filipemsoccol/Documents/doiim/otoco-smart-contracts/contracts/ENSRegistrar.sol\":{\"keccak256\":\"0x9ad2860dbcf256924a3282cdccfd25b24f89b2ddf1f3598bea281992d11fe4cd\",\"urls\":[\"bzz-raw://03781dec470629e974f1a157877593546ca911a7f63d03ce77ba71afe1caa831\",\"dweb:/ipfs/QmamUeJvF3JXR3RijUhfdUrMjLk95mMkjtvZ4XpaSZNeF6\"]},\"@openzeppelin/contracts-upgradeable/GSN/ContextUpgradeable.sol\":{\"keccak256\":\"0xca5ef6ed50c212be4cffea0fd7974d659e92b1328906069f7a14e2cc1bedfbfe\",\"urls\":[\"bzz-raw://b1edd6602dadeb1c00d8bd54aa6cee379dae83846e5b613feefbc8cdcdae42b0\",\"dweb:/ipfs/QmbpZvED3aj3x7fr2pdUC5iDU6x5ehDxKQyj3pm2NegbhM\"]},\"@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol\":{\"keccak256\":\"0xf4ed481ddeacce3cd55a3c75ad114b8ee58ff4382bc0b09d6d8995c37888c565\",\"urls\":[\"bzz-raw://1701a76ba026b4bd4983cc035627835f97a9f0a592dcefeaa636a8b285347128\",\"dweb:/ipfs/QmVpnD2eqYDtogRWVPs4WWH8s9reE9o1vyLAX2UhKGvZey\"]},\"@openzeppelin/contracts-upgradeable/proxy/Initializable.sol\":{\"keccak256\":\"0x8eee8bd8c216a3e437bf7a4c9844348f47a2d990e5b06cd96d250e33ab04c25a\",\"urls\":[\"bzz-raw://c6bb2af880b12be26b148ee99ac3a984168e7fc74721bab9cd44598a0669b038\",\"dweb:/ipfs/QmPfFDaXZbThJgaVim7nvxrw1RuD2xKWCG89K6pznmC8pJ\"]}},\"version\":1}",
@@ -10939,9 +10943,144 @@
     "name": "solc",
     "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1": {
+      "events": {
+        "0x9b15f899d7d0612a57fe7cbb7161c378e987fa2c3ade807d80b8c3bb1771dd2b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "series",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "value",
+              "type": "string"
+            }
+          ],
+          "name": "NameClaimed",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x01a1fB25161561A29ae8a316493213aA50Ad7057"
+    },
+    "3": {
+      "events": {
+        "0x9b15f899d7d0612a57fe7cbb7161c378e987fa2c3ade807d80b8c3bb1771dd2b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "series",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "value",
+              "type": "string"
+            }
+          ],
+          "name": "NameClaimed",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xbB460dEb628095f88E60B7Cc3979b97A5B52aB8e",
+      "transactionHash": "0xfd81cb07f4949f05fc06ffcb81270d662e5b176064ba9f3e457bad111587401c"
+    },
+    "5777": {
+      "events": {
+        "0x9b15f899d7d0612a57fe7cbb7161c378e987fa2c3ade807d80b8c3bb1771dd2b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "series",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "value",
+              "type": "string"
+            }
+          ],
+          "name": "NameClaimed",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xd11e5ECdDD64Aa0709b7b7b42Cae82ac006686C8"
+    }
+  },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-28T13:59:07.885Z",
+  "updatedAt": "2020-12-07T17:46:32.148Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "initialize(address,address,bytes32,address[],bytes32[])": {

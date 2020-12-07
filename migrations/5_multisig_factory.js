@@ -6,7 +6,7 @@ const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 
 module.exports = async function (deployer, network, accounts) {
   let masterCopy = {};
-  if (network == 'main'){
+  if (network.substring(0,4) == 'main'){
     masterCopy.address = '0x34CfAC646f301356fAa8B21e94227e3583Fe3F5F';
   } else {
     await deployer.deploy(GnosisSafe);

@@ -5,7 +5,7 @@ module.exports = async function (deployer, network, accounts) {
   let previousData;
   let previousSeries = [];
   let previousTokens = [];
-  if (network == 'main'){
+  if (network.substring(0,4) == 'main'){
     previousData = require('../migrations_data/tokens.main.json');
   } else {
     previousData = require('../migrations_data/tokens.ropsten.json');

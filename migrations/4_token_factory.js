@@ -8,7 +8,7 @@ module.exports = async function (deployer, network, accounts) {
   let previousSeries = [];
   let previousTokens = [];
   let tokenMasterCopy = {};
-  if (network == 'main'){
+  if (network.substring(0,4) == 'main'){
     previousData = require('../migrations_data/tokens.main.json');
     tokenMasterCopy.address = '0x7b7B367ec9FA50a921acC4dbcedeA9CF39d9bF4d';
   } else {

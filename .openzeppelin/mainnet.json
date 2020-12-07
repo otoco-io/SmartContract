@@ -2,8 +2,8 @@
   "manifestVersion": "3.1",
   "impls": {
     "02155a9e7dcb2c4a2a4fe20d3a69f77882f9916813ddf2155d352953f38a81d6": {
-      "address": "0x407cD6E1609bd763c02D973f5B26D4BbC595D923",
-      "txHash": "0xd9b1b2f10353a9a7bc064883189f599329e6bc088e4116f56ff0ace8cef51335",
+      "address": "0x68Ac7D256668aE74730B17B32b1b8359C0de6Ffa",
+      "txHash": "0x02db8dca18a3d81f1556cc9fcd48e6767349cd95a5535baaf3e8456910ac96b7",
       "layout": {
         "storage": [
           {
@@ -81,8 +81,8 @@
       }
     },
     "43e0949bbeb487c630375fe70b87fc80cd721822ae03e255a7bab3175a6ccc98": {
-      "address": "0xeb2689EF72D68598934E0B39EA014B3D44F72d23",
-      "txHash": "0xeb510d5df50ecf5297ae8baa6f9e8e36e7bf8483d3799582ce2e6e80bf33eb38",
+      "address": "0x5B9aE6234Cf1E447680c245200E066091E631Bf3",
+      "txHash": "0xb403f42c55f8c36f406feca04a3e06f43b60c3785d57f67ed3b7b89672933501",
       "layout": {
         "storage": [
           {
@@ -145,8 +145,8 @@
       }
     },
     "8f5fd41a33bd13466abde0c9e1d939c3f468edb622657423f0bdcedf725fb241": {
-      "address": "0x902F6D8e9dB856D18da6055355Dd2AF5329a162B",
-      "txHash": "0xb1483233db15778e193dee87a8b7408a75da93054d42de768a0780f1b5d88b8d",
+      "address": "0xf77ea923E60FB522B023A49cADe467e219e674A7",
+      "txHash": "0x6a89822954b2c37a5cb2c753d176d9e2a0a42960b2cad31fc0aae4427ea4a944",
       "layout": {
         "storage": [
           {
@@ -209,8 +209,8 @@
       }
     },
     "dd17d85cba1c05b384ffa0c463ca7beaf5b8f2a02cd1d3881f33637d79a8424f": {
-      "address": "0xa3114c162411C65CBEDd5f4f3c8c19251E4e156D",
-      "txHash": "0xfd81cb07f4949f05fc06ffcb81270d662e5b176064ba9f3e457bad111587401c",
+      "address": "0xDa2AD44d3c64782aAf70B8f7C8dC45806201c44f",
+      "txHash": "0x400d1d70de219e12c506e3af73d30450bb6b02ab6522cb14037abe56d02dadfc",
       "layout": {
         "storage": [
           {
@@ -298,7 +298,7 @@
     }
   },
   "admin": {
-    "address": "0x7f8Ad55D2Dd603226AFa6ECa4CfF8a9426272144",
-    "txHash": "0xefd8b52c87cfa4716f9cff8b19ced65d2eecd43ca8e2f818c8d3a97ea4662880"
+    "address": "0x746aAC8f3C7596808893618865888f6345077e0b",
+    "txHash": "0x6d4d8936bdac64315a13526c2c69553240029ae4f9e3e711a25745bfad846fa1"
   }
 }

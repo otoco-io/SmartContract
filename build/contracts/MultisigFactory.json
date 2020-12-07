@@ -50,7 +50,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -3792,6 +3793,51 @@
     "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {
+        "0x38b56a7814c1a51663dba0756bf5ece28e95bcf82cf63a76479424baf9c680f9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "series",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "value",
+              "type": "address"
+            }
+          ],
+          "name": "MultisigCreated",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xbb35127e86C19F934f602bb0FFcb9EaaDc99e0Cd",
+      "transactionHash": "0x6a89822954b2c37a5cb2c753d176d9e2a0a42960b2cad31fc0aae4427ea4a944"
+    },
     "3": {
       "events": {
         "0x38b56a7814c1a51663dba0756bf5ece28e95bcf82cf63a76479424baf9c680f9": {
@@ -3879,11 +3925,12 @@
         }
       },
       "links": {},
-      "address": "0x7E068ef7fdEEdaDAAB4e0e3BC9c66e9c99E641C5"
+      "address": "0x5BC55DD4208a3951E8250C30B9Ba81545725a8dC"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-28T13:59:07.930Z",
+  "updatedAt": "2020-12-07T17:39:01.422Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "owner()": {

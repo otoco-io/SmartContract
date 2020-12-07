@@ -52,7 +52,7 @@ module.exports = async function (deployer, network, accounts) {
   let ensAddress;
   let resolverAddress;
   const rootNode = '0xd60cd0a683332ca8ad4a4d342320945cb769f25760b42a21f2d88d3be25cc6aa' // otoco.eth
-  if (network == 'main'){
+  if (network.substring(0,4) == 'main'){
     previousData = require('../migrations_data/domains.main.json');
     ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
     resolverAddress = '0x4976fb03C32e5B8cfe2b6cCB31c09Ba78EBaBa41'
