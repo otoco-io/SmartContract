@@ -4,8 +4,9 @@ pragma solidity 0.6.0;
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 /**
- * Master Registry Contract.
- */
+@title Master Registry Contract
+@author Filipe Soccol
+*/
 contract MasterRegistry is Initializable, OwnableUpgradeable {
 
     event RecordChanged(address indexed series, uint16 indexed key, address value);
@@ -19,12 +20,12 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
     mapping(address=>mapping(uint16=>string)) private contents;
 
     /**
-     * Modifier that only allow the following entities change content:
-     * - Series owners
-     * - Plugin itself in case of empty series record
-     * - Current module itself addressed by record
-     * @param _series The plugin index to update.
-     * @param _key The new address where remains the plugin.
+    @notice Modifier that only allow the following entities change content:
+    - Series owners
+    - Plugin itself in case of empty series record
+    - Current module itself addressed by record
+    @param _series The plugin index to update.
+    @param _key The new address where remains the plugin.
      */
     modifier authorizedRecord(address _series, uint16 _key) {
         require(isSeriesOwner(_series) ||
@@ -34,7 +35,7 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
     }
     
     /**
-     * Modifier to allow only series owners to change content.
+     * @notice Modifier to allow only series owners to change content.
      * @param _series The plugin index to update.
      * @param _key The new address where remains the plugin.
      */
@@ -54,11 +55,11 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
     }
 
     /**
-     * Sets the module contract associated with an Series and record.
-     * May only be called by the owner of that series, module itself or record plugin itself.
-     * @param series The series to update.
-     * @param key The key to set.
-     * @param value The text data value to set.
+    @notice Sets the module contract associated with an Series and record.
+    May only be called by the owner of that series, module itself or record plugin itself.
+    @param series The series to update.
+    @param key The key to set.
+    @param value The text data value to set.
      */
     function setRecord(address series, uint16 key, address value) public authorizedRecord(series, key) {
         records[series][key] = value;
@@ -66,21 +67,21 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
     }
 
     /**
-     * Returns the data associated with an record Series and Key.
-     * @param series The series node to query.
-     * @param key The text data key to query.
-     * @return The associated text data.
+    @notice Returns the data associated with an record Series and Key.
+    @param series The series node to query.
+    @param key The text data key to query.
+    @return The associated text data.
      */
     function getRecord(address series, uint16 key) public view returns (address) {
         return records[series][key];
     }
 
     /**
-     * Sets the content data associated with an Series and key.
-     * May only be called by the owner of that series.
-     * @param series The series to update.
-     * @param key The key to set.
-     * @param value The text data value to set.
+    @notice Sets the content data associated with an Series and key.
+    May only be called by the owner of that series.
+    @param series The series to update.
+    @param key The key to set.
+    @param value The text data value to set.
      */
     function setContent(address series, uint16 key, string memory value) public onlySeriesOwner(series, key) {
         contents[series][key] = value;
@@ -88,33 +89,47 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
     }
 
     /**
-     * Returns the content associated with an content Series and Key.
-     * @param series The series node to query.
-     * @param key The text data key to query.
-     * @return The associated text data.
+     @notice Returns the content associated with an content Series and Key.
+     @param series The series node to query.
+     @param key The text data key to query.
+     @return The associated text data.
      */
     function getContent(address series, uint16 key) public view returns (string memory) {
         return contents[series][key];
     }
 
     /**
-     * Sets the plugin that controls specific entry on records.
-     * Only owner of this contract has permission.
-     * @param pluginID The plugin index to update.
-     * @param pluginAddress The new address where remains the plugin.
+     @notice Sets the plugin that controls specific entry on records.
+     Only owner of this contract has permission.
+     @param pluginID The plugin index to update.
+     @param pluginAddress The new address where remains the plugin.
      */
     function setPluginController(uint16 pluginID, address pluginAddress) public onlyOwner {
         plugins[pluginID] = pluginAddress;
     }
 
+    /**
+     @notice Check if sender is the series owner.
+     @param _series Referenced Series to check.
+     */
     function isSeriesOwner(address _series) private view returns (bool) {
         return OwnableUpgradeable(_series).owner() == _msgSender();
     }
 
+    /**
+     @notice Check if sender is the Record stored itself. E.g.: A multisig stored could change multisig key referenced.
+     @param _series Referenced Series to check.
+     @param _key Key relate to the entry.
+     */
     function isRecordItself(address _series, uint16 _key) private view returns (bool) {
         return records[_series][_key] == _msgSender();
     }
 
+    /**
+     @notice Check if sender is the Plugin related to the key. This is only valid for new entries, not to replace existing ones.
+     @param _series Referenced Series to check.
+     @param _key Key relate to the entry.
+     */
     function isRecordPlugin(address _series, uint16 _key) private view returns (bool) {
         return _msgSender() == plugins[_key] && records[_series][_key] == address(0);
     }

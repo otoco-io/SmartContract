@@ -43,6 +43,10 @@ Running mocha tests:
 truffle test
 ```
 
+## Fluxogram for Creating and Managing Companies
+
+![Otoco - Creation and Manage](https://user-images.githubusercontent.com/13040410/102531418-098b1200-4081-11eb-9f8e-8b85a41a2926.jpg)
+
 ### OtoCo Master Contracts - OtoCorp.sol
 
 Responsible to receive payments and deploy new companies. Has a list of deployed Series.

@@ -24,9 +24,13 @@ contract ENSRegistrar is Initializable, OwnableUpgradeable {
     
     event NameClaimed(address indexed series, string value);
 
+    // Master ENS registry
     ENS ens;
+    // The otoco.eth node reference
     bytes32 rootNode;
+    // Default resolver to deal with data storage
     Resolver defaultResolver;
+    // Mapping of Company address => Domains
     mapping(address => string[]) internal seriesDomains;
 
     modifier only_owner(bytes32 label) {
@@ -43,7 +47,10 @@ contract ENSRegistrar is Initializable, OwnableUpgradeable {
     /**
      * Constructor.
      * @param ensAddr The address of the ENS registry.
+     * @param resolverAddr The resolver where domains will use to register.
      * @param node The node that this registrar administers.
+     * @param previousSeries Previous series to be migrated.
+     * @param previousDomains Previous domains to be migrated.
      */
     function initialize(ENS ensAddr, Resolver resolverAddr, bytes32 node, address[] calldata previousSeries, bytes32[] calldata previousDomains) external {
         require(previousSeries.length == previousDomains.length, 'Previous series size different than previous tokens size.');
@@ -83,10 +90,20 @@ contract ENSRegistrar is Initializable, OwnableUpgradeable {
         emit NameClaimed(address(target), domain);
     }
     
+    /**
+     * Return some domain from a series. As a single series could claim multiple domains, 
+     * the resolve function here has a index parameter to point a specific domain to be retrieved.
+     * @param domain The string containing the domain.
+     * @param index Domain index to be retrieved.
+     */
     function resolve(address addr, uint8 index) public view returns(string memory) {
         return seriesDomains[addr][index];
     }
     
+    /**
+     * Return how much domains the Series has registered using this Registrar.
+     * @param addr The string containing the series address.
+     */
     function ownedDomains(address addr) public view returns(uint) {
         return seriesDomains[addr].length;
     }
