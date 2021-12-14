@@ -14,7 +14,7 @@
     "@ensdomains/resolver": "^0.2.4",
     "@gnosis.pm/safe-contracts": "^1.2.0",
     "@openzeppelin/contracts": "^3.2.0",
-    "@openzeppelin/contracts-upgradeable": "^3.2.0",
+    "@openzeppelin/contracts-upgradeable": "^4.4.1",
     "@openzeppelin/truffle-upgrades": "^1.2.4"
   },
   "scripts": {
