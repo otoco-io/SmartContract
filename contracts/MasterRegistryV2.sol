@@ -10,6 +10,7 @@ contract MasterRegistryV2 is Initializable, OwnableUpgradeable {
 
     event RecordChanged(address indexed series, uint16 indexed key, address value);
     event ContentChanged(address indexed series, uint16 indexed key, string value);
+    event DocumentTimestamped(address indexed series, uint256 timestamp, string filename, string cid);
 
     // Mapping PluginID => Pluggin contract address
     mapping(uint16=>address) private plugins;
@@ -17,7 +18,6 @@ contract MasterRegistryV2 is Initializable, OwnableUpgradeable {
     mapping(address=>mapping(uint16=>address)) private records;
     // Mapping Series Address => PluginID => Content
     mapping(address=>mapping(uint16=>string)) private contents;
-    uint16 public testVariable;
 
     /**
      * Modifier that only allow the following entities change content:
@@ -42,10 +42,6 @@ contract MasterRegistryV2 is Initializable, OwnableUpgradeable {
     modifier onlySeriesOwner(address _series, uint16 _key) {
         require(isSeriesOwner(_series), "Not authorized");
         _;
-    }
-
-    function setTestVariable() external {
-        testVariable = 42;
     }
 
     /**
@@ -100,6 +96,18 @@ contract MasterRegistryV2 is Initializable, OwnableUpgradeable {
      */
     function setPluginController(uint16 pluginID, address pluginAddress) public onlyOwner {
         plugins[pluginID] = pluginAddress;
+    }
+
+    /**
+    @notice Sets the module contract associated with an Series and record.
+    May only be called by the owner of that series, module itself or record plugin itself.
+    @param series The series to update.
+    @param cid The hash content to be added.
+     */
+    function addTimestamp(address series, string memory filename, string memory cid) public onlySeriesOwner(series, 1) {
+        //DocumentEntry memory doc = DocumentEntry(value, block.timestamp);
+        //timestamps[series].push(doc);
+        emit DocumentTimestamped(series, block.timestamp, filename, cid);
     }
 
     function isSeriesOwner(address _series) private view returns (bool) {

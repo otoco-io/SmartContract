@@ -60,6 +60,9 @@ module.exports = async function (deployer, network, accounts) {
     previousData = require('../migrations_data/domains.ropsten.json');
     ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
     resolverAddress = '0x42D63ae25990889E35F215bC95884039Ba354115';
+  } else if (network == 'rinkeby'){
+    ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
+    resolverAddress = '0xf6305c19e814d2a75429fd637d01f7ee0e77d615';
   } else {
     previousData = require('../migrations_data/domains.ropsten.json');
     var tld = 'eth';
@@ -74,7 +77,7 @@ module.exports = async function (deployer, network, accounts) {
   });
   const instance = await deployProxy(ENSRegistrar, [ensAddress, resolverAddress, rootNode, previousSeries, previousDomains], { deployer });
   console.log('ENS Registrar Address', instance.address);
-  if (network !== 'main' && network !== 'ropsten'){
+  if (network !== 'main' && network !== 'ropsten' && network !== 'rinkeby'){
     const FIFS = await FIFSRegistrar.deployed();
     FIFS.register(web3.utils.sha3('otoco'), instance.address)
   }

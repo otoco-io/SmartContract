@@ -93,7 +93,7 @@ contract ENSRegistrar is Initializable, OwnableUpgradeable {
     /**
      * Return some domain from a series. As a single series could claim multiple domains, 
      * the resolve function here has a index parameter to point a specific domain to be retrieved.
-     * @param domain The string containing the domain.
+     * @param addr The string containing the addr.
      * @param index Domain index to be retrieved.
      */
     function resolve(address addr, uint8 index) public view returns(string memory) {

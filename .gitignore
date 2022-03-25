@@ -3,3 +3,7 @@ test/.placeholder
 node_modules
 .secret.main
 .secret.test
+.api.test
+.infura.main
+scripts
+flatten
