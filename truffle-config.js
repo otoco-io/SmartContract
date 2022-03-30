@@ -25,7 +25,7 @@ const fs = require('fs');
 const mnemonicMain = fs.readFileSync(".secret.main").toString().trim();
 const mnemonicRopsten = fs.readFileSync(".secret.test").toString().trim();
 const apiKeyEtherscan = fs.readFileSync(".api.test").toString().trim();
-const apiInfura = fs.readFileSync(".api.infura").toString().trim();
+const apiInfura = fs.readFileSync(".infura.main").toString().trim();
 
 module.exports = {
   /**
@@ -75,10 +75,14 @@ module.exports = {
      },
 
      main: {
-       provider: () => new HDWalletProvider(mnemonicMain, `https://mainnet.infura.io/v3/${apiInfura}`),
+       provider: () => new HDWalletProvider({
+        mnemonic: { phrase: mnemonicMain },
+        providerOrUrl: `https://mainnet.infura.io/v3/${apiInfura}`,
+        pollingInterval: 16000
+       }),
        network_id: 1,       // Mainnet's id
        gas: 100000,        // Ropsten has a lower block limit than mainnet
-       gasPrice: 150000000000,
+       gasPrice: 50000000000,
        confirmations: 1,    // # of confs to wait between deployments. (default: 0)
        timeoutBlocks:200,  // # of blocks before a deployment times out  (minimum/default: 50)
        skipDryRun: true,    // Skip dry run before migrations? (default: false for public nets )

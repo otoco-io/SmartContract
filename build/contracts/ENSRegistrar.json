@@ -50,7 +50,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -173,7 +174,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -192,7 +194,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -211,7 +214,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.6.0+commit.26b70077\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"series\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"name\":\"NameClaimed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_bytes32\",\"type\":\"bytes32\"}],\"name\":\"bytes32ToString\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract ENS\",\"name\":\"ensAddr\",\"type\":\"address\"},{\"internalType\":\"contract Resolver\",\"name\":\"resolverAddr\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"},{\"internalType\":\"address[]\",\"name\":\"previousSeries\",\"type\":\"address[]\"},{\"internalType\":\"bytes32[]\",\"name\":\"previousDomains\",\"type\":\"bytes32[]\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"ownedDomains\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"label\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"register\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"domain\",\"type\":\"string\"},{\"internalType\":\"contract OwnableUpgradeable\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"registerAndStore\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"name\":\"resolve\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"initialize(address,address,bytes32,address[],bytes32[])\":{\"params\":{\"ensAddr\":\"The address of the ENS registry.\",\"node\":\"The node that this registrar administers.\",\"previousDomains\":\"Previous domains to be migrated.\",\"previousSeries\":\"Previous series to be migrated.\",\"resolverAddr\":\"The resolver where domains will use to register.\"}},\"ownedDomains(address)\":{\"params\":{\"addr\":\"The string containing the series address.\"}},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"register(bytes32,address,address)\":{\"params\":{\"addr\":\"Address to redirect domain\",\"label\":\"The hash of the label to register.\",\"owner\":\"The address of the new owner(Series Manager).\"}},\"registerAndStore(string,address,address)\":{\"params\":{\"addr\":\"Address to redirect domain\",\"domain\":\"The string containing the domain.\",\"target\":\"Series contract that registry will point.\"}},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"resolve(address,uint8)\":{\"params\":{\"addr\":\"The string containing the addr.\",\"index\":\"Domain index to be retrieved.\"}},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}}},\"userdoc\":{\"methods\":{\"initialize(address,address,bytes32,address[],bytes32[])\":{\"notice\":\"Constructor.\"},\"ownedDomains(address)\":{\"notice\":\"Return how much domains the Series has registered using this Registrar.\"},\"register(bytes32,address,address)\":{\"notice\":\"Register a name, or change the owner of an existing registration.\"},\"registerAndStore(string,address,address)\":{\"notice\":\"Register a name, and store the domain to reverse lookup.\"},\"resolve(address,uint8)\":{\"notice\":\"Return some domain from a series. As a single series could claim multiple domains,  the resolve function here has a index parameter to point a specific domain to be retrieved.\"}},\"notice\":\"A registrar that allocates subdomains to the first person to claim them.\"}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ENSRegistrar.sol\":\"ENSRegistrar\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts-upgradeable/GSN/ContextUpgradeable.sol\":{\"keccak256\":\"0xca5ef6ed50c212be4cffea0fd7974d659e92b1328906069f7a14e2cc1bedfbfe\",\"urls\":[\"bzz-raw://b1edd6602dadeb1c00d8bd54aa6cee379dae83846e5b613feefbc8cdcdae42b0\",\"dweb:/ipfs/QmbpZvED3aj3x7fr2pdUC5iDU6x5ehDxKQyj3pm2NegbhM\"]},\"@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol\":{\"keccak256\":\"0xf4ed481ddeacce3cd55a3c75ad114b8ee58ff4382bc0b09d6d8995c37888c565\",\"urls\":[\"bzz-raw://1701a76ba026b4bd4983cc035627835f97a9f0a592dcefeaa636a8b285347128\",\"dweb:/ipfs/QmVpnD2eqYDtogRWVPs4WWH8s9reE9o1vyLAX2UhKGvZey\"]},\"@openzeppelin/contracts-upgradeable/proxy/Initializable.sol\":{\"keccak256\":\"0x8eee8bd8c216a3e437bf7a4c9844348f47a2d990e5b06cd96d250e33ab04c25a\",\"urls\":[\"bzz-raw://c6bb2af880b12be26b148ee99ac3a984168e7fc74721bab9cd44598a0669b038\",\"dweb:/ipfs/QmPfFDaXZbThJgaVim7nvxrw1RuD2xKWCG89K6pznmC8pJ\"]},\"project:/contracts/ENSRegistrar.sol\":{\"keccak256\":\"0xc485a2e04fd2add9d0464614a921e8588b8c79bc9c3373fa9a9e451e8b5a4cbe\",\"urls\":[\"bzz-raw://ffadddff4bee066fdbe8efcbf458468508c1730d1c8c97c77e34671758a30bd2\",\"dweb:/ipfs/QmeRRRK2ipCvPX3iGqndDPVr515XCxD1hakKTboyg3c8Ds\"]}},\"version\":1}",
@@ -11495,10 +11499,17 @@
       },
       "links": {},
       "address": "0xd11e5ECdDD64Aa0709b7b7b42Cae82ac006686C8"
+    },
+    "1648662759059": {
+      "events": {},
+      "links": {},
+      "address": "0x2EcA6FCFef74E2c8D03fBAf0ff6712314c9BD58B",
+      "transactionHash": "0xce0f91cd75d55f9e438d0d82c097033be589829f8717b1446fb0b32ebdb654d4"
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-03-24T18:45:30.367Z",
+  "updatedAt": "2022-03-30T17:52:54.605Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "initialize(address,address,bytes32,address[],bytes32[])": {

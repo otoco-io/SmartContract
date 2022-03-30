@@ -1,5 +1,10 @@
 {
-  "manifestVersion": "3.1",
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x746aAC8f3C7596808893618865888f6345077e0b",
+    "txHash": "0x6d4d8936bdac64315a13526c2c69553240029ae4f9e3e711a25745bfad846fa1"
+  },
+  "proxies": [],
   "impls": {
     "02155a9e7dcb2c4a2a4fe20d3a69f77882f9916813ddf2155d352953f38a81d6": {
       "address": "0x68Ac7D256668aE74730B17B32b1b8359C0de6Ffa",
@@ -40,24 +45,30 @@
             "contract": "MasterRegistry",
             "label": "plugins",
             "type": "t_mapping(t_uint16,t_address)",
-            "src": "MasterRegistry.sol:15"
+            "src": "../project:/contracts/MasterRegistry.sol:16"
           },
           {
             "contract": "MasterRegistry",
             "label": "records",
             "type": "t_mapping(t_address,t_mapping(t_uint16,t_address))",
-            "src": "MasterRegistry.sol:17"
+            "src": "../project:/contracts/MasterRegistry.sol:18"
           },
           {
             "contract": "MasterRegistry",
             "label": "contents",
             "type": "t_mapping(t_address,t_mapping(t_uint16,t_string_storage))",
-            "src": "MasterRegistry.sol:19"
+            "src": "../project:/contracts/MasterRegistry.sol:20"
           }
         ],
         "types": {
           "t_mapping(t_uint16,t_address)": {
             "label": "mapping(uint16 => address)"
+          },
+          "t_uint16": {
+            "label": "uint16"
+          },
+          "t_address": {
+            "label": "address"
           },
           "t_mapping(t_address,t_mapping(t_uint16,t_address))": {
             "label": "mapping(address => mapping(uint16 => address))"
@@ -65,11 +76,17 @@
           "t_mapping(t_address,t_mapping(t_uint16,t_string_storage))": {
             "label": "mapping(address => mapping(uint16 => string))"
           },
-          "t_address": {
-            "label": "address"
+          "t_mapping(t_uint16,t_string_storage)": {
+            "label": "mapping(uint16 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
           },
           "t_array(t_uint256)49_storage": {
             "label": "uint256[49]"
+          },
+          "t_uint256": {
+            "label": "uint256"
           },
           "t_array(t_uint256)50_storage": {
             "label": "uint256[50]"
@@ -295,10 +312,97 @@
           }
         }
       }
+    },
+    "2165b5ac2fd14fbd17d6f0040ca430ed26d8b51c183cb73e3972054974d5d761": {
+      "address": "0x6fD890CEdb8Cce0aE3162BdD48541a5c1dAF9473",
+      "txHash": "0x94bd03ca20ccaa102255102bfaf5f1b97b0723d5fc9f888c4934a3c4e3152f48",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:23"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:28"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/GSN/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "contract": "MasterRegistryV2",
+            "label": "plugins",
+            "type": "t_mapping(t_uint16,t_address)",
+            "src": "../project:/contracts/MasterRegistryV2.sol:16"
+          },
+          {
+            "contract": "MasterRegistryV2",
+            "label": "records",
+            "type": "t_mapping(t_address,t_mapping(t_uint16,t_address))",
+            "src": "../project:/contracts/MasterRegistryV2.sol:18"
+          },
+          {
+            "contract": "MasterRegistryV2",
+            "label": "contents",
+            "type": "t_mapping(t_address,t_mapping(t_uint16,t_string_storage))",
+            "src": "../project:/contracts/MasterRegistryV2.sol:20"
+          }
+        ],
+        "types": {
+          "t_mapping(t_uint16,t_address)": {
+            "label": "mapping(uint16 => address)"
+          },
+          "t_uint16": {
+            "label": "uint16"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_address,t_mapping(t_uint16,t_address))": {
+            "label": "mapping(address => mapping(uint16 => address))"
+          },
+          "t_mapping(t_address,t_mapping(t_uint16,t_string_storage))": {
+            "label": "mapping(address => mapping(uint16 => string))"
+          },
+          "t_mapping(t_uint16,t_string_storage)": {
+            "label": "mapping(uint16 => string)"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_bool": {
+            "label": "bool"
+          }
+        }
+      }
     }
-  },
-  "admin": {
-    "address": "0x746aAC8f3C7596808893618865888f6345077e0b",
-    "txHash": "0x6d4d8936bdac64315a13526c2c69553240029ae4f9e3e711a25745bfad846fa1"
   }
 }

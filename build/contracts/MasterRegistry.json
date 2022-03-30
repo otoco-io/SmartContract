@@ -8764,10 +8764,16 @@
       },
       "links": {},
       "address": "0x86982835D1416a3566e9fBA55ADD06AD7f504911"
+    },
+    "1648662759059": {
+      "events": {},
+      "links": {},
+      "address": "0xFB88dE099e13c3ED21F80a7a1E49f8CAEcF10df6",
+      "transactionHash": "0x7eee8763146379c7256a75ed4063816b9ebbd3835faa33ddc333392389ea4f05"
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-03-25T13:14:29.935Z",
+  "updatedAt": "2022-03-30T17:52:54.876Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Filipe Soccol",
