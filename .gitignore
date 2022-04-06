@@ -7,3 +7,4 @@ node_modules
 .infura.main
 scripts
 flatten
+migrations_data

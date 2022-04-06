@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.6.0;
+pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
-import "./utils/GnosisSafeProxy.sol";
 import "./utils/IMasterRegistry.sol";
 
 contract MultisigFactory is Initializable, OwnableUpgradeable {
@@ -30,9 +28,9 @@ contract MultisigFactory is Initializable, OwnableUpgradeable {
     function updateRegistryContract(address newAddress) onlyOwner public {
         _registryContract = newAddress;
     }
-    
+
     function createMultisig(address _series, bytes memory data) onlySeriesOwner(_series) public {
-        GnosisSafeProxy proxy = new GnosisSafeProxy(_gnosisMasterCopy);
+        // GnosisSafeProxy proxy = new GnosisSafeProxy(_gnosisMasterCopy);
         if (data.length > 0)
             // solium-disable-next-line security/no-inline-assembly
             assembly {
@@ -41,6 +39,6 @@ contract MultisigFactory is Initializable, OwnableUpgradeable {
         if (_registryContract != address(0)){
             IMasterRegistry(_registryContract).setRecord(_series, 2, address(proxy));
         }
-        emit MultisigCreated(_series, address(proxy));
+        // emit MultisigCreated(_series, address(proxy));
     }
 }

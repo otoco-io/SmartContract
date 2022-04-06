@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.6.0;
+pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 /**
  * Master Registry Contract.
  */
-contract MasterRegistryV2 is Initializable, OwnableUpgradeable {
+contract MasterRegistry is Initializable, OwnableUpgradeable {
 
     event RecordChanged(address indexed series, uint16 indexed key, address value);
     event ContentChanged(address indexed series, uint16 indexed key, string value);
