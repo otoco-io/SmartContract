@@ -4,12 +4,41 @@
 
 ![thumb](https://user-images.githubusercontent.com/13040410/102030750-b10ef880-3d92-11eb-9041-edc18c9249ae.png)
 
-## Features
+## Previous approach
 
-- Gnosis-Safe Upgradeable deployer
-- ERC20 Deployer
-- Uses OpenZeppeling Upgradeable contracts
-- Upgradeable plugins and Master Registry contract.
+The current approach of the project has multiple inefficient solutions.
+At the moment of OtoCo conception it makes sense but due to increased demand of gas at Ethereum, we are required to drastically change our approach to make Dapp feasible to work on mainnet.
+
+## Problems with previous approach
+
+- Charging for spin-up usually requires the user to exchange their ETH for DAI before proceeding with approval step during spin-up.
+- The DAI approval and transfer steps cost at least 90K additional gas for the user.
+- Multiple bugs happen on different wallets during the approval step. New users also doesn't not comprehend very well that the approval step doesn't transfer the tokens, only approve for the deployer to consume them after. 
+- The activation phase that creates the new entity instantiates a new contract on the blockchain. It required an absurd amount of 300K gas for a simple Ownable contract.
+- Entity > Ownership relation couldn't be tracked by the Master smart-contract requiring us to rely on third party services like TheGraph to keep tracking Series and his Owner.
+- Having multiple Master contracts sometimes confuses users that don't recognize those different contracts for each jurisdiction.
+- Master Registry create a unecessary complexity requiring different structures to store different plugins.
+
+## Solutions
+
+- The first decision was get rid of DAI payment since that make so much friction to the process.
+- We also decide to charge a percentage of fees in ETH during creation. We are targeting entity creation at 80k in gas. So for a 50gwei gas price a company creation would cost 20USD at max (ETH at 3.500 USD).
+- Based on multiple projects around like ENS, KaliDAO and The Graph that uses ERC721 to define ownership, we decided to switch our Ownables contracts to a single ERC721 contract to define ownership of entities making simpler to list the this entities owned by a single address, without requiring a third-party service.
+- Otoco values paid for plugins are transferred to OtoCoMaster instantly requiring a single transaction to withdraw all values paid for company creation and plugins.
+- Get rid of Master Registry contract, now entity owners call directly the plugins they want to add to their company. The informations are stored directly on plugin storage.
+
+## Benefits
+
+- Reduced cost to deploy entities.
+- Single transaction to create companies.
+- Simple way to calculate amount to be paid in service fees.
+- NFT integration with wallets.
+- Simplified plugin structure becomes cheaper.
+- Reduce third-party sevices required to run dapp.
+
+## Fluxogram for Creating and Managing Companies
+
+![OtoCo - Smart-Contract Redesign](https://user-images.githubusercontent.com/13040410/162817394-d8607038-9fc7-471e-b7b7-d88947f1657e.png)
 
 ## Installation
 
@@ -43,9 +72,6 @@ Running mocha tests:
 truffle test
 ```
 
-## Fluxogram for Creating and Managing Companies
-
-![Otoco - Creation and Manage](https://user-images.githubusercontent.com/13040410/102531418-098b1200-4081-11eb-9f8e-8b85a41a2926.jpg)
 
 ### OtoCo Master Contracts - OtoCorp.sol
 

@@ -28,11 +28,10 @@ contract MasterRegistry is Initializable, OwnableUpgradeable {
      */
     modifier authorizedRecord(address _series, uint16 _key) {
         require(isSeriesOwner(_series) ||
-        isRecordItself(_series, _key) || 
+        isRecordItself(_series, _key) ||
         isRecordPlugin(_series, _key), "Not authorized");
         _;
     }
-    
     /**
      * Modifier to allow only series owners to change content.
      * @param _series The plugin index to update.

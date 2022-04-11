@@ -6,52 +6,73 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract OtoCoMaster is OwnableUpgradeable, ERC721Enumerable {
+contract OtoCoMaster is OwnableUpgradeable, ERC721 {
 
+    // Libraries
     using Strings for uint256;
 
-    enum Jurisdictions{ DAO, DELAWARE, WYOMING }
+    // Events
+    event FeesWithdrawn(address owner, uint256 amount);
 
     struct Series {
-        uint32 jurisdiction;
+        uint16 jurisdiction;
+        uint16 entityType;
         uint64 creation;
-        address owner;
-        string name;
+        string entityName;
     }
 
     // Total count of series
-    uint32 seriesCount;
-    // Series count for each jurisdiction
-    mapping(uint64=>uint64) public seriesPerJurisdiction;
+    uint256 seriesCount;
     // Series mapping from ids to structs
-    mapping(uint64=>Series) public series;
-    // Fees spin-up cost for each jurisdiction
-    mapping(uint256=>uint256) public jurisdictionFees;
+    mapping(uint256=>Series) public series;
+    // Series mapping from ids to structs
+    mapping(uint256=>string) public agreements;
+    // Series count for each jurisdiction
+    mapping(uint16=>uint256) public seriesPerJurisdiction;
+    // Fees spin-up cost
+    uint256 public baseFee;
+    // Jurisdiction count
+    uint16 public jurisdictionCount;
+    // Jurisdiction names
+    mapping(uint16=>string) public jurisdictionNames;
+    // Jurisdiction PDF agreement URI
+    mapping(uint16=>string) public jurisdictionAgreement;
 
-    event FeesWithdrawn(address owner, uint256 amount);
-
-    function initialize(address _priceOracle) external {
+    // Upgradeable contract initializer
+    function initialize(string[] _jurisdictionNames) external {
         __Ownable_init();
-        priceOracle = _priceOracle;
+        uint256 counter = _jurisdictionNames.length;
+        for (uint i = 0; i < counter; i++){
+            jurisdictionNames[i] = _jurisdictionNames[i];
+        }
         seriesCount++;
     }
 
-    function createBatchSeries(uint8[] jurisdiction, address[] owner, string[] memory name) public onlyOwner {
+    /**
+     * Create a new Series at specific jurisdiction and also select its name.
+     * Could only be called by the administrator of the contract.
+     *
+     * @param jurisdiction new price to be charged for series creation.
+     * @param controller the controller of the entity.
+     * @param name the legal name of the entity.
+     */
+    function createBatchSeries(uint8[] jurisdiction, address[] controller, string[] memory name) public onlyOwner {
         require(jurisdiction.length == owner.length, "Master: Owner and Jurisdiction array should have same size.");
-        require(name.length == owner.length, "Master: Owner and Name array should have same size.");
-        uint32 counter = uint32(owner.length);
+        require(name.length == controller.length, "Master: Owner and Name array should have same size.");
+        uint32 counter = uint32(controller.length);
         uint32[] memory seriesPerJurisdictionTemp = new uint32[](3);
         // Iterate through all previous series
         for (uint32 i = 0; i < counter; i++){
             seriesPerJurisdictionTemp[jurisdiction[i]]++;
             series[uint32(i+seriesCount)] = Series(
                 jurisdiction[i],
+                0,
                 creation[i],
-                owner[i],
                 name[i]
             );
-            _balances[owner[i]]++;
-            emit Transfer(address(0), owner[i], i+seriesCount);
+            if (controller[i] != address(0)){
+                _mint(msg.sender, current);
+            }
         }
         // Set global storages
         seriesCount = seriesCount+counter;
@@ -60,47 +81,64 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Enumerable {
         }
     }
 
-    function createSeries(Jurisdiction jurisdiction, address owner, string memory name) public payable {
-        require(msg.value > tx.gas * gasLeft * 0.1, "Not enough ETH to pay for OtoCo fees.");
+    /**
+     * Create a new Series at specific jurisdiction and also select its name.
+     *
+     * @param jurisdiction new price to be charged for series creation.
+     * @param name the legal name of the entity.
+     */
+    function createSeries(Jurisdiction jurisdiction, string memory name) public payable {
+        require(msg.value >= tx.gas * gasLeft * 0.1, "Not enough ETH paid for the transaction.");
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         // Initialize Series data
         series[current] = Series(
             jurisdiction,
-            block.number,
+            0,
+            block.timestamp,
             getJurisdictionNameFormatted(name)
         );
         // Mint NFT
-        _mint(owner, current);
+        _mint(msg.sender, current);
         // Increase counters
         seriesCount++;
         seriesPerJurisdiction[jurisdiction]++;
-        emit SeriesCreated(current, jurisdiction, block.number, newContract.owner(), newContract.getName());
     }
 
+    /**
+     * Close series previously created.
+     *
+     * @param tokenId of the series to be burned.
+     */
     function closeSeries(uint256 tokenId) public {
+        require(ownerOf(tokenId) == msg.sender, "ERC721: token burn from incorrect owner");
         _burn(tokenId);
     }
 
     // --- ADMINISTRATION FUNCTIONS ---
 
     /**
-     * @dev Change creation fees charged for specific jurisdiction.
+     * Add a new jurisdiction to the contract
      *
-     * Requirements:
-     *
-     * - `price` new price to be charged for series creation.
-     * - `jurisdictions` jurisdictions to have price updated.
+     * @param jurisdictionName the name of the jurisdiction to be added.
      */
-    function changeCreationFees(uint256 price, Jurisdictions[] memory jurisdictions) external onlyOwner{
-        for (uint64 i = 0; i < jurisdictions.length; i++) {
-            jurisdictionFees[jurisdiction] = price;
-        }
+    function addNewJurisdiction(string jurisdictionName) external onlyOwner{
+        jurisdictionNames[jurisdictionCount] = jurisdictionName;
+        jurisdictionCount++;
     }
 
     /**
-     * @dev Withdraw fees paid by series creation.
+     * Change creation fees charged for entity creation, plugin addition/modification.
      *
+     * @param newFee new price to be charged for series creation.
+     * @param jurisdictions jurisdictions to have price updated.
+     */
+    function changeBaseFees(uint256 newFee) external onlyOwner{
+        baseFee = newFee;
+    }
+
+    /**
+     * Withdraw fees paid by series creation.
      * Fees are transfered to the caller of the function that should be the contract owner.
      *
      * Emits a {FeesWithdraw} event.
@@ -111,122 +149,15 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Enumerable {
         emit FeesWithdrawn(msg.sender, balance);
     }
 
-    // --- OVERRIDED ERC721 FUNCTIONS ---
-
-     /**
-     * @dev See {IERC721-ownerOf}.
-     */
-    function ownerOf(uint256 tokenId) public view override returns (address) {
-        address owner = series[tokenId].owner;
-        require(owner != address(0), "ERC721: owner query for nonexistent token");
-        return owner;
-    }
-
-    /**
-     * @dev Returns whether `tokenId` exists.
-     *
-     * Tokens can be managed by their owner or approved accounts via {approve} or {setApprovalForAll}.
-     *
-     * Tokens start existing when they are minted (`_mint`),
-     * and stop existing when they are burned (`_burn`).
-     */
-    function _exists(uint256 tokenId) internal view override returns (bool) {
-        return series[tokenId].owner != address(0);
-    }
-
-    /**
-     * @dev Mints `tokenId` and transfers it to `to`.
-     * the _owners variable was replaced by usage of series struct.
-     *
-     * Requirements:
-     *
-     * - `tokenId` must not exist.
-     * - `to` cannot be the zero address.
-     *
-     * Emits a {Transfer} event.
-     */
-    function _mint(address to, uint256 tokenId) internal override {
-        require(to != address(0), "ERC721: mint to the zero address");
-        require(!_exists(tokenId), "ERC721: token already minted");
-
-        _beforeTokenTransfer(address(0), to, tokenId);
-
-        _balances[to] += 1;
-        series[tokenId].owner = to;
-
-        emit Transfer(address(0), to, tokenId);
-
-        _afterTokenTransfer(address(0), to, tokenId);
-    }
-
-    /**
-     * @dev Destroys `tokenId`.
-     * The approval is cleared when the token is burned.
-     *
-     * Requirements:
-     *
-     * - `tokenId` must exist.
-     *
-     * Emits a {Transfer} event.
-     */
-    function _burn(uint256 tokenId) internal override {
-        address owner = ERC721.ownerOf(tokenId);
-
-        _beforeTokenTransfer(owner, address(0), tokenId);
-
-        // Clear approvals
-        _approve(address(0), tokenId);
-
-        _balances[owner] -= 1;
-        delete series[tokenId].owner;
-
-        emit Transfer(owner, address(0), tokenId);
-
-        _afterTokenTransfer(owner, address(0), tokenId);
-    }
-
-    /**
-     * @dev Transfers `tokenId` from `from` to `to`.
-     *  As opposed to {transferFrom}, this imposes no restrictions on msg.sender.
-     *
-     * Requirements:
-     *
-     * - `to` cannot be the zero address.
-     * - `tokenId` token must be owned by `from`.
-     *
-     * Emits a {Transfer} event.
-     */
-    function _transfer(
-        address from,
-        address to,
-        uint256 tokenId
-    ) internal override {
-        require(ERC721.ownerOf(tokenId) == from, "ERC721: transfer from incorrect owner");
-        require(to != address(0), "ERC721: transfer to the zero address");
-
-        _beforeTokenTransfer(from, to, tokenId);
-
-        // Clear approvals from the previous owner
-        _approve(address(0), tokenId);
-
-        _balances[from] -= 1;
-        _balances[to] += 1;
-        series[tokenId].owner = to;
-
-        emit Transfer(from, to, tokenId);
-
-        _afterTokenTransfer(from, to, tokenId);
-    }
-
     // -- TOKEN VISUALS AND DESCRITIVE ELEMENTS --
 
     /**
-     * @dev Get formatted name according to the jurisdiction requirement.
+     * Get formatted name according to the jurisdiction requirement.
      * To use when create new series, before series creation.
      * Returns the string name formatted accordingly.
      *
-     * Requirements:
-     * - `name` as string.
+     * @param name as string.
+     * @return name formatted according to the jurisdiction
      */
     function getSeriesNameFormatted(string memory name) internal view returns (string memory) {
         if (Jurisdictions.DAO == j) return name;
@@ -236,12 +167,12 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Enumerable {
     }
 
     /**
-     * @dev Get jurisdiction name as a string.
+     * Get jurisdiction name as a string.
      * To use when fetch entity SVG.
      * Returns the string jurisdiction name formatted accordingly.
      *
-     * Requirements:
-     * - `jurisdiction` must exist.
+     * @param jurisdiction must exist.
+     * @param string jurisdiction name formatted
      */
     function getJurisdictionAsString(Jurisdictions jurisdiction) internal view returns (string memory){
         if (Jurisdictions.DAO == j) return "DAO";
@@ -250,11 +181,11 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Enumerable {
     }
 
     /**
-     * @dev Get SVG formatted string. To be used inside tokenUri function.
+     * Get SVG formatted string. To be used inside tokenUri function.
      * Returns the svg formatted accordingly.
      *
-     * Requirements:
-     * - `tokenId` must exist.
+     * @param tokenId must exist.
+     * @return json tags formatted
      */
     function getSvg(uint tokenId) private view returns (string memory) {
         string[3] memory parts;
@@ -266,16 +197,16 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Enumerable {
     }
 
     /**
-     * @dev Get the tokenURI that points to a SVG image.
+     * Get the tokenURI that points to a SVG image.
      * Returns the svg formatted accordingly.
      *
-     * Requirements:
-     * - `tokenId` must exist.
+     * @param `tokenId` must exist.
+     * @return svg file formatted.
      */
     function tokenURI(uint256 tokenId) public view returns (string memory) {
         string memory svgData = getSvg(tokenId);
         Series memory s = series[tokenId];
-        string memory details = string(abi.encodePacked, s.name, " - ", getJurisdictionAsString(s.jurisdiction) );
+        string memory details = string(abi.encodePacked, s.name, " - ", getJurisdictionAsString(s.jurisdiction));
         string memory json = Base64.encode(bytes(string(
             abi.encodePacked('{"name": "OtoCo Series", "description": "', bytes(details) ,'", "image_data": "', bytes(svgData), '"}')
         )));
