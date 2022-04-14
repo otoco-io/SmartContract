@@ -12,4 +12,6 @@ interface IOtoCoMaster {
      * @dev See {OtoCoMaster-getBaseFees}.
      */
     function getBaseFees() external returns (uint256 fee);
+
+    receive() external payable;
 }

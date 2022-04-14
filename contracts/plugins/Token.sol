@@ -1,68 +1,107 @@
 // SPDX-License-Identifier: MIT
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import "./utils/IMasterRegistry.sol";
-import "./Token.sol";
+pragma solidity ^0.8.0;
 
-contract SeriesToken is ERC20 {
-    uint8 _decimals;
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import '@openzeppelin/contracts/proxy/Clones.sol';
+import "../utils/OtoCoToken.sol";
+import "../utils/OtoCoPlugin.sol";
 
-    constructor(string memory name_, string memory symbol_, uint256 supply_, uint8 decimals_) ERC20(name_, symbol_) {
-        _decimals = decimals_;
-        _mint(msg.sender, supply_);
-    }
+/**
+ * Token factory plugin
+ */
+contract Token is OtoCoPlugin {
 
-    function decimals() public view override returns (uint8) {
-        return _decimals;
-    }
-}
+    event TokenAdded(uint256 indexed series, address token);
+    event TokenRemoved(uint256 indexed series, address token);
 
-contract TokenFactory is Initializable, OwnableUpgradeable {
+    // Token source contract to be cloned
+    address private tokenContract;
+    // Mapping from entities to deployed tokens
+    mapping(uint256 => address[]) tokensDeployed;
 
-    event TokenCreated(address indexed series, address value);
-
-    address private _tokenContract; 
-    address private _registryContract; 
-
-    modifier onlySeriesOwner(address _series) {
-        require(OwnableUpgradeable(_series).owner() == _msgSender(), "Error: Only Series Owner could deploy tokens");
-        _;
-    }
-
-    function initialize(address token, address[] calldata previousSeries, address[] calldata previousTokens) external {
-        require(previousSeries.length == previousTokens.length, 'Previous series size different than previous tokens size.');
-        __Ownable_init();
-        _tokenContract = token;
-        for (uint i = 0; i < previousSeries.length; i++ ) {
-            emit TokenCreated(previousSeries[i], previousTokens[i]);
+    constructor(
+        address otocoMaster,
+        address token,
+        uint256[] memory prevIds,
+        address[] memory prevTokens
+    ) OtoCoPlugin(otocoMaster) {
+        require(prevIds.length == prevTokens.length, 'Previous series size different than previous tokens size.');
+        tokenContract = token;
+        for (uint i = 0; i < prevIds.length; i++ ) {
+            tokensDeployed[prevIds[i]].push(prevTokens[i]);
+            emit TokenAdded(prevIds[i], prevTokens[i]);
         }
     }
 
-    function updateTokenContract(address newAddress) onlyOwner public {
-        _tokenContract = newAddress;
+    /**
+    * Update token contract base source
+    *
+    * @param newAddress New token source to be used
+     */
+    function updateTokenContract(address newAddress) public onlyOwner {
+        tokenContract = newAddress;
     }
 
-    function updateRegistryContract(address newAddress) onlyOwner public {
-        _registryContract = newAddress;
+    /**
+    * Create a new timestamp for the entity. May only be called by the owner of the series.
+    *
+    * @param pluginData Encoded parameters to create a new token.
+     */
+    function addPlugin(bytes calldata pluginData) public payable override {
+        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+        (
+            uint256 seriesId,
+            uint256 supply,
+            string memory name,
+            string memory symbol
+        ) = abi.decode(pluginData, (uint256, uint256, string, string));
+        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        payable(otocoMaster).transfer(msg.value);
+        address newToken = Clones.clone(tokenContract);
+        SeriesToken(newToken).initialize(name, symbol, supply, msg.sender);
+        tokensDeployed[seriesId].push(newToken);
+        emit TokenAdded(seriesId, address(newToken));
     }
 
-    function createERC20(uint256 _supply, string memory _name, string memory _symbol, address _series) onlySeriesOwner(_series) public {
-        SeriesToken newToken = SeriesToken(createClone(_tokenContract));
-        newToken.initialize(_name, _symbol, _supply, msg.sender);
-        if (_registryContract != address(0)){
-            IMasterRegistry(_registryContract).setRecord(_series, 1, address(newToken));
-        }
-        emit TokenCreated(_series, address(newToken));
+     /**
+    * Attaching a pre-existing token to the entity
+    * @dev seriesId Series to remove token from
+    * @dev newToken Token address to be attached
+    *
+    * @param pluginData Encoded parameters to create a new token.
+     */
+    function attachPlugin(bytes calldata pluginData) public payable override {
+        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+        (
+            uint256 seriesId,
+            address newToken
+        ) = abi.decode(pluginData, (uint256, address));
+        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        payable(otocoMaster).transfer(msg.value);
+        tokensDeployed[seriesId].push(newToken);
+        emit TokenAdded(seriesId, newToken);
     }
 
-    function createClone(address target) internal returns (address result) {
-        bytes20 targetBytes = bytes20(target);
-        assembly {
-          let clone := mload(0x40)
-          mstore(clone, 0x3d602d80600a3d3981f3363d3d373d3d3d363d73000000000000000000000000)
-          mstore(add(clone, 0x14), targetBytes)
-          mstore(add(clone, 0x28), 0x5af43d82803e903d91602b57fd5bf30000000000000000000000000000000000)
-          result := create(0, clone, 0x37)
-        }
+    /**
+    * Remove token from entity
+    * @dev seriesId Series to remove token from
+    * @dev toRemove Token index to be removed
+    *
+    * @param pluginData Encoded parameters to create a new token.
+     */
+    function removePlugin(bytes calldata pluginData) public payable override {
+        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+        (
+            uint256 seriesId,
+            uint256 toRemove
+        ) = abi.decode(pluginData, (uint256, uint256));
+        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        payable(otocoMaster).transfer(msg.value);
+        address tokenRemoved = tokensDeployed[seriesId][toRemove];
+        // Copy last token to the removed slot
+        tokensDeployed[seriesId][toRemove] = tokensDeployed[seriesId][tokensDeployed[seriesId].length - 1];
+        // Remove the last token from array
+        tokensDeployed[seriesId].pop();
+        emit TokenRemoved(seriesId, tokenRemoved);
     }
 }

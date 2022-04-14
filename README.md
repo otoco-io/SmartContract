@@ -38,7 +38,7 @@ At the moment of OtoCo conception it makes sense but due to increased demand of 
 
 ## Fluxogram for Creating and Managing Companies
 
-![OtoCo - Smart-Contract Redesign](https://user-images.githubusercontent.com/13040410/162817394-d8607038-9fc7-471e-b7b7-d88947f1657e.png)
+![OtoCo - Smart-Contract Redesign](https://user-images.githubusercontent.com/13040410/162950693-46daae94-8475-4f90-aa47-651021df9016.png)
 
 ## Installation
 

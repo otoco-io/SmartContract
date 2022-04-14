@@ -2,57 +2,92 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "./OtoCoPlugin.sol";
+import "../utils/OtoCoPlugin.sol";
+
+interface MultisigFactory {
+    function createProxy(address singleton, bytes memory data) external returns (address proxy);
+}
 
 /**
- * Master Registry Contract.
+ * Multisig
  */
-contract Timestamp is OtoCoPlugin, Initializable, OwnableUpgradeable {
+contract Multisig is OtoCoPlugin {
 
-    event MultisigCreated(address indexed series, address value);
+    event MultisigAdded(uint256 indexed series, address multisig);
+    event MultisigRemoved(uint256 indexed series, address multisig);
 
-    address private _gnosisMasterCopy;
+    address public gnosisMasterCopy;
+    address public gnosisMultisigFactory;
 
-    function initialize(address payable otocoMaster, address masterCopy) external {
-        __Ownable_init();
-        _gnosisMasterCopy = masterCopy;
-        otocoMaster = _otocoMaster;
+    mapping(uint256 => address[]) multisigDeployed;
+
+    constructor(
+        address otocoMaster,
+        address masterCopy,
+        uint256[] memory prevIds,
+        address[] memory prevMultisig
+    ) OtoCoPlugin(otocoMaster) {
+        gnosisMasterCopy = masterCopy;
+        for (uint i = 0; i < prevIds.length; i++ ) {
+            multisigDeployed[prevIds[i]].push(prevMultisig[i]);
+            emit MultisigAdded(prevIds[i], prevMultisig[i]);
+        }
+    }
+
+    function updateGnosisMasterCopy(address newAddress) public onlyOwner {
+        gnosisMasterCopy = newAddress;
+    }
+
+    function updateGnosisMultisigFactory(address newAddress) public onlyOwner {
+        gnosisMultisigFactory = newAddress;
+    }
+
+    function addPlugin(bytes calldata pluginData) public payable override {
+        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+        (
+            uint256 seriesId,
+            bytes memory data
+        ) = abi.decode(pluginData, (uint256, bytes));
+        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        payable(otocoMaster).transfer(msg.value);
+        address proxy = MultisigFactory(gnosisMultisigFactory).createProxy(gnosisMasterCopy, data);
+        multisigDeployed[seriesId].push(proxy);
+        emit MultisigAdded(seriesId, proxy);
     }
 
     /**
-    * @notice Create a new timestamp for the entity. May only be called by the owner of the series.
+    * Attaching a pre-existing multisig to the entity
+    * @dev seriesId Series to remove token from
+    * @dev newMultisig Multisig address to be attached
     *
-    * @param tokenId The series ID be updated.
-    * @param filename The filename
-    * @param cid The hash content to be added.
+    * @param pluginData Encoded parameters to create a new token.
      */
-    function addTimestamp(uint256 tokenId, string memory filename, string memory cid) public onlySeriesOwner(tokenId) {
-        //DocumentEntry memory doc = DocumentEntry(value, block.timestamp);
-        //timestamps[series].push(doc);
-        emit DocumentTimestamped(tokenId, block.timestamp, filename, cid);
+    function attachPlugin(bytes calldata pluginData) public payable override {
+        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+        (
+            uint256 seriesId,
+            address newMultisig
+        ) = abi.decode(pluginData, (uint256, address));
+        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        payable(otocoMaster).transfer(msg.value);
+        multisigDeployed[seriesId].push(newMultisig);
+        emit TokenAdded(seriesId, newMultisig);
     }
 
-    modifier onlySeriesOwner(address _series) {
-        require(OwnableUpgradeable(_series).owner() == _msgSender(), "Error: Only Series Owner could deploy tokens");
-        _;
-    }
-
-    function updateGnosisMasterCopy(address newAddress) onlyOwner public {
-        _gnosisMasterCopy = newAddress;
-    }
-
-
-    function createMultisig(address _series, bytes memory data) onlySeriesOwner(_series) public {
-        // GnosisSafeProxy proxy = new GnosisSafeProxy(_gnosisMasterCopy);
-        if (data.length > 0)
-            // solium-disable-next-line security/no-inline-assembly
-            assembly {
-                if eq(call(gas(), proxy, 0, add(data, 0x20), mload(data), 0, 0), 0) { revert(0,0) }
-            }
-        if (_registryContract != address(0)){
-            IMasterRegistry(_registryContract).setRecord(_series, 2, address(proxy));
-        }
-        // emit MultisigCreated(_series, address(proxy));
+    function removePlugin(bytes calldata pluginData) public payable override {
+        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+        (
+            uint256 seriesId,
+            uint256 toRemove
+        ) = abi.decode(pluginData, (uint256, uint256));
+        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        payable(otocoMaster).transfer(msg.value);
+        address multisigRemoved = multisigDeployed[seriesId][toRemove];
+        // Copy last token to the removed slot
+        multisigDeployed[seriesId][toRemove] = multisigDeployed[seriesId][multisigDeployed[seriesId].length - 1];
+        // Remove the last token from array
+        multisigDeployed[seriesId].pop();
+        emit MultisigRemoved(seriesId, multisigRemoved);
     }
 
 }

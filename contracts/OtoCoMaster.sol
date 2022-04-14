@@ -45,6 +45,7 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721 {
         for (uint i = 0; i < counter; i++){
             jurisdictionNames[i] = _jurisdictionNames[i];
         }
+        baseFee = 10;
         seriesCount++;
     }
 
@@ -88,7 +89,7 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721 {
      * @param name the legal name of the entity.
      */
     function createSeries(Jurisdiction jurisdiction, string memory name) public payable {
-        require(msg.value >= tx.gas * gasLeft * 0.1, "Not enough ETH paid for the transaction.");
+        require(msg.value >= tx.gasprice * gasleft() / baseFee, "Not enough ETH paid for the execution.");
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         // Initialize Series data
@@ -110,10 +111,13 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721 {
      *
      * @param tokenId of the series to be burned.
      */
-    function closeSeries(uint256 tokenId) public {
+    function closeSeries(uint256 tokenId) public payable {
+        require(msg.value >= tx.gasprice * gasleft() / baseFee, "Not enough ETH paid for the execution.");
         require(ownerOf(tokenId) == msg.sender, "ERC721: token burn from incorrect owner");
         _burn(tokenId);
     }
+
+    receive() external payable {}
 
     // --- ADMINISTRATION FUNCTIONS ---
 

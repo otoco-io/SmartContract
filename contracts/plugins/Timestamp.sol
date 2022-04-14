@@ -3,32 +3,39 @@ pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "./OtoCoPlugin.sol";
+import "../utils/OtoCoPlugin.sol";
 
 /**
  * Master Registry Contract.
  */
-contract Timestamp is OtoCoPlugin, Initializable, OwnableUpgradeable {
+contract Timestamp is OtoCoPlugin {
 
-    event DocumentTimestamped(uint256 indexed tokenId, uint256 timestamp, string filename, string cid);
+    event DocumentTimestamped(uint256 indexed seriesId, uint256 timestamp, string filename, string cid);
 
     // Upgradeable contract initializer
-    function initialize(address payable _otocoMaster) external {
-        __Ownable_init();
-        otocoMaster = _otocoMaster;
-    }
+    constructor (address otocoMaster) OtoCoPlugin(otocoMaster) {}
 
     /**
-    * @notice Create a new timestamp for the entity. May only be called by the owner of the series.
+    * Create a new timestamp for the entity. May only be called by the owner of the series.
     *
-    * @param tokenId The series ID be updated.
+    * @param seriesId The series ID be updated.
     * @param filename The filename
     * @param cid The hash content to be added.
      */
-    function addTimestamp(uint256 tokenId, string memory filename, string memory cid) public onlySeriesOwner(tokenId) {
-        //DocumentEntry memory doc = DocumentEntry(value, block.timestamp);
-        //timestamps[series].push(doc);
-        emit DocumentTimestamped(tokenId, block.timestamp, filename, cid);
+    function addPlugin(bytes calldata pluginData) public payable override {
+        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+        (
+            uint256 seriesId,
+            string memory filename,
+            string memory cid
+        ) = abi.decode(pluginData, (uint256, string, string));
+        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        payable(otocoMaster).transfer(msg.value);
+        emit DocumentTimestamped(seriesId, block.timestamp, filename, cid);
+    }
+
+    function removePlugin(bytes calldata pluginData) public payable override {
+        require(false, "Timestamp: Remove elements are not possible on this plugin.");
     }
 
 }

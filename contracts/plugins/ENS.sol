@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
+import "../utils/OtoCoPlugin.sol";
 
 interface ENS {
     function setSubnodeRecord(bytes32 node, bytes32 label, address owner, address resolver, uint64 ttl) external;
@@ -15,52 +15,69 @@ interface Resolver{
     function setAddr(bytes32 node, uint coinType, bytes calldata a) external;
 }
 
-
 /**
- * A registrar that allocates subdomains to the first person to claim them.
+ * A registrar that stores subdomains to the first person who claim them.
  */
-contract ENSRegistrar is Initializable, OwnableUpgradeable {
-    
-    event NameClaimed(address indexed series, string value);
+contract ENSRegistrar is OtoCoPlugin {
+
+    event SubdomainClaimed(uint256 indexed series, string value);
 
     // Master ENS registry
-    ENS ens;
+    ENS public ens;
     // The otoco.eth node reference
-    bytes32 rootNode;
+    bytes32 public rootNode;
     // Default resolver to deal with data storage
-    Resolver defaultResolver;
+    Resolver public defaultResolver;
     // Mapping of Company address => Domains
-    mapping(address => string[]) internal seriesDomains;
+    mapping(uint256 => string[]) internal seriesDomains;
 
-    modifier only_owner(bytes32 label) {
-        address currentOwner = ens.owner(keccak256(abi.encodePacked(rootNode, label)));
-        require(currentOwner == address(0x0) || currentOwner == msg.sender);
-        _;
-    }
-    
-    modifier only_series_manager(OwnableUpgradeable series) {
-        require(series.owner() == msg.sender, 'Not the series manager.');
-        _;
-    }
-
-    /**
+    /*
      * Constructor.
+     *
      * @param ensAddr The address of the ENS registry.
      * @param resolverAddr The resolver where domains will use to register.
      * @param node The node that this registrar administers.
      * @param previousSeries Previous series to be migrated.
      * @param previousDomains Previous domains to be migrated.
      */
-    function initialize(ENS ensAddr, Resolver resolverAddr, bytes32 node, address[] calldata previousSeries, bytes32[] calldata previousDomains) external {
-        require(previousSeries.length == previousDomains.length, 'Previous series size different than previous tokens size.');
-        __Ownable_init();
+    constructor (
+        address otocoMaster,
+        ENS ensAddr,
+        Resolver resolverAddr,
+        bytes32 node,
+        uint256[] memory prevSeries,
+        string[] memory prevDomains
+    ) OtoCoPlugin(otocoMaster) {
         ens = ensAddr;
         rootNode = node;
         defaultResolver = resolverAddr;
-        for (uint i = 0; i < previousSeries.length; i++ ) {
-            emit NameClaimed(previousSeries[i], bytes32ToString(previousDomains[i]));
-            seriesDomains[previousSeries[i]].push(bytes32ToString(previousDomains[i]));
+        for (uint i = 0; i < prevSeries.length; i++ ) {
+            emit SubdomainClaimed(prevSeries[i], prevDomains[i]);
+            seriesDomains[prevSeries[i]].push(prevDomains[i]);
         }
+    }
+
+    /**
+     * Register a name, and store the domain to reverse lookup.
+     *
+     * @param pluginData Encoded parameters to create a new token.
+     * @dev domain The string containing the domain.
+     * @dev target Series contract that registry will point.
+     * @dev addr Address to redirect domain
+     */
+     function addPlugin(bytes calldata pluginData) public payable override {
+        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+        (
+            uint256 seriesId,
+            string memory domain,
+            address addr
+        ) = abi.decode(pluginData, (uint256, string, address));
+        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        payable(otocoMaster).transfer(msg.value);
+        bytes32 label = keccak256(abi.encodePacked(domain));
+        register(label, msg.sender, addr);
+        seriesDomains[seriesId].push(domain);
+        emit SubdomainClaimed(seriesId, domain);
     }
 
     /**
@@ -69,53 +86,31 @@ contract ENSRegistrar is Initializable, OwnableUpgradeable {
      * @param owner The address of the new owner(Series Manager).
      * @param addr Address to redirect domain
      */
-    function register(bytes32 label, address owner, address addr) public only_owner(label) {
+    function register(bytes32 label, address owner, address addr) internal {
         bytes32 node = keccak256(abi.encodePacked(rootNode, label));
-        ens.setSubnodeRecord(rootNode, label, address(this), address(defaultResolver) ,63072000);
+        ens.setSubnodeRecord(rootNode, label, address(this), address(defaultResolver), 63072000);
         defaultResolver.setAddr(node, addr);
         ens.setOwner(node, owner);
     }
-    
+
     /**
-     * Register a name, and store the domain to reverse lookup.
-     * @param domain The string containing the domain.
-     * @param target Series contract that registry will point.
-     * @param addr Address to redirect domain
+     * Allow attach a previously deployed plugin if possible
+     * @dev This function should run enumerous amounts of verifications before allow the attachment.
+     * @dev To decode initialization data use i.e.: (string memory name) = abi.decode(pluginData, (string));
+     *
+     * @param pluginData The parameters to remove a instance of the plugin.
      */
-    function registerAndStore(string memory domain, OwnableUpgradeable target, address addr) public only_series_manager(target) {
-        bytes32 label = keccak256(abi.encodePacked(domain));
-        register(label, msg.sender, addr);
-        seriesDomains[address(target)].push(domain);
-        emit NameClaimed(address(target), domain);
-    }
-    
-    /**
-     * Return some domain from a series. As a single series could claim multiple domains, 
-     * the resolve function here has a index parameter to point a specific domain to be retrieved.
-     * @param addr The string containing the addr.
-     * @param index Domain index to be retrieved.
-     */
-    function resolve(address addr, uint8 index) public view returns(string memory) {
-        return seriesDomains[addr][index];
-    }
-    
-    /**
-     * Return how much domains the Series has registered using this Registrar.
-     * @param addr The string containing the series address.
-     */
-    function ownedDomains(address addr) public view returns(uint) {
-        return seriesDomains[addr].length;
+    function attachPlugin(bytes calldata pluginData) public payable override {
+        require(false, "ENS Plugin: Attach domains are not possible on this plugin.");
     }
 
-    function bytes32ToString(bytes32 _bytes32) public pure returns (string memory) {
-        uint8 i = 0;
-        while(i < 32 && _bytes32[i] != 0) {
-            i++;
-        }
-        bytes memory bytesArray = new bytes(i);
-        for (i = 0; i < 32 && _bytes32[i] != 0; i++) {
-            bytesArray[i] = _bytes32[i];
-        }
-        return string(bytesArray);
+    /**
+     * Plugin initializer with a fuinction template to be used.
+     * @dev To decode initialization data use i.e.: (string memory name) = abi.decode(pluginData, (string));
+     *
+     * @param pluginData The parameters to remove a instance of the plugin.
+     */
+    function removePlugin(bytes calldata pluginData) public payable override {
+        require(false, "ENS Plugin: Remove domains are not possible on this plugin.");
     }
 }
