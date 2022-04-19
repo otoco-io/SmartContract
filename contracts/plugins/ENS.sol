@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-import "../utils/OtoCoPlugin.sol";
+import "../OtoCoPlugin.sol";
 
 interface ENS {
-    function setSubnodeRecord(bytes32 node, bytes32 label, address owner, address resolver, uint64 ttl) external;
-    function setSubnodeOwner(bytes32 node, bytes32 label, address owner) external returns(bytes32);
-    function setOwner(bytes32 node, address owner) external;
+    function setSubnodeRecord(bytes32 node, bytes32 label, address _owner, address resolver, uint64 ttl) external;
+    function setSubnodeOwner(bytes32 node, bytes32 label, address _owner) external returns(bytes32);
+    function setOwner(bytes32 node, address _owner) external;
     function owner(bytes32 node) external view returns (address);
 }
 
@@ -41,7 +41,7 @@ contract ENSRegistrar is OtoCoPlugin {
      * @param previousDomains Previous domains to be migrated.
      */
     constructor (
-        address otocoMaster,
+        address payable otocoMaster,
         ENS ensAddr,
         Resolver resolverAddr,
         bytes32 node,
@@ -65,15 +65,11 @@ contract ENSRegistrar is OtoCoPlugin {
      * @dev target Series contract that registry will point.
      * @dev addr Address to redirect domain
      */
-     function addPlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+     function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
         (
-            uint256 seriesId,
             string memory domain,
             address addr
-        ) = abi.decode(pluginData, (uint256, string, address));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
-        payable(otocoMaster).transfer(msg.value);
+        ) = abi.decode(pluginData, (string, address));
         bytes32 label = keccak256(abi.encodePacked(domain));
         register(label, msg.sender, addr);
         seriesDomains[seriesId].push(domain);
@@ -100,7 +96,7 @@ contract ENSRegistrar is OtoCoPlugin {
      *
      * @param pluginData The parameters to remove a instance of the plugin.
      */
-    function attachPlugin(bytes calldata pluginData) public payable override {
+    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public payable override {
         require(false, "ENS Plugin: Attach domains are not possible on this plugin.");
     }
 
@@ -110,7 +106,7 @@ contract ENSRegistrar is OtoCoPlugin {
      *
      * @param pluginData The parameters to remove a instance of the plugin.
      */
-    function removePlugin(bytes calldata pluginData) public payable override {
+    function removePlugin(uint256 seriesId, bytes calldata pluginData) public payable override {
         require(false, "ENS Plugin: Remove domains are not possible on this plugin.");
     }
 }

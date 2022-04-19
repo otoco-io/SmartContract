@@ -7,12 +7,12 @@
     "test": "test"
   },
   "dependencies": {
+    "@openzeppelin/contracts-upgradeable": "^4.5.2",
     "chai": "^4.2.0"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.5.0",
-    "@openzeppelin/contracts-upgradeable": "^4.5.2",
-    "@openzeppelin/truffle-upgrades": "^1.15.0"
+    "hardhat": "^2.9.3"
   },
   "scripts": {
     "test": "mocha"

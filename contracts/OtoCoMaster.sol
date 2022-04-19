@@ -2,14 +2,14 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
+import "@openzeppelin/contracts/utils/Base64.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract OtoCoMaster is OwnableUpgradeable, ERC721 {
+import "./utils/IOtoCoJurisdiction.sol";
 
-    // Libraries
-    using Strings for uint256;
+contract OtoCoMaster is ERC721Upgradeable, OwnableUpgradeable {
 
     // Events
     event FeesWithdrawn(address owner, uint256 amount);
@@ -18,77 +18,47 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721 {
         uint16 jurisdiction;
         uint16 entityType;
         uint64 creation;
-        string entityName;
+        string name;
     }
 
     // Total count of series
     uint256 seriesCount;
-    // Series mapping from ids to structs
+    // Last migrated series at start
+    uint256 lastMigrated;
+    // Mapping from Series Ids to Series data
     mapping(uint256=>Series) public series;
-    // Series mapping from ids to structs
-    mapping(uint256=>string) public agreements;
-    // Series count for each jurisdiction
-    mapping(uint16=>uint256) public seriesPerJurisdiction;
-    // Fees spin-up cost
-    uint256 public baseFee;
-    // Jurisdiction count
+
+    // Total count of unique jurisdictions
     uint16 public jurisdictionCount;
-    // Jurisdiction names
-    mapping(uint16=>string) public jurisdictionNames;
-    // Jurisdiction PDF agreement URI
-    mapping(uint16=>string) public jurisdictionAgreement;
+    // How much series exist in each jurisdiction
+    mapping(uint16=>address) public jurisdictionAddress;
+    // How much series exist in each jurisdiction
+    mapping(uint16=>uint256) public seriesPerJurisdiction;
+
+    // The value to divide the GasLeft * GasPrice
+    uint256 public baseFee;
 
     // Upgradeable contract initializer
-    function initialize(string[] _jurisdictionNames) external {
+    function initialize(address[] calldata jurisdictionAddresses) external {
         __Ownable_init();
-        uint256 counter = _jurisdictionNames.length;
-        for (uint i = 0; i < counter; i++){
-            jurisdictionNames[i] = _jurisdictionNames[i];
+        __ERC721_init("OtoCo Series", "OTOCO");
+        uint16 counter = uint16(jurisdictionAddresses.length);
+        for (uint16 i = 0; i < counter; i++){
+            jurisdictionAddress[i] = jurisdictionAddresses[i];
         }
+        jurisdictionCount = counter;
         baseFee = 10;
         seriesCount++;
     }
 
     /**
      * Create a new Series at specific jurisdiction and also select its name.
-     * Could only be called by the administrator of the contract.
      *
-     * @param jurisdiction new price to be charged for series creation.
-     * @param controller the controller of the entity.
+     * @param jurisdiction Jurisdiction that will store entity.
+     * @param controller who will control the entity.
      * @param name the legal name of the entity.
      */
-    function createBatchSeries(uint8[] jurisdiction, address[] controller, string[] memory name) public onlyOwner {
-        require(jurisdiction.length == owner.length, "Master: Owner and Jurisdiction array should have same size.");
-        require(name.length == controller.length, "Master: Owner and Name array should have same size.");
-        uint32 counter = uint32(controller.length);
-        uint32[] memory seriesPerJurisdictionTemp = new uint32[](3);
-        // Iterate through all previous series
-        for (uint32 i = 0; i < counter; i++){
-            seriesPerJurisdictionTemp[jurisdiction[i]]++;
-            series[uint32(i+seriesCount)] = Series(
-                jurisdiction[i],
-                0,
-                creation[i],
-                name[i]
-            );
-            if (controller[i] != address(0)){
-                _mint(msg.sender, current);
-            }
-        }
-        // Set global storages
-        seriesCount = seriesCount+counter;
-        for (uint8 i = 0; i <= 2; i++){
-            seriesPerJurisdiction[i] = seriesPerJurisdiction[i]+seriesPerJurisdictionTemp[i];
-        }
-    }
-
-    /**
-     * Create a new Series at specific jurisdiction and also select its name.
-     *
-     * @param jurisdiction new price to be charged for series creation.
-     * @param name the legal name of the entity.
-     */
-    function createSeries(Jurisdiction jurisdiction, string memory name) public payable {
+    function createSeries(uint16 jurisdiction, address controller, string memory name) public payable {
         require(msg.value >= tx.gasprice * gasleft() / baseFee, "Not enough ETH paid for the execution.");
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
@@ -96,11 +66,11 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721 {
         series[current] = Series(
             jurisdiction,
             0,
-            block.timestamp,
-            getJurisdictionNameFormatted(name)
+            uint64(block.timestamp),
+            IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getSeriesNameFormatted(name)
         );
         // Mint NFT
-        _mint(msg.sender, current);
+        _mint(controller, current);
         // Increase counters
         seriesCount++;
         seriesPerJurisdiction[jurisdiction]++;
@@ -122,20 +92,65 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721 {
     // --- ADMINISTRATION FUNCTIONS ---
 
     /**
+     * Create a new Series at specific jurisdiction and also select its name.
+     * Could only be called by the administrator of the contract.
+     *
+     * @param jurisdiction new price to be charged for series creation.
+     * @param controller the controller of the entity.
+     * @param creation the creation timestamp of entity in unix seconds.
+     * @param name the legal name of the entity.
+     */
+    function createBatchSeries(uint16[] calldata jurisdiction, address[] calldata controller, uint64[] calldata creation, string[] calldata name) public onlyOwner {
+        require(jurisdiction.length == controller.length, "Master: Owner and Jurisdiction array should have same size.");
+        require(name.length == controller.length, "Master: Owner and Name array should have same size.");
+        uint32 counter = uint32(controller.length);
+        uint32[] memory seriesPerJurisdictionTemp = new uint32[](3);
+        // Iterate through all previous series
+        for (uint32 i = 0; i < counter; i++){
+            seriesPerJurisdictionTemp[jurisdiction[i]]++;
+            series[uint32(i+seriesCount)] = Series(
+                jurisdiction[i],
+                0,
+                creation[i],
+                name[i]
+            );
+            // Don't mint closed entities
+            if (controller[i] != address(0)){
+                _mint(msg.sender, i+seriesCount);
+            }
+        }
+        // Set global storages
+        seriesCount = seriesCount+counter;
+        lastMigrated = seriesCount;
+        for (uint8 i = 0; i < 3; i++){
+            seriesPerJurisdiction[i] = seriesPerJurisdiction[i]+seriesPerJurisdictionTemp[i];
+        }
+    }
+
+    /**
      * Add a new jurisdiction to the contract
      *
-     * @param jurisdictionName the name of the jurisdiction to be added.
+     * @param newAddress the address of the jurisdiction.
      */
-    function addNewJurisdiction(string jurisdictionName) external onlyOwner{
-        jurisdictionNames[jurisdictionCount] = jurisdictionName;
+    function addJurisdiction(address newAddress) external onlyOwner{
+        jurisdictionAddress[jurisdictionCount] = newAddress;
         jurisdictionCount++;
     }
 
     /**
-     * Change creation fees charged for entity creation, plugin addition/modification.
+     * Add a new jurisdiction to the contract
      *
-     * @param newFee new price to be charged for series creation.
-     * @param jurisdictions jurisdictions to have price updated.
+     * @param jurisdiction the index of the jurisdiction.
+     * @param newAddress the new address of the jurisdiction.
+     */
+    function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwner{
+        jurisdictionAddress[jurisdiction] = newAddress;
+    }
+
+    /**
+     * Change creation fees charged for entity creation, plugin addition/modification/removal.
+     *
+     * @param newFee new price to be charged for base fees.
      */
     function changeBaseFees(uint256 newFee) external onlyOwner{
         baseFee = newFee;
@@ -149,71 +164,44 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721 {
      */
     function withdrawFees() external onlyOwner {
         uint256 balance = address(this).balance;
-        address(msg.sender).transfer(balance);
+        payable(msg.sender).transfer(balance);
         emit FeesWithdrawn(msg.sender, balance);
     }
 
     // -- TOKEN VISUALS AND DESCRITIVE ELEMENTS --
 
     /**
-     * Get formatted name according to the jurisdiction requirement.
-     * To use when create new series, before series creation.
-     * Returns the string name formatted accordingly.
-     *
-     * @param name as string.
-     * @return name formatted according to the jurisdiction
-     */
-    function getSeriesNameFormatted(string memory name) internal view returns (string memory) {
-        if (Jurisdictions.DAO == j) return name;
-        if (Jurisdictions.DELAWARE == j) return string(abi.encodePacked(name, ' LLC'));
-        if (Jurisdictions.WYOMING == j)
-            return string(abi.encodePacked(name, ' - Series ', uint256(seriesPerJurisdiction[Jurisdictions.WYOMING]).toString()));
-    }
-
-    /**
-     * Get jurisdiction name as a string.
-     * To use when fetch entity SVG.
-     * Returns the string jurisdiction name formatted accordingly.
-     *
-     * @param jurisdiction must exist.
-     * @param string jurisdiction name formatted
-     */
-    function getJurisdictionAsString(Jurisdictions jurisdiction) internal view returns (string memory){
-        if (Jurisdictions.DAO == j) return "DAO";
-        if (Jurisdictions.DELAWARE == j) return "DELAWARE";
-        if (Jurisdictions.WYOMING == j) return "WYOMING";
-    }
-
-    /**
-     * Get SVG formatted string. To be used inside tokenUri function.
-     * Returns the svg formatted accordingly.
-     *
-     * @param tokenId must exist.
-     * @return json tags formatted
-     */
-    function getSvg(uint tokenId) private view returns (string memory) {
-        string[3] memory parts;
-        parts[0] = "<svg viewBox='0 0 350 350'><style>.a { fill: #0000; font-size: 18px; }</style><text x='10' y='10' class='a'>Token #";
-        parts[1] = string(tokenId);
-        parts[2] = "</text></svg>";
-
-        return string(abi.encodePacked, parts[0], parts[1], parts[2]);
-    }
-
-    /**
      * Get the tokenURI that points to a SVG image.
      * Returns the svg formatted accordingly.
      *
-     * @param `tokenId` must exist.
+     * @param tokenId must exist.
      * @return svg file formatted.
      */
-    function tokenURI(uint256 tokenId) public view returns (string memory) {
-        string memory svgData = getSvg(tokenId);
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
         Series memory s = series[tokenId];
-        string memory details = string(abi.encodePacked, s.name, " - ", getJurisdictionAsString(s.jurisdiction));
-        string memory json = Base64.encode(bytes(string(
-            abi.encodePacked('{"name": "OtoCo Series", "description": "', bytes(details) ,'", "image_data": "', bytes(svgData), '"}')
-        )));
+        IOtoCoJurisdiction jurisdiction = IOtoCoJurisdiction(jurisdictionAddress[s.jurisdiction]);
+        string memory badge = jurisdiction.getJurisdictionBadge();
+        if (tokenId < lastMigrated) badge = jurisdiction.getJurisdictionGoldBadge();
+
+        string memory details = string(abi.encodePacked(
+            "OtoCo Series #",
+            tokenId,
+            " - ",
+            s.name,
+            " - ",
+            jurisdiction.getJurisdictionName(),
+            " - Created at following unix timestamp: ",
+            s.creation
+        ));
+        string memory json = Base64.encode(bytes(string(abi.encodePacked(
+            '{"name": "',
+            s.name,
+            '", "description": "',
+            details,
+            '", "image_data": "',
+            badge,
+            '"}'
+        ))));
         return string(abi.encodePacked('data:application/json;base64,', json));
     }
 }

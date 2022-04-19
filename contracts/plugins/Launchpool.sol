@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../utils/OtoCoPlugin.sol";
+import "../OtoCoPlugin.sol";
 import '@openzeppelin/contracts/proxy/Clones.sol';
 
 interface PoolInterface {
@@ -37,7 +37,7 @@ contract LaunchpoolFactory is OtoCoPlugin {
     // The assignment of launchpools to entities
     mapping(uint256 => address[]) launchpoolDeployed;
 
-    constructor(address otocoMaster, address poolSource, address curveSource) OtoCoPlugin(otocoMaster) {
+    constructor(address payable otocoMaster, address poolSource, address curveSource) OtoCoPlugin(otocoMaster) {
         _poolSource = poolSource;
         _curveSources.push(curveSource);
     }
@@ -62,32 +62,24 @@ contract LaunchpoolFactory is OtoCoPlugin {
         emit AddedCurveSource(newAddress);
     }
 
-    function addPlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+    function addPlugin(uint256 seriesId, bytes calldata pluginData) onlySeriesOwner(seriesId) enoughFees() public payable override {
         (
-            uint256 seriesId,
             address[] memory _allowedTokens,
             uint256[] memory _uintArgs,
             string memory _metadata,
             address _shares,
             uint16 _curve
-        ) = abi.decode(pluginData, (uint256, address[], uint256[], string, address, uint16));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
-        payable(otocoMaster).transfer(msg.value);
+        ) = abi.decode(pluginData, (address[], uint256[], string, address, uint16));
         address pool = Clones.clone(_poolSource);
         PoolInterface(pool).initialize(_allowedTokens, _uintArgs, _metadata, msg.sender, _shares, _curveSources[_curve]);
         launchpoolDeployed[seriesId].push(pool);
         emit LaunchpoolCreated(seriesId, msg.sender, pool, _metadata);
     }
 
-    function removePlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+    function removePlugin(uint256 seriesId, bytes calldata pluginData) onlySeriesOwner(seriesId) enoughFees() public payable override {
         (
-            uint256 seriesId,
             uint256 toRemove
-        ) = abi.decode(pluginData, (uint256, uint256));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
-        payable(otocoMaster).transfer(msg.value);
+        ) = abi.decode(pluginData, (uint256));
         address poolRemoved = launchpoolDeployed[seriesId][toRemove];
         // Copy last token to the removed slot
         launchpoolDeployed[seriesId][toRemove] = launchpoolDeployed[seriesId][launchpoolDeployed[seriesId].length - 1];

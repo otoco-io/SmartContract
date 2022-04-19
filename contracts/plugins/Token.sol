@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import '@openzeppelin/contracts/proxy/Clones.sol';
 import "../utils/OtoCoToken.sol";
-import "../utils/OtoCoPlugin.sol";
+import "../OtoCoPlugin.sol";
 
 /**
  * Token factory plugin
@@ -19,8 +19,17 @@ contract Token is OtoCoPlugin {
     // Mapping from entities to deployed tokens
     mapping(uint256 => address[]) tokensDeployed;
 
+
+    /**
+    * Constructor for Token Plugin.
+    *
+    * @param otocoMaster Address from the Master contract.
+    * @param token Address from the token source contract to be cloned.
+    * @param prevIds Previously deployed token series indexes.
+    * @param prevTokens Addresses from the tokens previously deployed.
+     */
     constructor(
-        address otocoMaster,
+        address payable otocoMaster,
         address token,
         uint256[] memory prevIds,
         address[] memory prevTokens
@@ -34,7 +43,7 @@ contract Token is OtoCoPlugin {
     }
 
     /**
-    * Update token contract base source
+    * Update token contract base source.
     *
     * @param newAddress New token source to be used
      */
@@ -43,19 +52,20 @@ contract Token is OtoCoPlugin {
     }
 
     /**
-    * Create a new timestamp for the entity. May only be called by the owner of the series.
+    * Create a new token for the entity. May only be called by the owner of the series.
     *
     * @param pluginData Encoded parameters to create a new token.
+    * @dev seriesId would be the series that will own the token.
+    * @dev supply the total supply of tokens to be issued.
+    * @dev name the name of the token as string.
+    * @dev symbol the symbol that respresent the token.
      */
-    function addPlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+    function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
         (
-            uint256 seriesId,
             uint256 supply,
             string memory name,
             string memory symbol
-        ) = abi.decode(pluginData, (uint256, uint256, string, string));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        ) = abi.decode(pluginData, (uint256, string, string));
         payable(otocoMaster).transfer(msg.value);
         address newToken = Clones.clone(tokenContract);
         SeriesToken(newToken).initialize(name, symbol, supply, msg.sender);
@@ -63,20 +73,17 @@ contract Token is OtoCoPlugin {
         emit TokenAdded(seriesId, address(newToken));
     }
 
-     /**
-    * Attaching a pre-existing token to the entity
-    * @dev seriesId Series to remove token from
-    * @dev newToken Token address to be attached
+    /**
+    * Attaching a pre-existing token to the entity. May only be called by the entity owner.
     *
     * @param pluginData Encoded parameters to create a new token.
+    * @dev seriesId Series to remove token from
+    * @dev newToken Token address to be attached
      */
-    function attachPlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
         (
-            uint256 seriesId,
             address newToken
-        ) = abi.decode(pluginData, (uint256, address));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
+        ) = abi.decode(pluginData, (address));
         payable(otocoMaster).transfer(msg.value);
         tokensDeployed[seriesId].push(newToken);
         emit TokenAdded(seriesId, newToken);
@@ -84,19 +91,15 @@ contract Token is OtoCoPlugin {
 
     /**
     * Remove token from entity
-    * @dev seriesId Series to remove token from
-    * @dev toRemove Token index to be removed
     *
     * @param pluginData Encoded parameters to create a new token.
+    * @dev seriesId Series to remove token from
+    * @dev toRemove Token index to be removed
      */
-    function removePlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+    function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
         (
-            uint256 seriesId,
             uint256 toRemove
-        ) = abi.decode(pluginData, (uint256, uint256));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
-        payable(otocoMaster).transfer(msg.value);
+        ) = abi.decode(pluginData, (uint256));
         address tokenRemoved = tokensDeployed[seriesId][toRemove];
         // Copy last token to the removed slot
         tokensDeployed[seriesId][toRemove] = tokensDeployed[seriesId][tokensDeployed[seriesId].length - 1];

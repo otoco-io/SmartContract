@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "../utils/OtoCoPlugin.sol";
+import "../OtoCoPlugin.sol";
 
 interface MultisigFactory {
     function createProxy(address singleton, bytes memory data) external returns (address proxy);
@@ -22,7 +22,7 @@ contract Multisig is OtoCoPlugin {
     mapping(uint256 => address[]) multisigDeployed;
 
     constructor(
-        address otocoMaster,
+        address payable otocoMaster,
         address masterCopy,
         uint256[] memory prevIds,
         address[] memory prevMultisig
@@ -42,14 +42,10 @@ contract Multisig is OtoCoPlugin {
         gnosisMultisigFactory = newAddress;
     }
 
-    function addPlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+    function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
         (
-            uint256 seriesId,
             bytes memory data
-        ) = abi.decode(pluginData, (uint256, bytes));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
-        payable(otocoMaster).transfer(msg.value);
+        ) = abi.decode(pluginData, (bytes));
         address proxy = MultisigFactory(gnosisMultisigFactory).createProxy(gnosisMasterCopy, data);
         multisigDeployed[seriesId].push(proxy);
         emit MultisigAdded(seriesId, proxy);
@@ -62,26 +58,18 @@ contract Multisig is OtoCoPlugin {
     *
     * @param pluginData Encoded parameters to create a new token.
      */
-    function attachPlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
         (
-            uint256 seriesId,
             address newMultisig
-        ) = abi.decode(pluginData, (uint256, address));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
-        payable(otocoMaster).transfer(msg.value);
+        ) = abi.decode(pluginData, ( address));
         multisigDeployed[seriesId].push(newMultisig);
-        emit TokenAdded(seriesId, newMultisig);
+        emit MultisigAdded(seriesId, newMultisig);
     }
 
-    function removePlugin(bytes calldata pluginData) public payable override {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
+    function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
         (
-            uint256 seriesId,
             uint256 toRemove
-        ) = abi.decode(pluginData, (uint256, uint256));
-        require(isSeriesOwner(seriesId), "OtoCoPlugin: Not the entity owner.");
-        payable(otocoMaster).transfer(msg.value);
+        ) = abi.decode(pluginData, (uint256));
         address multisigRemoved = multisigDeployed[seriesId][toRemove];
         // Copy last token to the removed slot
         multisigDeployed[seriesId][toRemove] = multisigDeployed[seriesId][multisigDeployed[seriesId].length - 1];
