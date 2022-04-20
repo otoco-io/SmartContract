@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 import "./utils/IOtoCoJurisdiction.sol";
 
-contract OtoCoMaster is ERC721Upgradeable, OwnableUpgradeable {
+contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
 
     // Events
     event FeesWithdrawn(address owner, uint256 amount);
@@ -22,9 +22,9 @@ contract OtoCoMaster is ERC721Upgradeable, OwnableUpgradeable {
     }
 
     // Total count of series
-    uint256 seriesCount;
+    uint256 public seriesCount;
     // Last migrated series at start
-    uint256 lastMigrated;
+    uint256 internal lastMigrated;
     // Mapping from Series Ids to Series data
     mapping(uint256=>Series) public series;
 
@@ -39,7 +39,7 @@ contract OtoCoMaster is ERC721Upgradeable, OwnableUpgradeable {
     uint256 public baseFee;
 
     // Upgradeable contract initializer
-    function initialize(address[] calldata jurisdictionAddresses) external {
+    function initialize(address[] calldata jurisdictionAddresses) initializer external {
         __Ownable_init();
         __ERC721_init("OtoCo Series", "OTOCO");
         uint16 counter = uint16(jurisdictionAddresses.length);
@@ -48,7 +48,6 @@ contract OtoCoMaster is ERC721Upgradeable, OwnableUpgradeable {
         }
         jurisdictionCount = counter;
         baseFee = 10;
-        seriesCount++;
     }
 
     /**
@@ -67,7 +66,7 @@ contract OtoCoMaster is ERC721Upgradeable, OwnableUpgradeable {
             jurisdiction,
             0,
             uint64(block.timestamp),
-            IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getSeriesNameFormatted(name)
+            IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getSeriesNameFormatted(seriesPerJurisdiction[jurisdiction], name)
         );
         // Mint NFT
         _mint(controller, current);
@@ -101,10 +100,10 @@ contract OtoCoMaster is ERC721Upgradeable, OwnableUpgradeable {
      * @param name the legal name of the entity.
      */
     function createBatchSeries(uint16[] calldata jurisdiction, address[] calldata controller, uint64[] calldata creation, string[] calldata name) public onlyOwner {
-        require(jurisdiction.length == controller.length, "Master: Owner and Jurisdiction array should have same size.");
-        require(name.length == controller.length, "Master: Owner and Name array should have same size.");
+        require(jurisdiction.length == controller.length, "OtoCoMaster: Owner and Jurisdiction array should have same size.");
+        require(name.length == controller.length, "OtoCoMaster: Owner and Name array should have same size.");
         uint32 counter = uint32(controller.length);
-        uint32[] memory seriesPerJurisdictionTemp = new uint32[](3);
+        uint32[] memory seriesPerJurisdictionTemp = new uint32[](jurisdictionCount);
         // Iterate through all previous series
         for (uint32 i = 0; i < counter; i++){
             seriesPerJurisdictionTemp[jurisdiction[i]]++;
@@ -122,7 +121,7 @@ contract OtoCoMaster is ERC721Upgradeable, OwnableUpgradeable {
         // Set global storages
         seriesCount = seriesCount+counter;
         lastMigrated = seriesCount;
-        for (uint8 i = 0; i < 3; i++){
+        for (uint8 i = 0; i < jurisdictionCount; i++){
             seriesPerJurisdiction[i] = seriesPerJurisdiction[i]+seriesPerJurisdictionTemp[i];
         }
     }

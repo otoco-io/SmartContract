@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "../OtoCoJurisdiction.sol";
 
-contract OtoCoWyoming is OtoCoJurisdiction {
+contract JurisdictionWyoming is OtoCoJurisdiction {
 
     // Libraries
     using Strings for uint256;
@@ -20,9 +20,9 @@ contract OtoCoWyoming is OtoCoJurisdiction {
      */
     function getSeriesNameFormatted (
         uint256 count,
-        string memory name
+        string calldata nameToFormat
     ) public pure override returns(string memory){
-        return string(abi.encodePacked(name, ' - Series ', uint256(count+1).toString()));
+        return string(abi.encodePacked(nameToFormat, ' - Series ', uint256(count+1).toString()));
     }
 
 }

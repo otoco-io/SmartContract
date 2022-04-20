@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "../OtoCoJurisdiction.sol";
 
-contract OtoCoUnincorporated is OtoCoJurisdiction {
+contract JurisdictionUnincorporated is OtoCoJurisdiction {
 
     constructor (
         string memory _name,
@@ -16,9 +16,9 @@ contract OtoCoUnincorporated is OtoCoJurisdiction {
      */
     function getSeriesNameFormatted (
         uint256 count,
-        string memory name
+        string calldata nameToFormat
     ) public pure override returns(string memory){
-        return name;
+        return nameToFormat;
     }
 
 }

@@ -7,12 +7,15 @@
     "test": "test"
   },
   "dependencies": {
-    "@openzeppelin/contracts-upgradeable": "^4.5.2",
-    "chai": "^4.2.0"
+    "@openzeppelin/contracts-upgradeable": "^4.5.2"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.5.0",
-    "hardhat": "^2.9.3"
+    "@openzeppelin/hardhat-upgrades": "^1.17.0",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.4",
+    "hardhat": "^2.9.3",
+    "solidity-coverage": "^0.8.0-beta.1"
   },
   "scripts": {
     "test": "mocha"
