@@ -10,6 +10,9 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "./utils/IOtoCoJurisdiction.sol";
 
 contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
+    
+    // Libraries
+    using Strings for uint256;
 
     // Events
     event FeesWithdrawn(address owner, uint256 amount);
@@ -58,7 +61,7 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
      * @param name the legal name of the entity.
      */
     function createSeries(uint16 jurisdiction, address controller, string memory name) public payable {
-        require(msg.value >= tx.gasprice * gasleft() / baseFee, "Not enough ETH paid for the execution.");
+        require(msg.value >= tx.gasprice * gasleft() / baseFee, "OtoCoMaster: Not enough ETH paid for the execution.");
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         // Initialize Series data
@@ -81,7 +84,7 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
      * @param tokenId of the series to be burned.
      */
     function closeSeries(uint256 tokenId) public payable {
-        require(msg.value >= tx.gasprice * gasleft() / baseFee, "Not enough ETH paid for the execution.");
+        require(msg.value >= tx.gasprice * gasleft() / baseFee, "OtoCoMaster: Not enough ETH paid for the execution.");
         require(ownerOf(tokenId) == msg.sender, "ERC721: token burn from incorrect owner");
         _burn(tokenId);
     }
@@ -184,13 +187,13 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
 
         string memory details = string(abi.encodePacked(
             "OtoCo Series #",
-            tokenId,
+            tokenId.toString(),
             " - ",
             s.name,
             " - ",
             jurisdiction.getJurisdictionName(),
             " - Created at following unix timestamp: ",
-            s.creation
+            uint256(s.creation).toString()
         ));
         string memory json = Base64.encode(bytes(string(abi.encodePacked(
             '{"name": "',
