@@ -41,8 +41,11 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
     // The value to divide the GasLeft * GasPrice
     uint256 public baseFee;
 
+    // Base External URL to access entities page
+    string public externalUrl;
+
     // Upgradeable contract initializer
-    function initialize(address[] calldata jurisdictionAddresses) initializer external {
+    function initialize(address[] calldata jurisdictionAddresses, string calldata url) initializer external {
         __Ownable_init();
         __ERC721_init("OtoCo Series", "OTOCO");
         uint16 counter = uint16(jurisdictionAddresses.length);
@@ -51,6 +54,7 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
         }
         jurisdictionCount = counter;
         baseFee = 10;
+        externalUrl = url;
     }
 
     /**
@@ -200,9 +204,17 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
             s.name,
             '", "description": "',
             details,
-            '", "image_data": "',
+            '", "image": "',
             badge,
-            '"}'
+            '", "external_url": "',
+            externalUrl,
+            tokenId.toString(),
+            '/","attributes":[',
+            '{"display_type": "date","trait_type": "Creation", "value": "',
+            uint256(s.creation).toString(),
+            '"},{"trait_type": "Jurisdiction", "value": "',
+            jurisdiction.getJurisdictionName(),
+            '"}]}'
         ))));
         return string(abi.encodePacked('data:application/json;base64,', json));
     }

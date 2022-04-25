@@ -5,6 +5,12 @@ node_modules
 .secret.test
 .api.test
 .infura.main
-scripts
 flatten
 migrations_data
+
+# hardhat
+artifacts
+cache
+deployments
+node_modules
+coverage
