@@ -65,7 +65,7 @@ contract ENSRegistrar is OtoCoPlugin {
      * @dev target Series contract that registry will point.
      * @dev addr Address to redirect domain
      */
-     function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
+     function addPlugin(uint256 seriesId, bytes calldata pluginData) public  onlySeriesOwner(seriesId) transferFees() payable override {
         (
             string memory domain,
             address addr
@@ -89,24 +89,4 @@ contract ENSRegistrar is OtoCoPlugin {
         ens.setOwner(node, owner);
     }
 
-    /**
-     * Allow attach a previously deployed plugin if possible
-     * @dev This function should run enumerous amounts of verifications before allow the attachment.
-     * @dev To decode initialization data use i.e.: (string memory name) = abi.decode(pluginData, (string));
-     *
-     * @param pluginData The parameters to remove a instance of the plugin.
-     */
-    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public payable override {
-        require(false, "ENS Plugin: Attach domains are not possible on this plugin.");
-    }
-
-    /**
-     * Plugin initializer with a fuinction template to be used.
-     * @dev To decode initialization data use i.e.: (string memory name) = abi.decode(pluginData, (string));
-     *
-     * @param pluginData The parameters to remove a instance of the plugin.
-     */
-    function removePlugin(uint256 seriesId, bytes calldata pluginData) public payable override {
-        require(false, "ENS Plugin: Remove domains are not possible on this plugin.");
-    }
 }

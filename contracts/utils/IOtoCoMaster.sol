@@ -9,9 +9,9 @@ interface IOtoCoMaster {
     function ownerOf(uint256 tokenId) external view returns (address owner);
 
     /**
-     * @dev See {OtoCoMaster-getBaseFees}.
+     * @dev See {OtoCoMaster-baseFee}.
      */
-    function getBaseFees() external returns (uint256 fee);
+    function baseFee() external view returns (uint256 fee);
 
     receive() external payable;
 }

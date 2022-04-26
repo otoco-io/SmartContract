@@ -19,6 +19,7 @@ contract Multisig is OtoCoPlugin {
     address public gnosisMasterCopy;
     address public gnosisMultisigFactory;
 
+    mapping(uint256 => uint256) multisigPerEntity;
     mapping(uint256 => address[]) multisigDeployed;
 
     constructor(
@@ -30,6 +31,7 @@ contract Multisig is OtoCoPlugin {
         gnosisMasterCopy = masterCopy;
         for (uint i = 0; i < prevIds.length; i++ ) {
             multisigDeployed[prevIds[i]].push(prevMultisig[i]);
+            multisigPerEntity[prevIds[i]]++;
             emit MultisigAdded(prevIds[i], prevMultisig[i]);
         }
     }
@@ -42,12 +44,13 @@ contract Multisig is OtoCoPlugin {
         gnosisMultisigFactory = newAddress;
     }
 
-    function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
+    function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
         (
             bytes memory data
         ) = abi.decode(pluginData, (bytes));
         address proxy = MultisigFactory(gnosisMultisigFactory).createProxy(gnosisMasterCopy, data);
         multisigDeployed[seriesId].push(proxy);
+        multisigPerEntity[seriesId]++;
         emit MultisigAdded(seriesId, proxy);
     }
 
@@ -58,7 +61,7 @@ contract Multisig is OtoCoPlugin {
     *
     * @param pluginData Encoded parameters to create a new token.
      */
-    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
+    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
         (
             address newMultisig
         ) = abi.decode(pluginData, ( address));
@@ -66,7 +69,7 @@ contract Multisig is OtoCoPlugin {
         emit MultisigAdded(seriesId, newMultisig);
     }
 
-    function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
+    function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
         (
             uint256 toRemove
         ) = abi.decode(pluginData, (uint256));
@@ -75,6 +78,7 @@ contract Multisig is OtoCoPlugin {
         multisigDeployed[seriesId][toRemove] = multisigDeployed[seriesId][multisigDeployed[seriesId].length - 1];
         // Remove the last token from array
         multisigDeployed[seriesId].pop();
+        multisigPerEntity[seriesId]--;
         emit MultisigRemoved(seriesId, multisigRemoved);
     }
 

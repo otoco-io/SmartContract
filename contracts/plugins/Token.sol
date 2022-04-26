@@ -3,8 +3,11 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import '@openzeppelin/contracts/proxy/Clones.sol';
-import "../utils/OtoCoToken.sol";
 import "../OtoCoPlugin.sol";
+
+interface ISeriesToken {
+  function initialize (string memory name, string memory symbol, uint256 supply, address member) external;
+}
 
 /**
  * Token factory plugin
@@ -15,9 +18,11 @@ contract Token is OtoCoPlugin {
     event TokenRemoved(uint256 indexed series, address token);
 
     // Token source contract to be cloned
-    address private tokenContract;
+    address public tokenContract;
     // Mapping from entities to deployed tokens
-    mapping(uint256 => address[]) tokensDeployed;
+    mapping(uint256 => uint256) public tokensPerEntity;
+    // Mapping from entities to deployed tokens
+    mapping(uint256 => address[]) public tokensDeployed;
 
 
     /**
@@ -38,6 +43,7 @@ contract Token is OtoCoPlugin {
         tokenContract = token;
         for (uint i = 0; i < prevIds.length; i++ ) {
             tokensDeployed[prevIds[i]].push(prevTokens[i]);
+            tokensPerEntity[prevIds[i]]++;
             emit TokenAdded(prevIds[i], prevTokens[i]);
         }
     }
@@ -60,17 +66,17 @@ contract Token is OtoCoPlugin {
     * @dev name the name of the token as string.
     * @dev symbol the symbol that respresent the token.
      */
-    function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
+    function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
         (
             uint256 supply,
             string memory name,
             string memory symbol
         ) = abi.decode(pluginData, (uint256, string, string));
-        payable(otocoMaster).transfer(msg.value);
         address newToken = Clones.clone(tokenContract);
-        SeriesToken(newToken).initialize(name, symbol, supply, msg.sender);
+        ISeriesToken(newToken).initialize(name, symbol, supply, msg.sender);
         tokensDeployed[seriesId].push(newToken);
-        emit TokenAdded(seriesId, address(newToken));
+        tokensPerEntity[seriesId]++;
+        emit TokenAdded(seriesId, newToken);
     }
 
     /**
@@ -80,12 +86,12 @@ contract Token is OtoCoPlugin {
     * @dev seriesId Series to remove token from
     * @dev newToken Token address to be attached
      */
-    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
+    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
         (
             address newToken
         ) = abi.decode(pluginData, (address));
-        payable(otocoMaster).transfer(msg.value);
         tokensDeployed[seriesId].push(newToken);
+        tokensPerEntity[seriesId]++;
         emit TokenAdded(seriesId, newToken);
     }
 
@@ -96,7 +102,7 @@ contract Token is OtoCoPlugin {
     * @dev seriesId Series to remove token from
     * @dev toRemove Token index to be removed
      */
-    function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
+    function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
         (
             uint256 toRemove
         ) = abi.decode(pluginData, (uint256));
@@ -105,6 +111,7 @@ contract Token is OtoCoPlugin {
         tokensDeployed[seriesId][toRemove] = tokensDeployed[seriesId][tokensDeployed[seriesId].length - 1];
         // Remove the last token from array
         tokensDeployed[seriesId].pop();
+        tokensPerEntity[seriesId]--;
         emit TokenRemoved(seriesId, tokenRemoved);
     }
 }

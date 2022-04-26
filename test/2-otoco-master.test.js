@@ -1,10 +1,9 @@
-const http = require('http');
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
 const { solidity } = require("ethereum-waffle");
 const chai = require("chai");
 const { zeroAddress } = require("ethereumjs-util");
-const { Console } = require('console');
+const { ConsensusAlgorithm } = require("@ethereumjs/common");
 chai.use(solidity);
 
 describe("OtoCo Master Test", function () {
@@ -153,7 +152,7 @@ describe("OtoCo Master Test", function () {
   it("Closing series with correct fees and wrong fees", async function () {
 
     const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("50000");
+    const gasLimit = ethers.BigNumber.from("60000");
     const otocoBaseFee = await otocoMaster.baseFee();
 
     // 34750 reduction from gas limit is what is spended before check happens
@@ -165,7 +164,7 @@ describe("OtoCo Master Test", function () {
     .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
 
     await expect(otocoMaster.connect(wallet2).closeSeries(6, {gasPrice, gasLimit, value:amountToPayForClose}))
-    .to.be.revertedWith('ERC721: token burn from incorrect owner');
+    .to.be.revertedWith('OtoCoMaster: Series close from incorrect owner');
 
     // Close the company
     const transactionClose = await otocoMaster.closeSeries(6, {gasPrice, gasLimit, value:amountToPayForClose});
@@ -244,7 +243,7 @@ describe("OtoCo Master Test", function () {
     expect(parseInt(json.attributes[0].value)).to.be.above(Date.now()*0.0001-5000);
     expect(json.attributes[1].trait_type).to.be.equal("Jurisdiction");
     expect(json.attributes[1].value).to.be.equals("WYOMING");
-    console.log(json)
+    // console.log(json)
   });
 
 

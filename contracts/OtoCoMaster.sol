@@ -38,11 +38,20 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
     // How much series exist in each jurisdiction
     mapping(uint16=>uint256) public seriesPerJurisdiction;
 
-    // The value to divide the GasLeft * GasPrice
-    uint256 public baseFee;
-
     // Base External URL to access entities page
     string public externalUrl;
+
+    // The percentage in total gas fees that should be charged in ETH
+    uint256 public baseFee;
+
+
+     /**
+     * Check if there's enough ETH paid for public transactions.
+     */
+    modifier enoughAmountFees() {
+        require(msg.value >= (tx.gasprice * gasleft() * baseFee) / 100, "OtoCoMaster: Not enough ETH paid for the execution.");
+        _;
+    }
 
     // Upgradeable contract initializer
     function initialize(address[] calldata jurisdictionAddresses, string calldata url) initializer external {
@@ -64,8 +73,7 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
      * @param controller who will control the entity.
      * @param name the legal name of the entity.
      */
-    function createSeries(uint16 jurisdiction, address controller, string memory name) public payable {
-        require(msg.value >= tx.gasprice * gasleft() / baseFee, "OtoCoMaster: Not enough ETH paid for the execution.");
+    function createSeries(uint16 jurisdiction, address controller, string memory name) public enoughAmountFees() payable {
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         // Initialize Series data
@@ -87,13 +95,12 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
      *
      * @param tokenId of the series to be burned.
      */
-    function closeSeries(uint256 tokenId) public payable {
-        require(msg.value >= tx.gasprice * gasleft() / baseFee, "OtoCoMaster: Not enough ETH paid for the execution.");
-        require(ownerOf(tokenId) == msg.sender, "ERC721: token burn from incorrect owner");
+    function closeSeries(uint256 tokenId) public enoughAmountFees() payable {
+        require(ownerOf(tokenId) == msg.sender, "OtoCoMaster: Series close from incorrect owner");
         _burn(tokenId);
     }
 
-    receive() external payable {}
+    receive() enoughAmountFees() external payable {}
 
     // --- ADMINISTRATION FUNCTIONS ---
 

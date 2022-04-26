@@ -21,16 +21,12 @@ contract Timestamp is OtoCoPlugin {
     * @param seriesId The series ID be updated.
     * @param pluginData filename and cid of the document to be timestamped abi encoded.
      */
-    function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
+    function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
         (
             string memory filename,
             string memory cid
         ) = abi.decode(pluginData, (string, string));
         emit DocumentTimestamped(seriesId, block.timestamp, filename, cid);
-    }
-
-    function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) enoughFees() payable override {
-        require(false, "Timestamp: Remove elements are not possible on this plugin.");
     }
 
 }

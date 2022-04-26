@@ -2,9 +2,10 @@
 pragma solidity ^0.8.0;
 
 import "./utils/IOtoCoMaster.sol";
+import "./utils/IOtoCoPlugin.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-abstract contract OtoCoPlugin is Ownable {
+abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
 
     // Reference to the OtoCo Master to transfer plugin cost
     IOtoCoMaster public otocoMaster;
@@ -21,9 +22,16 @@ abstract contract OtoCoPlugin is Ownable {
     /**
      * Modifier to check if the function set the correct amount of ETH value and transfer it to master.
      */
-    modifier enoughFees() {
-        require(msg.value >= tx.gasprice * gasleft() / otocoMaster.getBaseFees(), "OtoCoPlugin: Not enough ETH paid for the transaction.");
-        payable(otocoMaster).transfer(msg.value);
+    modifier transferFees() {
+        if (otocoMaster.baseFee() > 0) payable(otocoMaster).transfer(msg.value);
+        _;
+    }
+
+    /**
+     * Modifier to check if the function set the correct amount of ETH value and transfer it to master.
+     */
+    modifier transferFractionalFees(uint256 split) {
+        if (otocoMaster.baseFee() > 0) payable(otocoMaster).transfer(msg.value);
         _;
     }
 
@@ -34,25 +42,29 @@ abstract contract OtoCoPlugin is Ownable {
     /**
      * Plugin initializer with a fuinction template to be used.
      * @dev To decode initialization data use i.e.: (string memory name) = abi.decode(pluginData, (string));
-     *
+     * @dev Override this function to implement your elements.
      * @param pluginData The parameters to create a new instance of plugin.
      */
-    function addPlugin(uint256 seriesId, bytes calldata pluginData) public payable virtual {}
+    function addPlugin(uint256 seriesId, bytes calldata pluginData) external payable virtual override {}
 
     /**
-     * Allow attach a previously deployed plugin if possible 
+     * Allow attach a previously deployed plugin if possible
      * @dev This function should run enumerous amounts of verifications before allow the attachment.
      * @dev To decode initialization data use i.e.: (string memory name) = abi.decode(pluginData, (string));
-     *
+     * @dev Override this function to implement your elements.
      * @param pluginData The parameters to remove a instance of the plugin.
      */
-    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public payable virtual {}
+    function attachPlugin(uint256 seriesId, bytes calldata pluginData) external payable virtual override {
+        revert("OtoCoPlugin: Attach elements are not possible on this plugin.");
+    }
 
     /**
      * Plugin initializer with a fuinction template to be used.
      * @dev To decode initialization data use i.e.: (string memory name) = abi.decode(pluginData, (string));
-     *
+     * @dev Override this function to implement your elements.
      * @param pluginData The parameters to remove a instance of the plugin.
      */
-    function removePlugin(uint256 seriesId, bytes calldata pluginData) public payable virtual {}
+    function removePlugin(uint256 seriesId, bytes calldata pluginData) external payable virtual override {
+        revert("OtoCoPlugin: Remove elements are not possible on this plugin.");
+    }
 }

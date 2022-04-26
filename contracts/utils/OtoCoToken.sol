@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract SeriesToken is ERC20 {
+contract OtoCoToken is ERC20 {
 
     // Logged when the owner of a node assigns a new owner to a subnode.
     event Initialized(address member, uint timestamp);
@@ -12,10 +12,9 @@ contract SeriesToken is ERC20 {
 
     mapping (address => mapping (address => uint256)) private _allowances;
 
-    uint256 private _totalSupply;
+    // uint256 private _totalSupply;
     string private _name;
     string private _symbol;
-    uint8 private _decimals;
 
     constructor() ERC20("", "") {}
 
@@ -29,16 +28,29 @@ contract SeriesToken is ERC20 {
      * construction.
      */
     modifier NotInitialized() {
-        require(_totalSupply == 0, "Error: Contract already initialized");
+        require(totalSupply() == 0, "Error: Contract already initialized");
         _;
     }
 
-    function initialize (string memory name, string memory symbol, uint256 supply, address member) public NotInitialized {
-        _name = name;
-        _symbol = symbol;
-        _decimals = 18;
-        _totalSupply = supply;
-        _balances[member] = supply;
-        emit Initialized(member, block.timestamp);
+    function initialize (string memory name_, string memory symbol_, uint256 supply_, address member_) public NotInitialized {
+        _name = name_;
+        _symbol = symbol_;
+        _mint(member_, supply_);
+        emit Initialized(member_, block.timestamp);
+    }
+
+    /**
+     * @dev Returns the name of the token.
+     */
+    function name() public view override returns (string memory) {
+        return _name;
+    }
+
+    /**
+     * @dev Returns the symbol of the token, usually a shorter version of the
+     * name.
+     */
+    function symbol() public view override returns (string memory) {
+        return _symbol;
     }
 }
