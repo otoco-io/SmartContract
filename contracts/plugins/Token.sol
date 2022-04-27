@@ -70,10 +70,11 @@ contract Token is OtoCoPlugin {
         (
             uint256 supply,
             string memory name,
-            string memory symbol
-        ) = abi.decode(pluginData, (uint256, string, string));
+            string memory symbol,
+            address holder
+        ) = abi.decode(pluginData, (uint256, string, string, address));
         address newToken = Clones.clone(tokenContract);
-        ISeriesToken(newToken).initialize(name, symbol, supply, msg.sender);
+        ISeriesToken(newToken).initialize(name, symbol, supply, holder);
         tokensDeployed[seriesId].push(newToken);
         tokensPerEntity[seriesId]++;
         emit TokenAdded(seriesId, newToken);

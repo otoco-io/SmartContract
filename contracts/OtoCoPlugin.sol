@@ -26,15 +26,7 @@ abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
         if (otocoMaster.baseFee() > 0) payable(otocoMaster).transfer(msg.value);
         _;
     }
-
-    /**
-     * Modifier to check if the function set the correct amount of ETH value and transfer it to master.
-     */
-    modifier transferFractionalFees(uint256 split) {
-        if (otocoMaster.baseFee() > 0) payable(otocoMaster).transfer(msg.value);
-        _;
-    }
-
+    
     constructor(address payable _otocoMaster) Ownable() {
         otocoMaster = IOtoCoMaster(_otocoMaster);
     }

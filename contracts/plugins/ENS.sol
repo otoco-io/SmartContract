@@ -68,10 +68,11 @@ contract ENSRegistrar is OtoCoPlugin {
      function addPlugin(uint256 seriesId, bytes calldata pluginData) public  onlySeriesOwner(seriesId) transferFees() payable override {
         (
             string memory domain,
-            address addr
-        ) = abi.decode(pluginData, (string, address));
+            address addr,
+            address owner
+        ) = abi.decode(pluginData, (string, address, address));
         bytes32 label = keccak256(abi.encodePacked(domain));
-        register(label, msg.sender, addr);
+        register(label, owner, addr);
         seriesDomains[seriesId].push(domain);
         emit SubdomainClaimed(seriesId, domain);
     }

@@ -26,10 +26,6 @@ contract Launchpool is OtoCoPlugin {
     // Launchpool creation and removal events
     event LaunchpoolCreated(uint256 indexed seriesId, address sponsor, address pool, string metadata);
     event LaunchpoolRemoved(uint256 indexed seriesId, address pool);
-
-    // Management events
-    event UpdatedPoolSource(address indexed newSource);
-    event AddedCurveSource(address indexed newSource);
     
     // The source of launchpool to be deployed
     address private _poolSource;
@@ -62,7 +58,6 @@ contract Launchpool is OtoCoPlugin {
      */
     function updatePoolSource(address newAddress) public onlyOwner {
         _poolSource = newAddress;
-        emit UpdatedPoolSource(newAddress);
     }
 
     /**
@@ -72,7 +67,6 @@ contract Launchpool is OtoCoPlugin {
      */
     function addCurveSource(address newAddress) public onlyOwner {
         _curveSources.push(newAddress);
-        emit AddedCurveSource(newAddress);
     }
 
     function addPlugin(uint256 seriesId, bytes calldata pluginData) onlySeriesOwner(seriesId) transferFees() public payable override {
@@ -81,12 +75,13 @@ contract Launchpool is OtoCoPlugin {
             uint256[] memory _uintArgs,
             string memory _metadata,
             address _shares,
-            uint16 _curve
-        ) = abi.decode(pluginData, (address[], uint256[], string, address, uint16));
+            uint16 _curve,
+            address sponsor
+        ) = abi.decode(pluginData, (address[], uint256[], string, address, uint16, address));
         address pool = Clones.clone(_poolSource);
-        PoolInterface(pool).initialize(_allowedTokens, _uintArgs, _metadata, msg.sender, _shares, _curveSources[_curve]);
+        PoolInterface(pool).initialize(_allowedTokens, _uintArgs, _metadata, sponsor, _shares, _curveSources[_curve]);
         launchpoolDeployed[seriesId] = pool;
-        emit LaunchpoolCreated(seriesId, msg.sender, pool, _metadata);
+        emit LaunchpoolCreated(seriesId, sponsor, pool, _metadata);
     }
 
     function removePlugin(uint256 seriesId, bytes calldata pluginData) onlySeriesOwner(seriesId) transferFees() public payable override {

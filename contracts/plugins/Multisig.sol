@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "../OtoCoPlugin.sol";
 
-interface MultisigFactory {
+interface GnosisSafeProxyFactory {
     function createProxy(address singleton, bytes memory data) external returns (address proxy);
 }
 
@@ -17,18 +17,20 @@ contract Multisig is OtoCoPlugin {
     event MultisigRemoved(uint256 indexed series, address multisig);
 
     address public gnosisMasterCopy;
-    address public gnosisMultisigFactory;
+    address public gnosisProxyFactory;
 
-    mapping(uint256 => uint256) multisigPerEntity;
-    mapping(uint256 => address[]) multisigDeployed;
+    mapping(uint256 => uint256) public multisigPerEntity;
+    mapping(uint256 => address[]) public multisigDeployed;
 
     constructor(
         address payable otocoMaster,
         address masterCopy,
+        address proxyFactory,
         uint256[] memory prevIds,
         address[] memory prevMultisig
     ) OtoCoPlugin(otocoMaster) {
         gnosisMasterCopy = masterCopy;
+        gnosisProxyFactory = proxyFactory;
         for (uint i = 0; i < prevIds.length; i++ ) {
             multisigDeployed[prevIds[i]].push(prevMultisig[i]);
             multisigPerEntity[prevIds[i]]++;
@@ -40,15 +42,12 @@ contract Multisig is OtoCoPlugin {
         gnosisMasterCopy = newAddress;
     }
 
-    function updateGnosisMultisigFactory(address newAddress) public onlyOwner {
-        gnosisMultisigFactory = newAddress;
+    function updateGnosisProxyFactory(address newAddress) public onlyOwner {
+        gnosisProxyFactory = newAddress;
     }
 
     function addPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
-        (
-            bytes memory data
-        ) = abi.decode(pluginData, (bytes));
-        address proxy = MultisigFactory(gnosisMultisigFactory).createProxy(gnosisMasterCopy, data);
+        address proxy = GnosisSafeProxyFactory(gnosisProxyFactory).createProxy(gnosisMasterCopy, pluginData);
         multisigDeployed[seriesId].push(proxy);
         multisigPerEntity[seriesId]++;
         emit MultisigAdded(seriesId, proxy);
@@ -66,6 +65,7 @@ contract Multisig is OtoCoPlugin {
             address newMultisig
         ) = abi.decode(pluginData, ( address));
         multisigDeployed[seriesId].push(newMultisig);
+        multisigPerEntity[seriesId]++;
         emit MultisigAdded(seriesId, newMultisig);
     }
 

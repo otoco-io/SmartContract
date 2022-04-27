@@ -12,7 +12,7 @@ async function getExternalArtifact(contract) {
     return artifacts.readArtifact(contract);
 }
 
-describe("OtoCo Plugins Test", function () {
+describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
 
   let owner, wallet2, wallet3, wallet4;
   let OtoCoMaster;
@@ -70,8 +70,8 @@ describe("OtoCo Plugins Test", function () {
     tokenPlugin = await TokenPluginFactory.deploy(otocoMaster.address, tokenPlugin.address, [], []);
     
     let encoded = ethers.utils.defaultAbiCoder.encode(
-        ['uint256', 'string', 'string'],
-        [ethers.utils.parseEther('8000000'), 'Test Token', 'TTOK']
+        ['uint256', 'string', 'string', 'address'],
+        [ethers.utils.parseEther('8000000'), 'Test Token', 'TTOK', wallet2.address]
     );
     const prevBalance = await ethers.provider.getBalance(otocoMaster.address);
     let transaction = await tokenPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
@@ -124,13 +124,11 @@ describe("OtoCo Plugins Test", function () {
     );
     
     let transaction = await launchPoolPlugin.addCurveSource(launchcurve.address);
-    await expect(transaction).to.emit(launchPoolPlugin, 'AddedCurveSource');
 
     await expect(launchPoolPlugin.connect(wallet2).addCurveSource(launchcurve.address))
     .to.be.revertedWith('Ownable: caller is not the owner');
 
     transaction = await launchPoolPlugin.updatePoolSource(launchpool.address);
-    await expect(transaction).to.emit(launchPoolPlugin, 'UpdatedPoolSource');
 
     await expect(launchPoolPlugin.connect(wallet2).updatePoolSource(launchpool.address))
     .to.be.revertedWith('Ownable: caller is not the owner');
@@ -143,7 +141,7 @@ describe("OtoCo Plugins Test", function () {
     paymentToken3.initialize('Test USDT', 'USDT', ethers.utils.parseEther('8000000'), owner.address);
 
     let encoded = ethers.utils.defaultAbiCoder.encode(
-        ['address[]', 'uint256[]', 'string', 'address', 'uint16'],
+        ['address[]', 'uint256[]', 'string', 'address', 'uint16', 'address'],
         [
             [paymentToken1.address, paymentToken2.address, paymentToken3.address],
             [
@@ -158,7 +156,8 @@ describe("OtoCo Plugins Test", function () {
             ],
             'QmZuQMs9n2TJUsV2VyGHox5wwxNAg3FVr5SWRKU814DCra',
             tokenAddress,
-            0
+            0,
+            wallet2.address
         ]
     );
     const prevBalance = await ethers.provider.getBalance(otocoMaster.address);
