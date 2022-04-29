@@ -53,6 +53,8 @@ describe("OtoCo Multisig Plugin Test", function () {
 
     // Expected to successfully create a new entity
     await otocoMaster.connect(wallet2).createSeries(2, wallet2.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
+    // Expect to create another entity
+    await otocoMaster.connect(wallet3).createSeries(1, wallet3.address, "Another Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
   });
 
   it("Deploy External artifacts and test them", async function () {
@@ -100,8 +102,8 @@ describe("OtoCo Multisig Plugin Test", function () {
         otocoMaster.address,
         gnosisSafe.address,
         gnosisSafeProxyFactory.address,
-        [],
-        []
+        [1],
+        [gnosisSafe.address]
     );
     
     let transaction = await multisigPlugin.updateGnosisMasterCopy(gnosisSafe.address);
@@ -127,11 +129,18 @@ describe("OtoCo Multisig Plugin Test", function () {
 
     const prevBalance = await ethers.provider.getBalance(otocoMaster.address);
     transaction = await multisigPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
-    // console.log(await transaction.wait());
     const multisigAddress = (await transaction.wait()).events[2].args.multisig;
     await expect(transaction).to.emit(multisigPlugin, 'MultisigAdded').withArgs(0,multisigAddress);
     expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equals(prevBalance.add(amountToPay));
     
+    // There's no Attach function at Launchpool plugin
+    await expect(multisigPlugin.connect(wallet3).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
+
+    // There's no Attach function at Launchpool plugin
+    await expect(multisigPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:0}))
+    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
+
     expect(await multisigPlugin.multisigPerEntity(0)).to.be.equals(1);
     expect(await multisigPlugin.multisigDeployed(0,0)).to.be.equals(multisigAddress);
 
@@ -142,12 +151,24 @@ describe("OtoCo Multisig Plugin Test", function () {
     await expect(multisigPlugin.attachPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
     .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
 
+    // There's no Attach function at Launchpool plugin
+    await expect(multisigPlugin.connect(wallet2).attachPlugin(0, encoded, {gasPrice, gasLimit, value:0}))
+    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
+
     expect(await multisigPlugin.multisigPerEntity(0)).to.be.equals(2);
     expect(await multisigPlugin.multisigDeployed(0,1)).to.be.equals(multisigAddress);
 
     encoded = ethers.utils.defaultAbiCoder.encode(['uint256', 'uint256'],[0,1]);
     transaction = await multisigPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
     await expect(transaction).to.emit(multisigPlugin, 'MultisigRemoved').withArgs(0, multisigAddress);
+
+    // There's no Attach function at Launchpool plugin
+    await expect(multisigPlugin.connect(wallet3).removePlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
+
+    // There's no Attach function at Launchpool plugin
+    await expect(multisigPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:0}))
+    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
 
     });
 

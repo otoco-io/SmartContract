@@ -79,14 +79,14 @@ describe("OtoCo Master Test", function () {
 
   it("Test migration entities", async function () {
 
-    const jurisdictions = [2,2,2];
-    const controllers = [wallet2.address, wallet3.address, wallet4.address];
-    const creations = [10000, 20000, 30000];
-    const names = ['Entity 1 - Series 2', 'Entity 2 - Series 3', 'Entity 3 - Series 4'];
+    const jurisdictions = [2,2,2,1];
+    const controllers = [wallet2.address, wallet3.address, wallet4.address, zeroAddress()];
+    const creations = [10000, 20000, 30000, 40000];
+    const names = ['Entity 1 - Series 2', 'Entity 2 - Series 3', 'Entity 3 - Series 4', 'Closed LLC'];
 
     await otocoMaster.createBatchSeries(jurisdictions, controllers, creations, names);
 
-    expect((await otocoMaster.seriesCount()).toNumber()).to.equal(6);
+    expect((await otocoMaster.seriesCount()).toNumber()).to.equal(7);
 
     const firstSeries = await otocoMaster.series(3);
     expect(firstSeries[0]).to.equal(2);
@@ -140,9 +140,9 @@ describe("OtoCo Master Test", function () {
 
     // Expected to successfully create a new entity
     const transaction = await otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 6);
-    expect((await otocoMaster.series(6)).jurisdiction).to.be.equal(2)
-    expect((await otocoMaster.series(6)).name).to.be.equal("New Entity - Series 5")
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 7);
+    expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2)
+    expect((await otocoMaster.series(7)).name).to.be.equal("New Entity - Series 5")
     
     // Chech if the amount to pay was transferred
     expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equal(amountToPayForSpinUp);
@@ -163,12 +163,12 @@ describe("OtoCo Master Test", function () {
     await expect(otocoMaster.closeSeries(6, {gasPrice, gasLimit, value:notEnoughToPayForClose}))
     .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
 
-    await expect(otocoMaster.connect(wallet2).closeSeries(6, {gasPrice, gasLimit, value:amountToPayForClose}))
+    await expect(otocoMaster.connect(wallet2).closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose}))
     .to.be.revertedWith('OtoCoMaster: Series close from incorrect owner');
 
     // Close the company
-    const transactionClose = await otocoMaster.closeSeries(6, {gasPrice, gasLimit, value:amountToPayForClose});
-    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress(), 6);
+    const transactionClose = await otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose});
+    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress(), 7);
 
     await expect(otocoMaster.ownerOf(6)).to.be.reverted
 
@@ -224,7 +224,7 @@ describe("OtoCo Master Test", function () {
   it("Check if TokenURI are correct", async function () {
 
     const tokenURI = await otocoMaster.tokenURI(4);
-    const tokenURI2 = await otocoMaster.tokenURI(6);
+    const tokenURI2 = await otocoMaster.tokenURI(7);
 
     // Decode base64 data to read JSON data
     let buff = Buffer.from(tokenURI.split(',')[1], 'base64');

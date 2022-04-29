@@ -28,7 +28,7 @@ contract OtoCoToken is ERC20 {
      * construction.
      */
     modifier NotInitialized() {
-        require(totalSupply() == 0, "Error: Contract already initialized");
+        require(totalSupply() == 0, "OtoCoToken: Contract already initialized");
         _;
     }
 

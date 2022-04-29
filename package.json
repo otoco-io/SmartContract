@@ -15,7 +15,8 @@
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.4",
     "hardhat": "^2.9.3",
-    "solidity-coverage": "^0.8.0-beta.1"
+    "solidity-coverage": "^0.8.0-beta.1",
+    "web3-utils": "^1.7.3"
   },
   "scripts": {
     "test": "mocha"

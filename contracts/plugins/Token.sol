@@ -39,7 +39,6 @@ contract Token is OtoCoPlugin {
         uint256[] memory prevIds,
         address[] memory prevTokens
     ) OtoCoPlugin(otocoMaster) {
-        require(prevIds.length == prevTokens.length, 'Previous series size different than previous tokens size.');
         tokenContract = token;
         for (uint i = 0; i < prevIds.length; i++ ) {
             tokensDeployed[prevIds[i]].push(prevTokens[i]);

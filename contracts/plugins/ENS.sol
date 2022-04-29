@@ -3,14 +3,14 @@ pragma solidity ^0.8.0;
 
 import "../OtoCoPlugin.sol";
 
-interface ENS {
+interface IENS {
     function setSubnodeRecord(bytes32 node, bytes32 label, address _owner, address resolver, uint64 ttl) external;
     function setSubnodeOwner(bytes32 node, bytes32 label, address _owner) external returns(bytes32);
     function setOwner(bytes32 node, address _owner) external;
     function owner(bytes32 node) external view returns (address);
 }
 
-interface Resolver{
+interface IResolver{
     function setAddr(bytes32 node, address addr) external;
     function setAddr(bytes32 node, uint coinType, bytes calldata a) external;
 }
@@ -18,18 +18,26 @@ interface Resolver{
 /**
  * A registrar that stores subdomains to the first person who claim them.
  */
-contract ENSRegistrar is OtoCoPlugin {
+contract ENS is OtoCoPlugin {
 
     event SubdomainClaimed(uint256 indexed series, string value);
 
     // Master ENS registry
-    ENS public ens;
+    IENS public ens;
     // The otoco.eth node reference
     bytes32 public rootNode;
     // Default resolver to deal with data storage
-    Resolver public defaultResolver;
+    IResolver public defaultResolver;
+    // Mapping from entities to created domains
+    mapping(uint256 => uint256) public domainsPerEntity;
     // Mapping of Company address => Domains
-    mapping(uint256 => string[]) internal seriesDomains;
+    mapping(uint256 => string[]) public seriesDomains;
+
+    modifier notOwned(bytes32 label) {
+        address currentOwner = ens.owner(keccak256(abi.encodePacked(rootNode, label)));
+        require(currentOwner == address(0x0), "ENSPlugin: Domain alredy registered.");
+        _;
+    }
 
     /*
      * Constructor.
@@ -42,8 +50,8 @@ contract ENSRegistrar is OtoCoPlugin {
      */
     constructor (
         address payable otocoMaster,
-        ENS ensAddr,
-        Resolver resolverAddr,
+        IENS ensAddr,
+        IResolver resolverAddr,
         bytes32 node,
         uint256[] memory prevSeries,
         string[] memory prevDomains
@@ -53,6 +61,7 @@ contract ENSRegistrar is OtoCoPlugin {
         defaultResolver = resolverAddr;
         for (uint i = 0; i < prevSeries.length; i++ ) {
             emit SubdomainClaimed(prevSeries[i], prevDomains[i]);
+            domainsPerEntity[prevSeries[i]]++;
             seriesDomains[prevSeries[i]].push(prevDomains[i]);
         }
     }
@@ -68,25 +77,24 @@ contract ENSRegistrar is OtoCoPlugin {
      function addPlugin(uint256 seriesId, bytes calldata pluginData) public  onlySeriesOwner(seriesId) transferFees() payable override {
         (
             string memory domain,
-            address addr,
             address owner
-        ) = abi.decode(pluginData, (string, address, address));
+        ) = abi.decode(pluginData, (string, address));
         bytes32 label = keccak256(abi.encodePacked(domain));
-        register(label, owner, addr);
+        register(label, owner);
         seriesDomains[seriesId].push(domain);
+        domainsPerEntity[seriesId]++;
         emit SubdomainClaimed(seriesId, domain);
     }
 
     /**
      * Register a name, or change the owner of an existing registration.
      * @param label The hash of the label to register.
-     * @param owner The address of the new owner(Series Manager).
-     * @param addr Address to redirect domain
+     * @param owner The address of the new owner.
      */
-    function register(bytes32 label, address owner, address addr) internal {
+    function register(bytes32 label, address owner) internal notOwned(label) {
         bytes32 node = keccak256(abi.encodePacked(rootNode, label));
-        ens.setSubnodeRecord(rootNode, label, address(this), address(defaultResolver), 63072000);
-        defaultResolver.setAddr(node, addr);
+        ens.setSubnodeRecord(rootNode, label, address(this), address(defaultResolver), 63072000000000);
+        defaultResolver.setAddr(node, owner);
         ens.setOwner(node, owner);
     }
 

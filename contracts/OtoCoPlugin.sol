@@ -26,7 +26,7 @@ abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
         if (otocoMaster.baseFee() > 0) payable(otocoMaster).transfer(msg.value);
         _;
     }
-    
+
     constructor(address payable _otocoMaster) Ownable() {
         otocoMaster = IOtoCoMaster(_otocoMaster);
     }
@@ -37,7 +37,7 @@ abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
      * @dev Override this function to implement your elements.
      * @param pluginData The parameters to create a new instance of plugin.
      */
-    function addPlugin(uint256 seriesId, bytes calldata pluginData) external payable virtual override {}
+    function addPlugin(uint256 seriesId, bytes calldata pluginData) external payable virtual override;
 
     /**
      * Allow attach a previously deployed plugin if possible

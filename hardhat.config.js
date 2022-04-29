@@ -9,7 +9,7 @@ module.exports = {
   solidity: "0.8.3",
   networks: {
     hardhat: {
-      //gas: 2000000
+      gas: 30000000
     },
   }
 };

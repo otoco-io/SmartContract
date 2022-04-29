@@ -5,6 +5,7 @@ const chai = require("chai");
 chai.use(solidity);
 
 const { Artifacts } = require("hardhat/internal/artifacts");
+const { zeroAddress } = require("ethereumjs-util");
 
 async function getExternalArtifact(contract) {
     const artifactsPath = "./artifacts-external";
@@ -12,7 +13,7 @@ async function getExternalArtifact(contract) {
     return artifacts.readArtifact(contract);
 }
 
-describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
+describe("OtoCo Launchpool and Token Plugins Test", function () {
 
   let owner, wallet2, wallet3, wallet4;
   let OtoCoMaster;
@@ -52,6 +53,8 @@ describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
 
     // Expected to successfully create a new entity
     await otocoMaster.connect(wallet2).createSeries(2, wallet2.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
+    // Expect to create another entity
+    await otocoMaster.connect(wallet3).createSeries(1, wallet3.address, "Another Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
   });
 
   it("Deploy and remove Token plugin", async function () {
@@ -64,10 +67,20 @@ describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
     const amountToPay = ethers.BigNumber.from(gasPrice).mul(gasLimit).div(otocoBaseFee);
 
     TokenFactory = await ethers.getContractFactory("OtoCoToken");
-    tokenPlugin = await TokenFactory.deploy();
+    const token = await TokenFactory.deploy();
+    expect(await token.name()).to.be.equal("");
+    expect(await token.symbol()).to.be.equal("");
+    
+    expect(await token.name()).to.be.equal("");
+    expect(await token.symbol()).to.be.equal("");
 
     const TokenPluginFactory = await ethers.getContractFactory("Token");
-    tokenPlugin = await TokenPluginFactory.deploy(otocoMaster.address, tokenPlugin.address, [], []);
+    tokenPlugin = await TokenPluginFactory.deploy(
+        otocoMaster.address,
+        token.address,
+        [1],
+        [token.address]
+    );
     
     let encoded = ethers.utils.defaultAbiCoder.encode(
         ['uint256', 'string', 'string', 'address'],
@@ -77,6 +90,14 @@ describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
     let transaction = await tokenPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
     await expect(transaction).to.emit(tokenPlugin, 'TokenAdded');
     expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equals(prevBalance.add(amountToPay));
+
+    // There's no Attach function at Launchpool plugin
+    await expect(tokenPlugin.connect(wallet3).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
+
+    // There's no Attach function at Launchpool plugin
+    await expect(tokenPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:0}))
+    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
 
     //console.log((await transaction.wait()).events)
     tokenAddress = (await transaction.wait()).events[2].args.token;
@@ -88,6 +109,9 @@ describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
     expect(await tokenPlugin.tokensPerEntity(0)).to.be.equals(1);
     expect(await tokenPlugin.tokensDeployed(0,0)).to.be.equals(tokenAddress);
     
+    await expect(tokenDeployed.initialize('', '', "100", zeroAddress()))
+    .to.be.revertedWith('OtoCoToken: Contract already initialized');
+
     encoded = ethers.utils.defaultAbiCoder.encode(['uint256'],[0]);
     transaction = await tokenPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
     await expect(transaction).to.emit(tokenPlugin, 'TokenRemoved').withArgs(0, tokenAddress);
@@ -95,6 +119,28 @@ describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
     encoded = ethers.utils.defaultAbiCoder.encode(['address'],[tokenAddress]);
     transaction = await tokenPlugin.connect(wallet2).attachPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
     await expect(transaction).to.emit(tokenPlugin, 'TokenAdded');
+
+    // There's no Attach function at Launchpool plugin
+    await expect(tokenPlugin.connect(wallet3).attachPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
+
+    // There's no Attach function at Launchpool plugin
+    await expect(tokenPlugin.connect(wallet2).attachPlugin(0, encoded, {gasPrice, gasLimit, value:0}))
+    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
+
+    // There's no Attach function at Launchpool plugin
+    await expect(tokenPlugin.connect(wallet3).removePlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
+
+    // There's no Attach function at Launchpool plugin
+    await expect(tokenPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:0}))
+    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
+
+    await expect(tokenPlugin.connect(wallet2).updateTokenContract(zeroAddress()))
+    .to.be.revertedWith('Ownable: caller is not the owner');
+
+     await tokenPlugin.updateTokenContract(zeroAddress())
+     expect(await tokenPlugin.tokenContract()).to.be.equal(zeroAddress());
   });
 
   it("Deploy and remove Launchpool plugin", async function () {
@@ -119,8 +165,8 @@ describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
         otocoMaster.address,
         launchpool.address,
         launchcurve.address,
-        [],
-        []
+        [1],
+        [launchpool.address]
     );
     
     let transaction = await launchPoolPlugin.addCurveSource(launchcurve.address);
@@ -171,42 +217,28 @@ describe("OtoCo Token, Timestamp, Launchpool Plugins Test", function () {
     await expect(launchPoolPlugin.connect(wallet2).attachPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
     .to.be.revertedWith('OtoCoPlugin: Attach elements are not possible on this plugin.');
 
+    // There's no Attach function at Launchpool plugin
+    await expect(launchPoolPlugin.connect(wallet3).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
+
+    // There's no Attach function at Launchpool plugin
+    await expect(launchPoolPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:0}))
+    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
+
     encoded = ethers.utils.defaultAbiCoder.encode(['uint256'],[0]);
     transaction = await launchPoolPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
     await expect(transaction).to.emit(launchPoolPlugin, 'LaunchpoolRemoved').withArgs(0, launchpoolAddress);
 
-  });
+    // There's no Attach function at Launchpool plugin
+    await expect(launchPoolPlugin.connect(wallet3).removePlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
 
-  it("Deploy Timestamp plugin", async function () {
-    const [owner, wallet2] = await ethers.getSigners();
+    // There's no Attach function at Launchpool plugin
+    await expect(launchPoolPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:0}))
+    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
 
-    const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("100000");
-    const otocoBaseFee = await otocoMaster.baseFee();
-
-    const amountToPay = ethers.BigNumber.from(gasPrice).mul(gasLimit).div(otocoBaseFee);
-
-    const TimestampPluginFactory = await ethers.getContractFactory("Timestamp");
-    const timestampPlugin = await TimestampPluginFactory.deploy(otocoMaster.address);
-    
-    let encoded = ethers.utils.defaultAbiCoder.encode(
-        ['string', 'string'],
-        ['filename-test.pdf', '11223345566677778889aasbbvcccc']
-    );
-    const prevBalance = await ethers.provider.getBalance(otocoMaster.address);
-    let transaction = await timestampPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
-    await expect(transaction).to.emit(timestampPlugin, 'DocumentTimestamped');
-    expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equals(prevBalance.add(amountToPay));
-
-    const events = (await transaction.wait()).events;
-    expect(events[0].args.filename).to.be.equals('filename-test.pdf');
-    expect(events[0].args.cid).to.be.equals('11223345566677778889aasbbvcccc');
-
-    await expect(timestampPlugin.connect(wallet2).attachPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
-    .to.be.revertedWith('OtoCoPlugin: Attach elements are not possible on this plugin.');
-    
-    await expect(timestampPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
-    .to.be.revertedWith('OtoCoPlugin: Remove elements are not possible on this plugin.');
+    // Test Migrated address 
+    expect(await launchPoolPlugin.launchpoolDeployed(1)).to.be.equal(launchpool.address)
 
   });
 
