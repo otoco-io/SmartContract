@@ -10,18 +10,6 @@ const fs = require('fs').promises;
 
 const readline = require('readline');
 
-function waitInput(query) {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    });
-
-    return new Promise(resolve => rl.question(query, ans => {
-        rl.close();
-        resolve();
-    }))
-}
-
 describe("Test Entities migration", function () {
 
   let owner, wallet2, wallet3, wallet4;
@@ -85,10 +73,10 @@ describe("Test Entities migration", function () {
     }
     let jsonDoc;
     try {
-        const data = await fs.readFile("./migrations_data/companies.main.json", "binary");
+        const data = await fs.readFile("./test/companies.json", "binary");
         jsonDoc = JSON.parse(data);
     } catch (err) {
-        console.log(err);
+        console.log("No companies to test migration.", err);
     }
 
     if (jsonDoc?.data?.companies){
@@ -101,36 +89,20 @@ describe("Test Entities migration", function () {
     }
 
     const slices = 100;
-    for(let i=0; i<jurisdictions.length; i+=slices){
+    for(let i=0; i<names.length; i+=slices){
         const transaction = await otocoMaster.createBatchSeries(
             jurisdictions.slice(i,i+slices),
             controllers.slice(i,i+slices),
             creations.slice(i,i+slices),
             names.slice(i,i+slices),
-            {gasPrice: "80000000000"}
+            {gasPrice: ethers.BigNumber.from("80000000000")}
         );
         console.log((await transaction.wait()).cumulativeGasUsed.toString());
         console.log(ethers.utils.formatEther((await transaction.wait()).cumulativeGasUsed.mul("80000000000")));
-        // await waitInput("Press enter to proceed...");
     }
 
     expect((await otocoMaster.seriesCount()).toNumber()).to.equal(jurisdictions.length);
 
   });
-
-  it("Test migration entities", async function () {
-
-    // const firstSeries = await otocoMaster.series(3);
-    // expect(firstSeries[0]).to.equal(2);
-    // expect(firstSeries[2].toNumber()).to.equal(10000);
-    // expect(firstSeries[3]).to.equal("Entity 1 - Series 2");
-
-    // const secondSeries = await otocoMaster.series(4);
-    // expect(secondSeries[0]).to.equal(2);
-    // expect(secondSeries[2].toNumber()).to.equal(20000);
-    // expect(secondSeries[3]).to.equal("Entity 2 - Series 3");
-
-  });
-
   
 });

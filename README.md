@@ -4,6 +4,26 @@
 
 ![thumb](https://user-images.githubusercontent.com/13040410/102030750-b10ef880-3d92-11eb-9041-edc18c9249ae.png)
 
+## Installation
+
+Install project packages:
+
+```sh
+npm install
+```
+
+Running Hardhat tests:
+
+```sh
+npx hardhat test
+```
+
+Running Code Coverage tests:
+
+```sh
+npx hardhat coverage
+```
+
 ## Previous approach
 
 The current approach of the project has multiple inefficient solutions.
@@ -47,13 +67,13 @@ At the moment of OtoCo conception it makes sense but due to increased demand of 
 ### OtoCo Master
 
 - The contract is created passing the pre-existent jurisdictions addresses.
-- The contract has a function to migrate all previous entities (DE, WY and DAO) as new ERC721 tokens in chronological order.
+- The contract has a function to migrate all previous entities (DE, WY and Unincorporated) as new ERC721 tokens in chronological order.
 - The migration function has to be called multiple times due to high consumption of gas that surpasses the max size of the blocks. 
-Once migration completes, a flag is set defining the last migrated entity. For all migrated entities a Gold badge is selected when NFT info is returned.
-- Allow USER to create an entity in a single transaction passing 10% of fees in ETH to transaction value.
+Once migration completes, a flag is set defining the last migrated entity. For all migrated entities a Gold badge is fetched when NFT info is returned.
+- Allow USER to create an entity in a single transaction passing 10% of transaction fees in ETH.
 - At the moment of creation a USER could create a Series on behalf of ANY address.
-- Allow USER to destroy a LLC that he owns passing 10% of fees in ETH to transaction value.
-- Retain value paid for creation/destruction of series for all jurisdictions, even Unincorporated.
+- Allow USER to close a LLC that he owns passing 10% of fees in ETH to transaction value.
+- Retain value paid for creation/closing of series for all jurisdictions, even Unincorporated.
 - Allow ANYONE to request tokenURI(badges)
 - Allow ANYONE to list user owned entities based on "transfer" events + token ownership.
 - The name formatting for the series happens at the moment of creation.
@@ -64,48 +84,15 @@ Once migration completes, a flag is set defining the last migrated entity. For a
 ### OtoCo Plugin
 
 - Transfer payments to OtoCoMaster before add/attach/remove plugins.
+- Plugins will always request the OtoCoMaster the current baseFees to add/attach/remove.
+- Do not transfer any value in cases where baseFees are 0, or msg.sender is the OtoCoMaster(In future implementation where OtoCoMaster will create LLC along with plugins).
 - Only allow USER to add/attach/remove plugins to a series that he controls.
 - Plugins could have more functions but it is obligatory to MAINTAINER declare the add/attach/remove functions.
-- Plugins will always request the OtoCoMaster the current baseFees to add/attach/remove.
-- MAINTAINER could tweak some parameters of the plugin but not the BaseFees(that is requested to OtoCoMaster) or change the OtoCoMaster reference. 
-
+- MAINTAINER could tweak some parameters of the plugin but not the BaseFees(that is requested to OtoCoMaster) or change the OtoCoMaster reference during maintainance. 
 
 ## Fluxogram for Creating and Managing Companies
 
 ![OtoCo - Smart-Contract Redesign](https://user-images.githubusercontent.com/13040410/164290477-567196f7-eb5d-4b76-9290-2d9a8a4f3ad3.png)
-
-## Installation
-
-Installing Ganache-cli (Local Ethereum Blockchain):
-
-```sh
-npm install -g ganache-cli
-```
-
-Installing Truffle + Mocha:
-
-```sh
-npm install -g truffle mocha
-```
-
-Installing dependencies:
-
-```sh
-npm install
-```
-
-Running ganache cli:
-
-```sh
-ganache-cli -p 8545
-```
-
-Running mocha tests:
-
-```sh
-truffle test
-```
-
 
 ### OtoCo Master - OtoCoMaster.sol
 
@@ -157,9 +144,20 @@ The OtoCo Plugins are reworked and simplified. Not require to link a Registry to
 
 ## References:
 
-[Gnosis-Safe Docs](https://gnosis-safe.readthedocs.io/_/downloads/en/v1.0.0/pdf/)
+[Batch Minting NFTs](https://blog.alchemy.com/blog/erc721-vs-erc721a-batch-minting-nfts)
 
-[Upgradable Gnosis-safe app](https://docs.openzeppelin.com/contracts/3.x/upgradeable)
+[Open-Zeppelin ERC721](https://docs.openzeppelin.com/contracts/2.x/api/token/erc721)
 
-[Solidity DelegateProxy Contracts](https://blog.gnosis.pm/solidity-delegateproxy-contracts-e09957d0f201)
+[Open-Zeppelin Upgradeable Contracts](https://docs.openzeppelin.com/upgrades-plugins/1.x/hardhat-upgrades)
 
+[Gnosis-Safe Contracts](https://github.com/safe-global/safe-contracts/tree/v1.3.0-libs.0)
+
+[Gnosis-safe Proxy Factory](https://etherscan.io/address/0xa6b71e26c5e0845f74c812102ca7114b6a896ab2#code)
+
+[ENS Registry](https://docs.ens.domains/contract-api-reference/ens)
+
+[ENS Deploy a FIFS Registrar](https://docs.ens.domains/deploying-ens-on-a-private-chain#deploy-a-registrar)
+
+[OtoGo Launchpool Repo](https://github.com/otoco-io/OtoGo-SmartContracts)
+
+[OtoCo Frontend-Repo](https://github.com/otoco-io/OtoCo-Gatsby)

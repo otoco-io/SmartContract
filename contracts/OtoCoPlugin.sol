@@ -21,9 +21,11 @@ abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
 
     /**
      * Modifier to check if the function set the correct amount of ETH value and transfer it to master.
+     * If baseFee are 0 or sender is OtoCoMaster this step is jumped.
+     * @dev in the future add/attact/remove could be called from OtoCo Master. In those cases no transfer should be called.
      */
     modifier transferFees() {
-        if (otocoMaster.baseFee() > 0) payable(otocoMaster).transfer(msg.value);
+        if (otocoMaster.baseFee() > 0 && msg.sender != address(otocoMaster)) payable(otocoMaster).transfer(msg.value);
         _;
     }
 
