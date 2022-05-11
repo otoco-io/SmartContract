@@ -1,5 +1,12 @@
 const fs = require('fs');
 const { network } = require("hardhat");
+const { Artifacts } = require("hardhat/internal/artifacts");
+
+async function getExternalArtifact(contract) {
+    const artifactsPath = "./artifacts-external";
+    const artifacts = new Artifacts(artifactsPath);
+    return artifacts.readArtifact(contract);
+}
 
 async function main() {
 
@@ -12,29 +19,43 @@ async function main() {
         process.exit(1);
     }
 
-    // Set master contract based on file loaded
-     const OtoCoMaster = await ethers.getContractFactory("OtoCoMaster");
-     const otocoMaster = OtoCoMaster.attach(deploysJson.master);
-
     // Import migration data for Launchpool
     try {
-        const data = await fs.readFile(`./migrations_data/launchpool.${network.name}.json`, "binary");
+        const data = fs.readFileSync(`./migrations_data/launchpool.${network.name}.json`, {encoding: "utf-8"});
         toMigrate = JSON.parse(data);
     } catch (err) {
-        toMigrate = { data: { companies: [] } }
+        toMigrate = []
         console.log(err);
     }
 
     const series = toMigrate.map((e) => { return e.seriesIds})
     const deployed = toMigrate.map((e) => { return e.address})
 
+    if ( network.name != 'main' ) {
+
+        const LaunchPoolArtifact = await getExternalArtifact("LaunchPool");
+        const LaunchPoolFactory = await ethers.getContractFactoryFromArtifact(LaunchPoolArtifact);
+        deploysJson.launchpoolSource = (await LaunchPoolFactory.deploy()).address;
+
+        const LaunchCurveArtifact = await getExternalArtifact("LaunchCurveExponential");
+        const LaunchCurveFactory = await ethers.getContractFactoryFromArtifact(LaunchCurveArtifact);
+        deploysJson.launchpoolCurve = (await LaunchCurveFactory.deploy()).address;
+
+    }
+
     const LaunchpoolPluginFactory = await ethers.getContractFactory("Launchpool");
-    const launchpoolPlugin = await LaunchpoolPluginFactory.deploy(otocoMaster.address, series, deployed);
+    const launchpoolPlugin = await LaunchpoolPluginFactory.deploy(
+        deploysJson.master,
+        deploysJson.launchpoolSource,
+        deploysJson.launchpoolCurve,
+        series,
+        deployed
+    );
 
     console.log("🚀  Launchpool plugin Deployed:", launchpoolPlugin.address);
-    object.launchpool = launchpoolPlugin.address
+    deploysJson.launchpool = launchpoolPlugin.address
 
-    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(object, undefined, 2));
+    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 }
     
 main()

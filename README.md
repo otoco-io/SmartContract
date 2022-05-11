@@ -33,7 +33,7 @@ At the moment of OtoCo conception it makes sense but due to increased demand of 
 
 - Charging for spin-up usually requires the user to exchange their ETH for DAI before proceeding with approval step during spin-up.
 - The DAI approval and transfer steps cost at least 90K additional gas for the user.
-- Multiple bugs happen on different wallets during the approval step. New users also doesn't not comprehend very well that the approval step doesn't transfer the tokens, only approve for the deployer to consume them after. 
+- Multiple bugs happen on different wallets during the approval step. New users also doesn't not comprehend very well that the approval step doesn't transfer the tokens, only approve for the deployer to consume them after.
 - The activation phase that creates the new entity instantiates a new contract on the blockchain. It required an absurd amount of 300K gas for a simple Ownable contract.
 - Entity > Ownership relation couldn't be tracked by the Master smart-contract requiring us to rely on third party services like TheGraph to keep tracking Series and his Owner.
 - Having multiple Master contracts sometimes confuses users that don't recognize those different contracts for each jurisdiction.
@@ -51,6 +51,7 @@ At the moment of OtoCo conception it makes sense but due to increased demand of 
 ## Features
 
 ### Rules:
+
 - **ADMINISTRATOR**: Master contract owner.
 - **USER**: Dapp user.
 - **MAINTAINER**: The Plugin contract owner.
@@ -62,14 +63,14 @@ At the moment of OtoCo conception it makes sense but due to increased demand of 
 - Return the name formatting according to the requirements of the jurisdiction.
 - Return badges(NFT Images) related to the jurisdiction.
 - Has 2 different badges, the Default and the gold badge. The gold one is for the series created before migration.
-- For unincorporated entities there's no change in the names, for DE entities a " LLC" suffix is added to the name of new series and for WY a " - Series ##" suffix is added to the name. 
+- For unincorporated entities there's no change in the names, for DE entities a " LLC" suffix is added to the name of new series and for WY a " - Series ##" suffix is added to the name.
 
 ### OtoCo Master
 
 - The contract is created passing the pre-existent jurisdictions addresses.
 - The contract has a function to migrate all previous entities (DE, WY and Unincorporated) as new ERC721 tokens in chronological order.
-- The migration function has to be called multiple times due to high consumption of gas that surpasses the max size of the blocks. 
-Once migration completes, a flag is set defining the last migrated entity. For all migrated entities a Gold badge is fetched when NFT info is returned.
+- The migration function has to be called multiple times due to high consumption of gas that surpasses the max size of the blocks.
+  Once migration completes, a flag is set defining the last migrated entity. For all migrated entities a Gold badge is fetched when NFT info is returned.
 - Allow USER to create an entity in a single transaction passing 10% of transaction fees in ETH.
 - At the moment of creation a USER could create a Series on behalf of ANY address.
 - Allow USER to close a LLC that he owns passing 10% of fees in ETH to transaction value.
@@ -88,7 +89,7 @@ Once migration completes, a flag is set defining the last migrated entity. For a
 - Do not transfer any value in cases where baseFees are 0, or msg.sender is the OtoCoMaster(In future implementation where OtoCoMaster will create LLC along with plugins).
 - Only allow USER to add/attach/remove plugins to a series that he controls.
 - Plugins could have more functions but it is obligatory to MAINTAINER declare the add/attach/remove functions.
-- MAINTAINER could tweak some parameters of the plugin but not the BaseFees(that is requested to OtoCoMaster) or change the OtoCoMaster reference during maintainance. 
+- MAINTAINER could tweak some parameters of the plugin but not the BaseFees(that is requested to OtoCoMaster) or change the OtoCoMaster reference during maintainance.
 
 ## Fluxogram for Creating and Managing Companies
 
@@ -105,6 +106,7 @@ Responsible to receive payments and deploy new companies. Has a list of deployed
 - **baseFee**: Base fees charged for company deployment and plugins attach/removal.
 
 #### Administration Methods
+
 - **initialize**: Initialize the contract and create initial jurisdictions.
 - **createBatchSeries**: Function to Migrate previous entities.
 - **changeBaseFees**: Set the new base fees divider to be paid in ETH along with the Dapp transactions.
@@ -113,10 +115,10 @@ Responsible to receive payments and deploy new companies. Has a list of deployed
 - **withdrawFees**: Withdraw the ETH stored on the contract.
 
 #### Public Methods
+
 - **createSeries**: Create a new entity and set his controller. To create a new series is required to set the (uint16)jurisdiction, (string)name and the (address)controller of the entity.
 - **closeSeries**: Close the desired series. Cold only be called by the controller of the entity.
 - **tokenURI**: Return the JSON URI of the desired entity index.
-
 
 ### OtoCo Jurisdiction - OtoCoJurisdiction.sol
 
@@ -141,6 +143,12 @@ The OtoCo Plugins are reworked and simplified. Not require to link a Registry to
 - **addPlugin** - Add the plugin to the entity selected according to the parameters selected.
 - **attachPlugin** - Attach a pre-existing plugin to the entity.
 - **removePlugin** - Add the plugin to the entity selected according to the parameters selected.
+
+## Mythrill Analyzes
+
+Query count: 2232
+Solver time: 8895.091669082642
+The analysis was completed successfully. No issues were detected.
 
 ## References:
 

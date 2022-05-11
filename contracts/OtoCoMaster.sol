@@ -129,7 +129,7 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
             );
             // Don't mint closed entities
             if (controller[i] != address(0)){
-                _mint(msg.sender, i+seriesCount);
+                _mint(controller[i], i+seriesCount);
             }
         }
         // Set global storages

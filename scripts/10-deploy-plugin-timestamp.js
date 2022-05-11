@@ -22,9 +22,9 @@ async function main() {
 
     //Store plugin address to deploys file
     console.log("🚀 Timestamp plugin Deployed:", timestampPlugin.address);
-    object.timestamp = timestampPlugin.address;
+    deploysJson.timestamp = timestampPlugin.address;
 
-    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(object, undefined, 2));
+    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 }
     
 main()

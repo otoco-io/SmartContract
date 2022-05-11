@@ -18,23 +18,26 @@ async function main() {
 
     // Import migration data for Tokens
     try {
-        const data = await fs.readFile(`./migrations_data/token.${network.name}.json`, "binary");
+        const data = fs.readFileSync(`./migrations_data/token.${network.name}.json`, {encoding: "utf-8"});
         toMigrate = JSON.parse(data);
     } catch (err) {
-        toMigrate = { data: { companies: [] } }
+        toMigrate = []
         console.log(err);
     }
 
     const series = toMigrate.map((e) => { return e.seriesIds})
     const deployed = toMigrate.map((e) => { return e.address})
 
+    const OtoCoTokenFactory = await ethers.getContractFactory("OtoCoToken");
+    const token = await OtoCoTokenFactory.deploy();
+
     const TokenPluginFactory = await ethers.getContractFactory("Token");
-    const tokenPlugin = await TokenPluginFactory.deploy(otocoMaster.address, series, deployed);
+    const tokenPlugin = await TokenPluginFactory.deploy(otocoMaster.address, token.address, series, deployed);
 
     console.log("🚀 Token plugin Deployed:", tokenPlugin.address);
-    object.token = tokenPlugin.address
+    deploysJson.token = tokenPlugin.address
 
-    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(object, undefined, 2));
+    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 }
     
 main()

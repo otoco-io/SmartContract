@@ -18,10 +18,10 @@ async function main() {
 
     // Import migration data for ENS
     try {
-        const data = await fs.readFile(`./migrations_data/ens.${network.name}.json`, "binary");
+        const data = fs.readFileSync(`./migrations_data/ens.${network.name}.json`, {encoding: "utf-8"});
         toMigrate = JSON.parse(data);
     } catch (err) {
-        toMigrate = { data: { companies: [] } }
+        toMigrate = []
         console.log(err);
     }
 
@@ -32,9 +32,9 @@ async function main() {
     const ensPlugin = await ENSPluginFactory.deploy(otocoMaster.address, series, names);
 
     console.log("🚀  ENS plugin Deployed:", ensPlugin.address);
-    object.ens = ensPlugin.address
+    deploysJson.ens = ensPlugin.address
 
-    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(object, undefined, 2));
+    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 }
     
 main()

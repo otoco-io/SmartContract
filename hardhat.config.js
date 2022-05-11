@@ -1,6 +1,7 @@
  require('@openzeppelin/hardhat-upgrades');
- require('solidity-coverage')
-
+ require('solidity-coverage');
+ require('solidity-docgen');
+ 
  const fs = require('fs');
  const apiMain = fs.readFileSync(".api.main").toString().trim();
  const apiRopsten = fs.readFileSync(".api.ropsten").toString().trim();

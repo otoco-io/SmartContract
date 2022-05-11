@@ -51,27 +51,27 @@ async function main() {
         console.log(err);
     }
 
-    console.log('Entities to Migrate:', toMigrate.data.companies.length)
-    await waitInput("Press enter to proceed...");
-
     // Set arrays with entity informations
-    toMigrate.data.companies.map( (s) => {
+    toMigrate.data.companies.map((s) => {
         jurisdictions.push(jurisdictionDict[s.jurisdiction]);
         names.push(s.name);
         creations.push(s.creation)
         controllers.push(s.owner);
     })
 
+    console.log('Entities to Migrate:', toMigrate.data.companies.length)
+    await waitInput("Press enter to proceed...");
+
     // Migrate entities in slices
     // Require press enter before each migration so gives time to check if any problem occurs during migration.
     const slices = 200;
-    for(let i=0; i<jurisdictions.length; i+=slices){
+    for (let i = 0; i < jurisdictions.length; i += slices) {
         const transaction = await otocoMaster.createBatchSeries(
-            jurisdictions.slice(i,i+slices),
-            controllers.slice(i,i+slices),
-            creations.slice(i,i+slices),
-            names.slice(i,i+slices),
-            {gasPrice: "80000000000"}
+            jurisdictions.slice(i, i + slices),
+            controllers.slice(i, i + slices),
+            creations.slice(i, i + slices),
+            names.slice(i, i + slices),
+            { gasPrice: "80000000000" }
         );
         console.log("Gas spent migrating: ", (await transaction.wait()).cumulativeGasUsed.toString());
         console.log("ETH Spent: ", ethers.utils.formatEther((await transaction.wait()).cumulativeGasUsed.mul("80000000000")));
@@ -81,10 +81,10 @@ async function main() {
 
     console.log('🗺️  Total number of entities migrated: ', (await otocoMaster.seriesCount()).toNumber());
 }
-  
+
 main()
-.then(() => process.exit(0))
-.catch((error) => {
-    console.error(error);
-    process.exit(1);
-});
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });

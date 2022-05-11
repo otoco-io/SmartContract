@@ -1,5 +1,12 @@
 const fs = require('fs');
 const { network } = require("hardhat");
+const { Artifacts } = require("hardhat/internal/artifacts");
+
+async function getExternalArtifact(contract) {
+    const artifactsPath = "./artifacts-external";
+    const artifacts = new Artifacts(artifactsPath);
+    return artifacts.readArtifact(contract);
+}
 
 async function main() {
 
@@ -18,23 +25,41 @@ async function main() {
 
     // Import migration data for Multisig
     try {
-        const data = await fs.readFile(`./migrations_data/multisig.${network.name}.json`, "binary");
+        const data = fs.readFileSync(`./migrations_data/multisig.${network.name}.json`, {encoding: "utf-8"});
         toMigrate = JSON.parse(data);
     } catch (err) {
-        toMigrate = { data: { companies: [] } }
+        toMigrate = []
         console.log(err);
     }
 
     const series = toMigrate.map((e) => { return e.seriesIds})
     const deployed = toMigrate.map((e) => { return e.address})
 
+    if ( network.name != 'main' ) {
+
+        const GnosisSafeArtifact = await getExternalArtifact("GnosisSafe");
+        const GnosisSafeFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
+        deploysJson.gnosisSafe = (await GnosisSafeFactory.deploy()).address;
+
+        const GnosisSafeProxyFactoryArtifact = await getExternalArtifact("GnosisSafeProxyFactory");
+        const GnosisSafeProxyFactoryFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
+        deploysJson.gnosisSafeProxyFactory = (await GnosisSafeProxyFactoryFactory.deploy()).address;
+
+    }
+
     const MultisigPluginFactory = await ethers.getContractFactory("Multisig");
-    const multisigPlugin = await MultisigPluginFactory.deploy(otocoMaster.address, series, deployed);
+    const multisigPlugin = await MultisigPluginFactory.deploy(
+        otocoMaster.address,
+        deploysJson.gnosisSafe,
+        deploysJson.gnosisSafeProxyFactory,
+        series,
+        deployed
+    );
 
     console.log("🚀 Multisig plugin Deployed:", multisigPlugin.address);
-    object.multisig = multisigPlugin.address
+    deploysJson.multisig = multisigPlugin.address
 
-    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(object, undefined, 2));
+    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 }
     
 main()
