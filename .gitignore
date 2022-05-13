@@ -7,10 +7,11 @@ node_modules
 .api*
 flatten
 migrations_data
+.solcx*
 
 # hardhat
 artifacts
 cache
 deployments
 node_modules
-coverage
+coverage*

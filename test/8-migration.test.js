@@ -2,8 +2,6 @@ const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
 const { solidity } = require("ethereum-waffle");
 const chai = require("chai");
-const { zeroAddress } = require("ethereumjs-util");
-const { ConsensusAlgorithm } = require("@ethereumjs/common");
 const { json } = require("hardhat/internal/core/params/argumentTypes");
 chai.use(solidity);
 const fs = require('fs').promises;
@@ -95,10 +93,10 @@ describe("Test Entities migration", function () {
             controllers.slice(i,i+slices),
             creations.slice(i,i+slices),
             names.slice(i,i+slices),
-            {gasPrice: ethers.BigNumber.from("80000000000")}
+            {gasPrice: ethers.BigNumber.from("8000000")}
         );
-        console.log((await transaction.wait()).cumulativeGasUsed.toString());
-        console.log(ethers.utils.formatEther((await transaction.wait()).cumulativeGasUsed.mul("80000000000")));
+        // console.log((await transaction.wait()).cumulativeGasUsed.toString());
+        // console.log(ethers.utils.formatEther((await transaction.wait()).cumulativeGasUsed.mul("80000000000")));
     }
 
     expect((await otocoMaster.seriesCount()).toNumber()).to.equal(jurisdictions.length);
