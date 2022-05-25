@@ -100,7 +100,7 @@ describe("OtoCo Launchpool and Token Plugins Test", function () {
     .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
 
     //console.log((await transaction.wait()).events)
-    tokenAddress = (await transaction.wait()).events[2].args.token;
+    tokenAddress = (await transaction.wait()).events[1].args.token;
     const tokenDeployed = TokenFactory.attach(tokenAddress);
     
     expect(await tokenDeployed.name()).to.be.equal("Test Token");
@@ -110,7 +110,7 @@ describe("OtoCo Launchpool and Token Plugins Test", function () {
     expect(await tokenPlugin.tokensDeployed(0,0)).to.be.equals(tokenAddress);
     
     await expect(tokenDeployed.initialize('', '', "100", zeroAddress()))
-    .to.be.revertedWith('OtoCoToken: Contract already initialized');
+    .to.be.revertedWith('Initializable: contract is already initialized');
 
     encoded = ethers.utils.defaultAbiCoder.encode(['uint256'],[0]);
     transaction = await tokenPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay});
@@ -135,6 +135,25 @@ describe("OtoCo Launchpool and Token Plugins Test", function () {
     // There's no Attach function at Launchpool plugin
     await expect(tokenPlugin.connect(wallet2).removePlugin(0, encoded, {gasPrice, gasLimit, value:0}))
     .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
+
+     // Create DAI token to use as payment on launchpool
+    encoded = ethers.utils.defaultAbiCoder.encode(
+      ['uint256', 'string', 'string', 'address'],
+      [ethers.utils.parseEther('8000000'), 'Test DAI', 'DAI', owner.address]
+    );
+    await expect(tokenPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    // Create USDC token to use as payment on launchpool
+    encoded = ethers.utils.defaultAbiCoder.encode(
+      ['uint256', 'string', 'string', 'address'],
+      [ethers.utils.parseEther('8000000'), 'Test USDC', 'USDC', owner.address]
+    );
+    await expect(tokenPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
+    // Create USDT token to use as payment on launchpool
+    encoded = ethers.utils.defaultAbiCoder.encode(
+      ['uint256', 'string', 'string', 'address'],
+      [ethers.utils.parseEther('8000000'), 'Test Token', 'USDT', owner.address]
+    );
+    await expect(tokenPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:amountToPay}))
 
     await expect(tokenPlugin.connect(wallet2).updateTokenContract(zeroAddress()))
     .to.be.revertedWith('Ownable: caller is not the owner');
@@ -179,17 +198,14 @@ describe("OtoCo Launchpool and Token Plugins Test", function () {
     await expect(launchPoolPlugin.connect(wallet2).updatePoolSource(launchpool.address))
     .to.be.revertedWith('Ownable: caller is not the owner');
 
-    const paymentToken1 = await TokenFactory.deploy();
-    paymentToken1.initialize('Test DAI', 'DAI', ethers.utils.parseEther('8000000'), owner.address);
-    const paymentToken2 = await TokenFactory.deploy();
-    paymentToken2.initialize('Test USDC', 'USDC', ethers.utils.parseEther('8000000'), owner.address);
-    const paymentToken3 = await TokenFactory.deploy();
-    paymentToken3.initialize('Test USDT', 'USDT', ethers.utils.parseEther('8000000'), owner.address);
+    const paymentToken1 = await tokenPlugin.tokensDeployed(0,1);
+    const paymentToken2 = await tokenPlugin.tokensDeployed(0,2);
+    const paymentToken3 = await tokenPlugin.tokensDeployed(0,3);
 
-    let encoded = ethers.utils.defaultAbiCoder.encode(
+    encoded = ethers.utils.defaultAbiCoder.encode(
         ['address[]', 'uint256[]', 'string', 'address', 'uint16', 'address'],
         [
-            [paymentToken1.address, paymentToken2.address, paymentToken3.address],
+            [paymentToken1, paymentToken2, paymentToken3],
             [
                 ethers.utils.parseUnits('100', 'wei'),
                 ethers.utils.parseUnits('5000000', 'wei'),

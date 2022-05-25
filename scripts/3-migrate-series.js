@@ -59,6 +59,12 @@ async function main() {
         controllers.push(s.owner);
     })
 
+    // Verify if entities creation order are correct
+    creations.reduce( (acc,c,idx) => {
+        if (parseInt(acc) > parseInt(c)) throw `Entities not ordered by creation correctly. Entity at ${idx} is bigger than previous.`
+        return c
+    },"0")
+
     console.log('Entities to Migrate:', toMigrate.data.companies.length)
     await waitInput("Press enter to proceed...");
 

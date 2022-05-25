@@ -85,7 +85,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
 
     //console.log((await transaction.wait()).events)
-    tokenAddress = (await transaction.wait()).events[2].args.token;
+    tokenAddress = (await transaction.wait()).events[1].args.token;
     const tokenDeployed = TokenFactory.attach(tokenAddress);
     
     expect(await tokenDeployed.name()).to.be.equal("Test Token");
@@ -95,7 +95,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     expect(await tokenPlugin.tokensDeployed(0,0)).to.be.equals(tokenAddress);
     
     await expect(tokenDeployed.initialize('', '', "100", zeroAddress()))
-    .to.be.revertedWith('OtoCoToken: Contract already initialized');
+    .to.be.revertedWith('Initializable: contract is already initialized');
 
     encoded = ethers.utils.defaultAbiCoder.encode(['uint256'],[0]);
     transaction = await tokenPlugin.connect(wallet2).removePlugin(0, encoded);

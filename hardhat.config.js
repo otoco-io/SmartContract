@@ -13,7 +13,7 @@ module.exports = {
   networks: {
     hardhat: {
       blockGasLimit: 30000000,
-      hardfork: 'london'
+      //hardfork: 'london'
     },
     main: {
       url: apiMain,

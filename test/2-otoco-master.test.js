@@ -119,7 +119,22 @@ describe("OtoCo Master Test", function () {
     controllers = [wallet2.address];
 
     await expect(otocoMaster.createBatchSeries(jurisdictions, controllers, creations, names))
-    .to.be.revertedWith('OtoCoMaster: Owner and Name array should have same size.');
+    .to.be.revertedWith('OtoCoMaster: Name and Controller array should have same size.');
+
+    jurisdictions = [2];
+    controllers = [wallet2.address];
+    names = ['Test Name']
+
+    await expect(otocoMaster.createBatchSeries(jurisdictions, controllers, creations, names))
+    .to.be.revertedWith('OtoCoMaster: Controller and Creation array should have same size.');
+
+    jurisdictions = new Array(256).fill(0);
+    controllers = new Array(256).fill(owner.address);
+    names = new Array(256).fill('Test Name');
+    creations = new Array(256).fill(1000);
+
+    await expect(otocoMaster.createBatchSeries(jurisdictions, controllers, creations, names))
+    .to.be.revertedWith('OtoCoMaster: Not allowed to migrate more than 255 entities at once.');
 
   });
 

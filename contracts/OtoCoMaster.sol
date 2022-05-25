@@ -107,6 +107,9 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
     /**
      * Create a new Series at specific jurisdiction and also select its name.
      * Could only be called by the administrator of the contract.
+     * @dev Trying to use this function on a scenery that more than 500 jurisdiction exists,
+     * will require an excessive amount of gas to iterate at the end.
+     * We recommend to upgrade the function in these cases.
      *
      * @param jurisdiction new price to be charged for series creation.
      * @param controller the controller of the entity.
@@ -115,9 +118,12 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
      */
     function createBatchSeries(uint16[] calldata jurisdiction, address[] calldata controller, uint64[] calldata creation, string[] calldata name) public onlyOwner {
         require(jurisdiction.length == controller.length, "OtoCoMaster: Owner and Jurisdiction array should have same size.");
-        require(name.length == controller.length, "OtoCoMaster: Owner and Name array should have same size.");
+        require(name.length == controller.length, "OtoCoMaster: Name and Controller array should have same size.");
+        require(controller.length == creation.length, "OtoCoMaster: Controller and Creation array should have same size.");
+        require(jurisdiction.length < 256, "OtoCoMaster: Not allowed to migrate more than 255 entities at once.");
         uint32 counter = uint32(controller.length);
-        uint32[] memory seriesPerJurisdictionTemp = new uint32[](jurisdictionCount);
+        // Uses uint8 cause isn't possible to migrate more than 255 series at once.
+        uint8[] memory seriesPerJurisdictionTemp = new uint8[](jurisdictionCount);
         // Iterate through all previous series
         for (uint32 i = 0; i < counter; i++){
             seriesPerJurisdictionTemp[jurisdiction[i]]++;
@@ -135,7 +141,8 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
         // Set global storages
         seriesCount = seriesCount+counter;
         lastMigrated = seriesCount;
-        for (uint8 i = 0; i < jurisdictionCount; i++){
+        for (uint16 i = 0; i < jurisdictionCount; i++){
+            if (seriesPerJurisdictionTemp[i] == 0) continue;
             seriesPerJurisdiction[i] = seriesPerJurisdiction[i]+seriesPerJurisdictionTemp[i];
         }
     }

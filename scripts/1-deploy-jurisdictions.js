@@ -9,9 +9,21 @@ async function main() {
     const Delaware = await ethers.getContractFactory("JurisdictionDelaware");
     const Wyoming = await ethers.getContractFactory("JurisdictionWyoming");
 
-    const unincorporated = await Unincorporated.deploy('DAO', 'defaultBadgeURL', 'goldBadgeURL');
-    const delaware = await Delaware.deploy('DELAWARE', 'defaultBadgeURLDE', 'goldBadgeURLDE');
-    const wyoming = await Wyoming.deploy('WYOMING', 'defaultBadgeURLWY', 'goldBadgeURLWY');
+    const unincorporated = await Unincorporated.deploy(
+        'DAO',
+        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/dao_default.png',
+        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/dao_gold.png'
+    );
+    const delaware = await Delaware.deploy(
+        'DELAWARE',
+        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/de_default.png',
+        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/de_gold.png'
+    );
+    const wyoming = await Wyoming.deploy(
+        'WYOMING',
+        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_default.png',
+        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_gold.png'
+    );
 
     const jurisdictions = [unincorporated.address, delaware.address, wyoming.address];
 
