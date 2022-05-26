@@ -85,7 +85,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
 
     //console.log((await transaction.wait()).events)
-    tokenAddress = (await transaction.wait()).events[1].args.token;
+    tokenAddress = (await transaction.wait()).events[2].args.token;
     const tokenDeployed = TokenFactory.attach(tokenAddress);
     
     expect(await tokenDeployed.name()).to.be.equal("Test Token");

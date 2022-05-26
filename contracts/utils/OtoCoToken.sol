@@ -10,7 +10,8 @@ contract OtoCoToken is ERC20, Initializable {
     string private __name;
     string private __symbol;
 
-    constructor() ERC20("", "") initializer {
+    constructor() ERC20("", "") {
+        _disableInitializers();
     }
 
     function initialize (string memory name_, string memory symbol_, uint256 supply_, address member_) public initializer {

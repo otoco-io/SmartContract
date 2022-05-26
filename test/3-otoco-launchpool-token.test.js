@@ -99,8 +99,8 @@ describe("OtoCo Launchpool and Token Plugins Test", function () {
     await expect(tokenPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:0}))
     .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
 
-    //console.log((await transaction.wait()).events)
-    tokenAddress = (await transaction.wait()).events[1].args.token;
+  
+    tokenAddress = (await transaction.wait()).events[2].args.token;
     const tokenDeployed = TokenFactory.attach(tokenAddress);
     
     expect(await tokenDeployed.name()).to.be.equal("Test Token");
