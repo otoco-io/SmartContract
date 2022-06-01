@@ -1,3 +1,4 @@
+const { getCurves } = require('crypto');
 const fs = require('fs');
 const { network } = require("hardhat");
 const { Artifacts } = require("hardhat/internal/artifacts");
@@ -19,6 +20,16 @@ async function main() {
         process.exit(1);
     }
 
+    let previousJson
+    // Import previous source contracts
+    try {
+        const data = fs.readFileSync(`./deploys/previous.${network.name}.json`, {encoding: "utf-8"});
+        previousJson = JSON.parse(data);
+    } catch (err) {
+        previousJson = []
+        console.log(err);
+    }
+
     // Import migration data for Launchpool
     try {
         const data = fs.readFileSync(`./migrations_data/launchpool.${network.name}.json`, {encoding: "utf-8"});
@@ -28,14 +39,17 @@ async function main() {
         console.log(err);
     }
 
-    const series = toMigrate.map((e) => { return e.seriesIds})
+    const series = toMigrate.map((e) => { return e.seriesId})
     const deployed = toMigrate.map((e) => { return e.address})
 
-    if ( network.name != 'main' ) {
+    if ( !previousJson.launchpoolSource ) {
 
         const LaunchPoolArtifact = await getExternalArtifact("LaunchPool");
         const LaunchPoolFactory = await ethers.getContractFactoryFromArtifact(LaunchPoolArtifact);
         deploysJson.launchpoolSource = (await LaunchPoolFactory.deploy()).address;
+    }
+
+    if ( !previousJson.launchpoolCurve ) {
 
         const LaunchCurveArtifact = await getExternalArtifact("LaunchCurveExponential");
         const LaunchCurveFactory = await ethers.getContractFactoryFromArtifact(LaunchCurveArtifact);
@@ -49,7 +63,8 @@ async function main() {
         deploysJson.launchpoolSource,
         deploysJson.launchpoolCurve,
         series,
-        deployed
+        deployed,
+        {gasLimit: 6000000}
     );
 
     console.log("🚀  Launchpool plugin Deployed:", launchpoolPlugin.address);

@@ -19,6 +19,16 @@ async function main() {
         process.exit(1);
     }
 
+    let previousJson
+    // Import previous source contracts
+    try {
+        const data = fs.readFileSync(`./deploys/previous.${network.name}.json`, {encoding: "utf-8"});
+        previousJson = JSON.parse(data);
+    } catch (err) {
+        previousJson = []
+        console.log(err);
+    }
+
     // Set master contract based on file loaded
      const OtoCoMaster = await ethers.getContractFactory("OtoCoMaster");
      const otocoMaster = OtoCoMaster.attach(deploysJson.master);
@@ -32,19 +42,21 @@ async function main() {
         console.log(err);
     }
 
-    const series = toMigrate.map((e) => { return e.seriesIds})
+    const series = toMigrate.map((e) => { return e.seriesId})
     const deployed = toMigrate.map((e) => { return e.address})
 
-    if ( network.name != 'main' ) {
+    if (!previousJson.safe) {
 
         const GnosisSafeArtifact = await getExternalArtifact("GnosisSafe");
         const GnosisSafeFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
         deploysJson.gnosisSafe = (await GnosisSafeFactory.deploy()).address;
 
+    }
+
+    if (!previousJson.safeFactory) {
         const GnosisSafeProxyFactoryArtifact = await getExternalArtifact("GnosisSafeProxyFactory");
         const GnosisSafeProxyFactoryFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
         deploysJson.gnosisSafeProxyFactory = (await GnosisSafeProxyFactoryFactory.deploy()).address;
-
     }
 
     const MultisigPluginFactory = await ethers.getContractFactory("Multisig");

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { ethers, network } = require("hardhat");
+const { zeroAddress } = require("ethereumjs-util");
 
 async function main() {
 
@@ -27,44 +28,62 @@ async function main() {
 
   // Set old Multisig factory ABI
   let pluginABI = [{
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: 'address',
-        name: 'series',
-        type: 'address',
+        "indexed": true,
+        "internalType": "address",
+        "name": "series",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: 'address',
-        name: 'value',
-        type: 'address',
+        "indexed": true,
+        "internalType": "uint16",
+        "name": "key",
+        "type": "uint16"
       },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "value",
+        "type": "address"
+      }
     ],
-    name: 'MultisigCreated',
-    type: 'event',
+    "name": "RecordChanged",
+    "type": "event"
   }];
 
-  const contract = new ethers.Contract(deploys.multisig, pluginABI, signer);
+  const contract = new ethers.Contract(deploys.registry, pluginABI, signer);
   // Fetch events from old contracts
-  const logs = await contract.queryFilter('MultisigCreated', 0, 'latest');
+  const filter = contract.filters.RecordChanged(null, 2);
+  const logs = await contract.queryFilter(filter, 0, 'latest');
   const result = logs.map((l) => {
-    // Assign SeriesIds from previous Series Contract 
+    // Assign SeriesIds from previous Series Contract
     return {
-      seriesId: companies.data.companies.findIndex((e) => e.id.toLowerCase() == l.args[0].toLowerCase()),
-      address: l.args[1]
+      seriesId: companies.data.companies.findIndex((e) => e.id.toLowerCase() == l.args.series.toLowerCase()),
+      address: l.args.value
     }
   })
 
+  const removals = result.filter((l) => { return l.address == zeroAddress() })
+  const resultFiltered = result.filter((l) => { return l.address != zeroAddress() })
+
+  console.log(removals)
+
+  while (removals.length > 0) {
+    const removed = removals.shift();
+    const index = resultFiltered.findIndex( (e) => e.seriesId == removed.seriesId )
+    resultFiltered.splice(index, 1);
+  }
+
   // Count how much SeriesIds assigning got failed
   // This value should be always 0.
-  const failed = result.reduce((acc, curr) => {
-    return curr.seriesId > 0 ? acc : acc+1
+  const failed = resultFiltered.reduce((acc, curr) => {
+    return curr.seriesId >= 0 ? acc : acc+1
   }, 0)
 
-  fs.writeFileSync(`./migrations_data/multisig.${network.name}.json`, JSON.stringify(result, undefined, 2));
-  console.log(`💾  Sucessfully stored a total of ${result.length} Multisigs deployed with ${failed} unrecognized Series.`)
+  fs.writeFileSync(`./migrations_data/multisig.${network.name}.json`, JSON.stringify(resultFiltered, undefined, 2));
+  console.log(`💾  Sucessfully stored a total of ${resultFiltered.length} Multisigs deployed with ${failed} unrecognized Series.`)
 }
     
 main()

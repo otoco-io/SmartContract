@@ -49,11 +49,12 @@ async function main() {
   const contract = new ethers.Contract(deploys.ens, pluginABI, signer);
   // Fetch events from old contracts
   const logs = await contract.queryFilter('NameClaimed', 0, 'latest');
+  
   const result = logs.map((l) => {
     // Assign SeriesIds from previous Series Contract 
     return {
-      seriesId: companies.data.companies.findIndex((e) => e.id.toLowerCase() == l.args[0].toLowerCase()),
-      name: l.args[1]
+      seriesId: companies.data.companies.findIndex((e) => e.id.toLowerCase() == l.args.series.toLowerCase()),
+      name: l.args.value
     }
   })
 

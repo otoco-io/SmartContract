@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { ethers, network } = require("hardhat");
+const { zeroAddress } = require("ethereumjs-util");
 
 async function main() {
 
@@ -32,41 +33,43 @@ async function main() {
       {
         "indexed": true,
         "internalType": "address",
-        "name": "sponsor",
+        "name": "series",
         "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint16",
+        "name": "key",
+        "type": "uint16"
       },
       {
         "indexed": false,
         "internalType": "address",
-        "name": "pool",
+        "name": "value",
         "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "metadata",
-        "type": "string"
       }
     ],
-    "name": "PoolCreated",
+    "name": "RecordChanged",
     "type": "event"
   }];
 
-  const contract = new ethers.Contract(deploys.launchpool, pluginABI, signer);
+  const contract = new ethers.Contract(deploys.registry, pluginABI, signer);
   // Fetch events from old contracts
-  const logs = await contract.queryFilter('PoolCreated', 0, 'latest');
+  const filter = contract.filters.RecordChanged(null, 3);
+  const logs = await contract.queryFilter(filter, 0, 'latest');
+
   const result = logs.map((l) => {
     // Assign SeriesIds from previous Series Contract 
     return {
-      seriesId: companies.data.companies.findIndex((e) => e.id.toLowerCase() == l.args[0].toLowerCase()),
-      address: l.args[1]
+      seriesId: companies.data.companies.findIndex((e) => e.id.toLowerCase() == l.args.series.toLowerCase()),
+      address: l.args.value
     }
   })
 
   // Count how much SeriesIds assigning got failed
   // This value should be always 0.
   const failed = result.reduce((acc, curr) => {
-    return curr.seriesId > 0 ? acc : acc+1
+    return curr.seriesId >= 0 ? acc : acc+1
   }, 0)
 
   fs.writeFileSync(`./migrations_data/launchpool.${network.name}.json`, JSON.stringify(result, undefined, 2));

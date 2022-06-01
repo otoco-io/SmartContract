@@ -24,6 +24,16 @@ async function main() {
         process.exit(1);
     }
 
+    let previousJson
+    // Import previous source contracts
+    try {
+        const data = fs.readFileSync(`./deploys/previous.${network.name}.json`, {encoding: "utf-8"});
+        previousJson = JSON.parse(data);
+    } catch (err) {
+        previousJson = []
+        console.log(err);
+    }
+
     // Set master contract based on file loaded
      const OtoCoMaster = await ethers.getContractFactory("OtoCoMaster");
      const otocoMaster = OtoCoMaster.attach(deploysJson.master);
@@ -37,10 +47,10 @@ async function main() {
         console.log(err);
     }
 
-    const series = toMigrate.map((e) => { return e.seriesIds})
+    const series = toMigrate.map((e) => { return e.seriesId})
     const names = toMigrate.map((e) => { return e.name})
 
-    if (network.name != 'main'){
+    if (network.name == 'localhost'){
         const ENSRegistryArtifact = await getExternalArtifact("ENSRegistry");
         const ENSRegistryFactory = await ethers.getContractFactoryFromArtifact(ENSRegistryArtifact);
         ensRegistry = await ENSRegistryFactory.deploy();
@@ -60,22 +70,24 @@ async function main() {
         await ensRegistry.setOwner(ethers.utils.formatBytes32String(''), owner.address);
         await ensRegistry.setSubnodeOwner(ethers.utils.formatBytes32String(''), labelhash('eth'), fifsRegistrar.address);
         
-        deploysJson.ensRegistry = ensRegistry.address
-        deploysJson.ensFifs = fifsRegistrar.address
-        deploysJson.ensResolver = publicResolver.address
+        previousJson.ensRegistry = ensRegistry.address
+        previousJson.ensResolver = publicResolver.address
+    } else {
+        previousJson.ensRegistry = previousJson.ensregistry
+        previousJson.ensResolver = previousJson.resolver
     }
 
     const rootNode = '0xd60cd0a683332ca8ad4a4d342320945cb769f25760b42a21f2d88d3be25cc6aa' // otoco.eth
 
     const ENSPluginFactory = await ethers.getContractFactory("ENS");
     const ensPlugin = await ENSPluginFactory.deploy(
-        otocoMaster.address, deploysJson.ensRegistry, deploysJson.ensResolver, rootNode, series, names
+        otocoMaster.address, previousJson.ensRegistry, previousJson.ensResolver, rootNode, series, names
     );
 
     console.log("🚀  ENS plugin Deployed:", ensPlugin.address);
     deploysJson.ens = ensPlugin.address
 
-    if (network.name != 'main'){
+    if (network.name == 'localhost'){
         await fifsRegistrar.register(labelhash('otoco'), ensPlugin.address);
     }
 

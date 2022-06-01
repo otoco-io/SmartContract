@@ -1,5 +1,8 @@
 {
-    "token": "0x26b17999f109b3ee24Ef26a60495d5c583f3EE6f",
-    "multisig": "0xA3929FA027D6F2cC56897b6D49cc783bee9F148f",
-    "launchpool": "0x8F2A8b0C6458Ff8dABEdb9194780692a10471d1f"
+    "registry": "0x6a4E318410521b97feA47c52E1ae3Ab0ca67335D",
+    "launchpoolSource": "0x8D91C6528b1eD31e5Cf042A7d98665DD7F91c898",
+    "launchpoolCurve": "0x6fd890cedb8cce0ae3162bdd48541a5c1daf9473",
+    "ens": "",
+    "ensregistry": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+    "resolver": "0xf6305c19e814d2a75429Fd637d01F7ee0E77d615"
 }

@@ -25,7 +25,7 @@ async function main() {
         console.log(err);
     }
 
-    const series = toMigrate.map((e) => { return e.seriesIds})
+    const series = toMigrate.map((e) => { return e.seriesId})
     const deployed = toMigrate.map((e) => { return e.address})
 
     const OtoCoTokenFactory = await ethers.getContractFactory("OtoCoToken");

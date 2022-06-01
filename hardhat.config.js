@@ -1,4 +1,5 @@
  require('@openzeppelin/hardhat-upgrades');
+ require("@nomiclabs/hardhat-etherscan");
  require('solidity-coverage');
  require('solidity-docgen');
  
@@ -29,5 +30,10 @@ module.exports = {
         count: 1
       }
     }
+  },
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: "AWNRCUXV7HK4GWQECNTYK1QA9EDCAU17AC"
   }
 };

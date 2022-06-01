@@ -14,6 +14,18 @@ function waitInput(query) {
     }))
 }
 
+// {
+//     companies(first: 1000, orderBy:creation) {
+//         id
+//         name
+//         owner
+//         jurisdiction
+//         creator
+//         creation
+//     }
+// }
+  
+
 async function main() {
 
     let jurisdictions = [];
@@ -31,7 +43,7 @@ async function main() {
 
     // Load deploy files created on 1-deploy-master.js
     try {
-        const data = await fs.readFile(`./deploys/${network.name}.json`, "binary");
+        const data = await fs.readFile(`./deploys/${network.name}.json`, "utf-8");
         deploysJson = JSON.parse(data);
     } catch (err) {
         console.log('Error loading Master address: ', err);
@@ -44,7 +56,7 @@ async function main() {
 
     // Import file with entities to be migrated.
     try {
-        const data = await fs.readFile(`./migrations_data/companies.${network.name}.json`, "binary");
+        const data = await fs.readFile(`./migrations_data/companies.${network.name}.json`, "utf-8");
         toMigrate = JSON.parse(data);
     } catch (err) {
         toMigrate = { data: { companies: [] } }
@@ -66,6 +78,7 @@ async function main() {
     },"0")
 
     console.log('Entities to Migrate:', toMigrate.data.companies.length)
+    console.log(names.slice(0, 200))
     await waitInput("Press enter to proceed...");
 
     // Migrate entities in slices
@@ -76,11 +89,10 @@ async function main() {
             jurisdictions.slice(i, i + slices),
             controllers.slice(i, i + slices),
             creations.slice(i, i + slices),
-            names.slice(i, i + slices),
-            { gasPrice: "80000000000" }
+            names.slice(i, i + slices)
         );
         console.log("Gas spent migrating: ", (await transaction.wait()).cumulativeGasUsed.toString());
-        console.log("ETH Spent: ", ethers.utils.formatEther((await transaction.wait()).cumulativeGasUsed.mul("80000000000")));
+        console.log("ETH Spent: ", ethers.utils.formatEther((await transaction.wait()).cumulativeGasUsed.mul("50000000000")));
         console.log('')
         await waitInput("Press enter to proceed...");
     }
