@@ -121,13 +121,13 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
         require(name.length == controller.length, "OtoCoMaster: Name and Controller array should have same size.");
         require(controller.length == creation.length, "OtoCoMaster: Controller and Creation array should have same size.");
         require(jurisdiction.length < 256, "OtoCoMaster: Not allowed to migrate more than 255 entities at once.");
-        uint32 counter = uint32(controller.length);
+        uint8 counter = uint8(controller.length);
         // Uses uint8 cause isn't possible to migrate more than 255 series at once.
         uint8[] memory seriesPerJurisdictionTemp = new uint8[](jurisdictionCount);
         // Iterate through all previous series
-        for (uint32 i = 0; i < counter; i++){
+        for (uint8 i = 0; i < counter; i++){
             seriesPerJurisdictionTemp[jurisdiction[i]]++;
-            series[uint32(i+seriesCount)] = Series(
+            series[uint256(i+seriesCount)] = Series(
                 jurisdiction[i],
                 0,
                 creation[i],
@@ -204,14 +204,10 @@ contract OtoCoMaster is OwnableUpgradeable, ERC721Upgradeable {
         if (tokenId < lastMigrated) badge = jurisdiction.getJurisdictionGoldBadge();
 
         string memory details = string(abi.encodePacked(
-            "OtoCo Series #",
-            tokenId.toString(),
-            " - ",
+            "OtoCo NFTs are minted to represent each entity and their jurisdiction as created by the OtoCo dapp. ",
+            "The holder of this NFT as recorded on the blockchain is the owner of ",
             s.name,
-            " - ",
-            jurisdiction.getJurisdictionName(),
-            " - Created at following unix timestamp: ",
-            uint256(s.creation).toString()
+            " and is authorized to access the entity's dashboard on https://otoco.io."
         ));
         string memory json = Base64.encode(bytes(string(abi.encodePacked(
             '{"name": "',
