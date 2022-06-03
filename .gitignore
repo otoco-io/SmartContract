@@ -5,7 +5,7 @@ node_modules
 .secret.test
 .infura
 .api*
-flatten
+flattened.sol
 migrations_data
 .solcx*
 
