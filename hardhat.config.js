@@ -29,6 +29,13 @@ module.exports = {
         mnemonic: seedMain,
         count: 1
       }
+    },
+    rinkeby: {
+      url: apiRinkeby,
+      accounts: {
+        mnemonic: seedMain,
+        count: 1
+      }
     }
   },
   etherscan: {

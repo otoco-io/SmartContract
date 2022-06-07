@@ -60,8 +60,8 @@ async function main() {
     const LaunchpoolPluginFactory = await ethers.getContractFactory("Launchpool");
     const launchpoolPlugin = await LaunchpoolPluginFactory.deploy(
         deploysJson.master,
-        deploysJson.launchpoolSource,
-        deploysJson.launchpoolCurve,
+        previousJson.launchpoolSource ? previousJson.launchpoolSource : deploysJson.launchpoolSource,
+        previousJson.launchpoolCurve ? previousJson.launchpoolCurve : deploysJson.launchpoolCurve,
         series,
         deployed,
         {gasLimit: 6000000}

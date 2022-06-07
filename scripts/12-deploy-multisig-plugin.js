@@ -46,11 +46,9 @@ async function main() {
     const deployed = toMigrate.map((e) => { return e.address})
 
     if (!previousJson.safe) {
-
         const GnosisSafeArtifact = await getExternalArtifact("GnosisSafe");
         const GnosisSafeFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
         deploysJson.gnosisSafe = (await GnosisSafeFactory.deploy()).address;
-
     }
 
     if (!previousJson.safeFactory) {
@@ -62,8 +60,8 @@ async function main() {
     const MultisigPluginFactory = await ethers.getContractFactory("Multisig");
     const multisigPlugin = await MultisigPluginFactory.deploy(
         otocoMaster.address,
-        deploysJson.gnosisSafe,
-        deploysJson.gnosisSafeProxyFactory,
+        previousJson.safe ? previousJson.safe : deploysJson.gnosisSafe,
+        previousJson.safeFactory ? previousJson.safeFactory : deploysJson.gnosisSafeProxyFactory,
         series,
         deployed
     );

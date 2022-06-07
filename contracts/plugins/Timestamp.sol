@@ -29,4 +29,19 @@ contract Timestamp is OtoCoPlugin {
         emit DocumentTimestamped(seriesId, block.timestamp, filename, cid);
     }
 
+    /**
+    * Allow manager of the plugin to migrate previous Timestamps.
+    *
+    * @param seriesId The series ID be updated.
+    * @param pluginData filename, cid and timestamp of the document to be timestamped abi encoded.
+     */
+    function migrateTimestamp(uint256 seriesId, bytes calldata pluginData) public onlyOwner {
+        (
+            string memory filename,
+            string memory cid,
+            uint256 timestamp
+        ) = abi.decode(pluginData, (string, string, uint256));
+        emit DocumentTimestamped(seriesId, timestamp, filename, cid);
+    }
+
 }

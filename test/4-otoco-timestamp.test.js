@@ -96,6 +96,23 @@ describe("OtoCo Timestamp Plugins Test", function () {
     await expect(timestampPlugin.connect(wallet2).addPlugin(0, encoded, {gasPrice, gasLimit, value:0}))
     .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
 
+    // There's no Attach function at Launchpool plugin
+    await expect(timestampPlugin.connect(wallet2).migrateTimestamp(0, encoded))
+    .to.be.revertedWith('Ownable: caller is not the owner');
+
+    encoded = ethers.utils.defaultAbiCoder.encode(
+      ['string', 'string', 'uint256'],
+      ['filename-test.pdf', '11223345566677778889aasbbvcccc', 20000]
+    );
+
+    transaction = await timestampPlugin.migrateTimestamp(0, encoded);
+    await expect(transaction).to.emit(timestampPlugin, 'DocumentTimestamped');
+
+    const events2 = (await transaction.wait()).events;
+    expect(events2[0].args.filename).to.be.equals('filename-test.pdf');
+    expect(events2[0].args.cid).to.be.equals('11223345566677778889aasbbvcccc');
+    expect(events2[0].args.timestamp).to.be.equals(20000);
+
   });
 
 });
