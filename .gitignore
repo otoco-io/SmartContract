@@ -1,9 +1,9 @@
+
 contracts/.placeholder
 test/.placeholder
 node_modules
 .secret.main
 .secret.test
-.infura
 .api*
 flattened.sol
 migrations_data
@@ -15,3 +15,7 @@ cache
 deployments
 node_modules
 coverage*
+
+# local tests
+.openzeppelin/unknown-31337.json
+deploys/localhost.json

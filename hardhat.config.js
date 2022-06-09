@@ -1,14 +1,16 @@
- require('@openzeppelin/hardhat-upgrades');
- require("@nomiclabs/hardhat-etherscan");
- require('solidity-coverage');
- require('solidity-docgen');
- 
- const fs = require('fs');
- const apiMain = fs.readFileSync(".api.main").toString().trim();
- const apiRopsten = fs.readFileSync(".api.ropsten").toString().trim();
- const apiRinkeby = fs.readFileSync(".api.rinkeby").toString().trim();
- const seedMain = fs.readFileSync(".secret.main").toString().trim();
- 
+require('@openzeppelin/hardhat-upgrades');
+require("@nomiclabs/hardhat-etherscan");
+require('solidity-coverage');
+require('solidity-docgen');
+
+const fs = require('fs');
+const apiMain = fs.readFileSync(".api.main").toString().trim();
+const apiRopsten = fs.readFileSync(".api.ropsten").toString().trim();
+const apiRinkeby = fs.readFileSync(".api.rinkeby").toString().trim();
+const apiMumbai = fs.readFileSync(".api.mumbai").toString().trim();
+const apiGoerli = fs.readFileSync(".api.goerli").toString().trim();
+const seedMain = fs.readFileSync(".secret.main").toString().trim();
+
 module.exports = {
   solidity: "0.8.3",
   networks: {
@@ -36,11 +38,20 @@ module.exports = {
         mnemonic: seedMain,
         count: 1
       }
+    },
+    mumbai: {
+      url: apiMumbai,
+      accounts: {
+        mnemonic: seedMain,
+        count: 1
+      }
+    },
+    goerli: {
+      url: apiGoerli,
+      accounts: {
+        mnemonic: seedMain,
+        count: 1
+      }
     }
-  },
-  etherscan: {
-    // Your API key for Etherscan
-    // Obtain one at https://etherscan.io/
-    apiKey: "AWNRCUXV7HK4GWQECNTYK1QA9EDCAU17AC"
   }
 };

@@ -78,12 +78,11 @@ async function main() {
     },"0")
 
     console.log('Entities to Migrate:', toMigrate.data.companies.length)
-    console.log(names.slice(0, 200))
     await waitInput("Press enter to proceed...");
 
     // Migrate entities in slices
     // Require press enter before each migration so gives time to check if any problem occurs during migration.
-    const slices = 200;
+    const slices = 100;
     for (let i = 0; i < jurisdictions.length; i += slices) {
         const transaction = await otocoMaster.createBatchSeries(
             jurisdictions.slice(i, i + slices),
