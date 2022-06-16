@@ -65,6 +65,7 @@ async function main() {
         series,
         deployed
     );
+    await multisigPlugin.deployed()
 
     console.log("🚀 Multisig plugin Deployed:", multisigPlugin.address);
     deploysJson.multisig = multisigPlugin.address

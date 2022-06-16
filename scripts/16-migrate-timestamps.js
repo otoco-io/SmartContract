@@ -74,7 +74,7 @@ async function main() {
     const contract = new ethers.Contract(previousJson.registry, pluginABI, owner);
     // Fetch events from old contracts
     const logs = await contract.queryFilter('DocumentTimestamped', 0, 'latest');
-    const result = logs.map((l) => {
+    let result = logs.map((l) => {
         // Assign SeriesIds from previous Series Contract 
         return {
             seriesId: companies.data.companies.findIndex((e) => e.id.toLowerCase() == l.args.series.toLowerCase()),
@@ -83,13 +83,15 @@ async function main() {
             cid: l.args.cid
         }
     })
+    console.log(result)
 
     for (const t of result) {
         const encoded = ethers.utils.defaultAbiCoder.encode(
             ['string', 'string', 'uint256'],
             [t.filename, t.cid, t.timestamp]
         );
-        await timestampPlugin.migrateTimestamp(t.seriesId, encoded)
+        const transaction = await timestampPlugin.migrateTimestamp(t.seriesId, encoded)
+        await transaction.wait()
     }
 
     console.log("🚀 All timestamp migrated:", timestampPlugin.address);

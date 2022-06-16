@@ -11,19 +11,22 @@ async function main() {
 
     const unincorporated = await Unincorporated.deploy(
         'DAO',
-        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/dao_default.png',
-        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/dao_gold.png'
+        'https://cloudflare-ipfs.com/ipfs/QmZPXo7N2qDMWaCVezr6Mm7FEmxwDitoWkKC3AjELQqS7N',
+        'https://cloudflare-ipfs.com/ipfs/QmWxh2WRenahJ4MKrFLXgN8477drh2xMLYhuWHpJpvAvE4'
     );
+    await unincorporated.deployed();
     const delaware = await Delaware.deploy(
         'DELAWARE',
-        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/de_default.png',
-        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/de_gold.png'
+        'https://cloudflare-ipfs.com/ipfs/QmdAkYaMqyycEJ2Rq67zh6Y5x6FW1nBkEBxctL3SvPpkjW',
+        'https://cloudflare-ipfs.com/ipfs/QmYxTdUeU8txxdHUVuSTnTjqDFSPdgX5Vd4bcrvK5NByBT'
     );
+    await delaware.deployed();
     const wyoming = await Wyoming.deploy(
         'WYOMING',
-        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_default.png',
-        'https://gateway.pinata.cloud/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_gold.png'
+        'https://cloudflare-ipfs.com/ipfs/QmdbFYPhyyoGF7oZ13f3p8dPG66dzrNyK9483wSaoPooyY',
+        'https://cloudflare-ipfs.com/ipfs/QmSayfhjrnAFeVkqAcwYimtcrTZdmyqPKJQDA6HCC6K2x8',
     );
+    await wyoming.deployed();
 
     const jurisdictions = [unincorporated.address, delaware.address, wyoming.address];
 

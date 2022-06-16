@@ -30,10 +30,12 @@ async function main() {
 
     const OtoCoTokenFactory = await ethers.getContractFactory("OtoCoToken");
     const token = await OtoCoTokenFactory.deploy();
+    await token.deployed()
 
     const TokenPluginFactory = await ethers.getContractFactory("Token");
     const tokenPlugin = await TokenPluginFactory.deploy(otocoMaster.address, token.address, series, deployed);
-
+    await tokenPlugin.deployed()
+    
     console.log("🚀 Token plugin Deployed:", tokenPlugin.address);
     deploysJson.token = tokenPlugin.address
 
