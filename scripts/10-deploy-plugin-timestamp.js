@@ -19,6 +19,8 @@ async function main() {
     // Deploy Timestamp contract 
     const TimestampPluginFactory = await ethers.getContractFactory("Timestamp");
     const timestampPlugin = await TimestampPluginFactory.deploy(otocoMaster.address);
+    console.log(timestampPlugin)
+    await timestampPlugin.deployed()
 
     //Store plugin address to deploys file
     console.log("🚀 Timestamp plugin Deployed:", timestampPlugin.address);

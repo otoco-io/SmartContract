@@ -46,14 +46,16 @@ async function main() {
 
         const LaunchPoolArtifact = await getExternalArtifact("LaunchPool");
         const LaunchPoolFactory = await ethers.getContractFactoryFromArtifact(LaunchPoolArtifact);
-        deploysJson.launchpoolSource = (await LaunchPoolFactory.deploy()).address;
+        const launchPool = await LaunchPoolFactory.deploy()
+        deploysJson.launchpoolSource = (await launchPool.deployed()).address;
     }
 
     if ( !previousJson.launchpoolCurve ) {
 
         const LaunchCurveArtifact = await getExternalArtifact("LaunchCurveExponential");
         const LaunchCurveFactory = await ethers.getContractFactoryFromArtifact(LaunchCurveArtifact);
-        deploysJson.launchpoolCurve = (await LaunchCurveFactory.deploy()).address;
+        const launchCurve = await LaunchCurveFactory.deploy()
+        deploysJson.launchpoolCurve = (await launchCurve.deployed()).address;
 
     }
 

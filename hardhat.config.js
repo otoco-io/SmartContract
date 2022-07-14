@@ -1,5 +1,6 @@
 require('@openzeppelin/hardhat-upgrades');
 require("@nomiclabs/hardhat-etherscan");
+require('hardhat-contract-sizer');
 require('solidity-coverage');
 require('solidity-docgen');
 
@@ -9,6 +10,7 @@ const apiRopsten = fs.readFileSync(".api.ropsten").toString().trim();
 const apiRinkeby = fs.readFileSync(".api.rinkeby").toString().trim();
 const apiMumbai = fs.readFileSync(".api.mumbai").toString().trim();
 const apiGoerli = fs.readFileSync(".api.goerli").toString().trim();
+const apiPolygon = fs.readFileSync(".api.polygon").toString().trim();
 const seedMain = fs.readFileSync(".secret.main").toString().trim();
 
 module.exports = {
@@ -41,6 +43,13 @@ module.exports = {
     },
     mumbai: {
       url: apiMumbai,
+      accounts: {
+        mnemonic: seedMain,
+        count: 1
+      }
+    },
+    polygon: {
+      url: apiPolygon,
       accounts: {
         mnemonic: seedMain,
         count: 1
