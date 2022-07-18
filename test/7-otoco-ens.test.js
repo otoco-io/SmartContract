@@ -16,7 +16,7 @@ async function getExternalArtifact(contract) {
 
 const labelhash = (label) => ethers.utils.solidityKeccak256(['string'],[label])
 
-describe("OtoCo Multisig Plugin Test", function () {
+describe("OtoCo ENS Plugin Test", function () {
 
   let owner, wallet2, wallet3, wallet4;
   let OtoCoMaster, otocoMaster, jurisdictions;

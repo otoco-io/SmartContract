@@ -50,7 +50,7 @@ contract Tokenization is OtoCoPlugin {
 
 
     /**
-    * Create a new token for the entity. May only be called by the owner of the series.
+    * Create a new Tokenization contract for the entity. May only be called by the owner of the series.
     *
     * @dev seriesId would be the series that will own the token.
     * @param pluginData Encoded parameters to create a new token.
@@ -61,30 +61,29 @@ contract Tokenization is OtoCoPlugin {
             string memory symbol,			// Token Symbol
             address[] memory allowedContracts,
             // [0] Manager address
-            // [1] Token Source
+            // [1] Token Source to be Cloned
             // [2..n] Member Addresses
             address[] memory addresses,
-            // [0] Allowed Contracts size,
-            // [1] Members size,
-            // [2] Voting period in days
-            // [3..n] Member shares 
+            // [0] Members size,
+            // [1] Voting period in days
+            // [2..n] Member shares 
             uint256[] memory settings				
         ) = abi.decode(pluginData, (string, string, address[], address[], uint256[]));
         ISeriesToken newToken = ISeriesToken(Clones.clone(addresses[1]));
         IOtoCoGovernor newGovernor = IOtoCoGovernor(Clones.clone(governorContract));
 		newToken.initialize(name, symbol);
 		// Count the amount of members to assign balances
-		uint256 index = settings[1];
+		uint256 index = settings[0];
         while (index > 0) {
         	// Members start at addresses index 2
-        	// Shares start at settings index 3
-        	newToken.mint(addresses[index+1], settings[index+2]);
+        	// Shares start at settings index 2
+        	newToken.mint(addresses[index+1], settings[index+1]);
         	--index;
         }
         // Transfer ownership of the token to Governor contract
         newToken.transferOwnership(address(newGovernor));
         // Initialize governor
-        newGovernor.initialize(address(newToken), addresses[0], allowedContracts, settings[2], name);
+        newGovernor.initialize(address(newToken), addresses[0], allowedContracts, settings[1], name);
         governorsDeployed[seriesId] = address(newGovernor);
         emit Tokenized(seriesId, address(newGovernor));
     }
@@ -96,32 +95,42 @@ contract Tokenization is OtoCoPlugin {
     * @dev seriesId Series to remove token from
     * @dev newToken Token address to be attached
      */
-    // function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
-    //     (
-    //         address newToken
-    //     ) = abi.decode(pluginData, (address));
-    //     tokensDeployed[seriesId].push(newToken);
-    //     tokensPerEntity[seriesId]++;
-    //     emit TokenAdded(seriesId, newToken);
-    // }
+    function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
+        (
+            string memory name,             // Token and Governor name
+            string memory symbol,           // Token Symbol
+            address[] memory allowedContracts,
+            // [0] Manager address
+            // [1] Token Address to attach
+            address[] memory addresses,
+            // [0] Members size,
+            // [1] Voting period in days
+            uint256[] memory settings               
+        ) = abi.decode(pluginData, (string, string, address[], address[], uint256[]));
+        IOtoCoGovernor newGovernor = IOtoCoGovernor(Clones.clone(governorContract));
+        // Initialize governor
+        newGovernor.initialize(address(addresses[1]), addresses[0], allowedContracts, settings[1], name);
+        governorsDeployed[seriesId] = address(newGovernor);
+        emit Tokenized(seriesId, address(newGovernor));
+    }
 
     /**
-    * Remove token from entity
+    * Remove Tokenization Contract from entity
     *
     * @param pluginData Encoded parameters to create a new token.
     * @dev seriesId Series to remove token from
     * @dev toRemove Token index to be removed
      */
-    // function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
-    //     (
-    //         uint256 toRemove
-    //     ) = abi.decode(pluginData, (uint256));
-    //     address tokenRemoved = tokensDeployed[seriesId][toRemove];
-    //     // Copy last token to the removed slot
-    //     tokensDeployed[seriesId][toRemove] = tokensDeployed[seriesId][tokensDeployed[seriesId].length - 1];
-    //     // Remove the last token from array
-    //     tokensDeployed[seriesId].pop();
-    //     tokensPerEntity[seriesId]--;
-    //     emit TokenRemoved(seriesId, tokenRemoved);
-    // }
+    function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
+        // (
+        //     uint256 toRemove
+        // ) = abi.decode(pluginData, (uint256));
+        // address tokenRemoved = tokensDeployed[seriesId][toRemove];
+        // // Copy last token to the removed slot
+        // tokensDeployed[seriesId][toRemove] = tokensDeployed[seriesId][tokensDeployed[seriesId].length - 1];
+        // // Remove the last token from array
+        // tokensDeployed[seriesId].pop();
+        // tokensPerEntity[seriesId]--;
+        // emit TokenRemoved(seriesId, tokenRemoved);
+    }
 }

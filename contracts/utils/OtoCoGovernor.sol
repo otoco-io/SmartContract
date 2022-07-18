@@ -49,7 +49,7 @@ InitializableEIP712 {
         __EIP712_init(_contractName, version());
         __GovernorVotes_init(IVotes(_token));
         _setVotingDelay(1);
-        _setVotingPeriod(6545 * _votingPeriod);
+        _setVotingPeriod(_votingPeriod);
         _setProposalThreshold(1);
         _updateQuorumNumerator(50);
     	for (uint i = 0; i < _allowed.length; i++) {
@@ -153,7 +153,7 @@ InitializableEIP712 {
         override(GovernorNoEIP712NoName, InitializableGovernorCountingSimple)
         returns (bool) 
     {
-        (uint256 forVotes,uint256 againstVotes,) = proposalVotes(proposalId);
+        (uint256 againstVotes,uint256 forVotes,) = proposalVotes(proposalId);
         if (_managerProposal[proposalId]) return forVotes >= againstVotes;
         return forVotes > againstVotes;
     }

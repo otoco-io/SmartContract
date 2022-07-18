@@ -75,7 +75,6 @@ abstract contract InitializableGovernorCountingSimple is GovernorNoEIP712NoName 
      */
     function _voteSucceeded(uint256 proposalId) internal view virtual override returns (bool) {
         ProposalVote storage proposalvote = _proposalVotes[proposalId];
-
         return proposalvote.forVotes > proposalvote.againstVotes;
     }
 

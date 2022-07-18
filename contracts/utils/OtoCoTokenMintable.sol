@@ -23,6 +23,7 @@ contract OtoCoTokenMintable is Initializable, ERC20Upgradeable, ERC20BurnableUpg
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
+        if (balanceOf(to) == 0) _delegate(to, to);
         _mint(to, amount);
     }
 
@@ -33,6 +34,7 @@ contract OtoCoTokenMintable is Initializable, ERC20Upgradeable, ERC20BurnableUpg
         override(ERC20Upgradeable, ERC20VotesUpgradeable)
     {
         super._afterTokenTransfer(from, to, amount);
+        if (balanceOf(to) == amount) _delegate(to, to);
     }
 
     function _mint(address to, uint256 amount)
