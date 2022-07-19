@@ -1,17 +1,10 @@
 const { expect } = require("chai");
 const { ethers, network, upgrades } = require("hardhat");
 const { solidity } = require("ethereum-waffle");
+const { zeroAddress } = require("ethereumjs-util");
 const chai = require("chai");
 chai.use(solidity);
 
-const { Artifacts } = require("hardhat/internal/artifacts");
-const { zeroAddress } = require("ethereumjs-util");
-
-async function getExternalArtifact(contract) {
-    const artifactsPath = "./artifacts-external";
-    const artifacts = new Artifacts(artifactsPath);
-    return artifacts.readArtifact(contract);
-}
 
 describe("OtoCo Token Without Fees Plugin Test", function () {
 
@@ -108,6 +101,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     expect(await governor.getManager()).to.be.equal(owner.address);
     expect(await governor.votingDelay()).to.be.equal(1);
     expect(await governor.votingPeriod()).to.be.equal(10);
+    expect(await governor.proposalThreshold()).to.be.equal(0); // Manager always return 0 here
+    expect(await governor.connect(wallet2).proposalThreshold()).to.be.equal(1); // Uses wallet 2 because owner will always retun 0
     expect(await governor.quorumNumerator()).to.be.equal(50);
     expect(await governor.quorumDenominator()).to.be.equal(100);
     expect(await governor.connect(wallet2).proposalThreshold()).to.be.equal(1);
@@ -169,6 +164,9 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     let proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
     await expect(transaction).to.emit(governor, 'ProposalCreated')
 
+    expect(governor.connect(wallet4).castVote(proposalId, 1))
+    .to.be.revertedWith('Governor: vote not currently active');
+
     // TEST CREATE A PROPOSAL
     expect(governor.connect(wallet2).propose(txTargets,txValues,txCalldata,txDescription))
     .to.be.revertedWith('Governor: proposal already exists');
@@ -179,14 +177,17 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     expect(governor.connect(wallet2).execute(txTargets,txValues,txCalldata,ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))))
     .to.be.revertedWith('Governor: proposal not successful');
 
-    transaction = await governor.connect(wallet4).castVote(proposalId, 1)
-    await expect(transaction).to.emit(governor, 'VoteCast');
-
     expect(governor.connect(wallet2).execute(txTargets,txValues,txCalldata,ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))))
     .to.be.revertedWith('Governor: proposal not successful');
 
-    transaction = await governor.connect(wallet3).castVote(proposalId, 0)
-    await expect(transaction).to.emit(governor, 'VoteCast');    
+    transaction = await governor.connect(wallet3).castVoteWithReason(proposalId, 0, 'dont agree') // WIll reject with reason for code coverage purpose
+    await expect(transaction).to.emit(governor, 'VoteCast').withArgs(
+      wallet3.address,
+      proposalId,
+      0,
+      ethers.utils.parseEther('10'),
+      'dont agree'
+    );    
 
     expect(governor.connect(wallet2).execute(txTargets,txValues,txCalldata,ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))))
     .to.be.revertedWith('Governor: proposal not successful');  
@@ -207,14 +208,9 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     expect(await governor.provider.getBalance(governor.address)).to.be.equal(ethers.utils.parseEther('0'));
 
     // TEST A MINT PROCCESS ON THE TOKEN USING GOVERNOR
-    let ABI = [
-        "function mint(address to, uint amount)"
-    ];
-    let iToken = new ethers.utils.Interface(ABI);
-
     txTargets = [await governor.token()];
     txValues = [0];
-    txCalldata = [iToken.encodeFunctionData("mint", [ owner.address, ethers.utils.parseEther('13') ])];
+    txCalldata = [tokenMintableFactory.interface.encodeFunctionData("mint", [ owner.address, ethers.utils.parseEther('13') ])];
     txDescription = 'Testing token contract'
 
     transaction = await governor.connect(wallet3).propose(txTargets,txValues,txCalldata,txDescription)
@@ -223,8 +219,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     await network.provider.send("evm_mine");  // mine one block to start voting
 
     await governor.connect(wallet2).castVote(proposalId, 1);
-    await governor.connect(wallet3).castVote(proposalId, 1);
-    await governor.connect(wallet4).castVote(proposalId, 1);
+    await governor.connect(wallet4).castVote(proposalId, 2);      // Will absent voting for code coverage purposes
 
     // Wait for voting ends
     deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
@@ -232,7 +227,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
       await network.provider.send("evm_mine")
     }
 
-    transaction = await governor.execute(txTargets,txValues,txCalldata,ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription)))
+    let descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
+    transaction = await governor.execute(txTargets,txValues,txCalldata,descriptionHash)
     await expect(transaction).to.emit(governor, 'ProposalExecuted');
 
     await network.provider.send("evm_mine");
@@ -240,12 +236,24 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     currentBlock = await ethers.provider.getBlockNumber();
     expect(await governor.getVotes(owner.address, currentBlock-1)).to.be.equal(ethers.utils.parseEther('13'));
 
+    // LAST TESTING ON GOVERNANCE PLUGIN
+
+    // Try to create another tokenization for the entity
+    expect(tokenizationPlugin.connect(wallet2).addPlugin(0, encoded))
+    .to.be.revertedWith('Tokenization: Entity Tokenization already exists');
+
+    // Untokenize entity
+    transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
+    await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
+
   });
 
-  it("Test Non Transferable Tokens and Governor", async function () {
+  it("Test Change Governor Settings", async function () {
+    // DEPLOY NEW GOVERNOR USING MINTABLE SOURCE
     let encoded = ethers.utils.defaultAbiCoder.encode(
         ['string', 'string', 'address[]', 'address[]', 'uint256[]'],
-        ['Tokenizer', 'TOK', [], [owner.address, tokenNonTransferableSource.address, wallet2.address, wallet3.address, wallet4.address], [3,6545,80,10,10]]
+        ['Tokenizer', 'TOK', [], [owner.address, tokenMintableSource.address, wallet2.address],
+        [1,10,ethers.utils.parseEther('100')]]
     );
     let transaction = await tokenizationPlugin.connect(wallet2).addPlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Tokenized');
@@ -253,64 +261,190 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     const OtoCoGovernorFactory = await ethers.getContractFactory("OtoCoGovernor");
     const governor = OtoCoGovernorFactory.attach(await tokenizationPlugin.connect(wallet2).governorsDeployed(0));
 
-    expect(await governor.name()).to.be.equal("Tokenizer");
-    expect(await governor.version()).to.be.equal("1");
-    expect(await governor.getManager()).to.be.equal(owner.address);
-    expect(await governor.votingDelay()).to.be.equal(1);
-    expect(await governor.votingPeriod()).to.be.equal(6545);
+    const tokenMintableFactory = await ethers.getContractFactory("OtoCoTokenMintable");
+    const token = tokenMintableFactory.attach(await governor.token());
 
-    const tokenNonTransferableFactory = await ethers.getContractFactory("OtoCoTokenNonTransferable");
-    const token = tokenNonTransferableFactory.attach(await governor.token());
+    // CHECKING TOKEN SUPPLY AND BALANCES
+    expect(await token.totalSupply()).to.be.equal(ethers.utils.parseEther('100'));
+    expect(await token.balanceOf(wallet2.address)).to.be.equals(ethers.utils.parseEther('100'));
 
-    expect(await token.totalSupply()).to.be.equal('100');
-    expect(await token.decimals()).to.be.equal(18);
-    expect(await token.balanceOf(wallet2.address)).to.be.equals('80');
-    expect(await token.balanceOf(wallet3.address)).to.be.equals('10');
-    expect(await token.balanceOf(wallet4.address)).to.be.equals('10');
+    await network.provider.send("evm_mine");
 
-    await expect(token.connect(wallet2).transfer(owner.address,10))
+    // TEST CHANGE GOVERNOR ALL SETTINGS
+    let txTargets = [governor.address,governor.address,governor.address,governor.address];
+    let txValues = [0,0,0,0];
+    let txCalldata = [
+      OtoCoGovernorFactory.interface.encodeFunctionData("setVotingPeriod", [ 5 ]),
+      OtoCoGovernorFactory.interface.encodeFunctionData("setProposalThreshold", [ 15 ]),
+      OtoCoGovernorFactory.interface.encodeFunctionData("setVotingDelay", [ 3 ]),
+      OtoCoGovernorFactory.interface.encodeFunctionData("updateQuorumNumerator", [ 30 ])
+    ];
+    let txDescription = 'Change Voting Settings'
+
+    transaction = await governor.connect(wallet2).propose(txTargets,txValues,txCalldata,txDescription)
+    proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
+    
+    await network.provider.send("evm_mine");  // mine one block to start voting
+    await governor.connect(wallet2).castVote(proposalId, 1);
+
+    // Wait for voting ends
+    deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
+    while (deadlineBlock+1 > (await ethers.provider.getBlockNumber()) ) {
+      await network.provider.send("evm_mine")
+    }
+
+    descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
+    transaction = await governor.execute(txTargets,txValues,txCalldata,descriptionHash)
+    await expect(transaction).to.emit(governor, 'ProposalExecuted');
+
+    expect(await governor.votingDelay()).to.be.equals(3);
+    expect(await governor.votingPeriod()).to.be.equals(5);
+    expect(await governor.proposalThreshold()).to.be.equals(0);     // As owner is the manager always return 0
+    expect(await governor.connect(wallet3).proposalThreshold()).to.be.equals(15);
+    expect(await governor.quorumNumerator()).to.be.equals(30);
+
+
+    // TEST CHANGE OTOCO GOVERNOR SETTINGS
+
+    txTargets = [governor.address,governor.address];
+    txValues = [0,0];
+    txCalldata = [
+      // Set wallet 3 as Manager
+      OtoCoGovernorFactory.interface.encodeFunctionData("setManager", [ wallet3.address ]),
+      // Allow interact with wallet 3 address
+      OtoCoGovernorFactory.interface.encodeFunctionData("setAllowContract", [ wallet3.address, true ]),
+    ];
+    txDescription = 'Change OtoCo Governor Settings'
+
+    transaction = await governor.connect(wallet2).propose(txTargets,txValues,txCalldata,txDescription)
+    proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
+    
+    await network.provider.send("evm_mine");  // mine three block to start voting
+    await network.provider.send("evm_mine");
+    await network.provider.send("evm_mine");
+    await governor.connect(wallet2).castVote(proposalId, 1);
+
+    // Wait for voting ends
+    deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
+    while (deadlineBlock+1 > (await ethers.provider.getBlockNumber()) ) {
+      await network.provider.send("evm_mine")
+    }
+
+    descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
+    transaction = await governor.execute(txTargets,txValues,txCalldata,descriptionHash)
+    await expect(transaction).to.emit(governor, 'ProposalExecuted');
+
+    // TEST CHANGE OTOCO GOVERNOR SETTINGS
+
+    // Send some money to Governor
+    transaction = await owner.sendTransaction({to:governor.address, value: ethers.utils.parseEther('1')});
+    expect(await governor.provider.getBalance(governor.address)).to.be.equal(ethers.utils.parseEther('1'));
+
+    txTargets = [wallet3.address];
+    txValues = [ethers.utils.parseEther('1').toString()];
+    txCalldata = ['0x'];
+    txDescription = 'Send money to manager wallet'
+
+    transaction = await governor.connect(wallet3).propose(txTargets,txValues,txCalldata,txDescription)
+    proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
+    
+    // Wait for voting ends
+    deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
+    while (deadlineBlock+1 > (await ethers.provider.getBlockNumber()) ) {
+      await network.provider.send("evm_mine")
+    }
+
+    descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
+    transaction = await governor.connect(wallet3).execute(txTargets,txValues,txCalldata,descriptionHash)
+    await expect(transaction).to.emit(governor, 'ProposalExecuted');
+
+    expect(await governor.provider.getBalance(governor.address)).to.be.equal(ethers.utils.parseEther('0'));
+
+    // Untokenize entity
+    transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
+    await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
+
+    await token.connect(wallet2).burn(ethers.utils.parseEther('10'));
+    expect(await token.connect(wallet2).balanceOf(wallet2.address)).to.be.equals(ethers.utils.parseEther('90'));
+
+  });
+
+  it("Test Non-Transferable Token Settings", async function () {
+    // DEPLOY NEW GOVERNOR USING NON-TRASFERABLE SOURCE
+    let encoded = ethers.utils.defaultAbiCoder.encode(
+        ['string', 'string', 'address[]', 'address[]', 'uint256[]'],
+        ['Tokenizer', 'TOK', [], [owner.address, tokenNonTransferableSource.address, wallet2.address],
+        [1,10,ethers.utils.parseEther('100')]]
+    );
+    let transaction = await tokenizationPlugin.connect(wallet2).addPlugin(0, encoded);
+    await expect(transaction).to.emit(tokenizationPlugin, 'Tokenized');
+    
+    const TokenNonTransferableFactory = await ethers.getContractFactory("OtoCoTokenNonTransferable");
+    const OtoCoGovernorFactory = await ethers.getContractFactory("OtoCoGovernor");
+
+    const governor = OtoCoGovernorFactory.attach(await tokenizationPlugin.governorsDeployed(0));
+    const token = tokenNonTransferableSource.attach(await governor.token());
+
+    // -------------------- CHECKING TOKEN SUPPLY AND BALANCES ---------------------------
+    expect(await token.totalSupply()).to.be.equal(ethers.utils.parseEther('100'));
+    expect(await token.balanceOf(wallet2.address)).to.be.equals(ethers.utils.parseEther('100'));
+
+    await network.provider.send("evm_mine");
+
+    // ------------------- TEST CHANGE OTOCO GOVERNOR SETTINGS ---------------------------
+    txTargets = [token.address];
+    txValues = [0];
+    txCalldata = [ TokenNonTransferableFactory.interface.encodeFunctionData("mint", [ wallet3.address, 100 ]) ];
+    txDescription = 'Change OtoCo Governor Settings'
+
+    transaction = await governor.connect(wallet2).propose(txTargets,txValues,txCalldata,txDescription)
+    proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
+    
+    await network.provider.send("evm_mine");  // mine three block to start voting
+    await governor.connect(wallet2).castVote(proposalId, 1);
+
+    // Wait for voting ends
+    deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
+    while (deadlineBlock+1 > (await ethers.provider.getBlockNumber()) ) {
+      await network.provider.send("evm_mine")
+    }
+
+    descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
+    transaction = await governor.execute(txTargets,txValues,txCalldata,descriptionHash)
+    await expect(transaction).to.emit(governor, 'ProposalExecuted');
+
+    // Try transfer and it should prevent it
+    await expect(token.connect(wallet3).transfer(wallet2.address, 100))
+    .to.be.revertedWith('Ownable: caller is not the owner');
+    await expect(token.connect(wallet3).transferFrom(wallet3.address, wallet2.address, 100))
     .to.be.revertedWith('Ownable: caller is not the owner');
 
-    await expect(token.connect(wallet2).transfer(owner.address,10))
-    .to.be.revertedWith('Ownable: caller is not the owner');
+    // ------------------- TEST CHANGE OTOCO GOVERNOR SETTINGS ---------------------------
+    txTargets = [token.address];
+    txValues = [0];
+    txCalldata = [ TokenNonTransferableFactory.interface.encodeFunctionData("transferFrom", [ wallet3.address, wallet2.address, 100 ]) ];
+    txDescription = 'Change OtoCo Governor Settings'
 
-    // //  There's no Attach function at Launchpool plugin
-    // await expect(tokenPlugin.connect(wallet3).addPlugin(0, encoded))
-    // .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
-
-    // tokenAddress = (await transaction.wait()).events[2].args.token;
-    // const tokenDeployed = TokenFactory.attach(tokenAddress);
+    transaction = await governor.connect(wallet2).propose(txTargets,txValues,txCalldata,txDescription)
+    proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
     
-    // expect(await tokenDeployed.name()).to.be.equal("Test Token");
-    // expect(await tokenDeployed.symbol()).to.be.equal("TTOK");
-    // expect(await tokenDeployed.totalSupply()).to.be.equal(ethers.utils.parseEther('8000000'));
-    // expect(await tokenPlugin.tokensPerEntity(0)).to.be.equals(1);
-    // expect(await tokenPlugin.tokensDeployed(0,0)).to.be.equals(tokenAddress);
-    
-    // await expect(tokenDeployed.initialize('', '', "100", zeroAddress()))
-    // .to.be.revertedWith('Initializable: contract is already initialized');
+    await network.provider.send("evm_mine");  // mine three block to start voting
+    await governor.connect(wallet2).castVote(proposalId, 1);
 
-    // encoded = ethers.utils.defaultAbiCoder.encode(['uint256'],[0]);
-    // transaction = await tokenPlugin.connect(wallet2).removePlugin(0, encoded);
-    // await expect(transaction).to.emit(tokenPlugin, 'TokenRemoved').withArgs(0, tokenAddress);
+    // Wait for voting ends
+    deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
+    while (deadlineBlock+1 > (await ethers.provider.getBlockNumber()) ) {
+      await network.provider.send("evm_mine")
+    }
 
-    // encoded = ethers.utils.defaultAbiCoder.encode(['address'],[tokenAddress]);
-    // transaction = await tokenPlugin.connect(wallet2).attachPlugin(0, encoded);
-    // await expect(transaction).to.emit(tokenPlugin, 'TokenAdded');
+    descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
+    transaction = await governor.execute(txTargets,txValues,txCalldata,descriptionHash)
+    await expect(transaction).to.emit(governor, 'ProposalExecuted');
 
-    // // There's no Attach function at Launchpool plugin
-    // await expect(tokenPlugin.connect(wallet3).attachPlugin(0, encoded))
-    // .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
+    // ----------------------------- UNTOKENIZE ENTITY --------------------------------------
+    transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
+    await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
 
-    // // There's no Attach function at Launchpool plugin
-    // await expect(tokenPlugin.connect(wallet3).removePlugin(0, encoded))
-    // .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
-
-    // await expect(tokenPlugin.connect(wallet2).updateTokenContract(zeroAddress()))
-    // .to.be.revertedWith('Ownable: caller is not the owner');
-
-    //  await tokenPlugin.updateTokenContract(zeroAddress())
-    //  expect(await tokenPlugin.tokenContract()).to.be.equal(zeroAddress());
   });
 
 });

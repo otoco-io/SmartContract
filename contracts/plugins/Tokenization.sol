@@ -9,6 +9,7 @@ interface ISeriesToken {
   function initialize (string memory name, string memory symbol) external;
   function mint(address to, uint256 amount) external;
   function transferOwnership(address newOwner) external;
+  function name() external returns (string memory);
 }
 
 interface IOtoCoGovernor {
@@ -21,6 +22,7 @@ interface IOtoCoGovernor {
 contract Tokenization is OtoCoPlugin {
 
     event Tokenized(uint256 indexed series, address dao);
+    event Untokenized(uint256 indexed series);
     // DAO source contract to be cloned
     address public governorContract;
     // Mapping from entities to deployed tokens
@@ -69,6 +71,7 @@ contract Tokenization is OtoCoPlugin {
             // [2..n] Member shares 
             uint256[] memory settings				
         ) = abi.decode(pluginData, (string, string, address[], address[], uint256[]));
+        require(governorsDeployed[seriesId] == address(0), "Tokenization: Entity Tokenization already exists");
         ISeriesToken newToken = ISeriesToken(Clones.clone(addresses[1]));
         IOtoCoGovernor newGovernor = IOtoCoGovernor(Clones.clone(governorContract));
 		newToken.initialize(name, symbol);
@@ -97,8 +100,6 @@ contract Tokenization is OtoCoPlugin {
      */
     function attachPlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
         (
-            string memory name,             // Token and Governor name
-            string memory symbol,           // Token Symbol
             address[] memory allowedContracts,
             // [0] Manager address
             // [1] Token Address to attach
@@ -106,10 +107,12 @@ contract Tokenization is OtoCoPlugin {
             // [0] Members size,
             // [1] Voting period in days
             uint256[] memory settings               
-        ) = abi.decode(pluginData, (string, string, address[], address[], uint256[]));
+        ) = abi.decode(pluginData, (address[], address[], uint256[]));
+        require(governorsDeployed[seriesId] == address(0), "Tokenization: Entity Tokenization already exists");
+        ISeriesToken token = ISeriesToken(addresses[1]);
         IOtoCoGovernor newGovernor = IOtoCoGovernor(Clones.clone(governorContract));
         // Initialize governor
-        newGovernor.initialize(address(addresses[1]), addresses[0], allowedContracts, settings[1], name);
+        newGovernor.initialize(address(token), addresses[0], allowedContracts, settings[1], token.name());
         governorsDeployed[seriesId] = address(newGovernor);
         emit Tokenized(seriesId, address(newGovernor));
     }
@@ -122,15 +125,8 @@ contract Tokenization is OtoCoPlugin {
     * @dev toRemove Token index to be removed
      */
     function removePlugin(uint256 seriesId, bytes calldata pluginData) public onlySeriesOwner(seriesId) transferFees() payable override {
-        // (
-        //     uint256 toRemove
-        // ) = abi.decode(pluginData, (uint256));
-        // address tokenRemoved = tokensDeployed[seriesId][toRemove];
-        // // Copy last token to the removed slot
-        // tokensDeployed[seriesId][toRemove] = tokensDeployed[seriesId][tokensDeployed[seriesId].length - 1];
-        // // Remove the last token from array
-        // tokensDeployed[seriesId].pop();
-        // tokensPerEntity[seriesId]--;
-        // emit TokenRemoved(seriesId, tokenRemoved);
+        require(governorsDeployed[seriesId] != address(0), "Tokenization: Entity Tokenization not exists");
+        governorsDeployed[seriesId] = address(0);
+        emit Untokenized(seriesId);
     }
 }

@@ -28,9 +28,19 @@ contract OtoCoTokenNonTransferable is Initializable, ERC20Upgradeable, ERC20Burn
         _mint(to, amount);
     }
 
-    function mintAndDelegate(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
-        _delegate(to, to);
+    function burnFrom(address account, uint256 amount) public virtual override onlyOwner {
+        _burn(account, amount);
+    }
+
+    function transferFrom(address from, address to, uint256 amount) 
+        public
+        virtual
+        override
+        onlyOwner
+        returns (bool)
+    {
+        _transfer(from, to, amount);
+        return true;
     }
 
     /**
