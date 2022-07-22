@@ -3,6 +3,7 @@
 
 pragma solidity ^0.8.0;
 
+import "./GovernorNoEIP712NoName.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
@@ -25,7 +26,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
  *
  * _Available since v3.4._
  */
-abstract contract InitializableEIP712 is Initializable{
+abstract contract InitializableEIP712 is Initializable, GovernorNoEIP712NoName {
     /* solhint-disable var-name-mixedcase */
     // Cache the domain separator as an immutable value, but also store the chain id that it corresponds to, in order to
     // invalidate the cached domain separator if the chain id changes.
@@ -36,6 +37,8 @@ abstract contract InitializableEIP712 is Initializable{
     bytes32 private _HASHED_NAME;
     bytes32 private _HASHED_VERSION;
     bytes32 private _TYPE_HASH;
+
+    bytes32 public constant BALLOT_TYPEHASH = keccak256("Ballot(uint256 proposalId,uint8 support)");
 
     /* solhint-enable var-name-mixedcase */
 
@@ -106,5 +109,24 @@ abstract contract InitializableEIP712 is Initializable{
      */
     function _hashTypedDataV4(bytes32 structHash) internal view virtual returns (bytes32) {
         return ECDSA.toTypedDataHash(_domainSeparatorV4(), structHash);
+    }
+
+    /**
+     * Override base EIP712 to fetch info from initializable functions
+     */
+    function castVoteBySig(
+        uint256 proposalId,
+        uint8 support,
+        uint8 v,
+        bytes32 r,
+        bytes32 s
+    ) public virtual override returns (uint256) {
+        address voter = ECDSA.recover(
+            _hashTypedDataV4(keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support))),
+            v,
+            r,
+            s
+        );
+        return _castVote(proposalId, voter, support, "");
     }
 }

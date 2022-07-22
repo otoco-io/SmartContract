@@ -211,6 +211,45 @@ Here there are functions related to the possible functions to call and its requi
 
 - **addPlugin(uint256 tokenId, bytes pluginData)** - Assign a `otoco.eth` subdomain to the manager or multisig address associated to the entity. `pluginData` parameters: `[string, address]` that represent `subdomain` and `target`. Where subdomains is a simple string name and target should be a valid address to subdomain points to. `gasLimit` recommended to use is 250k gas.
 
+#### 4.6 Tokenized LLC
+
+A contract that allows LLC members to transform their LLC into a Tokenized LLC with a different Agreement that allow it to have multi owners and also a MANAGER that no need to have shares.
+
+- PARTNERS: Accounts that have tokens shares from the entity.
+- MANAGER: A manager that could interact with the Allowed contracts
+
+Governor contract where Tokenized LLC resides is based on OpenZeppelin Governor. Here is the Governor base features:
+
+ - Possibility to any PARTNER that have at least proposalThreshold(defaults to 1) tokens create a proposal. It means that any person with any amount of tokens bigger than 0 could propose.
+ - Proposals have a votingDelay defined in blocks to be voted (defaults to 1).
+ - Proposal have a votingPeriod defined in blocks to PARTNERS vote.
+ - Proposals need a minimum quorum to pass (defaults to 4%)
+ - A proposal could be executed after the votingPeriod ends, voting has enough quorum and vote FOR is bigger than votes AGAINST.
+ - It is possible to vote using EIP-712 signatures.
+ - The ERC20 token should have snapshot voting mechanism.
+ - It is possible to propose a change to governance settings like voting delay, voting period and quorum required. 
+- Votes could be casted with reason attached.
+
+Here is a list of feature that OtoCoGovernor add:
+
+- Set default quorum to 51%.
+- Add a list of allowed contracts to interact.
+- Add the MANAGER role to the governance.
+- Manager could create any kind of proposal without requiring any token.
+- Proposals created by the MANAGER that only deals with allowed contracts, is flagged as manager proposals.
+- Proposals flagged as manager proposals not require any quorum, and if voter FOR is equals to votes AGAINST it will be considered valid. This means that nobody needs to vote, the MANAGER only need to wait for the votingPeriod finish to execute the proposal. If any partner decide to veto the proposal it could vote AGAINST. In those cases the validity of the proposal will be defined by the votes FOR and AGAINST.
+- The MANAGER could be changed by a proposal.
+- The allowed contracts could be changed(Added/Removed) by proposal.
+- The MANAGER could resign as MANAGER without requiring a proposal.
+
+Tokenization contract functions:
+
+- **governorsDeployed(uint256 tokenId)** - Returns the current governor assigned to an entity.
+
+- **addPlugin(uint256 tokenId, bytes pluginData)** - Deploy a new OtoCo Govenor on behalf of the series. `pluginData` parameters: `[ string, string, address[], address[], uint256[]]` that represent `name of the token`, `symbol of the token`, `allowed contracts array`, `addresses([0] manager address, [1] token source to be cloned, [2..n] partner addresses)`, `settings ([0] partners quantity, [1] Voting period in block, [2..n] member shares)`. `gasLimit` recommended to use is 1200k gas.
+
+- **attachPlugin(uint256 tokenId, bytes pluginData)** - Deploy a new OtoCo Govenor using a pre-existent ERC20Votes token. `pluginData` parameters: `[ address[], address[], uint256[]]` that represent `allowed contract array, addresses([0] Manager address,[1] Token Address), settings([0] Members size, [1] Voting period in blocks)`. `gasLimit` recommended to use is 1000k gas.
+
 
 ### 5. Audit
 

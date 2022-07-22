@@ -29,8 +29,6 @@ InitializableEIP712 {
     // Allowed contract permitted to Manager interact without requiring quorum
     mapping(address=>bool) private _allowedContracts;
 
-    bytes32 public constant BALLOT_TYPEHASH = keccak256("Ballot(uint256 proposalId,uint8 support)");
-
     constructor() {
         _disableInitializers();
     }
@@ -51,9 +49,8 @@ InitializableEIP712 {
         _setVotingDelay(1);
         _setVotingPeriod(_votingPeriod);
         _setProposalThreshold(1);
-        _updateQuorumNumerator(50);
+        _updateQuorumNumerator(51);
     	for (uint i = 0; i < _allowed.length; i++) {
-            require(_allowed[i] != address(this), "OtoCoGovernor: Not allowed to give full control to Manager.");
             _allowedContracts[_allowed[i]] = true;
         }
     }
@@ -124,25 +121,6 @@ InitializableEIP712 {
     }
 
     /**
-     * Override base EIP712 to fetch info from initializable functions
-     */
-    function castVoteBySig(
-        uint256 proposalId,
-        uint8 support,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) public virtual override returns (uint256) {
-        address voter = ECDSA.recover(
-            _hashTypedDataV4(keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support))),
-            v,
-            r,
-            s
-        );
-        return _castVote(proposalId, voter, support, "");
-    }
-
-    /**
      * Return if vote was succeeded with for votes bigger than against votes.
      * Note: Manager proposals is also true in case of equal for and against votes
      */
@@ -176,6 +154,21 @@ InitializableEIP712 {
     }
 
     /**
+     * @dev Internal cancel mechanism: locks up the proposal timer, preventing it from being re-submitted. Marks it as
+     * canceled to allow distinguishing it from executed proposals.
+     *
+     * Emits a {IGovernor-ProposalCanceled} event.
+     */
+    function cancel(
+        address[] calldata targets,
+        uint256[] calldata values,
+        bytes[] calldata calldatas,
+        bytes32 descriptionHash
+    ) public returns (uint256) {
+        return _cancel(targets, values, calldatas, descriptionHash);
+    }
+
+    /**
     * Return the current manager of the Governor contract
      */
     function getManager() public view returns (address) {
@@ -189,6 +182,15 @@ InitializableEIP712 {
      */
     function setManager(address _newManager) onlyGovernance public {
     	_manager = _newManager;
+    }
+
+    /**
+    * Resign from the manager role
+    *
+     */
+    function resignAsManager() public {
+        require(_msgSender() == _manager, "OtocoGovernor: Only manager itself could resign");
+        _manager = address(0);
     }
 
     /**
