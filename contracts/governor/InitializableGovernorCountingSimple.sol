@@ -10,7 +10,7 @@ import "./GovernorNoEIP712NoName.sol";
  *
  * _Available since v4.3._
  */
-abstract contract InitializableGovernorCountingSimple is GovernorNoEIP712NoName {
+abstract contract InitializableGovernorCountingSimple is GovernorNoEIP712NoName{
     /**
      * @dev Supported vote types. Matches Governor Bravo ordering.
      */
@@ -34,7 +34,7 @@ abstract contract InitializableGovernorCountingSimple is GovernorNoEIP712NoName 
      */
     // solhint-disable-next-line func-name-mixedcase
     function COUNTING_MODE() public pure virtual override returns (string memory) {
-        return "support=bravo&quorum=for,abstain";
+        return "support=bravo&quorum=for,quorum";
     }
 
     /**

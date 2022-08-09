@@ -124,16 +124,16 @@ InitializableEIP712 {
      * Return if vote was succeeded with for votes bigger than against votes.
      * Note: Manager proposals is also true in case of equal for and against votes
      */
-    function _voteSucceeded(uint256 proposalId) 
+    function _voteSucceeded(uint256 proposalId)
         internal
         view
-        virtual 
+        virtual
         override(GovernorNoEIP712NoName, InitializableGovernorCountingSimple)
-        returns (bool) 
+        returns (bool)
     {
         (uint256 againstVotes,uint256 forVotes,) = proposalVotes(proposalId);
         if (_managerProposal[proposalId]) return forVotes >= againstVotes;
-        return forVotes > againstVotes;
+        return forVotes > quorum(proposalSnapshot(proposalId)) && forVotes > againstVotes;
     }
 
     /**
