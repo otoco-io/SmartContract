@@ -55,19 +55,19 @@ async function main() {
 
     // IF it is some testnet
     if (network.name != 'polygon' && network.name != 'main'){
-        const unincorporated = await Unincorporated.deploy(
+        unincorporated = await Unincorporated.deploy(
             'DAO',
             'https://cloudflare-ipfs.com/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/dao_default.png',
             'https://cloudflare-ipfs.com/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/dao_gold.png'
         );
         await unincorporated.deployed();
-        const delaware = await Delaware.deploy(
+        delaware = await Delaware.deploy(
             'DELAWARE',
             'https://cloudflare-ipfs.com/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/de_default.png',
             'https://cloudflare-ipfs.com/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/de_gold.png'
         );
         await delaware.deployed();
-        const wyoming = await Wyoming.deploy(
+        wyoming = await Wyoming.deploy(
             'WYOMING',
             'https://cloudflare-ipfs.com/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_default.png',
             'https://cloudflare-ipfs.com/ipfs/Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_gold.png'
