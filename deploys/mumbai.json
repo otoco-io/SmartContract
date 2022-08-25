@@ -14,7 +14,8 @@
   "launchpoolSource": "0xbaAbb166463221ffE04Fd7F06262bD670e26F823",
   "launchpoolCurve": "0x6a4E318410521b97feA47c52E1ae3Ab0ca67335D",
   "launchpool": "0xf77ea923E60FB522B023A49cADe467e219e674A7",
+  "governor": "0xD0d5656ccDe7825E990c74c42E6ae8Fcd3c38a99",
   "tokenMintable": "0xD183CC74354c70887250bfd68afcb1ACb04C00A6",
   "tokenNonTransferable": "0x3dC10d52810b424591B3c8e2f3ece279EF9D4Cc3",
-  "tokenization": "0xB8A93c1DD6dA2b29d9b46D483bE690388a0f9C03"
+  "tokenization": "0x3C61325455b6eD3E61af5F0cB3332Ca274636Be1"
 }
