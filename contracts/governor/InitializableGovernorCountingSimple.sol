@@ -34,7 +34,7 @@ abstract contract InitializableGovernorCountingSimple is GovernorNoEIP712NoName{
      */
     // solhint-disable-next-line func-name-mixedcase
     function COUNTING_MODE() public pure virtual override returns (string memory) {
-        return "support=bravo&quorum=for,quorum";
+        return "support=bravo&quorum=for,abstain";
     }
 
     /**

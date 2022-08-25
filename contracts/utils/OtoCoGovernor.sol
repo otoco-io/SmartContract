@@ -49,7 +49,7 @@ InitializableEIP712 {
         _setVotingDelay(1);
         _setVotingPeriod(_votingPeriod);
         _setProposalThreshold(1);
-        _updateQuorumNumerator(51);
+        _updateQuorumNumerator(50);
     	for (uint i = 0; i < _allowed.length; i++) {
             _allowedContracts[_allowed[i]] = true;
         }
@@ -133,7 +133,8 @@ InitializableEIP712 {
     {
         (uint256 againstVotes,uint256 forVotes,) = proposalVotes(proposalId);
         if (_managerProposal[proposalId]) return forVotes >= againstVotes;
-        return forVotes > quorum(proposalSnapshot(proposalId)) && forVotes > againstVotes;
+        // return forVotes > quorum(proposalSnapshot(proposalId)) && forVotes > againstVotes;
+        return forVotes > againstVotes;
     }
 
     /**
@@ -217,5 +218,15 @@ InitializableEIP712 {
             --index;
         }
         return true;
+    }
+
+    /**
+    * Check if a proposal is a Manager Proposal
+    *
+    * @param proposalId The proposal ID to be verified
+    * @return boolean is Manager Proposal
+     */
+    function isManagerProposal(uint256 proposalId) public view returns (bool) {
+        return _managerProposal[proposalId];
     }
 }

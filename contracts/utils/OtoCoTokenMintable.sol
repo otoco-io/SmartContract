@@ -2,13 +2,13 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20BurnableUpgradeable.sol";
+// import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20BurnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/draft-ERC20PermitUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20VotesUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-contract OtoCoTokenMintable is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, ERC20VotesUpgradeable {
+contract OtoCoTokenMintable is Initializable, ERC20Upgradeable, OwnableUpgradeable, ERC20PermitUpgradeable, ERC20VotesUpgradeable {
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -16,7 +16,7 @@ contract OtoCoTokenMintable is Initializable, ERC20Upgradeable, ERC20BurnableUpg
 
     function initialize(string memory name_, string memory symbol_) initializer public {
         __ERC20_init(name_, symbol_);
-        __ERC20Burnable_init();
+        // __ERC20Burnable_init();
         __Ownable_init();
         __ERC20Permit_init(name_);
         __ERC20Votes_init();
@@ -25,6 +25,10 @@ contract OtoCoTokenMintable is Initializable, ERC20Upgradeable, ERC20BurnableUpg
     function mint(address to, uint256 amount) public onlyOwner {
         if (balanceOf(to) == 0) _delegate(to, to);
         _mint(to, amount);
+    }
+
+    function burnFrom(address account, uint256 amount) public virtual onlyOwner {
+        _burn(account, amount);
     }
 
     // The following functions are overrides required by Solidity.

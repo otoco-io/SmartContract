@@ -90,7 +90,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
         [3,10,ethers.utils.parseEther('80'),ethers.utils.parseEther('10'),ethers.utils.parseEther('10')]]
     );
     let transaction = await tokenizationPlugin.connect(wallet2).addPlugin(0, encoded);
-    console.log(await transaction.wait())
+    //console.log(await transaction.wait())
     await expect(transaction).to.emit(tokenizationPlugin, 'Tokenized');
     
     const OtoCoGovernorFactory = await ethers.getContractFactory("OtoCoGovernor");
@@ -349,6 +349,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     transaction = await governor.connect(wallet3).propose(txTargets,txValues,txCalldata,txDescription)
     proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
     
+    expect(await governor.isManagerProposal(proposalId)).to.be.equals(true)
+
     // Wait for voting ends
     deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
     while (deadlineBlock+1 > (await ethers.provider.getBlockNumber()) ) {
@@ -365,8 +367,9 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
 
-    await token.connect(wallet2).burn(ethers.utils.parseEther('10'));
-    expect(await token.connect(wallet2).balanceOf(wallet2.address)).to.be.equals(ethers.utils.parseEther('90'));
+    // BUrn removed... only burn with proposal
+    //await token.connect(wallet2).burn(ethers.utils.parseEther('10'));
+    //expect(await token.connect(wallet2).balanceOf(wallet2.address)).to.be.equals(ethers.utils.parseEther('90'));
 
   });
 
@@ -514,8 +517,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
 
     // ------------------------- CHECK RESIGN FEATURE -------------------------------- 
 
-    expect(await governor.resignAsManager()).to.be.revertedWith('OtocoGovernor: Only manager itself could resign');
-    await governor.resignAsManager();
+    expect(governor.connect(wallet2).resignAsManager()).to.be.revertedWith('OtocoGovernor: Only manager itself could resign');
+    await (await governor.resignAsManager()).wait();
     expect(await governor.getManager()).to.be.equals(zeroAddress());
 
     // -------------------- CHECKING TOKEN SUPPLY AND BALANCES ---------------------------
@@ -532,7 +535,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
 
     transaction = await governor.connect(wallet2).propose(txTargets,txValues,txCalldata,txDescription)
     proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
-    
+    expect(await governor.isManagerProposal(proposalId)).to.be.equals(false)
+
     await network.provider.send("evm_mine");  // mine three block to start voting
     
     const types = {

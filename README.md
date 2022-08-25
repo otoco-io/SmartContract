@@ -34,6 +34,7 @@ npx hardhat run --network localhost scripts/12-deploy-multisig-plugin.js
 npx hardhat run --network localhost scripts/13-deploy-launchpool-plugin.js
 npx hardhat run --network localhost scripts/14-deploy-ens-plugin.js
 npx hardhat run --network localhost scripts/15-deploy-payment-tokens.js
+npx hardhat run --network localhost scripts/17-deploy-tokenization.js
 ```
 
 ## DOCUMENTATION
