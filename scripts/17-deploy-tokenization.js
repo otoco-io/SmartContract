@@ -23,17 +23,25 @@ async function main() {
      const OtoCoMaster = await ethers.getContractFactory("OtoCoMaster");
      const otocoMaster = OtoCoMaster.attach(deploysJson.master);
 
-    const OtoCoTokenMintable = await ethers.getContractFactory("OtoCoTokenMintable");
-    const otocoTokenMintable = await OtoCoTokenMintable.deploy();
-    await otocoTokenMintable.deployed()
+    let otocoTokenMintable, otocoTokenNonTransferable, otocoGovernor
 
-    const OtoCoTokenNonTransferable = await ethers.getContractFactory("OtoCoTokenNonTransferable");
-    const otocoTokenNonTransferable = await OtoCoTokenNonTransferable.deploy();
-    await otocoTokenNonTransferable.deployed()
+    if (!deploysJson.tokenMintable){
+        const OtoCoTokenMintable = await ethers.getContractFactory("OtoCoTokenMintable");
+        otocoTokenMintable = await OtoCoTokenMintable.deploy();
+        await otocoTokenMintable.deployed()
+    } else { otocoTokenMintable = {address:deploysJson.tokenMintable} }
 
-    const OtoCoGovernor = await ethers.getContractFactory("OtoCoGovernor");
-    const otocoGovernor = await OtoCoGovernor.deploy();
-    await otocoGovernor.deployed();
+    if (!deploysJson.tokenNonTransferable){
+        const OtoCoTokenNonTransferable = await ethers.getContractFactory("OtoCoTokenNonTransferable");
+        otocoTokenNonTransferable = await OtoCoTokenNonTransferable.deploy();
+        await otocoTokenNonTransferable.deployed()
+    } else { otocoTokenNonTransferable = {address:deploysJson.otocoTokenNonTransferable} }
+
+    if (!deploysJson.otocoGovernor){
+        const OtoCoGovernor = await ethers.getContractFactory("OtoCoGovernor");
+        otocoGovernor = await OtoCoGovernor.deploy();
+        await otocoGovernor.deployed();
+    } else { otocoGovernor = {address:deploysJson.otocoGovernor} }
 
     const Tokenization = await ethers.getContractFactory("Tokenization");
     const tokenization = await Tokenization.deploy(
@@ -47,6 +55,7 @@ async function main() {
     console.log("🚀 Tokenization plugin Deployed:", tokenization.address);
     deploysJson.tokenMintable = otocoTokenMintable.address
     deploysJson.tokenNonTransferable = otocoTokenNonTransferable.address
+    deploysJson.otocoGovernor = otocoGovernor.address
     deploysJson.tokenization = tokenization.address
 
     fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
