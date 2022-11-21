@@ -13,14 +13,9 @@ contract SeriesURI {
     using Strings for uint256;
 
     IOtoCoMasterV2 private otocoMaster;
-    string private externalUrl;
-    uint256 lastMigrated;
 
-
-    constructor (address payable masterAddress, uint256 _lastMigrated, string memory _externalUrl) {
+    constructor (address payable masterAddress) {
         otocoMaster = IOtoCoMasterV2(masterAddress);
-        externalUrl = _externalUrl;
-        lastMigrated = _lastMigrated;
     }
 
     // -- TOKEN VISUALS AND DESCRIPTIVE ELEMENTS --
@@ -32,33 +27,30 @@ contract SeriesURI {
      * @param tokenId must exist.
      * @return svg file formatted.
      */
-    function tokenURI(uint256 tokenId) external view returns (string memory) {
-        IOtoCoMasterV2.Series memory s = otocoMaster.series(tokenId);
-        IOtoCoJurisdiction jurisdiction = IOtoCoJurisdiction(otocoMaster.jurisdictionAddress(s.jurisdiction));
-        string memory badge = jurisdiction.getJurisdictionBadge();
-        if (tokenId < lastMigrated) badge = jurisdiction.getJurisdictionGoldBadge();
+    function tokenExternalURI(uint256 tokenId, uint256 lastMigrated) external view returns (string memory) {
+        (uint16 jurisdiction,,uint64 creation,,string memory name) = otocoMaster.series(tokenId);
+        IOtoCoJurisdiction jurisdictionContract = IOtoCoJurisdiction(otocoMaster.jurisdictionAddress(jurisdiction));
+        string memory badge = jurisdictionContract.getJurisdictionBadge();
+        if (tokenId < lastMigrated) badge = jurisdictionContract.getJurisdictionGoldBadge();
 
-        string memory details = string(abi.encodePacked(
-            "OtoCo NFTs are minted to represent each entity and their jurisdiction as created by the OtoCo dapp. ",
-            "The holder of this NFT as recorded on the blockchain is the owner of ",
-            s.name,
-            " and is authorized to access the entity's dashboard on https://otoco.io."
-        ));
         string memory json = Base64.encode(bytes(string(abi.encodePacked(
             '{"name": "',
-            s.name,
+            name,
             '", "description": "',
-            details,
+            "OtoCo NFTs are minted to represent each entity and their jurisdiction as created by the OtoCo dapp. ",
+            "The holder of this NFT as recorded on the blockchain is the owner of ",
+            name,
+            " and is authorized to access the entity's dashboard on https://otoco.io.",
             '", "image": "',
             badge,
             '", "external_url": "',
-            externalUrl,
+            otocoMaster.externalUrl(),
             tokenId.toString(),
             '/","attributes":[',
             '{"display_type": "date","trait_type": "Creation", "value": "',
-            uint256(s.creation).toString(),
+            uint256(creation).toString(),
             '"},{"trait_type": "Jurisdiction", "value": "',
-            jurisdiction.getJurisdictionName(),
+            jurisdictionContract.getJurisdictionName(),
             '"}]}'
         ))));
         return string(abi.encodePacked('data:application/json;base64,', json));
