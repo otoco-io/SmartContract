@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/Base64.sol";
 import "./IOtoCoMasterV2.sol";
 import "./IOtoCoJurisdiction.sol";
 
-contract SeriesURI {
+contract OtoCoURI {
 
     // Libraries
     using Strings for uint256;

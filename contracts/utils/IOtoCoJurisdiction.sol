@@ -6,4 +6,6 @@ interface IOtoCoJurisdiction {
     function getJurisdictionName () external view returns(string memory);
     function getJurisdictionBadge () external view returns(string memory);
     function getJurisdictionGoldBadge () external view returns(string memory);
+    function getJurisdictionRenewalPrice() external view returns(uint256);
+    function getJurisdictionDeployPrice() external view returns(uint256);
 }
