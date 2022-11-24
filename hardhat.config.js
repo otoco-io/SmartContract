@@ -1,5 +1,6 @@
 require('@openzeppelin/hardhat-upgrades');
 require("@nomiclabs/hardhat-etherscan");
+require("@nomicfoundation/hardhat-chai-matchers")
 require('hardhat-contract-sizer');
 require('solidity-coverage');
 require('solidity-docgen');

@@ -278,6 +278,15 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     }
 
     /**
+     * Replace Price Feed source
+     *
+     * @param newPriceFeed New price feed address
+     */
+    function changePriceFeed(address newPriceFeed) external onlyOwner {
+        priceFeed = AggregatorV3Interface(newPriceFeed);
+    }
+
+    /**
      * Create a new entity to a specific jurisdiction. 
      *
      * @param jurisdiction The jurisdiction for the created entity.

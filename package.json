@@ -11,6 +11,7 @@
     "@openzeppelin/contracts-upgradeable": "^4.6.0"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.4",
     "@nomiclabs/hardhat-etherscan": "^3.0.4",
     "@openzeppelin/contracts": "^4.5.0",
     "@openzeppelin/hardhat-upgrades": "^1.21.0",

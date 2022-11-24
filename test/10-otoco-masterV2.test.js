@@ -126,17 +126,17 @@ describe("OtoCo Master Test", function () {
     // 34750 reduction from gas limit is what is spended before check happens
     const amountToPayForSpinUp = ethers.BigNumber.from(gasLimit).mul(otocoBaseFee);
     // Remove 1% from the correct amount needed
-    const notEnoughToPayForSpinUp = amountToPayForSpinUp.mul(100).div(101);
+    const notEnoughToPayForSpinUp = amountToPayForSpinUp.mul(100).div(200);
 
     // Try to create without the proper amount of ETH Value, expect to fail
     await expect(otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:notEnoughToPayForSpinUp}))
-    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
+    .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
 
     const previousBalance = await ethers.provider.getBalance(otocoMaster.address);
 
     // Expected to successfully create a new entity
     const transaction = await otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 8);
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 7);
     expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2)
     expect((await otocoMaster.series(7)).name).to.be.equal("New Entity - Series 5")
     
@@ -152,15 +152,15 @@ describe("OtoCo Master Test", function () {
     const otocoBaseFee = await otocoMaster.baseFee();
 
     // 34750 reduction from gas limit is what is spended before check happens
-    const amountToPayForClose = ethers.BigNumber.from(gasLimit).mul(otocoBaseFee);
+    const amountToPayForClose = ethers.BigNumber.from(gasLimit).sub(21000).mul(otocoBaseFee);
     // Remove 1% from the correct amount needed
-    const notEnoughToPayForClose = amountToPayForClose.mul(100).div(101);
+    const notEnoughToPayForClose = amountToPayForClose.mul(100).div(200);
 
-    await expect(otocoMaster.closeSeries(8, {gasPrice, gasLimit, value:notEnoughToPayForClose}))
-    .to.be.revertedWith('OtoCoMaster: Not enough ETH paid for the execution.');
+    await expect(otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:notEnoughToPayForClose}))
+    .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
 
     await expect(otocoMaster.connect(wallet2).closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose}))
-    .to.be.revertedWith('IncorrectOwner()');
+    .to.be.revertedWithCustomError(otocoMaster, 'IncorrectOwner');
 
     // Close the company
     const transactionClose = await otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose});
