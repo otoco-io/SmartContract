@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -9,7 +10,6 @@ import "./utils/IOtoCoJurisdiction.sol";
 import "./utils/IOtoCoURI.sol";
 import "./utils/IOtoCoPlugin.sol";
 
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
 
@@ -18,9 +18,13 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     error InitializerError();
     error IncorrectOwner();
     error InsufficientValue(uint256 available, uint256 required);
+    error NotRenewable();
 
     // Events
     event FeesWithdrawn(address owner, uint256 amount);
+    event UpdatedPriceFeed(address newPriceFeed);
+    event BaseFeeChanged(uint256 newFee);
+    event ChangedURISource(address newSource);
 
     // Series Structs
     struct Series {
@@ -30,6 +34,8 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         uint64 expiration;
         string name;
     }
+
+    // OLD STORAGE VARIABLES
 
     // Total count of series
     uint256 public seriesCount;
@@ -50,8 +56,11 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
 
     // The percentage in total gas fees that should be charged in ETH
     uint256 public baseFee;
-    // The price to renew entities
-    uint256 public renewFee;
+
+    // NEW STORAGE VARIABLES 
+
+    // Constant ETH to divide by price
+    uint256 constant priceFeedEth = 1 ether * (10**8);
     // Chainlink price feed reference
     AggregatorV3Interface internal priceFeed;
     // Default URI builder for OtoCo Entities
@@ -82,10 +91,10 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * Check if there's enough ETH paid for USD priced transactions.
      */
     modifier enoughAmountUSD(uint256 usdPrice) {
-        (,int256 conversion,,,) = priceFeed.latestRoundData();
-        if (msg.value < usdPrice * uint256(conversion)) revert InsufficientValue({
+        (,int256 quote,,,) = priceFeed.latestRoundData();
+        if (msg.value < (priceFeedEth/uint256(quote))*usdPrice) revert InsufficientValue({
             available: msg.value,
-            required: usdPrice * uint256(conversion)
+            required: usdPrice * uint256(quote)
         });
         _;
     }
@@ -115,7 +124,10 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param controller who will control the entity.
      * @param name the legal name of the entity.
      */
-    function createSeries(uint16 jurisdiction, address controller, string memory name) public enoughAmountFees() payable {
+    function createSeries(uint16 jurisdiction, address controller, string memory name) 
+    public enoughAmountUSD(
+        IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice()
+    ) payable {
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         // Initialize Series data
@@ -140,22 +152,25 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param jurisdiction Jurisdiction that will store entity.
      * @param plugins The array of plugin addresses to be called. The index 0 is the initializer.
      * @param pluginsData The array of pluginData to be used as parameters. Index 0 is initializer params.
-     * @param values The array of values to be send for each plugins. Index 0 is initializer value.
+     * @param value The array of values to be send for each plugins. Index 0 is initializer value.
      * @param name the legal name of the entity.
      */
     function createEntityWithInitializer(
         uint16 jurisdiction,
         address[] calldata plugins,
         bytes[] calldata pluginsData,
-        uint256[] calldata values,
+        uint256 value,
         string calldata name
-    ) public enoughAmountFees() payable {
+    ) public enoughAmountUSD(
+        IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice()
+    ) payable {
         address controller = msg.sender;
-        if (msg.value < values[0]) revert InsufficientValue({
+        if (msg.value < value) revert InsufficientValue({
             available: msg.value,
-            required: values[0]
+            required: value
         });
-        (bool success, bytes memory initializerBytes) = plugins[0].call{value: values[0]}(pluginsData[0]);
+        // TODO Check for possible reentrancy vulnerability
+        (bool success, bytes memory initializerBytes) = plugins[0].call{value: value}(pluginsData[0]);
         if (!success) revert InitializerError();
         assembly {
             controller := mload(add(initializerBytes,20))
@@ -183,7 +198,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         address[] calldata plugins,
         bytes[] calldata pluginsData,
         string calldata name
-    ) public enoughAmountFees() payable {
+    ) public enoughAmountUSD(
+        IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice()
+    ) payable {
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         createSeries(jurisdiction, controller, name);
@@ -200,11 +217,12 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      */
     function renewEntity(uint256 tokenId, uint256 periodInYears) payable external {
         Series storage s = series[tokenId];
+        if (s.expiration < 1) revert NotRenewable();
         uint256 renewalPrice = IOtoCoJurisdiction(jurisdictionAddress[s.jurisdiction]).getJurisdictionRenewalPrice();
         (,int256 conversion,,,) = priceFeed.latestRoundData();
-        if(msg.value < periodInYears*uint256(conversion)*renewalPrice) revert InsufficientValue({
+        if(msg.value < (periodInYears/uint256(conversion))*renewalPrice) revert InsufficientValue({
             available: msg.value,
-            required: periodInYears*uint256(conversion)*renewalPrice
+            required: (periodInYears/uint256(conversion))*renewalPrice
         });
         // 31536000 = 1 Year of renewal in seconds
         s.expiration += uint64(31536000*periodInYears);
@@ -251,10 +269,11 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      */
     function changeBaseFees(uint256 newFee) external onlyOwner {
         baseFee = newFee;
+        emit BaseFeeChanged(newFee);
     }
 
     /**
-     * replace Marketplace Address to the contract
+     * Replace marketplace Address to the contract
      *
      * @param addresses the address of the jurisdiction.
      * @param enabled the address of the jurisdiction.
@@ -275,6 +294,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      */
     function changeURISources(address newEntitiesURI) external onlyOwner {
         entitiesURI = IOtoCoURI(newEntitiesURI);
+        emit ChangedURISource(newEntitiesURI);
     }
 
     /**
@@ -284,6 +304,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      */
     function changePriceFeed(address newPriceFeed) external onlyOwner {
         priceFeed = AggregatorV3Interface(newPriceFeed);
+        emit UpdatedPriceFeed(newPriceFeed);
     }
 
     /**
@@ -336,10 +357,6 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param tokenId must exist.
      */
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
-        if (series[tokenId].entityType == 0){
-           return entitiesURI.tokenExternalURI(tokenId, lastMigrated);
-        }
-        // TODO Standalone entities URI Should be from different source
         return entitiesURI.tokenExternalURI(tokenId, lastMigrated);
     }
 }

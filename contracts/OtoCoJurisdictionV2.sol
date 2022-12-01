@@ -5,6 +5,7 @@ abstract contract OtoCoJurisdictionV2 {
 
     string private name;
     string private defaultBadge;
+    string private goldBadge;
     uint256 private renewCost;
     uint256 private deployCost;
 
@@ -12,12 +13,14 @@ abstract contract OtoCoJurisdictionV2 {
         uint256 _renewCost,
         uint256 _deployCost,
         string memory _name,
-        string memory _defaultBadge
+        string memory _defaultBadge,
+        string memory _goldBadge
     ) {
         renewCost = _renewCost;
         deployCost = _deployCost;
         name = _name;
         defaultBadge = _defaultBadge;
+        goldBadge = _goldBadge;
     }
 
     /**
@@ -47,6 +50,16 @@ abstract contract OtoCoJurisdictionV2 {
     function getJurisdictionBadge () external view returns(string memory) {
         return defaultBadge;
     }
+
+    /**
+     * Return the Gold NFT URI link of the jurisdiction.
+     * 
+     * @return goldBadge the gold badge URI.
+     */
+    function getJurisdictionGoldBadge () external view returns(string memory){
+        return goldBadge;
+    }
+
 
     /**
      * Return the renewal price in USD.
