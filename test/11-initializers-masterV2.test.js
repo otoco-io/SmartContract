@@ -2,9 +2,18 @@ const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
 const { solidity } = require("ethereum-waffle");
 const chai = require("chai");
-const { zeroAddress } = require("ethereumjs-util");
 const { ConsensusAlgorithm } = require("@ethereumjs/common");
 chai.use(solidity);
+
+const { Artifacts } = require("hardhat/internal/artifacts");
+const { zeroAddress } = require("ethereumjs-util");
+
+async function getExternalArtifact(contract) {
+    const artifactsPath = "./artifacts-external";
+    const artifacts = new Artifacts(artifactsPath);
+    return artifacts.readArtifact(contract);
+}
+
 
 const EthDividend = ethers.BigNumber.from(ethers.utils.parseUnits('1', 18)).mul(ethers.utils.parseUnits('1', 9)).div(10);
 
@@ -87,71 +96,66 @@ describe("OtoCo Master Test", function () {
 
     // Expected to successfully create a new entity
     const transaction = await otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 7);
-    expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2)
-    expect((await otocoMaster.series(7)).name).to.be.equal("New Entity - Series 5")
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 0);
+    expect((await otocoMaster.series(0)).jurisdiction).to.be.equal(2)
+    expect((await otocoMaster.series(0)).name).to.be.equal("New Entity - Series 1")
     
     // Chech if the amount to pay was transferred
     expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equal(previousBalance.add(amountToPayForSpinUp));
 
   });
 
-  it("Closing series with correct fees and wrong fees", async function () {
+  it("Should create a new entity using Multisig initializer", async function () {
 
     const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("60000");
-    const otocoBaseFee = await otocoMaster.baseFee();
+    const gasLimit = ethers.BigNumber.from("600000");
+    // Check the amount of ETH has to be paid after pass the priceFeed
+    const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
+    const wy = Wyoming.attach(await otocoMaster.jurisdictionAddress(2));
+    const amountToPayForSpinUp = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await wy.getJurisdictionDeployPrice());
 
-    // 34750 reduction from gas limit is what is spended before check happens
-    const amountToPayForClose = ethers.BigNumber.from(gasLimit).sub(30000).mul(otocoBaseFee);
-    // Remove 1% from the correct amount needed
-    const notEnoughToPayForClose = amountToPayForClose.mul(100).div(110);
+    const GnosisSafeArtifact = await getExternalArtifact("GnosisSafe");
+    const GnosisSafeFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
+    gnosisSafe = await GnosisSafeFactory.deploy();
 
-    await expect(otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:notEnoughToPayForClose}))
-    .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue")
+    const GnosisSafeProxyFactoryArtifact = await getExternalArtifact("GnosisSafeProxyFactory");
+    const GnosisSafeProxyFactoryFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
+    gnosisSafeProxyFactory = await GnosisSafeProxyFactoryFactory.deploy();
 
-    await expect(otocoMaster.connect(wallet2).closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose}))
-    .to.be.revertedWithCustomError(otocoMaster, 'IncorrectOwner');
+    gnosisSafeInterface = new ethers.utils.Interface(GnosisSafeArtifact.abi);
+    const data = gnosisSafeInterface.encodeFunctionData('setup', [
+        [owner.address, wallet2.address],
+        1,
+        zeroAddress(),
+        [],
+        zeroAddress(),
+        zeroAddress(),
+        0,
+        zeroAddress()
+    ]);
 
-    // Close the company
-    const transactionClose = await otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose});
-    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress(), 7);
+    const gnosisSafeFactoryInterface = new ethers.utils.Interface(GnosisSafeProxyFactoryArtifact.abi);
+    const dataFactory = gnosisSafeFactoryInterface.encodeFunctionData('createProxy', [
+      gnosisSafe.address,
+      data
+    ]);
 
-    await expect(otocoMaster.ownerOf(6)).to.be.reverted
+    const transaction = await otocoMaster.createEntityWithInitializer(
+      2,
+      [gnosisSafeProxyFactory.address],
+      [dataFactory],
+      0,
+      "New Entity",
+      {gasPrice, gasLimit, value:amountToPayForSpinUp}
+    );
 
-  });
-
-  it("Update URI Sources and check if TokenURI are correct", async function () {
-
-    const EntityURI = await ethers.getContractFactory("OtoCoURI");
-    const entityURI = await EntityURI.deploy(otocoMaster.address);
-    await entityURI.deployed();
-    expect(await otocoMaster.changeURISources(entityURI.address))
-    .to.emit(otocoMaster, "ChangedURISource")
-    .withArgs(entityURI.address)
-    expect(await otocoMaster.entitiesURI()).to.be.equals(entityURI.address);
-
-    const tokenURI = await otocoMaster.tokenURI(4);
-    const tokenURI2 = await otocoMaster.tokenURI(7);
-
-    // Decode base64 data to read JSON data
-    let buff = Buffer.from(tokenURI.split(',')[1], 'base64');
-    let json = JSON.parse(buff.toString('utf-8'));
+    const proxyAddress = (await transaction.wait()).events.pop().args.to
+    await expect(transaction).to.emit(gnosisSafeProxyFactory, 'ProxyCreation').withArgs(proxyAddress, gnosisSafe.address)
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), proxyAddress, 1)
     
-    expect(json.name).to.be.equal("Entity 2 - Series 3");
-    expect(json.image).to.be.equal("goldBadgeURLWY");
+    const proxyInstance = await GnosisSafeFactory.attach(proxyAddress);
+    expect(await proxyInstance.getOwners()).to.be.eql([owner.address, wallet2.address])
+  })
 
-    // Decode base64 data to read JSON data
-    buff = Buffer.from(tokenURI2.split(',')[1], 'base64');
-    json = JSON.parse(buff.toString('utf-8'));
-    
-    expect(json.name).to.be.equal("New Entity - Series 5");
-    expect(json.image).to.be.equal("defaultBadgeURLWY");
-    expect(json.attributes[0].trait_type).to.be.equal("Creation");
-    expect(parseInt(json.attributes[0].value)).to.be.above(Date.now()*0.0001-5000);
-    expect(json.attributes[1].trait_type).to.be.equal("Jurisdiction");
-    expect(json.attributes[1].value).to.be.equals("WYOMING");
-    // console.log(json)
-  });
 
 });

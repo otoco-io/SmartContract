@@ -170,10 +170,11 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
             required: value
         });
         // TODO Check for possible reentrancy vulnerability
+        // TODO Create initializable contracts
         (bool success, bytes memory initializerBytes) = plugins[0].call{value: value}(pluginsData[0]);
         if (!success) revert InitializerError();
         assembly {
-            controller := mload(add(initializerBytes,20))
+            controller := mload(add(initializerBytes,32))
         }
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
