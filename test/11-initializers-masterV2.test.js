@@ -112,7 +112,11 @@ describe("OtoCo Master Test", function () {
     // Check the amount of ETH has to be paid after pass the priceFeed
     const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
     const wy = Wyoming.attach(await otocoMaster.jurisdictionAddress(2));
-    const amountToPayForSpinUp = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await wy.getJurisdictionDeployPrice());
+    const baseFee = await otocoMaster.baseFee();
+    const amountToPayForSpinUp = 
+      EthDividend.div((await priceFeed.latestRoundData()).answer)
+      .mul(await wy.getJurisdictionDeployPrice())
+      .add(baseFee.mul(gasLimit))
 
     const GnosisSafeArtifact = await getExternalArtifact("GnosisSafe");
     const GnosisSafeFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);

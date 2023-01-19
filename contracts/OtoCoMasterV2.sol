@@ -67,6 +67,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     IOtoCoURI public entitiesURI;
     // Valid marketplace addresses that are allowed to create standalone entities
     mapping(address=>bool) internal marketplaceAddress;
+    mapping(address=>bool) internal allowedPlugins;
 
     /**
      * Check if there's enough ETH paid for public transactions.
@@ -91,12 +92,17 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * Check if there's enough ETH paid for USD priced transactions.
      */
     modifier enoughAmountUSD(uint256 usdPrice) {
-        (,int256 quote,,,) = priceFeed.latestRoundData();
-        if (msg.value < (priceFeedEth/uint256(quote))*usdPrice) revert InsufficientValue({
+        uint256 requiredValue= priceConverter(usdPrice);
+        if (msg.value < requiredValue) revert InsufficientValue({
             available: msg.value,
-            required: usdPrice * uint256(quote)
+            required: requiredValue
         });
         _;
+    }
+
+    function priceConverter(uint256 usdPrice) public view returns (uint256) {
+        (,int256 quote,,,) = priceFeed.latestRoundData();
+        return (priceFeedEth/uint256(quote))*usdPrice;
     }
 
     /**
@@ -161,16 +167,15 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         bytes[] calldata pluginsData,
         uint256 value,
         string calldata name
-    ) public enoughAmountUSD(
-        IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice()
-    ) payable {
-        address controller = msg.sender;
-        if (msg.value < value) revert InsufficientValue({
+    ) public payable {
+        uint256 valueRequired = gasleft()*baseFee
+            + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice())
+            + value;
+        if (msg.value < valueRequired) revert InsufficientValue({
             available: msg.value,
-            required: value
+            required: valueRequired
         });
-        // TODO Check for possible reentrancy vulnerability
-        // TODO Create initializable contracts
+        address controller = msg.sender;
         (bool success, bytes memory initializerBytes) = plugins[0].call{value: value}(pluginsData[0]);
         if (!success) revert InitializerError();
         assembly {
@@ -199,9 +204,13 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         address[] calldata plugins,
         bytes[] calldata pluginsData,
         string calldata name
-    ) public enoughAmountUSD(
-        IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice()
-    ) payable {
+    ) public payable {
+        uint256 valueRequired = gasleft()*baseFee
+            + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice());
+        if (msg.value < valueRequired) revert InsufficientValue({
+            available: msg.value,
+            required: valueRequired
+        });
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         createSeries(jurisdiction, controller, name);
