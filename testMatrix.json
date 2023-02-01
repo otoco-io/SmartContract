@@ -1,0 +1,5574 @@
+{
+ "contracts/governor/GovernorNoEIP712NoName.sol": {
+  "43": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "44": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "57": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "64": [],
+  "71": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "93": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "100": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "102": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "103": [],
+  "106": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "107": [],
+  "110": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "112": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "113": [],
+  "116": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "117": [],
+  "120": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "122": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "123": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "126": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "127": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "129": [],
+  "137": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "144": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "183": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "188": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "190": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "191": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "192": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "194": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "195": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "197": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "198": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "200": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "201": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "203": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "215": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "227": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "229": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "230": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "234": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "236": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "238": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "240": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "253": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "254": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "255": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "256": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "272": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "273": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "275": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "279": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "281": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "283": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "290": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "291": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "302": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "303": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "322": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "323": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "325": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "326": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "328": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "330": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "344": [],
+  "352": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/governor/InitializableEIP712.sol": {
+  "59": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "63": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "64": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "65": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "68": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "69": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "70": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "71": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "72": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "73": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "80": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "81": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "83": [],
+  "92": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "111": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "124": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "130": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/governor/InitializableGovernorCountingSimple.sol": {
+  "37": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "44": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "60": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "61": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "68": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "70": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "77": [],
+  "78": [],
+  "90": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "92": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "93": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "95": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "96": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "98": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "100": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "102": []
+ },
+ "contracts/governor/InitializableGovernorQuorumFraction.sol": {
+  "23": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "30": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "37": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "51": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "64": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "69": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "70": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "72": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/governor/InitializableGovernorSettings.sol": {
+  "26": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "33": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "40": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "49": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "58": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "67": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "76": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "77": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "87": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "88": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "89": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "98": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "99": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/governor/InitializableGovernorVotes.sol": {
+  "19": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "23": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "30": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/jurisdictions/Delaware.sol": {
+  "21": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/jurisdictions/Unincorporated.sol": {
+  "21": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   }
+  ]
+ },
+ "contracts/jurisdictions/Wyoming.sol": {
+  "25": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/jurisdictionsV2/DelawareV2.sol": {
+  "23": []
+ },
+ "contracts/jurisdictionsV2/UnincorporatedV2.sol": {
+  "24": []
+ },
+ "contracts/jurisdictionsV2/WyomingV2.sol": {
+  "28": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ]
+ },
+ "contracts/OtoCoJurisdiction.sol": {
+  "15": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Add new and update jurisdiction",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/09-migration.test.js"
+   }
+  ],
+  "16": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Add new and update jurisdiction",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/09-migration.test.js"
+   }
+  ],
+  "17": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Add new and update jurisdiction",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/09-migration.test.js"
+   }
+  ],
+  "36": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   },
+   {
+    "title": "Check jurisdiction order and count",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Check jurisdiction order and count",
+    "file": "test/09-migration.test.js"
+   }
+  ],
+  "45": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   },
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "54": [
+   {
+    "title": "Create Jurisdictions and test values",
+    "file": "test/01-otoco-jurisdiction.test.js"
+   },
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ]
+ },
+ "contracts/OtoCoJurisdictionV2.sol": {
+  "19": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "20": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "21": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "22": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "23": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "42": [
+   {
+    "title": "Check jurisdiction order and count",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Check jurisdiction order and count",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "51": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "60": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "70": [],
+  "79": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ]
+ },
+ "contracts/OtoCoMaster.sol": {
+  "52": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "53": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "58": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "59": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "60": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "61": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "62": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "64": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "65": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "66": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "78": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "80": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "87": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "89": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "90": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "99": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "100": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "120": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Check if rejections when migrate are triggered",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "121": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Check if rejections when migrate are triggered",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "122": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Check if rejections when migrate are triggered",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "123": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Check if rejections when migrate are triggered",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "124": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "126": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "128": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "129": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "130": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "137": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "138": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "142": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "143": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "144": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "145": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "146": [
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/09-migration.test.js"
+   },
+   {
+    "title": "Test migration of previous entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Test migration entities",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "156": [
+   {
+    "title": "Add new and update jurisdiction",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "157": [
+   {
+    "title": "Add new and update jurisdiction",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "167": [
+   {
+    "title": "Add new and update jurisdiction",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "176": [
+   {
+    "title": "Change and withdraw fees",
+    "file": "test/02-otoco-master.test.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "186": [
+   {
+    "title": "Change and withdraw fees",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "187": [
+   {
+    "title": "Change and withdraw fees",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "188": [
+   {
+    "title": "Change and withdraw fees",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "201": [
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "202": [
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "203": [
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "204": [
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "206": [
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "212": [
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ],
+  "229": [
+   {
+    "title": "Check if TokenURI are correct",
+    "file": "test/02-otoco-master.test.js"
+   }
+  ]
+ },
+ "contracts/OtoCoMasterV2.sol": {
+  "76": [],
+  "77": [],
+  "84": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "88": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "95": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "96": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "100": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "104": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "105": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "115": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "116": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "117": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "118": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "119": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "121": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "122": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "123": [
+   {
+    "title": "Initialize Master and add jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "138": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "140": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "148": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "150": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "151": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "171": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "174": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "178": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "179": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "180": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "181": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "185": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "186": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "187": [
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "188": [],
+  "208": [],
+  "210": [],
+  "215": [],
+  "216": [],
+  "217": [],
+  "218": [],
+  "229": [],
+  "230": [],
+  "231": [],
+  "232": [],
+  "233": [],
+  "238": [],
+  "247": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "248": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "261": [],
+  "262": [],
+  "272": [],
+  "281": [
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "282": [
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "292": [],
+  "293": [],
+  "294": [],
+  "295": [],
+  "296": [],
+  "306": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "307": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "316": [
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "317": [
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "333": [],
+  "335": [],
+  "343": [],
+  "345": [],
+  "346": [],
+  "356": [
+   {
+    "title": "Should withdraw fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "357": [
+   {
+    "title": "Should withdraw fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "358": [
+   {
+    "title": "Should withdraw fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "370": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ]
+ },
+ "contracts/OtoCoPlugin.sol": {
+  "18": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "19": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "28": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "29": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "33": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   },
+   {
+    "title": "Deploy ENS plugin and configure it",
+    "file": "test/07-otoco-ens.test.js"
+   },
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "52": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "test removed functions from plugin",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "62": [
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   },
+   {
+    "title": "test removed functions from plugin",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ]
+ },
+ "contracts/plugins/ENS.sol": {
+  "37": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "38": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "39": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "59": [
+   {
+    "title": "Deploy ENS plugin and configure it",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "60": [
+   {
+    "title": "Deploy ENS plugin and configure it",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "61": [
+   {
+    "title": "Deploy ENS plugin and configure it",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "62": [
+   {
+    "title": "Deploy ENS plugin and configure it",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "63": [
+   {
+    "title": "Deploy ENS plugin and configure it",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "64": [
+   {
+    "title": "Deploy ENS plugin and configure it",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "65": [
+   {
+    "title": "Deploy ENS plugin and configure it",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "78": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "82": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "83": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "84": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "85": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "86": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "95": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "96": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "97": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ],
+  "98": [
+   {
+    "title": "Add plugins and test duplication",
+    "file": "test/07-otoco-ens.test.js"
+   }
+  ]
+ },
+ "contracts/plugins/Launchpool.sol": {
+  "45": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "46": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "47": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "48": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "49": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "50": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "60": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "69": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "73": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "81": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "82": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "83": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "84": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "89": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "90": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ],
+  "91": [
+   {
+    "title": "Deploy and remove Launchpool plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   }
+  ]
+ },
+ "contracts/plugins/Multisig.sol": {
+  "32": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "33": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "34": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "35": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "36": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "37": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "42": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "46": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "50": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "51": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "52": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "53": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "64": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "67": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "68": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "69": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "73": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "76": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "78": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "80": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "81": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ],
+  "82": [
+   {
+    "title": "Deploy plugin, add and remove",
+    "file": "test/06-otoco-multisig.test.js"
+   }
+  ]
+ },
+ "contracts/plugins/Timestamp.sol": {
+  "25": [
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   }
+  ],
+  "29": [
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   }
+  ],
+  "39": [
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   }
+  ],
+  "44": [
+   {
+    "title": "Deploy Timestamp plugin",
+    "file": "test/04-otoco-timestamp.test.js"
+   }
+  ]
+ },
+ "contracts/plugins/Token.sol": {
+  "42": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "43": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "44": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "45": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "46": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "56": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "69": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "75": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "76": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "77": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "78": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "79": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "90": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "93": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "94": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "95": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "106": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "109": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "111": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "113": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "114": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "115": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ]
+ },
+ "contracts/plugins/Tokenization.sol": {
+  "42": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "50": [],
+  "61": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "74": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "75": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "76": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "77": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "79": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "80": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "83": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "84": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "87": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "89": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "90": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "91": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "102": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "111": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "112": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "113": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "115": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "116": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "117": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "128": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "129": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "130": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/utils/MockAggregatorV3.sol": {
+  "9": [
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "24": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ]
+ },
+ "contracts/utils/OtoCoGovernor.sol": {
+  "33": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "45": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "46": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "47": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "48": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "49": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "50": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "51": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "52": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "53": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "54": [],
+  "64": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "73": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "82": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "91": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "106": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "107": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "119": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "120": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "134": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "135": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "137": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "150": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "151": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "152": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "154": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "169": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "176": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "185": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "193": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "194": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "204": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "205": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "215": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "216": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "217": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "218": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "220": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "230": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/utils/OtoCoToken.sol": {
+  "14": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "18": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "19": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "20": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "27": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ],
+  "35": [
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/03-otoco-launchpool-token.test.js"
+   },
+   {
+    "title": "Deploy and remove Token plugin",
+    "file": "test/05-otoco-token-nofee.js"
+   }
+  ]
+ },
+ "contracts/utils/OtoCoTokenMintable.sol": {
+  "14": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "18": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "20": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "21": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "22": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "26": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "27": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "31": [],
+  "40": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "41": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "48": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "55": []
+ },
+ "contracts/utils/OtoCoTokenNonTransferable.sol": {
+  "15": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "19": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "21": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "22": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "23": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "27": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "28": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "32": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "42": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "43": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "65": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "74": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "75": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "82": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
+  "89": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
+ },
+ "contracts/utils/OtoCoURI.sol": {
+  "18": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "31": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "32": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "33": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "34": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "36": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "56": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ]
+ }
+}

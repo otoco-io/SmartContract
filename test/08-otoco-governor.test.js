@@ -7,7 +7,7 @@ chai.use(solidity);
 
 
 describe("OtoCo Token Without Fees Plugin Test", function () {
-
+  
   let owner, wallet2, wallet3, wallet4, externalWallet;
   let OtoCoMaster;
   let otocoMaster;
@@ -18,7 +18,6 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
   let governorPlugin;
 
   it("Create Jurisdictions", async function () {
-
     [owner, wallet2, wallet3, wallet4, externalWallet] = await ethers.getSigners();
 
     const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporated");
@@ -367,7 +366,20 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
 
-    // BUrn removed... only burn with proposal
+    // Retokenize entity
+    let encoded2 = ethers.utils.defaultAbiCoder.encode(
+      ['address[]', 'address[]', 'uint256[]'],
+      [
+        [], 
+        [owner.address, tokenMintableSource.address, wallet2.address],
+        [1,10],
+      ],
+    );
+    transaction = await tokenizationPlugin.connect(wallet2).attachPlugin(0, encoded2);
+    await expect(transaction).to.emit(tokenizationPlugin, 'Tokenized');
+    await tokenizationPlugin.connect(wallet2).removePlugin(0, ethers.constants.HashZero);
+
+    // Burn removed... only burn with proposal
     //await token.connect(wallet2).burn(ethers.utils.parseEther('10'));
     //expect(await token.connect(wallet2).balanceOf(wallet2.address)).to.be.equals(ethers.utils.parseEther('90'));
 
@@ -445,7 +457,6 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     transaction = await governor.execute(txTargets,txValues,txCalldata,descriptionHash)
     await expect(transaction).to.emit(governor, 'ProposalExecuted');
 
-
     // ------------------- TEST BURN TOKENS ---------------------------
     txTargets = [token.address];
     txValues = [0];
@@ -457,19 +468,19 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     
     await network.provider.send("evm_mine");  // mine three block to start voting
     await governor.connect(wallet2).castVote(proposalId, 1);
-
     // Wait for voting ends
     deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
     while (deadlineBlock+1 > (await ethers.provider.getBlockNumber()) ) {
       await network.provider.send("evm_mine")
     }
-
+    
     descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
     transaction = await governor.execute(txTargets,txValues,txCalldata,descriptionHash)
     await expect(transaction).to.emit(governor, 'ProposalExecuted');
-
+    
     expect(await token.totalSupply()).to.be.equal(ethers.utils.parseEther('100'));
     expect(await token.balanceOf(wallet2.address)).to.be.equals(ethers.utils.parseEther('100'));
+    expect(transaction).to.emit(token, "Transfer");
 
     // ------------------- TEST CANCEL PROPOSAL ---------------------------
     txTargets = [token.address];
@@ -496,7 +507,6 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     // ----------------------------- UNTOKENIZE ENTITY --------------------------------------
     transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
-
   });
 
   it("Test Cast Vote with Signature and Resign", async function () {
@@ -586,6 +596,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     // ----------------------------- UNTOKENIZE ENTITY --------------------------------------
     transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
+
+    await expect(await governor.isAllowedContracts([zeroAddress()])).to.be.false;
   });
 
 });
