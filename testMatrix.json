@@ -1823,10 +1823,20 @@
   ]
  },
  "contracts/jurisdictionsV2/DelawareV2.sol": {
-  "23": []
+  "23": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ]
  },
  "contracts/jurisdictionsV2/UnincorporatedV2.sol": {
-  "24": []
+  "24": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ]
  },
  "contracts/jurisdictionsV2/WyomingV2.sol": {
   "28": [

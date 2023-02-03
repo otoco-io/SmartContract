@@ -100,7 +100,7 @@ describe("OtoCo Master Test", function () {
     expect((await otocoMaster.series(0)).jurisdiction).to.be.equal(2)
     expect((await otocoMaster.series(0)).name).to.be.equal("New Entity - Series 1")
     
-    // Chech if the amount to pay was transferred
+    // Check if the amount to pay was transferred
     expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equal(previousBalance.add(amountToPayForSpinUp));
 
   });

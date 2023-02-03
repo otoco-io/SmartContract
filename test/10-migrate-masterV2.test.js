@@ -131,8 +131,16 @@ describe("OtoCo Master Test", function () {
     const gasLimit = ethers.BigNumber.from("200000");
     // Check the amount of ETH has to be paid after pass the priceFeed
     const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
+    const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporatedV2");
+    const Delaware = await ethers.getContractFactory("JurisdictionDelawareV2");
     const wy = Wyoming.attach(await otocoMaster.jurisdictionAddress(2));
+    const de = Delaware.attach(await otocoMaster.jurisdictionAddress(1));
+    const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
     const amountToPayForSpinUp = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await wy.getJurisdictionDeployPrice());
+    const amountToPayForSpinUp2 = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await de.getJurisdictionDeployPrice());
+    const amountToPayForSpinUp3 = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await unc.getJurisdictionDeployPrice());
+    const totalFeePaid = amountToPayForSpinUp.add(amountToPayForSpinUp2.add(amountToPayForSpinUp3));
+    // console.log(await otocoMaster.jurisdictionAddress(2), "\n", await otocoMaster.jurisdictionAddress(1), "\n", await otocoMaster.jurisdictionAddress(0), "\n")
     // Remove 1% from the correct amount needed
     const notEnoughToPayForSpinUp = amountToPayForSpinUp.mul(100).div(101);
 
@@ -144,12 +152,20 @@ describe("OtoCo Master Test", function () {
 
     // Expected to successfully create a new entity
     const transaction = await otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
+    const transaction2 = await otocoMaster.createSeries(1, owner.address, "New Entity 2", {gasPrice, gasLimit, value:amountToPayForSpinUp2});
+    const transaction3 = await otocoMaster.createSeries(0, owner.address, "New Entity 3", {gasPrice, gasLimit, value:amountToPayForSpinUp3});
     await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 7);
-    expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2)
-    expect((await otocoMaster.series(7)).name).to.be.equal("New Entity - Series 5")
+    await expect(transaction2).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 8);
+    await expect(transaction3).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 9);
+    expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2);
+    expect((await otocoMaster.series(8)).jurisdiction).to.be.equal(1);
+    expect((await otocoMaster.series(9)).jurisdiction).to.be.equal(0);
+    expect((await otocoMaster.series(7)).name).to.be.equal("New Entity - Series 5");
+    expect((await otocoMaster.series(8)).name).to.be.equal("New Entity 2 LLC");
+    expect((await otocoMaster.series(9)).name).to.be.equal("New Entity 3");
     
-    // Chech if the amount to pay was transferred
-    expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equal(previousBalance.add(amountToPayForSpinUp));
+    // Check if the amount to pay was transferred
+    expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equal(previousBalance.add(totalFeePaid));
 
   });
 
@@ -174,7 +190,7 @@ describe("OtoCo Master Test", function () {
     const transactionClose = await otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose});
     await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress(), 7);
 
-    await expect(otocoMaster.ownerOf(6)).to.be.reverted
+    await expect(otocoMaster.ownerOf(6)).to.be.reverted;
 
   });
 
