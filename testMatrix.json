@@ -22,7 +22,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "64": [],
+  "64": [
+   {
+    "title": "Deploy source contracts and plugin",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
   "71": [
    {
     "title": "Test Transferable Tokens and Governor",
@@ -95,7 +100,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "103": [],
+  "103": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
   "106": [
    {
     "title": "Test Transferable Tokens and Governor",
@@ -114,7 +124,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "107": [],
+  "107": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
   "110": [
    {
     "title": "Test Transferable Tokens and Governor",
@@ -151,7 +166,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "113": [],
+  "113": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
   "116": [
    {
     "title": "Test Transferable Tokens and Governor",
@@ -170,7 +190,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "117": [],
+  "117": [
+   {
+    "title": "Test Non-Transferable Token Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
   "120": [
    {
     "title": "Test Transferable Tokens and Governor",
@@ -261,7 +286,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "129": [],
+  "129": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
   "137": [
    {
     "title": "Test Transferable Tokens and Governor",
@@ -1319,6 +1349,10 @@
   "96": [
    {
     "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
    }
   ],

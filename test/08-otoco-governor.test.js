@@ -5,6 +5,20 @@ const { zeroAddress } = require("ethereumjs-util");
 const chai = require("chai");
 chai.use(solidity);
 
+const hre = require("hardhat");
+
+function getInterfaceID(contractInterface) {
+  let interfaceID = ethers.constants.Zero;
+  const functions = Object.keys(
+    contractInterface.functions,
+  );
+  for (let i = 0; i < functions.length; i++) {
+    interfaceID = interfaceID.xor(
+      contractInterface.getSighash(functions[i]),
+    );
+  }
+  return interfaceID;
+}
 
 describe("OtoCo Token Without Fees Plugin Test", function () {
   
@@ -70,6 +84,15 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     expect(await governorSource.name()).to.be.equal("");
     expect(await governorSource.votingDelay()).to.be.equal(0);
     expect(await governorSource.votingPeriod()).to.be.equal(0);
+    
+    const erc165ID = ethers.BigNumber.from(0x01ffc9a7)._hex;
+    const GovernorInterface = 
+      new ethers.utils.Interface(
+        (await hre.artifacts.readArtifact("IGovernor")).abi);
+    const governorID = (getInterfaceID(GovernorInterface).xor(erc165ID))._hex;
+
+    expect(await governorSource.callStatic.supportsInterface(erc165ID)).to.be.true;
+    expect(await governorSource.callStatic.supportsInterface(governorID)).to.be.true;
 
     await expect(governorSource.initialize(tokenNonTransferableSource.address, owner.address, [], 1, "Test"))
     .to.be.revertedWith('Initializable: contract is already initialized');
@@ -467,6 +490,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
     
     await network.provider.send("evm_mine");  // mine three block to start voting
+    const proposalState = await governor.callStatic.state(proposalId);
     await governor.connect(wallet2).castVote(proposalId, 1);
     // Wait for voting ends
     deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
@@ -481,6 +505,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     expect(await token.totalSupply()).to.be.equal(ethers.utils.parseEther('100'));
     expect(await token.balanceOf(wallet2.address)).to.be.equals(ethers.utils.parseEther('100'));
     expect(transaction).to.emit(token, "Transfer");
+    expect(proposalState).to.eq(ethers.constants.Zero);
 
     // ------------------- TEST CANCEL PROPOSAL ---------------------------
     txTargets = [token.address];
@@ -502,6 +527,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
 
     descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
     transaction = await governor.cancel(txTargets,txValues,txCalldata,descriptionHash)
+    expect(await governor.state(proposalId)).to.eq(ethers.constants.Two)
     await expect(transaction).to.emit(governor, 'ProposalCanceled');
 
     // ----------------------------- UNTOKENIZE ENTITY --------------------------------------
@@ -549,28 +575,28 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
 
     await network.provider.send("evm_mine");  // mine three block to start voting
     
-    const types = {
+    let types = {
         Ballot: [
           { name: "proposalId", type: "uint256" },
           { name: "support", type: "uint8" },
         ],
     }
-    const domain = {
+    let domain = {
         name: await governor.name(),
         version: await governor.version(),
         chainId: network.config.chainId,
         verifyingContract: governor.address
     }
-    const value = {
+    let value = {
       proposalId: proposalId,
       support: 1
     }
 
-    const result = await wallet2._signTypedData(domain, types, value);
-    const signature = result.substring(2);
-    const r = "0x" + signature.substring(0, 64);
-    const s = "0x" + signature.substring(64, 128);
-    const v = parseInt(signature.substring(128, 130), 16);
+    let result = await wallet2._signTypedData(domain, types, value);
+    let signature = result.substring(2);
+    let r = "0x" + signature.substring(0, 64);
+    let s = "0x" + signature.substring(64, 128);
+    let v = parseInt(signature.substring(128, 130), 16);
     // The signature is now comprised of r, s, and v.
     transaction = await governor.connect(wallet4).castVoteBySig(proposalId, 1, v, r, s);
     await expect(transaction).to.emit(governor, 'VoteCast').withArgs(
@@ -592,6 +618,44 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     descriptionHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(txDescription))
     transaction = await governor.execute(txTargets,txValues,txCalldata,descriptionHash)
     await expect(transaction).to.emit(governor, 'ProposalExecuted');
+    expect(await governor.callStatic.state(proposalId)).to.eq(ethers.BigNumber.from(7));
+    await expect(governor.callStatic.state(ethers.constants.Zero)).to.be.revertedWith("Governor: unknown proposal id");
+
+    // Defeat proposal
+    txCalldata = [ TokenNonTransferableFactory.interface.encodeFunctionData("mint", [ wallet4.address, 10 ]) ];
+    transaction = await governor.connect(wallet2).propose(txTargets,txValues,txCalldata,txDescription)
+    proposalId = (await transaction.wait()).events[0].args.proposalId.toString()
+    await network.provider.send("evm_mine");  // mine three block to start voting
+    
+    types = {
+        Ballot: [
+          { name: "proposalId", type: "uint256" },
+          { name: "support", type: "uint8" },
+        ],
+    }
+    domain = {
+        name: await governor.name(),
+        version: await governor.version(),
+        chainId: 1,
+        verifyingContract: governor.address
+    }
+    value = {
+      proposalId: proposalId,
+      support: 0
+    }
+
+    result = await wallet2._signTypedData(domain, types, value);
+    signature = result.substring(2);
+    r = "0x" + signature.substring(0, 64);
+    s = "0x" + signature.substring(64, 128);
+    v = parseInt(signature.substring(128, 130), 16);
+    transaction = await governor.connect(wallet4).castVoteBySig(proposalId, 0, v, r, s);
+
+    deadlineBlock = (await governor.proposalDeadline(proposalId)).toNumber()
+    while (deadlineBlock+1 > (await ethers.provider.getBlockNumber()) ) {
+      await network.provider.send("evm_mine")
+    }
+    expect(await governor.callStatic.state(proposalId)).to.eq(ethers.BigNumber.from(3));
 
     // ----------------------------- UNTOKENIZE ENTITY --------------------------------------
     transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
