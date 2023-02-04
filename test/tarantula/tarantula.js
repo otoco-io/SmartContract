@@ -49,8 +49,15 @@ describe('Tarantula', () => {
                 ], undefined, 2);
             
                 fs.writeFileSync('./test/tarantula/suspiciousness.json', jsonResult, 'utf-8');
-            
-                // console.log(jsonResult);
+
+                console.log(
+                    '\t','\x1b[32mSuspiciousness 0:\x1b[0m',
+                        (JSON.parse(jsonResult)).map(item => item.count)[0],
+                    '|',
+                    '\x1b[31mSuspiciousness 1:\x1b[0m', 
+                        (JSON.parse(jsonResult)).map(item => item.count)[1],
+                );
+
             } catch (error) {
                 console.error(`Error: ${error.message}`);
             }

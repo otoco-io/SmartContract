@@ -1,8 +1,8 @@
 {
  "stats": {
   "suites": 13,
-  "tests": 62,
-  "passes": 62,
+  "tests": 65,
+  "passes": 65,
   "pending": 0,
   "failures": 0
  },
@@ -388,6 +388,27 @@
   {
    "title": "Update URI Sources and check if TokenURI are correct",
    "fullTitle": "OtoCo Master Test Update URI Sources and check if TokenURI are correct",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+   "fullTitle": "OtoCo Master Test Add addresses as allowed marketplaces and add entity as marketplace",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Extend entity expiration date",
+   "fullTitle": "OtoCo Master Test Extend entity expiration date",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add new jurisdiction and update existing jurisdiction's address",
+   "fullTitle": "OtoCo Master Test Add new jurisdiction and update existing jurisdiction's address",
    "file": "test/10-migrate-masterV2.test.js",
    "currentRetry": 0,
    "err": {}
@@ -825,6 +846,27 @@
   {
    "title": "Update URI Sources and check if TokenURI are correct",
    "fullTitle": "OtoCo Master Test Update URI Sources and check if TokenURI are correct",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+   "fullTitle": "OtoCo Master Test Add addresses as allowed marketplaces and add entity as marketplace",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Extend entity expiration date",
+   "fullTitle": "OtoCo Master Test Extend entity expiration date",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add new jurisdiction and update existing jurisdiction's address",
+   "fullTitle": "OtoCo Master Test Add new jurisdiction and update existing jurisdiction's address",
    "file": "test/10-migrate-masterV2.test.js",
    "currentRetry": 0,
    "err": {}

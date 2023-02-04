@@ -116,7 +116,7 @@ describe("OtoCo Master Test", function () {
     const amountToPayForSpinUp = 
       EthDividend.div((await priceFeed.latestRoundData()).answer)
       .mul(await wy.getJurisdictionDeployPrice())
-      .add(baseFee.mul(gasLimit))
+      .add(baseFee.mul(gasLimit));
 
     const GnosisSafeArtifact = await getExternalArtifact("GnosisSafe");
     const GnosisSafeFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);

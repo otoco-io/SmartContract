@@ -2097,7 +2097,16 @@
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "70": [],
+  "70": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
   "79": [
    {
     "title": "Creating series with correct fees and wrong fees",
@@ -3150,8 +3159,18 @@
   ]
  },
  "contracts/OtoCoMasterV2.sol": {
-  "76": [],
-  "77": [],
+  "76": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "77": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
   "84": [
    {
     "title": "Closing series with correct fees and wrong fees",
@@ -3413,12 +3432,42 @@
   "216": [],
   "217": [],
   "218": [],
-  "229": [],
-  "230": [],
-  "231": [],
-  "232": [],
-  "233": [],
-  "238": [],
+  "229": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "230": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "231": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "232": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "233": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "238": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
   "247": [
    {
     "title": "Closing series with correct fees and wrong fees",
@@ -3431,9 +3480,24 @@
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "261": [],
-  "262": [],
-  "272": [],
+  "261": [
+   {
+    "title": "Add new jurisdiction and update existing jurisdiction's address",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "262": [
+   {
+    "title": "Add new jurisdiction and update existing jurisdiction's address",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "272": [
+   {
+    "title": "Add new jurisdiction and update existing jurisdiction's address",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
   "281": [
    {
     "title": "Change payment fees and price feed source",
@@ -3454,11 +3518,36 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "292": [],
-  "293": [],
-  "294": [],
-  "295": [],
-  "296": [],
+  "292": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "293": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "294": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "295": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "296": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
   "306": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
@@ -3491,11 +3580,36 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "333": [],
-  "335": [],
-  "343": [],
-  "345": [],
-  "346": [],
+  "333": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "335": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "343": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "345": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "346": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
   "356": [
    {
     "title": "Should withdraw fees",
@@ -4700,6 +4814,10 @@
   "24": [
    {
     "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Extend entity expiration date",
     "file": "test/10-migrate-masterV2.test.js"
    },
    {

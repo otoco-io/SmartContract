@@ -27,7 +27,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "tarantula": "npx hardhat coverage --matrix && npx hardhat test --grep Tarantula"
+    "coverage": "npx hardhat coverage && npx hardhat coverage --matrix",
+    "tarantula": "npx hardhat test --grep Tarantula"
   },
   "repository": {
     "type": "git",
