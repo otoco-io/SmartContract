@@ -63,6 +63,7 @@ describe("OtoCo Master Test", function () {
 
     await otocoMaster.createBatchSeries(jurisdictions, controllers, creations, names);
 
+
     expect((await otocoMaster.seriesCount()).toNumber()).to.equal(3);
 
     const firstSeries = await otocoMaster.series(0);
@@ -74,6 +75,8 @@ describe("OtoCo Master Test", function () {
     expect(secondSeries[0]).to.equal(1);
     expect(secondSeries[2].toNumber()).to.equal(20000);
     expect(secondSeries[3]).to.equal("Entity 2 LLC");
+
+    await expect(otocoMaster.connect(wallet3).createBatchSeries(jurisdictions, controllers, creations, names)).to.be.revertedWith("Ownable: caller is not the owner");
 
   });
 

@@ -1380,7 +1380,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "102": []
+  "102": [
+   {
+    "title": "Test Cast Vote with Signature and Resign",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
  },
  "contracts/governor/InitializableGovernorQuorumFraction.sol": {
   "23": [
@@ -5868,7 +5873,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "31": [],
+  "31": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
   "40": [
    {
     "title": "Test Transferable Tokens and Governor",
@@ -5899,7 +5909,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "55": []
+  "55": [
+   {
+    "title": "Test Transferable Tokens and Governor",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ]
  },
  "contracts/utils/OtoCoTokenNonTransferable.sol": {
   "15": [
