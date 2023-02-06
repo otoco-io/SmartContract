@@ -1861,6 +1861,14 @@
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ]
  },
@@ -1869,6 +1877,10 @@
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ]
  },
@@ -1883,7 +1895,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -2151,7 +2163,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -2209,6 +2233,10 @@
    {
     "title": "Initialize Master, add jurisdictions and create Series",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
    }
   ],
   "53": [
@@ -2262,6 +2290,10 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
+    "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
    }
   ],
@@ -3129,6 +3161,10 @@
    {
     "title": "Initialize Master, add jurisdictions and create Series",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
    }
   ],
   "186": [
@@ -3227,7 +3263,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3241,7 +3289,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3255,7 +3315,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3269,7 +3341,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3283,7 +3367,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3345,7 +3441,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3359,7 +3467,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3373,7 +3493,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3387,7 +3519,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3401,71 +3545,174 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "171": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "174": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "178": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "179": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "180": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "181": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "185": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "186": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "187": [
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "188": [],
-  "208": [],
-  "210": [],
-  "215": [],
-  "216": [],
-  "217": [],
-  "218": [],
+  "188": [
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "208": [
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "210": [
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "215": [
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "216": [
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "217": [
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "218": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
   "229": [
    {
     "title": "Extend entity expiration date",
@@ -3710,6 +3957,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "19": [
@@ -3752,6 +4003,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "28": [
@@ -3794,6 +4049,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "29": [
@@ -3836,6 +4095,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "33": [
@@ -3866,6 +4129,10 @@
    {
     "title": "Deploy source contracts and plugin",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "52": [
@@ -4282,6 +4549,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "43": [
@@ -4292,6 +4563,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "44": [
@@ -4302,6 +4577,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "45": [
@@ -4312,6 +4591,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "46": [
@@ -4322,6 +4605,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "56": [
@@ -4342,6 +4629,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "75": [
@@ -4352,6 +4643,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "76": [
@@ -4362,6 +4657,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "77": [
@@ -4372,6 +4671,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "78": [
@@ -4382,6 +4685,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "79": [
@@ -4392,6 +4699,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "90": [
@@ -4502,7 +4813,12 @@
     "file": "test/08-otoco-governor.test.js"
    }
   ],
-  "50": [],
+  "50": [
+   {
+    "title": "Test Change Governor Settings",
+    "file": "test/08-otoco-governor.test.js"
+   }
+  ],
   "61": [
    {
     "title": "Test Transferable Tokens and Governor",
@@ -4859,7 +5175,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer",
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -5404,6 +5732,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "18": [
@@ -5414,6 +5746,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "19": [
@@ -5424,6 +5760,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "20": [
@@ -5434,6 +5774,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "27": [

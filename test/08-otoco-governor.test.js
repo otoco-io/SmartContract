@@ -284,6 +284,10 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     const OtoCoGovernorFactory = await ethers.getContractFactory("OtoCoGovernor");
     const governor = OtoCoGovernorFactory.attach(await tokenizationPlugin.connect(wallet2).governorsDeployed(0));
 
+    await tokenizationPlugin.updateGovernorContract(governor.address);
+    expect(await tokenizationPlugin.callStatic.governorContract()).to.eq(governor.address);
+    await expect(tokenizationPlugin.connect(wallet3).updateGovernorContract(governor.address)).to.be.revertedWith("Ownable: caller is not the owner");
+
     const tokenMintableFactory = await ethers.getContractFactory("OtoCoTokenMintable");
     const token = tokenMintableFactory.attach(await governor.token());
 
@@ -388,6 +392,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     // Untokenize entity
     transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
+    await expect(tokenizationPlugin.connect(wallet2).removePlugin(0, encoded)).to.be.revertedWith("Tokenization: Entity Tokenization not exists");
+
 
     // Retokenize entity
     let encoded2 = ethers.utils.defaultAbiCoder.encode(
@@ -398,9 +404,32 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
         [1,10],
       ],
     );
-    transaction = await tokenizationPlugin.connect(wallet2).attachPlugin(0, encoded2);
+    // Branch 1
+    await otocoMaster.changeBaseFees(1);
+    const val = ethers.utils.parseEther("1");
+    transaction = await tokenizationPlugin.connect(wallet2).attachPlugin(
+      0, 
+      encoded2, 
+      { value: val },
+    );
     await expect(transaction).to.emit(tokenizationPlugin, 'Tokenized');
-    await tokenizationPlugin.connect(wallet2).removePlugin(0, ethers.constants.HashZero);
+    await expect(tokenizationPlugin.connect(wallet2).attachPlugin(0, encoded2, { value: val }))
+    .to.be.rejectedWith("Tokenization: Entity Tokenization already exists");
+    await tokenizationPlugin.connect(wallet2).removePlugin(0, ethers.constants.HashZero, { value: val });
+    await otocoMaster.changeBaseFees(0);
+    await expect(tokenizationPlugin.connect(wallet3).attachPlugin(0, encoded2))
+      .to.be.revertedWith("OtoCoPlugin: Not the entity owner.");
+
+    // Branch 2
+    const tx1 = 
+      await tokenizationPlugin.connect(wallet2)
+        .attachPlugin(0, encoded2);
+    const tx2 = 
+      await tokenizationPlugin.connect(wallet2)
+        .removePlugin(0, ethers.constants.HashZero);
+    
+    expect(tx1).to.be.ok;
+    expect(tx2).to.be.ok;
 
     // Burn removed... only burn with proposal
     //await token.connect(wallet2).burn(ethers.utils.parseEther('10'));
@@ -417,6 +446,12 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     );
     let transaction = await tokenizationPlugin.connect(wallet2).addPlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Tokenized');
+    await expect(tokenizationPlugin.connect(wallet2).addPlugin(0, encoded))
+      .to.be.rejectedWith("Tokenization: Entity Tokenization already exists"
+    );
+    await expect(tokenizationPlugin.connect(wallet3).addPlugin(0, encoded))
+      .to.be.rejectedWith("OtoCoPlugin: Not the entity owner."
+    );
     
     const TokenNonTransferableFactory = await ethers.getContractFactory("OtoCoTokenNonTransferable");
     const OtoCoGovernorFactory = await ethers.getContractFactory("OtoCoGovernor");
@@ -533,6 +568,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     // ----------------------------- UNTOKENIZE ENTITY --------------------------------------
     transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
+    await expect(tokenizationPlugin.connect(wallet3).removePlugin(0, encoded))
+      .to.be.revertedWith("OtoCoPlugin: Not the entity owner.");
   });
 
   it("Test Cast Vote with Signature and Resign", async function () {

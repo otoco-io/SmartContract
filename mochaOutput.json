@@ -1,8 +1,8 @@
 {
  "stats": {
   "suites": 13,
-  "tests": 65,
-  "passes": 65,
+  "tests": 68,
+  "passes": 68,
   "pending": 0,
   "failures": 0
  },
@@ -449,8 +449,29 @@
    "err": {}
   },
   {
-   "title": "Should create a new entity using Multisig initializer",
-   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer",
+   "title": "Should create a new entity using Multisig initializer without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer without plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity using Multisig initializer with plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer with plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity without initializer and without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity without initializer and without plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity without initializer and with plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity without initializer and with plugins",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}
@@ -907,8 +928,29 @@
    "err": {}
   },
   {
-   "title": "Should create a new entity using Multisig initializer",
-   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer",
+   "title": "Should create a new entity using Multisig initializer without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer without plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity using Multisig initializer with plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer with plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity without initializer and without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity without initializer and without plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity without initializer and with plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity without initializer and with plugins",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}
