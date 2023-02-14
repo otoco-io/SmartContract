@@ -1,0 +1,966 @@
+{
+ "stats": {
+  "suites": 13,
+  "tests": 68,
+  "passes": 68,
+  "pending": 0,
+  "failures": 0
+ },
+ "tests": [
+  {
+   "title": "Create Jurisdictions and test values",
+   "fullTitle": "OtoCo Jurisdiction Test Create Jurisdictions and test values",
+   "file": "test/01-otoco-jurisdiction.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Master Test Create Jurisdictions",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master and add jurisdictions",
+   "fullTitle": "OtoCo Master Test Initialize Master and add jurisdictions",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check jurisdiction order and count",
+   "fullTitle": "OtoCo Master Test Check jurisdiction order and count",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration of previous entities",
+   "fullTitle": "OtoCo Master Test Test migration of previous entities",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration entities",
+   "fullTitle": "OtoCo Master Test Test migration entities",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check if rejections when migrate are triggered",
+   "fullTitle": "OtoCo Master Test Check if rejections when migrate are triggered",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Creating series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Creating series with correct fees and wrong fees",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Closing series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Closing series with correct fees and wrong fees",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add new and update jurisdiction",
+   "fullTitle": "OtoCo Master Test Add new and update jurisdiction",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Change and withdraw fees",
+   "fullTitle": "OtoCo Master Test Change and withdraw fees",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check if TokenURI are correct",
+   "fullTitle": "OtoCo Master Test Check if TokenURI are correct",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Launchpool and Token Plugins Test Create Jurisdictions",
+   "file": "test/03-otoco-launchpool-token.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Launchpool and Token Plugins Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/03-otoco-launchpool-token.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy and remove Token plugin",
+   "fullTitle": "OtoCo Launchpool and Token Plugins Test Deploy and remove Token plugin",
+   "file": "test/03-otoco-launchpool-token.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy and remove Launchpool plugin",
+   "fullTitle": "OtoCo Launchpool and Token Plugins Test Deploy and remove Launchpool plugin",
+   "file": "test/03-otoco-launchpool-token.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Timestamp Plugins Test Create Jurisdictions",
+   "file": "test/04-otoco-timestamp.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Timestamp Plugins Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/04-otoco-timestamp.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy Timestamp plugin",
+   "fullTitle": "OtoCo Timestamp Plugins Test Deploy Timestamp plugin",
+   "file": "test/04-otoco-timestamp.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Create Jurisdictions",
+   "file": "test/05-otoco-token-nofee.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/05-otoco-token-nofee.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy and remove Token plugin",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Deploy and remove Token plugin",
+   "file": "test/05-otoco-token-nofee.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Multisig Plugin Test Create Jurisdictions",
+   "file": "test/06-otoco-multisig.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Multisig Plugin Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/06-otoco-multisig.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy External artifacts and test them",
+   "fullTitle": "OtoCo Multisig Plugin Test Deploy External artifacts and test them",
+   "file": "test/06-otoco-multisig.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy plugin, add and remove",
+   "fullTitle": "OtoCo Multisig Plugin Test Deploy plugin, add and remove",
+   "file": "test/06-otoco-multisig.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo ENS Plugin Test Create Jurisdictions",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo ENS Plugin Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy External artifacts",
+   "fullTitle": "OtoCo ENS Plugin Test Deploy External artifacts",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Setup ENS nodes and subnodes",
+   "fullTitle": "OtoCo ENS Plugin Test Setup ENS nodes and subnodes",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy ENS plugin and configure it",
+   "fullTitle": "OtoCo ENS Plugin Test Deploy ENS plugin and configure it",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add plugins and test duplication",
+   "fullTitle": "OtoCo ENS Plugin Test Add plugins and test duplication",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "test removed functions from plugin",
+   "fullTitle": "OtoCo ENS Plugin Test test removed functions from plugin",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Create Jurisdictions",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy source contracts and plugin",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Deploy source contracts and plugin",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test Transferable Tokens and Governor",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Test Transferable Tokens and Governor",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test Change Governor Settings",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Test Change Governor Settings",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test Non-Transferable Token Settings",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Test Non-Transferable Token Settings",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test Cast Vote with Signature and Resign",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Test Cast Vote with Signature and Resign",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "Test Entities migration Create Jurisdictions",
+   "file": "test/09-migration.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master and add jurisdictions",
+   "fullTitle": "Test Entities migration Initialize Master and add jurisdictions",
+   "file": "test/09-migration.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check jurisdiction order and count",
+   "fullTitle": "Test Entities migration Check jurisdiction order and count",
+   "file": "test/09-migration.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration of previous entities",
+   "fullTitle": "Test Entities migration Test migration of previous entities",
+   "file": "test/09-migration.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Master Test Create Jurisdictions",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master and add jurisdictions",
+   "fullTitle": "OtoCo Master Test Initialize Master and add jurisdictions",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check jurisdiction order and count",
+   "fullTitle": "OtoCo Master Test Check jurisdiction order and count",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration of previous entities",
+   "fullTitle": "OtoCo Master Test Test migration of previous entities",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration entities",
+   "fullTitle": "OtoCo Master Test Test migration entities",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Update Master contract to V2",
+   "fullTitle": "OtoCo Master Test Update Master contract to V2",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Change payment fees and price feed source",
+   "fullTitle": "OtoCo Master Test Change payment fees and price feed source",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Creating series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Creating series with correct fees and wrong fees",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Closing series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Closing series with correct fees and wrong fees",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should withdraw fees",
+   "fullTitle": "OtoCo Master Test Should withdraw fees",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Update URI Sources and check if TokenURI are correct",
+   "fullTitle": "OtoCo Master Test Update URI Sources and check if TokenURI are correct",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+   "fullTitle": "OtoCo Master Test Add addresses as allowed marketplaces and add entity as marketplace",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Extend entity expiration date",
+   "fullTitle": "OtoCo Master Test Extend entity expiration date",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add new jurisdiction and update existing jurisdiction's address",
+   "fullTitle": "OtoCo Master Test Add new jurisdiction and update existing jurisdiction's address",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Master Test Create Jurisdictions",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master and add jurisdictions",
+   "fullTitle": "OtoCo Master Test Initialize Master and add jurisdictions",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check jurisdiction order and count",
+   "fullTitle": "OtoCo Master Test Check jurisdiction order and count",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Change payment fees and price feed source",
+   "fullTitle": "OtoCo Master Test Change payment fees and price feed source",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Creating series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Creating series with correct fees and wrong fees",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity using Multisig initializer without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer without plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity using Multisig initializer with plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer with plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity without initializer and without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity without initializer and without plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity without initializer and with plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity without initializer and with plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "should score this input correctly",
+   "fullTitle": "Tarantula tarantulaScore should score this input correctly",
+   "file": "test/tarantula/tarantula.js",
+   "currentRetry": 0,
+   "err": {}
+  }
+ ],
+ "failures": [],
+ "passes": [
+  {
+   "title": "Create Jurisdictions and test values",
+   "fullTitle": "OtoCo Jurisdiction Test Create Jurisdictions and test values",
+   "file": "test/01-otoco-jurisdiction.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Master Test Create Jurisdictions",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master and add jurisdictions",
+   "fullTitle": "OtoCo Master Test Initialize Master and add jurisdictions",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check jurisdiction order and count",
+   "fullTitle": "OtoCo Master Test Check jurisdiction order and count",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration of previous entities",
+   "fullTitle": "OtoCo Master Test Test migration of previous entities",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration entities",
+   "fullTitle": "OtoCo Master Test Test migration entities",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check if rejections when migrate are triggered",
+   "fullTitle": "OtoCo Master Test Check if rejections when migrate are triggered",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Creating series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Creating series with correct fees and wrong fees",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Closing series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Closing series with correct fees and wrong fees",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add new and update jurisdiction",
+   "fullTitle": "OtoCo Master Test Add new and update jurisdiction",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Change and withdraw fees",
+   "fullTitle": "OtoCo Master Test Change and withdraw fees",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check if TokenURI are correct",
+   "fullTitle": "OtoCo Master Test Check if TokenURI are correct",
+   "file": "test/02-otoco-master.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Launchpool and Token Plugins Test Create Jurisdictions",
+   "file": "test/03-otoco-launchpool-token.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Launchpool and Token Plugins Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/03-otoco-launchpool-token.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy and remove Token plugin",
+   "fullTitle": "OtoCo Launchpool and Token Plugins Test Deploy and remove Token plugin",
+   "file": "test/03-otoco-launchpool-token.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy and remove Launchpool plugin",
+   "fullTitle": "OtoCo Launchpool and Token Plugins Test Deploy and remove Launchpool plugin",
+   "file": "test/03-otoco-launchpool-token.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Timestamp Plugins Test Create Jurisdictions",
+   "file": "test/04-otoco-timestamp.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Timestamp Plugins Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/04-otoco-timestamp.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy Timestamp plugin",
+   "fullTitle": "OtoCo Timestamp Plugins Test Deploy Timestamp plugin",
+   "file": "test/04-otoco-timestamp.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Create Jurisdictions",
+   "file": "test/05-otoco-token-nofee.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/05-otoco-token-nofee.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy and remove Token plugin",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Deploy and remove Token plugin",
+   "file": "test/05-otoco-token-nofee.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Multisig Plugin Test Create Jurisdictions",
+   "file": "test/06-otoco-multisig.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Multisig Plugin Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/06-otoco-multisig.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy External artifacts and test them",
+   "fullTitle": "OtoCo Multisig Plugin Test Deploy External artifacts and test them",
+   "file": "test/06-otoco-multisig.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy plugin, add and remove",
+   "fullTitle": "OtoCo Multisig Plugin Test Deploy plugin, add and remove",
+   "file": "test/06-otoco-multisig.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo ENS Plugin Test Create Jurisdictions",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo ENS Plugin Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy External artifacts",
+   "fullTitle": "OtoCo ENS Plugin Test Deploy External artifacts",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Setup ENS nodes and subnodes",
+   "fullTitle": "OtoCo ENS Plugin Test Setup ENS nodes and subnodes",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy ENS plugin and configure it",
+   "fullTitle": "OtoCo ENS Plugin Test Deploy ENS plugin and configure it",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add plugins and test duplication",
+   "fullTitle": "OtoCo ENS Plugin Test Add plugins and test duplication",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "test removed functions from plugin",
+   "fullTitle": "OtoCo ENS Plugin Test test removed functions from plugin",
+   "file": "test/07-otoco-ens.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Create Jurisdictions",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master, add jurisdictions and create Series",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Initialize Master, add jurisdictions and create Series",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Deploy source contracts and plugin",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Deploy source contracts and plugin",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test Transferable Tokens and Governor",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Test Transferable Tokens and Governor",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test Change Governor Settings",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Test Change Governor Settings",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test Non-Transferable Token Settings",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Test Non-Transferable Token Settings",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test Cast Vote with Signature and Resign",
+   "fullTitle": "OtoCo Token Without Fees Plugin Test Test Cast Vote with Signature and Resign",
+   "file": "test/08-otoco-governor.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "Test Entities migration Create Jurisdictions",
+   "file": "test/09-migration.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master and add jurisdictions",
+   "fullTitle": "Test Entities migration Initialize Master and add jurisdictions",
+   "file": "test/09-migration.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check jurisdiction order and count",
+   "fullTitle": "Test Entities migration Check jurisdiction order and count",
+   "file": "test/09-migration.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration of previous entities",
+   "fullTitle": "Test Entities migration Test migration of previous entities",
+   "file": "test/09-migration.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Master Test Create Jurisdictions",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master and add jurisdictions",
+   "fullTitle": "OtoCo Master Test Initialize Master and add jurisdictions",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check jurisdiction order and count",
+   "fullTitle": "OtoCo Master Test Check jurisdiction order and count",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration of previous entities",
+   "fullTitle": "OtoCo Master Test Test migration of previous entities",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Test migration entities",
+   "fullTitle": "OtoCo Master Test Test migration entities",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Update Master contract to V2",
+   "fullTitle": "OtoCo Master Test Update Master contract to V2",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Change payment fees and price feed source",
+   "fullTitle": "OtoCo Master Test Change payment fees and price feed source",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Creating series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Creating series with correct fees and wrong fees",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Closing series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Closing series with correct fees and wrong fees",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should withdraw fees",
+   "fullTitle": "OtoCo Master Test Should withdraw fees",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Update URI Sources and check if TokenURI are correct",
+   "fullTitle": "OtoCo Master Test Update URI Sources and check if TokenURI are correct",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+   "fullTitle": "OtoCo Master Test Add addresses as allowed marketplaces and add entity as marketplace",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Extend entity expiration date",
+   "fullTitle": "OtoCo Master Test Extend entity expiration date",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Add new jurisdiction and update existing jurisdiction's address",
+   "fullTitle": "OtoCo Master Test Add new jurisdiction and update existing jurisdiction's address",
+   "file": "test/10-migrate-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Create Jurisdictions",
+   "fullTitle": "OtoCo Master Test Create Jurisdictions",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Initialize Master and add jurisdictions",
+   "fullTitle": "OtoCo Master Test Initialize Master and add jurisdictions",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Check jurisdiction order and count",
+   "fullTitle": "OtoCo Master Test Check jurisdiction order and count",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Change payment fees and price feed source",
+   "fullTitle": "OtoCo Master Test Change payment fees and price feed source",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Creating series with correct fees and wrong fees",
+   "fullTitle": "OtoCo Master Test Creating series with correct fees and wrong fees",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity using Multisig initializer without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer without plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity using Multisig initializer with plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity using Multisig initializer with plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity without initializer and without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity without initializer and without plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new entity without initializer and with plugins",
+   "fullTitle": "OtoCo Master Test Should create a new entity without initializer and with plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "should score this input correctly",
+   "fullTitle": "Tarantula tarantulaScore should score this input correctly",
+   "file": "test/tarantula/tarantula.js",
+   "currentRetry": 0,
+   "err": {}
+  }
+ ]
+}

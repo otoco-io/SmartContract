@@ -3,7 +3,7 @@ const { ethers, upgrades } = require("hardhat");
 const { solidity } = require("ethereum-waffle");
 const chai = require("chai");
 const { zeroAddress } = require("ethereumjs-util");
-const { ConsensusAlgorithm } = require("@ethereumjs/common");
+// const { ConsensusAlgorithm } = require("@ethereumjs/common");
 chai.use(solidity);
 
 describe("OtoCo Master Test", function () {
@@ -63,6 +63,7 @@ describe("OtoCo Master Test", function () {
 
     await otocoMaster.createBatchSeries(jurisdictions, controllers, creations, names);
 
+
     expect((await otocoMaster.seriesCount()).toNumber()).to.equal(3);
 
     const firstSeries = await otocoMaster.series(0);
@@ -74,6 +75,8 @@ describe("OtoCo Master Test", function () {
     expect(secondSeries[0]).to.equal(1);
     expect(secondSeries[2].toNumber()).to.equal(20000);
     expect(secondSeries[3]).to.equal("Entity 2 LLC");
+
+    await expect(otocoMaster.connect(wallet3).createBatchSeries(jurisdictions, controllers, creations, names)).to.be.revertedWith("Ownable: caller is not the owner");
 
   });
 
@@ -159,7 +162,7 @@ describe("OtoCo Master Test", function () {
     expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2)
     expect((await otocoMaster.series(7)).name).to.be.equal("New Entity - Series 5")
     
-    // Chech if the amount to pay was transferred
+    // Check if the amount to pay was transferred
     expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equal(amountToPayForSpinUp);
 
   });
@@ -231,7 +234,7 @@ describe("OtoCo Master Test", function () {
 
     await otocoMaster.withdrawFees();
     
-    // Chech if the amount to pay was transferred
+    // Check if the amount to pay was transferred
     expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equal(0);
 
   });

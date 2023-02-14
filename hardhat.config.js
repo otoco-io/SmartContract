@@ -4,6 +4,7 @@ require("@nomicfoundation/hardhat-chai-matchers")
 require('hardhat-contract-sizer');
 require('solidity-coverage');
 require('solidity-docgen');
+require("hardhat-tracer");
 
 // const fs = require('fs');
 // const apiMain = fs.readFileSync(".api.main").toString().trim();
