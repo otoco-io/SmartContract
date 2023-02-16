@@ -23,12 +23,17 @@
     "solidity-coverage": "^0.8.0",
     "solidity-docgen": "^0.6.0-beta.10",
     "tarantula-fl": "^1.0.0",
+    "nodemon": "^2.0.16",
     "web3-utils": "^1.7.3"
   },
   "scripts": {
     "test": "mocha",
     "coverage": "npx hardhat coverage && npx hardhat coverage --matrix",
-    "tarantula": "npx hardhat test --grep Tarantula"
+    "tarantula": "npx hardhat test --grep Tarantula",
+    "mockify": "./test/halmos/mocks/mockify.sh",
+    "halmos:set": "npm ci && python3.9 -m pip install --upgrade halmos && cp test/halmos/**/*.sol contracts/ && halmos",
+    "halmos:run": "cp test/halmos/**/*.sol contracts/ && halmos",
+    "halmos:watch": "nodemon --watch test/halmos/tests/OtoCoMasterV2.t.sol --exec 'npm run halmos:run'"
   },
   "repository": {
     "type": "git",
