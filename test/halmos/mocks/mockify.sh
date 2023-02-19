@@ -21,7 +21,7 @@ sed -i 's/\bprivate\b/internal/g' "${newFileName}"
 # Replace the words "external" with "public".
 sed -i 's/\bexternal\b/public/g' "${newFileName}"
 
-# Fix the receive() function in case of its existance.
+# Fix the receive() function in case of its existence.
 if grep -q "receive()" "${newFileName}"; then
     sed -i '/receive()/ s/\bpublic\b/external/g' "${newFileName}"
 fi

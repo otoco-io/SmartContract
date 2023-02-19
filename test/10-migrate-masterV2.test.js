@@ -287,21 +287,25 @@ describe("OtoCo Master Test", function () {
     const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporatedV2");
     const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
     const renewalPrice = await unc.callStatic.getJurisdictionRenewalPrice();
-    const conversion = ethers.constants.One.div((await priceFeed.latestRoundData()).answer);
-    // gets zeroed out by hardhacoded priceFeed return value
-    const price = renewalPrice.mul(conversion);
-    // console.log(conversion)
-    // console.log(price)
-    const oldExpiration = (await otocoMaster.callStatic.series(10)).expiration;
-    const transaction = await otocoMaster.connect(wallet2).renewEntity(10,1, { value: 0 });
-    const newExpiration = (await otocoMaster.callStatic.series(10)).expiration;
+    const conversion = (await priceFeed.latestRoundData()).answer;
+    const amountToPayForRenew = EthDividend.div(conversion).mul(renewalPrice);
+    const yearInSecs = ethers.BigNumber.from(31536000);
+
+    const oldExpiration1 = (await otocoMaster.callStatic.series(10)).expiration;
+    const transaction = await otocoMaster.connect(wallet2).renewEntity(10,1, { value: amountToPayForRenew });
+    const transaction2 = await otocoMaster.renewEntity(5,2, { value: amountToPayForRenew.mul(ethers.constants.Two) });
+    const newExpiration1 = (await otocoMaster.callStatic.series(10)).expiration;
+    const newExpiration2 = (await otocoMaster.callStatic.series(5)).expiration;
+    const bn = await otocoMaster.provider.getBlockNumber();
+    const timestamp = ethers.BigNumber.from((await otocoMaster.provider.getBlock(bn)).timestamp);
 
     expect(transaction).to.be.ok;
-    expect(newExpiration).to.eq(oldExpiration.add(ethers.BigNumber.from(31536000)));
-    await expect(otocoMaster.renewEntity(5,1))
-      .to.be.revertedWithCustomError(otocoMaster, "NotRenewable");
-    // await expect(otocoMaster.connect(wallet2)
-      // .renewEntity(10,1)).to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
+    expect(transaction2).to.be.ok;
+    expect(newExpiration1).to.eq(oldExpiration1.add(yearInSecs));
+    expect(newExpiration2).to.eq(timestamp.add(yearInSecs.mul(ethers.constants.Two)));
+
+    await expect(otocoMaster.connect(wallet2)
+      .renewEntity(10,1)).to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
 
   });
 

@@ -18,7 +18,6 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     error InitializerError();
     error IncorrectOwner();
     error InsufficientValue(uint256 available, uint256 required);
-    error NotRenewable();
 
     // Events
     event FeesWithdrawn(address owner, uint256 amount);
@@ -227,14 +226,15 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      */
     function renewEntity(uint256 tokenId, uint256 periodInYears) payable external {
         Series storage s = series[tokenId];
-        if (s.expiration < 1) revert NotRenewable();
-        uint256 renewalPrice = IOtoCoJurisdiction(jurisdictionAddress[s.jurisdiction]).getJurisdictionRenewalPrice();
-        (,int256 conversion,,,) = priceFeed.latestRoundData();
-        if(msg.value < (periodInYears/uint256(conversion))*renewalPrice) revert InsufficientValue({
+        uint256 renewalPrice = 
+            priceConverter(IOtoCoJurisdiction(jurisdictionAddress[s.jurisdiction]).getJurisdictionRenewalPrice());
+
+        if(msg.value < (renewalPrice * periodInYears)) revert InsufficientValue({
             available: msg.value,
-            required: (periodInYears/uint256(conversion))*renewalPrice
+            required: (renewalPrice * periodInYears)
         });
         // 31536000 = 1 Year of renewal in seconds
+        if (s.expiration < 1) { s.expiration = uint64(block.timestamp); }
         s.expiration += uint64(31536000*periodInYears);
     }
 
