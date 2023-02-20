@@ -14,6 +14,7 @@ import "./utils/IOtoCoPlugin.sol";
 contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
 
     // Custom Errors
+    // @dev 0x3d693ada
     error NotAllowed();
     error InitializerError();
     error IncorrectOwner();
@@ -99,6 +100,22 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         _;
     }
 
+    // modifier isStandalone(bool stdin) {
+    //     assembly {
+    //         switch iszero(stdin)
+    //         case 1 {/* ... */}
+    //         case 0 {
+    //             mstore(0x00, caller())
+    //             mstore(0x20, marketplaceAddress.slot)
+    //             if iszero(sload(keccak256(0x00, 0x40))) {
+    //                 mstore(0x00, 0x3d693adaFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)
+    //                 revert(0x00, 0x04)
+    //             }
+    //         }
+    //     }
+    //     _;
+    // }
+
     function priceConverter(uint256 usdPrice) public view returns (uint256) {
         (,int256 quote,,,) = priceFeed.latestRoundData();
         return (priceFeedEth/uint256(quote))*usdPrice;
@@ -133,6 +150,10 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     public enoughAmountUSD(
         IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice()
     ) payable {
+        if (IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).isStandalone() == true) {
+            revert NotAllowed();
+        }
+
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         // Initialize Series data
@@ -167,6 +188,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         uint256 value,
         string calldata name
     ) public payable {
+        if (IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).isStandalone() == true) {
+            revert NotAllowed();
+        }
         uint256 valueRequired = gasleft()*baseFee
             + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice())
             + value;
@@ -204,6 +228,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         bytes[] calldata pluginsData,
         string calldata name
     ) public payable {
+        if (IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).isStandalone() == true) {
+            revert NotAllowed();
+        }
         uint256 valueRequired = gasleft()*baseFee
             + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice());
         if (msg.value < valueRequired) revert InsufficientValue({
@@ -268,7 +295,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param jurisdiction the index of the jurisdiction.
      * @param newAddress the new address of the jurisdiction.
      */
-    function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwner{
+    function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwner {
         jurisdictionAddress[jurisdiction] = newAddress;
     }
 
@@ -288,7 +315,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param addresses the address of the jurisdiction.
      * @param enabled the address of the jurisdiction.
      */
-    function setMarketplaceAddresses(address[] calldata addresses, bool[] calldata enabled) external onlyOwner{
+    function setMarketplaceAddresses(address[] calldata addresses, bool[] calldata enabled) external onlyOwner {
         uint256 i;
         uint256 addressesSize = addresses.length;  
         for (i; i < addressesSize;){

@@ -15,7 +15,7 @@ contract JurisdictionWyomingV2 is OtoCoJurisdictionV2 {
         string memory name,
         string memory defaultBadge,
         string memory goldBadge
-    ) OtoCoJurisdictionV2(renewPrice, deployPrice, name, defaultBadge, goldBadge) {}
+    ) OtoCoJurisdictionV2(renewPrice, deployPrice, name, defaultBadge, goldBadge, false) {}
 
 
     /**
