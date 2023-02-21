@@ -17,6 +17,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     // @dev 0x3d693ada
     error NotAllowed();
     error InitializerError();
+    // @dev 0x3a6bbed3
     error IncorrectOwner();
     error InsufficientValue(uint256 available, uint256 required);
 
@@ -68,7 +69,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     // Valid marketplace addresses that are allowed to create standalone entities
     mapping(address=>bool) internal marketplaceAddress;
     mapping(address=>bool) internal allowedPlugins;
-
+    mapping(uint256=>string) public docs;
     /**
      * Check if there's enough ETH paid for public transactions.
      */
@@ -275,6 +276,11 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         _burn(tokenId);
     }
 
+    function setDocs(uint256 tokenId, string memory documentation) external {
+        if(ownerOf(tokenId) != msg.sender) revert IncorrectOwner();
+        docs[tokenId] = documentation;
+    }
+
     receive() enoughAmountFees() external payable {}
 
     // --- ADMINISTRATION FUNCTIONS ---
@@ -285,9 +291,26 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param newAddress the address of the jurisdiction.
      */
     function addJurisdiction(address newAddress) external onlyOwner {
-        jurisdictionAddress[jurisdictionCount] = newAddress;
-        jurisdictionCount++;
-    }
+        // jurisdictionAddress[jurisdictionCount] = newAddress;
+        // jurisdictionCount++;
+        assembly {
+            mstore(
+            returndatasize(), 
+            sload(jurisdictionCount.slot)
+            )
+            mstore(32, jurisdictionAddress.slot)
+            sstore(
+            keccak256(
+            returndatasize(), 64), newAddress
+            )
+            sstore(
+            jurisdictionCount.slot, 
+            add(
+            sload(jurisdictionCount.slot),
+            iszero(0x0))
+            )
+        }
+    } 
 
     /**
      * Update a jurisdiction to the contract
@@ -296,7 +319,23 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param newAddress the new address of the jurisdiction.
      */
     function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwner {
-        jurisdictionAddress[jurisdiction] = newAddress;
+        // jurisdictionAddress[jurisdiction] = newAddress;
+        assembly {
+            mstore(
+            iszero(iszero(0x0)), 
+            jurisdiction
+            )
+            mstore(
+            shl(2,0x08), 
+            jurisdictionAddress.slot
+            )
+            sstore(
+            keccak256(
+            iszero(iszero(0x0)), 
+            shl(2,0x10)), 
+            newAddress
+            )
+        }
     }
 
     /**

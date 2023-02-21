@@ -29,4 +29,5 @@ interface IOtoCoMasterV2 {
     function externalUrl() external view returns (string calldata);
     function getSeries(uint256 tokenId) external view returns (Series memory);
     receive() external payable;
+    function docs(uint256 tokenId) external view returns(string memory);
 }

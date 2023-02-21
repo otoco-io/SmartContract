@@ -353,8 +353,8 @@ describe("OtoCo Master Test", function () {
       otocoMaster.address,
       token.address,
       [1],
-      [token.address]
-      );
+      [token.address],
+    );
 
     const pluginData = ethers.utils.defaultAbiCoder.encode(
       ['uint256', 'string', 'string', 'address'],
