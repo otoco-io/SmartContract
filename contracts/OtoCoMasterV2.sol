@@ -14,10 +14,8 @@ import "./utils/IOtoCoPlugin.sol";
 contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
 
     // Custom Errors
-    // @dev 0x3d693ada
     error NotAllowed();
     error InitializerError();
-    // @dev 0x3a6bbed3
     error IncorrectOwner();
     error InsufficientValue(uint256 available, uint256 required);
 
@@ -100,22 +98,6 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         });
         _;
     }
-
-    // modifier isStandalone(bool stdin) {
-    //     assembly {
-    //         switch iszero(stdin)
-    //         case 1 {/* ... */}
-    //         case 0 {
-    //             mstore(0x00, caller())
-    //             mstore(0x20, marketplaceAddress.slot)
-    //             if iszero(sload(keccak256(0x00, 0x40))) {
-    //                 mstore(0x00, 0x3d693adaFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF)
-    //                 revert(0x00, 0x04)
-    //             }
-    //         }
-    //     }
-    //     _;
-    // }
 
     function priceConverter(uint256 usdPrice) public view returns (uint256) {
         (,int256 quote,,,) = priceFeed.latestRoundData();
