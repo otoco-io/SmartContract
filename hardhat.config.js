@@ -1,10 +1,11 @@
+require("@nomicfoundation/hardhat-chai-matchers");
 require('@openzeppelin/hardhat-upgrades');
 require("@nomiclabs/hardhat-etherscan");
-require("@nomicfoundation/hardhat-chai-matchers")
 require('hardhat-contract-sizer');
 require('solidity-coverage');
 require('solidity-docgen');
 require("hardhat-tracer");
+// require("hardhat-gas-reporter");
 
 // const fs = require('fs');
 // const apiMain = fs.readFileSync(".api.main").toString().trim();

@@ -182,48 +182,17 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
             required: valueRequired
         });
         address controller = msg.sender;
-        (bool success, bytes memory initializerBytes) = plugins[0].call{value: value}(pluginsData[0]);
-        if (!success) revert InitializerError();
-        assembly {
-            controller := mload(add(initializerBytes,32))
+        if (plugins[0] != address(0x0)) {
+            (bool success, bytes memory initializerBytes) = plugins[0].call{value: value}(pluginsData[0]);
+            if (!success || plugins[0].code.length == 0) revert InitializerError();
+            assembly {
+                controller := mload(add(initializerBytes,32))
+            }
         }
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         createSeries(jurisdiction, controller, name);
         for (uint8 i=1; i<plugins.length; i++){
-            IOtoCoPlugin(plugins[i]).addPlugin(current, pluginsData[i]);
-        }
-    }
-
-    /**
-     * Create a new entity with plugins assgned to it.
-     * A contract initializer could previous
-     *
-     * @param jurisdiction Token id related to the entity to be renewed
-     * @param controller The initial manager/controller of the entity
-     * @param plugins The array of plugin addresses to be called
-     * @param pluginsData The array of pluginData to be used as parameters
-     */
-    function createEntityWithoutInitializer(
-        uint16 jurisdiction,
-        address controller,
-        address[] calldata plugins,
-        bytes[] calldata pluginsData,
-        string calldata name
-    ) public payable {
-        if (IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).isStandalone() == true) {
-            revert NotAllowed();
-        }
-        uint256 valueRequired = gasleft()*baseFee
-            + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice());
-        if (msg.value < valueRequired) revert InsufficientValue({
-            available: msg.value,
-            required: valueRequired
-        });
-        // Get next index to create tokenIDs
-        uint256 current = seriesCount;
-        createSeries(jurisdiction, controller, name);
-        for (uint8 i=0; i<plugins.length; i++){
             IOtoCoPlugin(plugins[i]).addPlugin(current, pluginsData[i]);
         }
     }
@@ -273,25 +242,8 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param newAddress the address of the jurisdiction.
      */
     function addJurisdiction(address newAddress) external onlyOwner {
-        // jurisdictionAddress[jurisdictionCount] = newAddress;
-        // jurisdictionCount++;
-        assembly {
-            mstore(
-            returndatasize(), 
-            sload(jurisdictionCount.slot)
-            )
-            mstore(32, jurisdictionAddress.slot)
-            sstore(
-            keccak256(
-            returndatasize(), 64), newAddress
-            )
-            sstore(
-            jurisdictionCount.slot, 
-            add(
-            sload(jurisdictionCount.slot),
-            iszero(0x0))
-            )
-        }
+        jurisdictionAddress[jurisdictionCount] = newAddress;
+        jurisdictionCount++;
     } 
 
     /**
@@ -301,23 +253,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param newAddress the new address of the jurisdiction.
      */
     function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwner {
-        // jurisdictionAddress[jurisdiction] = newAddress;
-        assembly {
-            mstore(
-            iszero(iszero(0x0)), 
-            jurisdiction
-            )
-            mstore(
-            shl(2,0x08), 
-            jurisdictionAddress.slot
-            )
-            sstore(
-            keccak256(
-            iszero(iszero(0x0)), 
-            shl(2,0x10)), 
-            newAddress
-            )
-        }
+        jurisdictionAddress[jurisdiction] = newAddress;
     }
 
     /**
