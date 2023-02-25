@@ -6,7 +6,7 @@ async function main() {
     let deploysJson;
     // Load deploy files created on 1-deploy-master.js
     try {
-        const data = fs.readFileSync(`./deploys/${network.name}.json`, {encoding:"utf-8"});
+        const data = fs.readFileSync(`./deploys/v1/${network.name}.json`, {encoding:"utf-8"});
         deploysJson = JSON.parse(data);
     } catch (err) {
         console.log('Error loading Master address: ', err);
@@ -20,7 +20,7 @@ async function main() {
     console.log("🚀 OtoCo Master Deployed:", master.address);
     deploysJson.master = master.address
 
-    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
+    fs.writeFileSync(`./deploys/v1/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 }
   
 main()

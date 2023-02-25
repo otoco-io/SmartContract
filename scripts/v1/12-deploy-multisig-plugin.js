@@ -12,7 +12,7 @@ async function main() {
 
     let deploysJson;
     try {
-        const data = fs.readFileSync(`./deploys/${network.name}.json`, {encoding: "utf-8"});
+        const data = fs.readFileSync(`./deploys/v1/${network.name}.json`, {encoding: "utf-8"});
         deploysJson = JSON.parse(data);
     } catch (err) {
         console.log('Not possible to load Deploy files. Will create one.', err);
@@ -22,7 +22,7 @@ async function main() {
     let previousJson
     // Import previous source contracts
     try {
-        const data = fs.readFileSync(`./deploys/previous.${network.name}.json`, {encoding: "utf-8"});
+        const data = fs.readFileSync(`./deploys/v1/previous.${network.name}.json`, {encoding: "utf-8"});
         previousJson = JSON.parse(data);
     } catch (err) {
         previousJson = []
@@ -70,7 +70,7 @@ async function main() {
     console.log("🚀 Multisig plugin Deployed:", multisigPlugin.address);
     deploysJson.multisig = multisigPlugin.address
 
-    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
+    fs.writeFileSync(`./deploys/v1/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 }
     
 main()

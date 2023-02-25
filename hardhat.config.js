@@ -7,6 +7,9 @@ require('solidity-docgen');
 require("hardhat-tracer");
 // require("hardhat-gas-reporter");
 
+require('dotenv').config();
+// require("./tasks/setup");
+
 // const fs = require('fs');
 // const apiMain = fs.readFileSync(".api.main").toString().trim();
 // const apiRopsten = fs.readFileSync(".api.ropsten").toString().trim();
@@ -21,7 +24,12 @@ module.exports = {
   networks: {
     hardhat: {
       blockGasLimit: 30000000,
-      //hardfork: 'london'
+      accounts: process.env.MNEMONIC_PHRASE ? {
+        mnemonic: process.env.MNEMONIC_PHRASE,
+      } : undefined,
+      forking: process.env.FORK_ENABLED === "true" ? {
+        url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`,
+      } : undefined,
     },
     // main: {
     //   url: apiMain,

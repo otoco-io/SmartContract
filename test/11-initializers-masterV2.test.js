@@ -20,7 +20,7 @@ const EthDividend = ethers.BigNumber.from(ethers.utils.parseUnits('1', 18)).mul(
 
 describe("OtoCo Master Test", function () {
   let owner, wallet2, wallet3, wallet4;
-  let OtoCoMaster;
+  let OtoCoMasterV2;
   let otocoMaster;
   let jurisdictions;
   let priceFeed;

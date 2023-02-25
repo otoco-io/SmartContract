@@ -80,9 +80,9 @@ async function main() {
     object.jurisdictions = jurisdictions;
     console.log("🚀 OtoCo Jurisdictions Deployed:", jurisdictions)
 
-    fs.writeFileSync(`./deploys/${network.name}.json`, JSON.stringify(object, undefined, 2));
+    fs.writeFileSync(`./deploys/v1/${network.name}.json`, JSON.stringify(object, undefined, 2));
 }
-  
+
 main()
 .then(() => process.exit(0))
 .catch((error) => {
