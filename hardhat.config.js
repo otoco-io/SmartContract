@@ -5,10 +5,10 @@ require('hardhat-contract-sizer');
 require('solidity-coverage');
 require('solidity-docgen');
 require("hardhat-tracer");
-// require("hardhat-gas-reporter");
 
 require('dotenv').config();
-// require("./tasks/setup");
+require("./tasks/setup");
+// require("hardhat-gas-reporter");
 
 // const fs = require('fs');
 // const apiMain = fs.readFileSync(".api.main").toString().trim();
@@ -19,6 +19,12 @@ require('dotenv').config();
 // const apiPolygon = fs.readFileSync(".api.polygon").toString().trim();
 // const seedMain = fs.readFileSync(".secret.main").toString().trim();
 
+const urlBuild = 
+  `https://eth-` +
+  `${process.env.FORKED_NETWORK}` + 
+  `.g.alchemy.com/v2/` + 
+  `${process.env.ALCHEMY_KEY}`;
+
 module.exports = {
   solidity: "0.8.4",
   networks: {
@@ -28,7 +34,7 @@ module.exports = {
         mnemonic: process.env.MNEMONIC_PHRASE,
       } : undefined,
       forking: process.env.FORK_ENABLED === "true" ? {
-        url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_KEY}`,
+        url: urlBuild,
       } : undefined,
     },
     // main: {

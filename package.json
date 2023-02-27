@@ -29,7 +29,8 @@
     "dotenv": "^16.0.3"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "npx hardhat test",
+    "setup": "npx hardhat node --show-stack--traces & sleep 9 && npx hardhat setup --network localhost && pkill -s0",
     "coverage": "npx hardhat coverage && npx hardhat coverage --matrix",
     "tarantula": "npx hardhat test --grep Tarantula",
     "mockify": "./test/halmos/mocks/mockify.sh",
