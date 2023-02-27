@@ -43,7 +43,7 @@ async function main() {
 
     // Load deploy files created on 1-deploy-master.js
     try {
-        const data = await fs.readFile(`./deploys/${network.name}.json`, "utf-8");
+        const data = await fs.readFile(`./deploys/v1/${network.name}.json`, "utf-8");
         deploysJson = JSON.parse(data);
     } catch (err) {
         console.log('Error loading Master address: ', err);

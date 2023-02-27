@@ -19,7 +19,7 @@ async function main() {
 
   // Load previous plugin contract addresses
   try {
-    const data = fs.readFileSync(`./deploys/previous.${network.name}.json`, {encoding: "utf-8"});
+    const data = fs.readFileSync(`./deploys/v1/previous.${network.name}.json`, {encoding: "utf-8"});
     deploys = JSON.parse(data);
   } catch (err) {
     console.log('Not possible to load Deploy files. Will create one.', err);

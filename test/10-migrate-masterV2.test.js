@@ -232,7 +232,6 @@ describe("OtoCo Master Test", function () {
     // Decode base64 data to read JSON data
     let buff = Buffer.from(tokenURI.split(',')[1], 'base64');
     let json = JSON.parse(buff.toString('utf-8'));
-    
     expect(json.name).to.be.equal("Entity 2 - Series 3");
     expect(json.image).to.be.equal("goldBadgeURLWY");
 
@@ -240,16 +239,26 @@ describe("OtoCo Master Test", function () {
     buff = Buffer.from(tokenURI2.split(',')[1], 'base64');
     json = JSON.parse(buff.toString('utf-8'));
     
+    expect(json.docs).to.deep.eq(undefined);
     expect(json.name).to.be.equal("New Entity - Series 5");
     expect(json.image).to.be.equal("defaultBadgeURLWY");
     expect(json.attributes[0].trait_type).to.be.equal("Creation");
     expect(parseInt(json.attributes[0].value)).to.be.above(Date.now()*0.0001-5000);
     expect(json.attributes[1].trait_type).to.be.equal("Jurisdiction");
     expect(json.attributes[1].value).to.be.equals("WYOMING");
-    // console.log(json)
 
     await expect(otocoMaster.connect(wallet3).changeURISources(entityURI.address))
       .to.be.revertedWith('Ownable: caller is not the owner');
+
+    // update docs parameter
+    const tx = await otocoMaster.connect(wallet3).setDocs(4, "CID");
+    buff = Buffer.from((await otocoMaster.tokenURI(4)).split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+
+    expect(tx).to.be.ok;
+    expect(json.docs).to.eq("CID");
+    await expect(otocoMaster.connect(wallet2).setDocs(4,"fail")).to.be.revertedWithCustomError(otocoMaster, "IncorrectOwner");
+
   });
 
   it("Add addresses as allowed marketplaces and add entity as marketplace", async function () {
@@ -287,21 +296,25 @@ describe("OtoCo Master Test", function () {
     const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporatedV2");
     const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
     const renewalPrice = await unc.callStatic.getJurisdictionRenewalPrice();
-    const conversion = ethers.constants.One.div((await priceFeed.latestRoundData()).answer);
-    // gets zeroed out by hardhacoded priceFeed return value
-    const price = renewalPrice.mul(conversion);
-    // console.log(conversion)
-    // console.log(price)
-    const oldExpiration = (await otocoMaster.callStatic.series(10)).expiration;
-    const transaction = await otocoMaster.connect(wallet2).renewEntity(10,1, { value: 0 });
-    const newExpiration = (await otocoMaster.callStatic.series(10)).expiration;
+    const conversion = (await priceFeed.latestRoundData()).answer;
+    const amountToPayForRenew = EthDividend.div(conversion).mul(renewalPrice);
+    const yearInSecs = ethers.BigNumber.from(31536000);
+
+    const oldExpiration1 = (await otocoMaster.callStatic.series(10)).expiration;
+    const transaction = await otocoMaster.connect(wallet2).renewEntity(10,1, { value: amountToPayForRenew });
+    const transaction2 = await otocoMaster.renewEntity(5,2, { value: amountToPayForRenew.mul(ethers.constants.Two) });
+    const newExpiration1 = (await otocoMaster.callStatic.series(10)).expiration;
+    const newExpiration2 = (await otocoMaster.callStatic.series(5)).expiration;
+    const bn = await otocoMaster.provider.getBlockNumber();
+    const timestamp = ethers.BigNumber.from((await otocoMaster.provider.getBlock(bn)).timestamp);
 
     expect(transaction).to.be.ok;
-    expect(newExpiration).to.eq(oldExpiration.add(ethers.BigNumber.from(31536000)));
-    await expect(otocoMaster.renewEntity(5,1))
-      .to.be.revertedWithCustomError(otocoMaster, "NotRenewable");
-    // await expect(otocoMaster.connect(wallet2)
-      // .renewEntity(10,1)).to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
+    expect(transaction2).to.be.ok;
+    expect(newExpiration1).to.eq(oldExpiration1.add(yearInSecs));
+    expect(newExpiration2).to.eq(timestamp.add(yearInSecs.mul(ethers.constants.Two)));
+
+    await expect(otocoMaster.connect(wallet2)
+      .renewEntity(10,1)).to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
 
   });
 
@@ -317,8 +330,12 @@ describe("OtoCo Master Test", function () {
       await otocoMaster.callStatic.jurisdictionAddress(3),
     ];
 
-    const transaction2 = await otocoMaster.updateJurisdiction(3, zeroAddress());
+    const transaction2 = await otocoMaster.updateJurisdiction(3, owner.address);
     const storageUpdate = await otocoMaster.callStatic.jurisdictionAddress(3);
+
+    const transaction3 = await otocoMaster.updateJurisdiction(3, zeroAddress());
+    const storageUpdate2 = await otocoMaster.callStatic.jurisdictionAddress(3);
+
 
     expect(transaction).to.be.ok;
     expect(oldStorage[0]).to.eq(3);
@@ -326,7 +343,9 @@ describe("OtoCo Master Test", function () {
     expect(newStorage[0]).to.eq(4);
     expect(newStorage[1]).to.eq(addr);
     expect(transaction2).to.be.ok;
-    expect(storageUpdate).to.eq(zeroAddress());
+    expect(transaction3).to.be.ok;
+    expect(storageUpdate).to.eq(owner.address);
+    expect(storageUpdate2).to.eq(zeroAddress());
 
     await expect(otocoMaster
       .connect(wallet3)

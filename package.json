@@ -19,16 +19,24 @@
     "ethereum-waffle": "^4.0.0",
     "hardhat": "^2.11.0",
     "hardhat-contract-sizer": "^2.6.1",
+    "hardhat-gas-reporter": "^1.0.9",
     "hardhat-tracer": "^2.0.0-beta.6",
+    "nodemon": "^2.0.16",
     "solidity-coverage": "^0.8.0",
     "solidity-docgen": "^0.6.0-beta.10",
     "tarantula-fl": "^1.0.0",
-    "web3-utils": "^1.7.3"
+    "web3-utils": "^1.7.3",
+    "dotenv": "^16.0.3"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "npx hardhat test",
+    "setup": "npx hardhat node --show-stack--traces & sleep 9 && npx hardhat setup --network localhost && pkill -s0",
     "coverage": "npx hardhat coverage && npx hardhat coverage --matrix",
-    "tarantula": "npx hardhat test --grep Tarantula"
+    "tarantula": "npx hardhat test --grep Tarantula",
+    "mockify": "./test/halmos/mocks/mockify.sh",
+    "halmos:set": "npm ci && python3.9 -m pip install --upgrade halmos && cp test/halmos/**/*.sol contracts/ && halmos",
+    "halmos:run": "cp test/halmos/**/*.sol contracts/ && halmos",
+    "halmos:watch": "nodemon --watch test/halmos/tests/OtoCoMasterV2.t.sol --exec 'npm run halmos:run'"
   },
   "repository": {
     "type": "git",

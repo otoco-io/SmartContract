@@ -32,27 +32,29 @@ contract OtoCoURI {
         IOtoCoJurisdiction jurisdictionContract = IOtoCoJurisdiction(otocoMaster.jurisdictionAddress(jurisdiction));
         string memory badge = jurisdictionContract.getJurisdictionBadge();
         if (tokenId < lastMigrated) badge = jurisdictionContract.getJurisdictionGoldBadge();
-
-        string memory json = Base64.encode(bytes(string(abi.encodePacked(
-            '{"name": "',
-            name,
-            '", "description": "',
-            "OtoCo NFTs are minted to represent each entity and their jurisdiction as created by the OtoCo dapp. ",
-            "The holder of this NFT as recorded on the blockchain is the owner of ",
-            name,
-            " and is authorized to access the entity's dashboard on https://otoco.io.",
-            '", "image": "',
-            badge,
-            '", "external_url": "',
-            otocoMaster.externalUrl(),
-            tokenId.toString(),
-            '/","attributes":[',
-            '{"display_type": "date","trait_type": "Creation", "value": "',
-            uint256(creation).toString(),
-            '"},{"trait_type": "Jurisdiction", "value": "',
-            jurisdictionContract.getJurisdictionName(),
-            '"}]}'
-        ))));
-        return string(abi.encodePacked('data:application/json;base64,', json));
+        string memory docs = otocoMaster.docs(tokenId); 
+            string memory json = Base64.encode(bytes(string(abi.encodePacked(
+                '{"name": "',
+                name,
+                '", "description": "',
+                "OtoCo NFTs are minted to represent each entity and their jurisdiction as created by the OtoCo dapp. ",
+                "The holder of this NFT as recorded on the blockchain is the owner of ",
+                name,
+                " and is authorized to access the entity's dashboard on https://otoco.io.",
+                '", "image": "',
+                badge,
+                '", "external_url": "',
+                otocoMaster.externalUrl(),
+                tokenId.toString(),
+                '/',
+                bytes(docs).length != 0 ? string(abi.encodePacked('", "docs": "', docs)) : "",
+                '","attributes":[',
+                '{"display_type": "date","trait_type": "Creation", "value": "',
+                uint256(creation).toString(),
+                '"},{"trait_type": "Jurisdiction", "value": "',
+                jurisdictionContract.getJurisdictionName(),
+                '"}]}'
+            ))));
+            return string(abi.encodePacked('data:application/json;base64,', json));
     }
 }

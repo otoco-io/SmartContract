@@ -1,10 +1,14 @@
+require("@nomicfoundation/hardhat-chai-matchers");
 require('@openzeppelin/hardhat-upgrades');
 require("@nomiclabs/hardhat-etherscan");
-require("@nomicfoundation/hardhat-chai-matchers")
 require('hardhat-contract-sizer');
 require('solidity-coverage');
 require('solidity-docgen');
 require("hardhat-tracer");
+
+require('dotenv').config();
+require("./tasks/setup");
+// require("hardhat-gas-reporter");
 
 // const fs = require('fs');
 // const apiMain = fs.readFileSync(".api.main").toString().trim();
@@ -15,12 +19,23 @@ require("hardhat-tracer");
 // const apiPolygon = fs.readFileSync(".api.polygon").toString().trim();
 // const seedMain = fs.readFileSync(".secret.main").toString().trim();
 
+const urlBuild = 
+  `https://eth-` +
+  `${process.env.FORKED_NETWORK}` + 
+  `.g.alchemy.com/v2/` + 
+  `${process.env.ALCHEMY_KEY}`;
+
 module.exports = {
   solidity: "0.8.4",
   networks: {
     hardhat: {
       blockGasLimit: 30000000,
-      //hardfork: 'london'
+      accounts: process.env.MNEMONIC_PHRASE ? {
+        mnemonic: process.env.MNEMONIC_PHRASE,
+      } : undefined,
+      forking: process.env.FORK_ENABLED === "true" ? {
+        url: urlBuild,
+      } : undefined,
     },
     // main: {
     //   url: apiMain,

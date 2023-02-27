@@ -18,7 +18,6 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     error InitializerError();
     error IncorrectOwner();
     error InsufficientValue(uint256 available, uint256 required);
-    error NotRenewable();
 
     // Events
     event FeesWithdrawn(address owner, uint256 amount);
@@ -68,7 +67,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     // Valid marketplace addresses that are allowed to create standalone entities
     mapping(address=>bool) internal marketplaceAddress;
     mapping(address=>bool) internal allowedPlugins;
-
+    mapping(uint256=>string) public docs;
     /**
      * Check if there's enough ETH paid for public transactions.
      */
@@ -134,6 +133,10 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     public enoughAmountUSD(
         IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice()
     ) payable {
+        if (IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).isStandalone() == true) {
+            revert NotAllowed();
+        }
+
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         // Initialize Series data
@@ -168,6 +171,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         uint256 value,
         string calldata name
     ) public payable {
+        if (IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).isStandalone() == true) {
+            revert NotAllowed();
+        }
         uint256 valueRequired = gasleft()*baseFee
             + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice())
             + value;
@@ -176,45 +182,17 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
             required: valueRequired
         });
         address controller = msg.sender;
-        (bool success, bytes memory initializerBytes) = plugins[0].call{value: value}(pluginsData[0]);
-        if (!success) revert InitializerError();
-        assembly {
-            controller := mload(add(initializerBytes,32))
+        if (plugins[0] != address(0x0)) {
+            (bool success, bytes memory initializerBytes) = plugins[0].call{value: value}(pluginsData[0]);
+            if (!success || plugins[0].code.length == 0) revert InitializerError();
+            assembly {
+                controller := mload(add(initializerBytes,32))
+            }
         }
         // Get next index to create tokenIDs
         uint256 current = seriesCount;
         createSeries(jurisdiction, controller, name);
         for (uint8 i=1; i<plugins.length; i++){
-            IOtoCoPlugin(plugins[i]).addPlugin(current, pluginsData[i]);
-        }
-    }
-
-    /**
-     * Create a new entity with plugins assgned to it.
-     * A contract initializer could previous
-     *
-     * @param jurisdiction Token id related to the entity to be renewed
-     * @param controller The initial manager/controller of the entity
-     * @param plugins The array of plugin addresses to be called
-     * @param pluginsData The array of pluginData to be used as parameters
-     */
-    function createEntityWithoutInitializer(
-        uint16 jurisdiction,
-        address controller,
-        address[] calldata plugins,
-        bytes[] calldata pluginsData,
-        string calldata name
-    ) public payable {
-        uint256 valueRequired = gasleft()*baseFee
-            + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice());
-        if (msg.value < valueRequired) revert InsufficientValue({
-            available: msg.value,
-            required: valueRequired
-        });
-        // Get next index to create tokenIDs
-        uint256 current = seriesCount;
-        createSeries(jurisdiction, controller, name);
-        for (uint8 i=0; i<plugins.length; i++){
             IOtoCoPlugin(plugins[i]).addPlugin(current, pluginsData[i]);
         }
     }
@@ -227,14 +205,15 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      */
     function renewEntity(uint256 tokenId, uint256 periodInYears) payable external {
         Series storage s = series[tokenId];
-        if (s.expiration < 1) revert NotRenewable();
-        uint256 renewalPrice = IOtoCoJurisdiction(jurisdictionAddress[s.jurisdiction]).getJurisdictionRenewalPrice();
-        (,int256 conversion,,,) = priceFeed.latestRoundData();
-        if(msg.value < (periodInYears/uint256(conversion))*renewalPrice) revert InsufficientValue({
+        uint256 renewalPrice = 
+            priceConverter(IOtoCoJurisdiction(jurisdictionAddress[s.jurisdiction]).getJurisdictionRenewalPrice());
+
+        if(msg.value < (renewalPrice * periodInYears)) revert InsufficientValue({
             available: msg.value,
-            required: (periodInYears/uint256(conversion))*renewalPrice
+            required: (renewalPrice * periodInYears)
         });
         // 31536000 = 1 Year of renewal in seconds
+        if (s.expiration < 1) { s.expiration = uint64(block.timestamp); }
         s.expiration += uint64(31536000*periodInYears);
     }
 
@@ -246,6 +225,11 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     function closeSeries(uint256 tokenId) public enoughAmountFees() payable {
         if(ownerOf(tokenId) != msg.sender) revert IncorrectOwner();
         _burn(tokenId);
+    }
+
+    function setDocs(uint256 tokenId, string memory documentation) external {
+        if(ownerOf(tokenId) != msg.sender) revert IncorrectOwner();
+        docs[tokenId] = documentation;
     }
 
     receive() enoughAmountFees() external payable {}
@@ -260,7 +244,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     function addJurisdiction(address newAddress) external onlyOwner {
         jurisdictionAddress[jurisdictionCount] = newAddress;
         jurisdictionCount++;
-    }
+    } 
 
     /**
      * Update a jurisdiction to the contract
@@ -268,7 +252,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param jurisdiction the index of the jurisdiction.
      * @param newAddress the new address of the jurisdiction.
      */
-    function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwner{
+    function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwner {
         jurisdictionAddress[jurisdiction] = newAddress;
     }
 
@@ -288,7 +272,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param addresses the address of the jurisdiction.
      * @param enabled the address of the jurisdiction.
      */
-    function setMarketplaceAddresses(address[] calldata addresses, bool[] calldata enabled) external onlyOwner{
+    function setMarketplaceAddresses(address[] calldata addresses, bool[] calldata enabled) external onlyOwner {
         uint256 i;
         uint256 addressesSize = addresses.length;  
         for (i; i < addressesSize;){

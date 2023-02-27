@@ -20,7 +20,7 @@ const EthDividend = ethers.BigNumber.from(ethers.utils.parseUnits('1', 18)).mul(
 
 describe("OtoCo Master Test", function () {
   let owner, wallet2, wallet3, wallet4;
-  let OtoCoMaster;
+  let OtoCoMasterV2;
   let otocoMaster;
   let jurisdictions;
   let priceFeed;
@@ -169,6 +169,8 @@ describe("OtoCo Master Test", function () {
   const unfundedArgs = initArgs.concat(values[1]);
   const initError = fundedArgs.slice();
   initError.splice(1,1,[otocoMaster.address]);
+  const initError2 = fundedArgs.slice();
+  initError2.splice(1,1,[owner.address]);
 
     const transaction =
       await otocoMaster
@@ -185,6 +187,8 @@ describe("OtoCo Master Test", function () {
       .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
     
     await expect(otocoMaster.createEntityWithInitializer(...initError))
+      .to.be.revertedWithCustomError(otocoMaster, "InitializerError");
+    await expect(otocoMaster.createEntityWithInitializer(...initError2))
       .to.be.revertedWithCustomError(otocoMaster, "InitializerError");
 
   });
@@ -294,9 +298,9 @@ describe("OtoCo Master Test", function () {
     const initArgs =
       [ 
         1,
-        owner.address,
+        [zeroAddress()],
         [],
-        [],
+        0,
         "New Entity 3",
       ];
 
@@ -311,7 +315,7 @@ describe("OtoCo Master Test", function () {
     const unfundedArgs = initArgs.concat(values[1]);
 
     const transaction = 
-      await otocoMaster.createEntityWithoutInitializer(...fundedArgs);
+      await otocoMaster.createEntityWithInitializer(...fundedArgs);
 
     const ownerOf = (await transaction.wait()).events.pop().args.to;
     const storageCheck =  
@@ -329,7 +333,7 @@ describe("OtoCo Master Test", function () {
     
     await expect(transaction).to.emit(otocoMaster, 'Transfer')
       .withArgs(zeroAddress(), owner.address, ethers.BigNumber.from(3));
-    await expect(otocoMaster.createEntityWithoutInitializer(...unfundedArgs))
+    await expect(otocoMaster.createEntityWithInitializer(...unfundedArgs))
       .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
 
   });
@@ -348,30 +352,40 @@ describe("OtoCo Master Test", function () {
 
     const TokenFactory = await ethers.getContractFactory("OtoCoToken");
     const token = await TokenFactory.deploy();
-    const TokenPluginFactory = await ethers.getContractFactory("Token");
-    tokenPlugin = await TokenPluginFactory.deploy(
-      otocoMaster.address,
-      token.address,
-      [1],
-      [token.address]
-      );
+    // const TokenPluginFactory = await ethers.getContractFactory("Token");
+    // tokenPlugin = await TokenPluginFactory.deploy(
+    //   otocoMaster.address,
+    //   token.address,
+    //   [1],
+    //   [token.address],
+    // );
 
-    const pluginData = ethers.utils.defaultAbiCoder.encode(
-      ['uint256', 'string', 'string', 'address'],
-      [
-        ethers.utils.parseEther('100'), 
-        'Test Token', 
-        'TEST', 
-        owner.address,
-      ],
-    );
+    // const pluginData = ethers.utils.defaultAbiCoder.encode(
+    //   ['uint256', 'string', 'string', 'address'],
+    //   [
+    //     ethers.utils.parseEther('100'), 
+    //     'Test Token', 
+    //     'TEST', 
+    //     owner.address,
+    //   ],
+    // );
+
+    const pluginABI = 
+    (await hre.artifacts.readArtifact("IOtoCoPlugin")).abi;
+
+    const mockData = 
+      ethers.utils.defaultAbiCoder.encode(['string'],['mckd'],);
+    
+    const mockPlugin = await deployMockContract(owner, pluginABI);
+    await mockPlugin.deployed();
+    await mockPlugin.mock.addPlugin.withArgs(4,mockData).returns();
 
     const initArgs =
     [ 
       1,
-      otocoMaster.address,
-      [tokenPlugin.address],
-      [pluginData],
+      [zeroAddress(), mockPlugin.address],
+      [ethers.constants.HashZero, mockData],
+      0,
       "New Entity 4",
     ];
 
@@ -394,7 +408,7 @@ describe("OtoCo Master Test", function () {
   });
 
   const transaction = 
-    await otocoMaster.createEntityWithoutInitializer(...fundedArgs);
+    await otocoMaster.createEntityWithInitializer(...fundedArgs);
 
   const storageCheck =  
     [
@@ -407,11 +421,11 @@ describe("OtoCo Master Test", function () {
     expect(transaction).to.be.ok;
     expect(storageCheck[0]).to.eq(ethers.BigNumber.from(5));
     expect(storageCheck[1]).to.eq(ethers.constants.Two);
-    expect(storageCheck[2]).to.eq(otocoMaster.address);
+    expect(storageCheck[2]).to.eq(owner.address);
     
     await expect(transaction).to.emit(otocoMaster, 'Transfer')
-      .withArgs(zeroAddress(), otocoMaster.address, ethers.BigNumber.from(4));
-    await expect(otocoMaster.createEntityWithoutInitializer(...unfundedArgs))
+      .withArgs(zeroAddress(), owner.address, ethers.BigNumber.from(4));
+    await expect(otocoMaster.createEntityWithInitializer(...unfundedArgs))
       .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
 
   });
