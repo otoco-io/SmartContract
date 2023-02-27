@@ -2,6 +2,7 @@ const { task } = require("hardhat/config");
 require('dotenv').config();
 
 require("./jurisdictions");
+require("./master");
 
 const urlBuild = 
   `https://eth-` +
@@ -29,8 +30,10 @@ task("setup", "OtoCo V2 scripts setup pusher")
     });
   };
     
-    await hre.run( "jurisdictions", jurisdictionPrices );
-    
+    const jurisdictions = await hre.run( "jurisdictions", jurisdictionPrices );
+    const jurAddrs = JSON.stringify(jurisdictions.map(({ address }) => address));
+    const master = await hre.run( "master", {jurisdictions: jurAddrs });
+
   });
 
   module.exports = {

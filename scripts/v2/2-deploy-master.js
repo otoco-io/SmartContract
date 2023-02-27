@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { network } = require("hardhat");
+const hre = require("hardhat");
 
 const Reset = "\x1b[0m";
 const Bright = "\x1b[1m";
@@ -22,9 +23,9 @@ async function main() {
 		process.exit(1);
 	}
 
-	OtoCoMasterV2 = await ethers.getContractFactory("OtoCoMasterV2");
-	otocoMaster = await upgrades.deployProxy(OtoCoMasterV2, [deploysJson.jurisdictions, 'https://otoco.io/dashpanel/entity/']);
-	const master = await otocoMaster.deployed();
+	const master = await hre.run("master", {
+		jurisdictions: JSON.stringify(deploysJson.jurisdictions),
+	});
 
 	const [deployer] = await ethers.getSigners();
 	console.log(`${Bright}👤 Contract deployed with ${deployer.address}${Reset}`, "\n");
@@ -32,16 +33,16 @@ async function main() {
 
 	let jurisdictions = deploysJson.jurisdictions;
 
-    for (const [i, address] of jurisdictions.entries()) {
-        console.log(`${FgCyan}Checking jurisdiction ${i}:${Reset}`);
-        const returnedAddress = await otocoMaster.callStatic.jurisdictionAddress(i);
-        console.log(returnedAddress);
-        if (returnedAddress === address) {
+  for (const [i, address] of jurisdictions.entries()) {
+    console.log(`${FgCyan}Checking jurisdiction ${i}:${Reset}`);
+    const returnedAddress = await master.callStatic.jurisdictionAddress(i);
+    console.log(returnedAddress);
+    if (returnedAddress === address) {
 			console.log(`Address ${i}: ${FgGreen}${address} - Match!${Reset}`);
 		} else {
 			console.log(`Address ${i}: ${FgRed}${address} - No match!${Reset}`);
 		}
-    }
+  }
 
 	deploysJson.master = master.address;
 

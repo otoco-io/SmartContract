@@ -45,7 +45,7 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
 .setAction(async (taskArgs) => {
 
   const signers = await ethers.getSigners();
-// console.log(defaultDAOData)
+
   const jurisdictions = [
     { 
       name: 'unincorporated', 
