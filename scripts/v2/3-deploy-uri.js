@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { network } = require("hardhat");
+const hre = require("hardhat");
 
 const Reset = "\x1b[0m";
 const Bright = "\x1b[1m";
@@ -22,14 +23,9 @@ async function main() {
 		process.exit(1);
 	}
 
-  const OtocoMaster = await ethers.getContractFactory("OtoCoMasterV2");
-  const otocoMaster = OtocoMaster.attach(deploysJson.master);
+  [entityURI, otocoMaster] = 
+    await hre.run("uri", { master: deploysJson.master });
 
-  const EntityURI = await ethers.getContractFactory("OtoCoURI");
-  const entityURI = await EntityURI.deploy(otocoMaster.address);
-  await entityURI.deployed();
-  
-  await otocoMaster.changeURISources(entityURI.address);
   const returnedAddress = await otocoMaster.callStatic.entitiesURI(); 
 
   const [deployer] = await ethers.getSigners();
