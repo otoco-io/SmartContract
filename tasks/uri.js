@@ -13,3 +13,7 @@ task("uri", "Deploys the default URI builder for OtoCo Entities")
 
   return [uri, masterInstance];
 });
+
+module.exports = {
+  solidity: "0.8.4",
+};

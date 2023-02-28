@@ -4,6 +4,7 @@ const hre = require("hardhat");
 
 const Reset = "\x1b[0m";
 const Bright = "\x1b[1m";
+const FgGreen = "\x1b[32m";
 const FgRed = "\x1b[31m";
 
 async function delay(ms) {
@@ -86,37 +87,46 @@ async function main() {
         `./deploys/v2/${network.name}.json`, 
         JSON.stringify(object, undefined, 2),
     );
-        
+
     if (network.config.chainId != '31337') {
+        const maxTries = 8;
+        const delayTime = 10000;
+        let count = 0;
         for (const jurisdiction of jurisdictions) {
-            let count = 0;
-            let maxTries = 8;
-        
-            while (true) {
-                await delay(10000);
-                try {
-                    console.log('Verifying contract at', jurisdiction.address);
-                    await hre.run('verify:verify', {
-                        address: jurisdiction.address,
-                        constructorArguments: Object.values(jurisdictionData[jurisdiction.address]),
-                    });
+        do {
+            await delay(delayTime);
+            try {
+                console.log(
+                    `${Bright}Verifying contract at address` +
+                    `${jurisdiction.address}${Reset}`
+                );
+                await hre.run('verify:verify', {
+                    address: jurisdiction.address,
+                    constructorArguments: 
+                        Object.values(jurisdictionData[jurisdiction.address]),
+                });
+                console.log(
+                    `${Bright}${FgGreen}Contract at address` +
+                    `${jurisdiction.address} has been successfully verified${Reset}`);
+                break;
+            } catch (error) {
+                if (String(error).includes('Already Verified')) {
+                    console.log(
+                        `${Bright}${FgGreen}Contract at address` +
+                        `${jurisdiction.address} has already been verified${Reset}`);
                     break;
-                } catch (error) {
-                    
-                    if (String(error).includes('Already Verified')) {
-                        console.log(`Already verified contract at address ${jurisdiction.address}`);
-                        break; 
-                    }
-                    
-                    if (++count == maxTries) {
-                        console.log(`Failed to verify contract at address ${jurisdiction.address}, error: ${error}`);
-                        break;
-                    }
-                
-                    console.log(`Retrying... Retry #${count}, last error: ${error}`);
+                };
+                console.log(
+                    `${Bright}Retrying verification of contract at address` + 
+                    `${jurisdiction.address} - attempt #${++count}, error: ${FgRed}${error}${Reset}`
+                );
+                if (count === maxTries) 
+                    console.log(
+                        `${Bright}${FgRed}Failed to verify contract at address` +
+                        `${jurisdiction.address} after ${count} attempts, error: ${error}${Reset}`);
                 }
-            }
-        }    
+            } while (count < maxTries);
+        }
     }
 }
 

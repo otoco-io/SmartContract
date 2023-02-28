@@ -34,7 +34,7 @@ task("setup", "OtoCo V2 scripts setup pusher")
     
     const jurisdictions = await hre.run( "jurisdictions", jurisdictionPrices );
     const jurAddrs = JSON.stringify(jurisdictions.map(({ address }) => address));
-    const master = await hre.run( "master", {jurisdictions: jurAddrs });
+    const [master, priceFeedAdr] = await hre.run( "master", {jurisdictions: jurAddrs });
     const uri = (await hre.run("uri", {master: master.address}))[0];
     
   });
