@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { network } = require("hardhat");
 const hre = require("hardhat");
+const { defaultUrl } = require("../../tasks/master");
 
 const Reset = "\x1b[0m";
 const Bright = "\x1b[1m";
@@ -9,6 +10,10 @@ const FgRed = "\x1b[31m";
 const FgGreen = "\x1b[32m";
 const FgMagenta = "\x1b[35m";
 const FgCyan = "\x1b[36m";
+
+async function delay(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 async function main() {
 
@@ -47,6 +52,43 @@ async function main() {
 	deploysJson.master = master.address;
 
 	fs.writeFileSync(`./deploys/v2/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
+	
+	const defaultUrl = (await master.callStatic.externalUrl());
+	console.log(`\n ${FgCyan} externalUrl written to storage: ${Reset}`, defaultUrl, `\n`)
+
+	if (network.config.chainId != '31337') {
+		let count = 0;
+		let maxTries = 8;
+
+		while (true) {
+			await delay(10000);
+			try {
+				console.log('Verifying contract at', master.address);
+				
+				await hre.run('verify:verify', {
+						address: master.address,
+						// constructorArguments: [/* jurisdictions, defaultUrl */]
+				});
+				break;
+			} catch (error) {
+				if (String(error).includes('Already Verified')) {
+					
+					console.log(
+						`Already verified contract at address` + 
+						`${master.address}`);
+					break; 
+				} if (++count == maxTries) {
+					
+					console.log(
+						`Failed to verify contract at address` + 
+						`${master.address}, error: ${error}`);
+					break;
+				};
+				
+				console.log(`Retrying... Retry #${count}, last error: ${error}`);
+			}
+		}
+	}
 }
 
 main()

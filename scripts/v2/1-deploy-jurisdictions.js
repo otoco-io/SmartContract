@@ -6,6 +6,10 @@ const Reset = "\x1b[0m";
 const Bright = "\x1b[1m";
 const FgRed = "\x1b[31m";
 
+async function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function main() {
 
     let object = {}
@@ -28,58 +32,92 @@ async function main() {
     const wyPrice = "[50,40]";
 
     let unincorporated, delaware, wyoming;
-
+    
     switch (network.name) {
-        case "main": badges = badges?.mainData; break;
+        case "mainnet": badges = badges?.mainData; break;
         case "polygon": badges = badges?.polygonData; break;
         default: badges = badges?.defaultData; break;
     }
-
+    
     const uncData = 
-        JSON.stringify(Object.values(badges[0]));
+    JSON.stringify(Object.values(badges[0]));
     const deData = 
-        JSON.stringify(Object.values(badges[1]));
+    JSON.stringify(Object.values(badges[1]));
     const wyData = 
-        JSON.stringify(Object.values(badges[2]));
-
+    JSON.stringify(Object.values(badges[2]));
+    
     [unincorporated, delaware, wyoming] = 
-        await hre.run( "jurisdictions", { 
-            up: uncPrice, 
-            dp: dePrice, 
-            wp: wyPrice, 
-            ud: uncData,
-            dd: deData,
-            wd: wyData,
-        });
+    await hre.run( "jurisdictions", { 
+        up: uncPrice, 
+        dp: dePrice, 
+        wp: wyPrice, 
+        ud: uncData,
+        dd: deData,
+        wd: wyData,
+    });
 
     const jurisdictions = [unincorporated, delaware, wyoming];
-
+    
     object.jurisdictions = jurisdictions.map(({ address }) => address);
-
+    
     const [deployer] = await ethers.getSigners();
     console.log(`${Bright}👤 Contract deployed with ${deployer.address}${Reset}`, "\n");
     
     const jurisdictionData = {};
     
     for (const jurisdiction of jurisdictions) {
-        const deployPrice = 
-            (await jurisdiction.callStatic.getJurisdictionDeployPrice()).toString();
         const renewalPrice = 
             (await jurisdiction.callStatic.getJurisdictionRenewalPrice()).toString();
+        const deployPrice = 
+            (await jurisdiction.callStatic.getJurisdictionDeployPrice()).toString();
+        const name = 
+            (await jurisdiction.callStatic.getJurisdictionName()).toString();
         const defaultBadge = 
             (await jurisdiction.callStatic.getJurisdictionBadge()).toString();
         const goldBadge = 
             (await jurisdiction.callStatic.getJurisdictionGoldBadge()).toString();
         jurisdictionData[jurisdiction.address] = 
-            { deployPrice, renewalPrice, defaultBadge, goldBadge };
+            { renewalPrice, deployPrice, name, defaultBadge, goldBadge };
     }
 
     console.log(`${Bright}🚀 OtoCo V2 Jurisdictions Deployed:${Reset}`, jurisdictionData);
-
+        
     fs.writeFileSync(
         `./deploys/v2/${network.name}.json`, 
-        JSON.stringify(object, undefined, 2)
+        JSON.stringify(object, undefined, 2),
     );
+        
+    if (network.config.chainId != '31337') {
+        for (const jurisdiction of jurisdictions) {
+            let count = 0;
+            let maxTries = 8;
+        
+            while (true) {
+                await delay(10000);
+                try {
+                    console.log('Verifying contract at', jurisdiction.address);
+                    await hre.run('verify:verify', {
+                        address: jurisdiction.address,
+                        constructorArguments: Object.values(jurisdictionData[jurisdiction.address]),
+                    });
+                    break;
+                } catch (error) {
+                    
+                    if (String(error).includes('Already Verified')) {
+                        console.log(`Already verified contract at address ${jurisdiction.address}`);
+                        break; 
+                    }
+                    
+                    if (++count == maxTries) {
+                        console.log(`Failed to verify contract at address ${jurisdiction.address}, error: ${error}`);
+                        break;
+                    }
+                
+                    console.log(`Retrying... Retry #${count}, last error: ${error}`);
+                }
+            }
+        }    
+    }
 }
 
 main()

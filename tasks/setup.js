@@ -1,6 +1,7 @@
 const { task } = require("hardhat/config");
 require('dotenv').config();
 
+require("./accounts");
 require("./jurisdictions");
 require("./master");
 require("./uri");

@@ -1,11 +1,7 @@
 {
   "name": "otoco-smart-contracts",
-  "version": "1.0.0",
-  "description": "## Features",
-  "main": "truffle-config.js",
-  "directories": {
-    "test": "test"
-  },
+  "version": "2.0.0",
+  "description": "Onchain entity assembly and tooling marketplace for Web3 projects.",
   "dependencies": {
     "@chainlink/contracts": "^0.4.1",
     "@openzeppelin/contracts-upgradeable": "^4.6.0"

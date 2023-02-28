@@ -10,6 +10,10 @@ const FgGreen = "\x1b[32m";
 const FgMagenta = "\x1b[35m";
 const FgCyan = "\x1b[36m";
 
+async function delay(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function main() {
 
   let deploysJson;
@@ -44,6 +48,40 @@ async function main() {
 	deploysJson.uri = entityURI.address;
 
 	fs.writeFileSync(`./deploys/v2/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
+
+	if (network.config.chainId != '31337') {
+		let count = 0;
+		let maxTries = 8;
+
+		while (true) {
+			await delay(10000);
+			try {
+				console.log('Verifying contract at', entityURI.address);
+				
+				await hre.run('verify:verify', {
+						address: deploysJson.uri,
+						constructorArguments: [deploysJson.master]
+				});
+				break;
+			} catch (error) {
+				if (String(error).includes('Already Verified')) {
+					
+					console.log(
+						`Already verified contract at address` + 
+						`${deploysJson.uri}`);
+					break; 
+				} if (++count == maxTries) {
+					
+					console.log(
+						`Failed to verify contract at address` + 
+						`${entityURI.address}, error: ${error}`);
+					break;
+				};
+				
+				console.log(`Retrying... Retry #${count}, last error: ${error}`);
+			}
+		}
+	}
 }
 
 main()
