@@ -88,19 +88,6 @@ module.exports = {
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
     },
   },
-  // solidity: {
-    
-    // version: "0.8.4",
-    // settings: {
-    //   metadata: {
-    //     bytecodeHash: "none",
-    //   },
-    //   optimizer: {
-    //     enabled: false,
-    //     // runs: 2_000,
-    //   },
-    // },
-  // }
   solidity: {
     compilers: [
       { version: "0.8.0" },
