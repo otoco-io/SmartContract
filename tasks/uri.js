@@ -8,8 +8,12 @@ task("uri", "Deploys the default URI builder for OtoCo Entities")
   await entityURI.deployTransaction.wait(1);
   const uri = await entityURI.deployed();
   const masterInstance = (await ethers.getContractFactory("OtoCoMasterV2")).attach(taskArgs.master);
-  await masterInstance.changeURISources(uri.address);
-
+  const change = await masterInstance.changeURISources(uri.address);
+  await change.wait(1);
 
   return [uri, masterInstance];
 });
+
+module.exports = {
+  solidity: "0.8.4",
+};
