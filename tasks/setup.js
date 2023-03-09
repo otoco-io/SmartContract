@@ -1,42 +1,50 @@
 const { task } = require("hardhat/config");
 require('dotenv').config();
 
-require("./accounts");
+require("./utils/accounts");
 require("./jurisdictions");
 require("./master");
 require("./uri");
-
-const urlBuild = 
-  `https://eth-` +
-  `${process.env.FORKED_NETWORK}` + 
-  `.g.alchemy.com/v2/` + 
-  `${process.env.ALCHEMY_KEY}`;
-
-const jurisdictionPrices = { 
-  up: process.env.UNINCORPORATED_PRICES, 
-  dp: process.env.DELAWARE_PRICES,
-  wp: process.env.WYOMING_PRICES,
-};
-
-if(!urlBuild || !jurisdictionPrices) {
-  throw new Error("Please set your task config in a .env file");
-}
+require("./postsetup");
+require("./initializers");
 
 task("setup", "OtoCo V2 scripts setup pusher")
   .setAction(async (undefined, hre) => {
+    
+    const jurisdictionSettings = require(`../scripts/jurisdiction-settings.json`)
+    
+    let settings
+    switch (process.env.FORKED_NETWORK) {
+      case "mainnet": settings = jurisdictionSettings.mainnet; break;
+      case "polygon": settings = jurisdictionSettings.polygon; break;
+      default: settings = jurisdictionSettings.default; break;
+    }
 
-  if(process.env.FORK_ENABLED != "false") {
-    await network.provider.request({
-      method: "hardhat_reset",
-      params: [{ forking: { jsonRpcUrl: urlBuild } }],
+    // Deploy V2 Jurisdictions contracts
+    const jurisdictions = await hre.run(
+      "jurisdictions",
+      { settings: JSON.stringify(settings) }
+    );
+    // Deploy/Migrate MasterV2 contract
+    const master = await hre.run( "master", {
+      jurisdictions: JSON.stringify(jurisdictions)
     });
-  };
-    
-    const jurisdictions = await hre.run( "jurisdictions", jurisdictionPrices );
-    const jurAddrs = JSON.stringify(jurisdictions.map(({ address }) => address));
-    const [master, priceFeedAdr] = await hre.run( "master", {jurisdictions: jurAddrs });
-    const uri = (await hre.run("uri", {master: master.address}))[0];
-    
+    // Deploy tokenURI contract
+    await hre.run("uri", {
+      master
+    });
+    // Set required additional settings
+    await hre.run("postsetup", {
+      master,
+      jurisdictions: JSON.stringify(jurisdictions),
+      baseFee: process.env.BASE_FEE
+    });
+    // Deploy Initializers contracts
+    await hre.run("initializers", {});
+    // Mine blocks automatically to allow use with front-end
+    if (hre.network.config.chainId == 31337) 
+      await network.provider.send("evm_setIntervalMining", [5000]);
+
   });
 
   module.exports = {

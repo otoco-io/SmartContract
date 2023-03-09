@@ -1,50 +1,68 @@
 {
-  "mainData": [
+  "mainnet": [
     {
+      "deployPrice": 0,
+      "renewPrice": 0,
       "name": "DAO", 
       "defaultBadge": "ipfs://QmZPXo7N2qDMWaCVezr6Mm7FEmxwDitoWkKC3AjELQqS7N", 
       "goldBadge": "ipfs://QmWxh2WRenahJ4MKrFLXgN8477drh2xMLYhuWHpJpvAvE4"
     },
     {
+      "deployPrice": 30,
+      "renewPrice": 30,
       "name": "DELAWARE", 
       "defaultBadge": "ipfs://QmdAkYaMqyycEJ2Rq67zh6Y5x6FW1nBkEBxctL3SvPpkjW", 
       "goldBadge": "ipfs://QmYxTdUeU8txxdHUVuSTnTjqDFSPdgX5Vd4bcrvK5NByBT"
     },
     {
+      "deployPrice": 40,
+      "renewPrice": 40,
       "name": "WYOMING", 
       "defaultBadge": "ipfs://QmdbFYPhyyoGF7oZ13f3p8dPG66dzrNyK9483wSaoPooyY", 
       "goldBadge": "ipfs://QmSayfhjrnAFeVkqAcwYimtcrTZdmyqPKJQDA6HCC6K2x8"
     }
   ],
-  "polygonData": [
+  "polygon": [
     {
+      "deployPrice": 0,
+      "renewPrice": 0,
       "name": "DAO", 
       "defaultBadge": "ipfs://QmcCeDkQJyYA6JsrnXSLRFW3Wq9FyrVSvmdntJfnu4gjR7", 
       "goldBadge": "ipfs://Qme1MfHkTRF1ZGmCjL21JJyQm2gbBbxDHzghM4euEuNpDZ"
     },
     {
+      "deployPrice": 30,
+      "renewPrice": 30,
       "name": "DELAWARE", 
       "defaultBadge": "ipfs://QmbKJ9PibuMM1RWarUPj3L5TViaRJJazafWKdQkN279LNs", 
       "goldBadge": "ipfs://QmPrfVvhMxsNWVd6UpmxLCNEuSWeUBnW65RuHnuMA1jjPa"
     },
     {
+      "deployPrice": 40,
+      "renewPrice": 40,
       "name": "WYOMING", 
       "defaultBadge": "ipfs://QmSZq2bELrttCWcnHNZP16iwNEF2GxS6jgzpjR8AFJCoSw", 
       "goldBadge": "ipfs://QmUR3nGosdHbavY3aSvsAsxvJLyVcVJxDL9Xh8bv851r8Q"
     }
   ],
-  "defaultData": [
+  "default": [
     {
+      "deployPrice": 0,
+      "renewPrice": 0,
       "name": "DAO", 
       "defaultBadge": "ipfs://Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/dao_default.png", 
       "goldBadge": "ipfs://Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/dao_gold.png"
     },
     {
+      "deployPrice": 1,
+      "renewPrice": 1,
       "name": "DELAWARE", 
       "defaultBadge": "ipfs://Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/de_default.png", 
       "goldBadge": "ipfs://Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/de_gold.png"
     },
     {
+      "deployPrice": 2,
+      "renewPrice": 2,
       "name": "WYOMING", 
       "defaultBadge": "ipfs://Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_default.png", 
       "goldBadge": "ipfs://Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_gold.png"

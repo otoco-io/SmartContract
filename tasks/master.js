@@ -3,43 +3,50 @@ const { task } =  require("hardhat/config");
 const defaultUrl = "https://otoco.io/dashpanel/entity/";  
 
 task("master", "Deploys a OtoCo V2 Master proxy")
-
-.addParam(
-  "jurisdictions", "The V2 jurisdiction addresses")
-
+// In case of non-fork the deploy will require jurisdictions
+.addOptionalParam("jurisdictions", "The V2 jurisdiction addresses")
 // leave empty for default value
-.addOptionalParam(
-  "url", 
-  "The entities page base external url", 
-  defaultUrl
-)
+.addOptionalParam("url", "The entities page base external url", defaultUrl)
 
 .setAction(async (taskArgs, hre) => {
 
-  let priceFeedAddr;
-  otocoMaster = await upgrades.deployProxy(
-    (await ethers.getContractFactory("OtoCoMasterV2")),
-    [JSON.parse(taskArgs.jurisdictions), taskArgs.url],
-  );
+  const isForkedLocalNode = hre.network.config.chainId == 31337 && process.env.FORK_ENABLED == "true"
 
-  await otocoMaster.deployTransaction.wait(1);
-  await otocoMaster.deployed();
+  // IN case of FORKED LOCAL NODE will grab deploys from forked network
+  // Otherwise will grab addresses directly from connected network
+  const deploysSource = isForkedLocalNode ? process.env.FORKED_NETWORK : hre.network.name;
+  const deploys = require(`../deploys/v1/${deploysSource}.json`)
 
-  // Attach Chainlink Price Feed contract instance
-  const priceFeedAddrs = {
-    mainnet: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
-    polygon: "0xAB594600376Ec9fD91F8e885dADF0CE036862dE0",
-    goerli: "0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e",
-    "polygon-mumbai": "0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada"
-  };
+  // In case of FORKED LOCAL NODE will impersonate OtoCo deployer
+  const deployer = isForkedLocalNode ?
+      await ethers.getImpersonatedSigner("0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30")
+      : await ethers.getSigner()
   
-  priceFeedAddr = 
-    priceFeedAddrs[hre.network.name] || 
-    (await (await ethers.getContractFactory("MockAggregatorV3")).deploy()).address;
-  
-  const priceFeedUpdate = await otocoMaster.changePriceFeed(priceFeedAddr);
-  receipt = await priceFeedUpdate.wait();
+  const MasterFactoryV1 = await ethers.getContractFactory("OtoCoMaster", deployer);
+  const MasterFactoryV2 = await ethers.getContractFactory("OtoCoMasterV2", deployer);
+  // In case of running locally and forked will force implementation locally
+  if (isForkedLocalNode){
+    await upgrades.forceImport(deploys.master, MasterFactoryV1)
+    otocoMaster = await upgrades.upgradeProxy(
+      deploys.master,
+      MasterFactoryV2
+    );
+  // In case of running a migration on testnets/mainnets
+  } else if (hre.network.config.chainId != 31337){
+    otocoMaster = await upgrades.upgradeProxy(
+      deploys.master,
+      MasterFactoryV2
+    );
+  // In case of running locally but not forked
+  } else {
+    if (!taskArgs.jurisdictions) throw Error("No Jurisdiction defined for master deployment")
+    otocoMaster = await upgrades.deployProxy(
+      (await ethers.getContractFactory("OtoCoMasterV2",deployer)),
+      [JSON.parse(taskArgs.jurisdictions), taskArgs.url],
+    );
+  }
 
-  return [otocoMaster, priceFeedAddr];
+  await otocoMaster.deployed()
+  return otocoMaster.address;
 
 });
