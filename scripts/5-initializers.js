@@ -10,6 +10,7 @@ const FgGreen = "\x1b[32m";
 const FgMagenta = "\x1b[35m";
 const FgCyan = "\x1b[36m";
 
+
 async function main() {
 
     /*****************
@@ -19,16 +20,17 @@ async function main() {
 	const networkId = network.config.chainId;
 	const [deployer] = await ethers.getSigners();
 
-	let deploysJson;
+  let deploysJson;
 
-	// Load deployed jurisdictions
+	// Load deployed master contract
 	try {
 		const data = fs.readFileSync(`./deploys/v2/${network.name}.json`, {encoding:"utf-8"});
 		deploysJson = JSON.parse(data);
 	} catch (err) {
-		console.log(`${FgRed}Error loading jurisdictions: ${err}${Reset}`);
+		console.log(`${FgRed}Error loading Master address: ${err}${Reset}`);
 		process.exit(1);
 	}
+
 
     /******************
      * USER PROMPTING *
@@ -55,23 +57,24 @@ async function main() {
      * ONCHAIN TASK *
      ****************/
 
-	const master = await hre.run("master", {
-		jurisdictions: JSON.stringify(deploysJson.jurisdictions),
-	});
-
-	console.log(`${Bright}🚀 OtoCo V2 Master Deployed: ${FgMagenta}${master.address}${Reset}`);
-
+	let governorInitializer;
+	if (!deploysJson.governorInitializer){
+		// Deploy Initializers contracts
+		governorInitializer = await hre.run("initializers", {});
+	} else {
+		governorInitializer = {address: deploysJson.governorInitializer}
+	}
 
     /******************
      * STORAGE CHECKS *
      ******************/
 
-	deploysJson.master = master.address;
+	console.log(`${Bright}🚀 Governor intializer was sucessfully deployed!${Reset}
+	Deployed Address: ${FgMagenta}${governorInitializer.address}${Reset}`);
+
+	deploysJson.governorInitializer = governorInitializer.address;
 
 	fs.writeFileSync(`./deploys/v2/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
-	
-	const defaultUrl = (await master.callStatic.externalUrl());
-	console.log(`\n ${FgCyan} externalUrl written to storage: ${Reset}`, defaultUrl, `\n`);
 
 
     /**********************
@@ -79,7 +82,10 @@ async function main() {
      **********************/
 
 	if (network.config.chainId != '31337') {
-		await hre.run( "verification", { addr: master.address });
+		await hre.run( "verification", { 
+			addr: deploysJson.uri,
+			args: JSON.stringify([deploysJson.master]),
+		});
 	}
 }
 

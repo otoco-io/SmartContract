@@ -46,7 +46,6 @@ task("master", "Deploys a OtoCo V2 Master proxy")
     );
   }
 
-  await otocoMaster.deployed()
-  return otocoMaster.address;
+  return await otocoMaster.deployed()
 
 });

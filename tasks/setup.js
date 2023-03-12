@@ -37,17 +37,16 @@ task("setup", "OtoCo V2 scripts setup pusher")
 
     // Deploy/Migrate MasterV2 contract
     const master = await hre.run( "master", {
-      jurisdictions: JSON.stringify(jurisdictions)
+      jurisdictions: JSON.stringify(jurisdictions.map(({address} ) => address))
     });
     // Deploy tokenURI contract
     await hre.run("uri", {
-      master
+      master: master.address
     });
     // Set required additional settings
     await hre.run("postsetup", {
-      master,
-      jurisdictions: JSON.stringify(jurisdictions),
-      baseFee: process.env.BASE_FEE
+      master: master.address,
+      jurisdictions: JSON.stringify(jurisdictions.map(({address} ) => address)),
     });
     // Deploy Initializers contracts
     await hre.run("initializers", {});

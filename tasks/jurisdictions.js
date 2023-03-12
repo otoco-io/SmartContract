@@ -27,7 +27,7 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
     const jurisdictionInstance = await jurisdictionFactory.deploy(...Object.values(j));
     await jurisdictionInstance.deployed();
 
-    contracts.push(jurisdictionInstance.address);
+    contracts.push(jurisdictionInstance);
   }
 
   return contracts;

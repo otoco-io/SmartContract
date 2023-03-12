@@ -57,7 +57,7 @@ async function main() {
      * ONCHAIN TASK *
      ****************/
 
-  [entityURI, otocoMaster] = 
+  [entityURI, master] = 
     await hre.run("uri", { master: deploysJson.master });
 
 
@@ -65,7 +65,7 @@ async function main() {
      * STORAGE CHECKS *
      ******************/
 
-  const returnedAddress = await otocoMaster.callStatic.entitiesURI(); 
+  const returnedAddress = await master.callStatic.entitiesURI(); 
 
   if(returnedAddress === entityURI.address) {
     console.log(`${Bright}🚀 URI Source has been updated correctly!${Reset}

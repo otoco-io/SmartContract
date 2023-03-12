@@ -16,5 +16,6 @@
   "tokenMintable": "0xf76A3d9425dD23dE0DC78Ee66dE5cF7d14807157",
   "tokenNonTransferable": "0x2e958d4E1902ed6FBD57DBc99fbf179F0A62787f",
   "tokenization": "0xd1708cA7b51554689435f0A3F6920701e900e720",
-  "governor": "0xF9cbf04570B957ad9262cF5A901c8b46734fe3B8"
+  "governor": "0xF9cbf04570B957ad9262cF5A901c8b46734fe3B8",
+  "governorInitializer": "0x355894349219dccf4825b66b2f383877c77304c9"
 }

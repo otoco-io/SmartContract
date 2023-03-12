@@ -3,7 +3,6 @@ const { task } =  require("hardhat/config");
 task("postsetup", "Make all post-setup changes to Master Contract")
 .addParam("master", "The current instance of OtoCoMasterV2")
 .addParam("jurisdictions", "The V2 jurisdiction addresses")
-.addParam("baseFee", "The base fee to be set for plugins and Initializers")
 
 .setAction(async (taskArgs, hre) => {
 

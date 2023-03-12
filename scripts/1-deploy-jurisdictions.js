@@ -20,10 +20,11 @@ async function main() {
 
     let object = {}
     let badges = {}
+    let settings
 
     try {
         settings = JSON.parse(fs.readFileSync(
-            "./scripts/v2/jurisdiction-settings.json",
+            "./scripts/jurisdiction-settings.json",
             {encoding:"utf-8"},
         ));
     } catch (err) {
@@ -33,13 +34,10 @@ async function main() {
 		process.exit(1);
     }
 
-    let unincorporated, delaware, wyoming;
-
-    let settings
     switch (network.name) {
-      case "mainnet": settings = jurisdictionSettings.mainnet; break;
-      case "polygon": settings = jurisdictionSettings.polygon; break;
-      default: settings = jurisdictionSettings.default; break;
+      case "mainnet": settings = settings.mainnet; break;
+      case "polygon": settings = settings.polygon; break;
+      default: settings = settings.default; break;
     }
     
     /******************
@@ -66,10 +64,9 @@ async function main() {
      * ONCHAIN TASK *
      ****************/
 
-    [unincorporated, delaware, wyoming] = 
+    const jurisdictions = 
     await hre.run( "jurisdictions", { settings: JSON.stringify(settings) });
 
-    const jurisdictions = [unincorporated, delaware, wyoming];
     object.jurisdictions = jurisdictions.map(({ address }) => address);
     
     
