@@ -11,6 +11,9 @@ require('dotenv').config();
 require("./tasks/setup");
 // require("hardhat-gas-reporter");
 
+
+process.removeAllListeners('warning');
+
 const chainIds = {
     hardhat: 31337,
     mainnet: 1,

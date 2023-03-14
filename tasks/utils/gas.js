@@ -4,12 +4,7 @@ require('dotenv').config();
 
 const apiKeys = [process.env.ETHERSCAN_API_KEY, process.env.POLYGONSCAN_API_KEY];
 
-const br = "\x1b[1m";
-const fc = "\x1b[30m";
-const bg = "\x1b[44m";
-const r = "\x1b[0m";
-
-task(`gas`, `${fc}${bg}${br}Estimate gas price data from block explorer apis${r}`)
+task("gas", "Estimate gas price data from block explorer apis")
 .addFlag("mainnet", "Prints Ethereum Mainnet gas information")
 .addFlag("polygon", "Prints Polygon Mainnet gas information")
 

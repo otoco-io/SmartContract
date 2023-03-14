@@ -32,7 +32,3 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
 
   return contracts;
 });
-
-module.exports = {
-  solidity: "0.8.4",
-};

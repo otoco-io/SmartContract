@@ -159,7 +159,7 @@ describe("OtoCo Master Test", function () {
       ];
 
     const values = [
-      // correct amount
+    // correct amount
     [{gasPrice, gasLimit, value:amountToPayForSpinUp}],
     // incorrect amount
     [{gasPrice, gasLimit, value:ethers.constants.Zero}],
@@ -399,7 +399,7 @@ describe("OtoCo Master Test", function () {
   const fundedArgs = initArgs.concat(values[0]);
   const unfundedArgs = initArgs.concat(values[1]);
   const balReset = 
-    (ethers.utils.parseEther('10000.0'))
+    (ethers.utils.parseEther('10000000.0'))
       .toHexString().replace(/0x0+/, "0x");
 
   await hre.network.provider.request({
@@ -427,7 +427,158 @@ describe("OtoCo Master Test", function () {
       .withArgs(zeroAddress(), owner.address, ethers.BigNumber.from(4));
     await expect(otocoMaster.createEntityWithInitializer(...unfundedArgs))
       .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
+  });
+  
+  it("Should create a new DAO using Governor initializer", async function () 
+  {
+    const gasPrice = ethers.BigNumber.from("2000000000");
+    const gasLimit = ethers.BigNumber.from("1500000");
+    const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporatedV2");
+    const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
+    const baseFee = await otocoMaster.baseFee();
+    const amountToPayForSpinUp = 
+      EthDividend.div((await priceFeed.latestRoundData()).answer)
+      .mul(await unc.getJurisdictionDeployPrice())
+      .add(baseFee.mul(gasLimit));
+
+    const Token = await ethers.getContractFactory("OtoCoTokenMintable");
+    const tokenRef = await Token.deploy();
+    const Governor = await ethers.getContractFactory("OtoCoGovernor");
+    const governorRef = await Governor.deploy();
+
+    const tokenInfo = ['Test Token', 'TEST'];
+    const addresses  = [
+      // Manager
+      otocoMaster.address,
+      // Token Source 
+      tokenRef.address, 
+      // Member addresses
+      owner.address,
+      wallet2.address, 
+    ];
+    const settings = [
+      2,  // Member size 
+      10, // Voting period
+      50, // `owner` shares 
+      50, // `wallet2` shares
+    ];
+
+    const pluginData = ethers.utils.defaultAbiCoder.encode(
+      ['string', 'string', 'address[]', 'address[]', 'uint256[]'],
+      [
+        ...tokenInfo,
+        [addresses[0]],
+        addresses,
+        settings
+      ],
+    );
+
+    const governorProxyFactory  = await hre.run("initializers");
+    const initializerData = governorProxyFactory.interface.encodeFunctionData('setup', [
+      governorRef.address, pluginData
+    ]);
+    
+    const initArgs =
+    [ 
+      0,
+      [governorProxyFactory.address],
+      [initializerData],
+      10,
+      "New Unincorporated Entity",
+    ];
+
+    const values = [
+      // correct amount
+      [{gasLimit: Number(gasLimit.toString()), value:amountToPayForSpinUp}],
+      // incorrect amount
+      [{gasPrice, gasLimit, value:ethers.constants.Zero}],
+    ];
+
+    const fundedArgs = initArgs.concat(values[0]);
+    const unfundedArgs = initArgs.concat(values[1]);
+
+    const transaction =
+      await otocoMaster
+      .createEntityWithInitializer(...fundedArgs);
+    const [newTokenAddr, newGovernorAddr] = 
+      (await transaction.wait())
+      .events.filter(event => event.event === 'Initialized')
+      .map(event => (event.address),
+    );
+
+    // const [transfer1, transfer2] = 
+    //   (await transaction.wait())
+    //   .events.filter(event => event.event === 'OwnershipTransferred');
+
+    const newToken = Token.attach(newTokenAddr);
+    const newGovernor = Governor.attach(newGovernorAddr);
+
+    const currBal = await ethers.provider.getBalance(governorProxyFactory.address);
+    const tokenInfoCheck = [
+      (await newToken.callStatic.name()), 
+      (await newToken.callStatic.symbol()),
+    ];
+    const memberSharesCheck = [
+      (await newToken.callStatic.balanceOf(owner.address)),
+      (await newToken.callStatic.balanceOf(wallet2.address)),
+    ];
+    const newTokenOwner = await newToken.callStatic.owner();
+    const governorInfoCheck = [
+      (await newGovernor.callStatic.token()),
+      (await newGovernor.callStatic.getManager()),
+      (await newGovernor.callStatic.isAllowedContracts([addresses[0]])),
+      (await newGovernor.callStatic.votingPeriod()),
+      (await newGovernor.callStatic.name()),
+    ];
+    const expectedGovernorArgs = [
+      // Token
+      newToken.address,
+      // Manager
+      addresses[0],
+      // Allowed
+      true, 
+      // Voting Period
+      10, 
+      // Token/Governor name
+      tokenInfo[0],
+    ];
+
+    expect(transaction).to.be.ok;
+
+    expect(currBal).to.eq(10);
+
+    expect(transaction).to.emit(
+      newToken, 
+      "OwnershipTransferred",
+    ).withArgs(
+      ethers.constants.AddressZero, 
+      governorProxyFactory.address,
+    );
+    expect(transaction).to.emit(
+      newToken, 
+      "OwnershipTransferred",
+    ).withArgs(
+      governorProxyFactory.address,
+      newGovernor.address, 
+    );
+
+    expect(...tokenInfoCheck)
+      .to.eq(...tokenInfo);
+    expect(...memberSharesCheck)
+      .to.eq(...settings.slice(2, 4),
+    );
+    expect(newTokenOwner)
+      .to.eq(newGovernorAddr).and
+      .to.eq(newGovernor.address,
+    );
+    expect(...governorInfoCheck).to.eq(...expectedGovernorArgs);
+
+    await expect(
+      otocoMaster.createEntityWithInitializer(...unfundedArgs),
+    ).to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
+    await expect(
+      otocoMaster.createEntityWithInitializer(...fundedArgs),
+    ).to.be.revertedWithCustomError(otocoMaster, "InitializerError");
 
   });
-
 });

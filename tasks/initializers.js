@@ -13,6 +13,3 @@ task("initializers", "Deploys the initializers for Gnovernors and Multisigs")
   return governorInstance;
 });
 
-module.exports = {
-  solidity: "0.8.4",
-};

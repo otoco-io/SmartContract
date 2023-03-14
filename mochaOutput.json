@@ -1,8 +1,8 @@
 {
  "stats": {
   "suites": 13,
-  "tests": 68,
-  "passes": 68,
+  "tests": 69,
+  "passes": 69,
   "pending": 0,
   "failures": 0
  },
@@ -143,21 +143,21 @@
   {
    "title": "Create Jurisdictions",
    "fullTitle": "OtoCo Token Without Fees Plugin Test Create Jurisdictions",
-   "file": "test/05-otoco-token-nofee.js",
+   "file": "test/05-otoco-token-nofee.test.js",
    "currentRetry": 0,
    "err": {}
   },
   {
    "title": "Initialize Master, add jurisdictions and create Series",
    "fullTitle": "OtoCo Token Without Fees Plugin Test Initialize Master, add jurisdictions and create Series",
-   "file": "test/05-otoco-token-nofee.js",
+   "file": "test/05-otoco-token-nofee.test.js",
    "currentRetry": 0,
    "err": {}
   },
   {
    "title": "Deploy and remove Token plugin",
    "fullTitle": "OtoCo Token Without Fees Plugin Test Deploy and remove Token plugin",
-   "file": "test/05-otoco-token-nofee.js",
+   "file": "test/05-otoco-token-nofee.test.js",
    "currentRetry": 0,
    "err": {}
   },
@@ -472,6 +472,13 @@
   {
    "title": "Should create a new entity without initializer and with plugins",
    "fullTitle": "OtoCo Master Test Should create a new entity without initializer and with plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new DAO using Governor initializer",
+   "fullTitle": "OtoCo Master Test Should create a new DAO using Governor initializer",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}
@@ -622,21 +629,21 @@
   {
    "title": "Create Jurisdictions",
    "fullTitle": "OtoCo Token Without Fees Plugin Test Create Jurisdictions",
-   "file": "test/05-otoco-token-nofee.js",
+   "file": "test/05-otoco-token-nofee.test.js",
    "currentRetry": 0,
    "err": {}
   },
   {
    "title": "Initialize Master, add jurisdictions and create Series",
    "fullTitle": "OtoCo Token Without Fees Plugin Test Initialize Master, add jurisdictions and create Series",
-   "file": "test/05-otoco-token-nofee.js",
+   "file": "test/05-otoco-token-nofee.test.js",
    "currentRetry": 0,
    "err": {}
   },
   {
    "title": "Deploy and remove Token plugin",
    "fullTitle": "OtoCo Token Without Fees Plugin Test Deploy and remove Token plugin",
-   "file": "test/05-otoco-token-nofee.js",
+   "file": "test/05-otoco-token-nofee.test.js",
    "currentRetry": 0,
    "err": {}
   },
@@ -951,6 +958,13 @@
   {
    "title": "Should create a new entity without initializer and with plugins",
    "fullTitle": "OtoCo Master Test Should create a new entity without initializer and with plugins",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should create a new DAO using Governor initializer",
+   "fullTitle": "OtoCo Master Test Should create a new DAO using Governor initializer",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}
