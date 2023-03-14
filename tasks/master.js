@@ -41,7 +41,7 @@ task("master", "Deploys a OtoCo V2 Master proxy")
   } else {
     if (!taskArgs.jurisdictions) throw Error("No Jurisdiction defined for master deployment")
     otocoMaster = await upgrades.deployProxy(
-      (await ethers.getContractFactory("OtoCoMasterV2",deployer)),
+      MasterFactoryV2,
       [JSON.parse(taskArgs.jurisdictions), taskArgs.url],
     );
   }

@@ -11,7 +11,7 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
 
   const deployer = hre.network.config.chainId == 31337 && process.env.FORK_ENABLED == "true" ?
   await ethers.getImpersonatedSigner("0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30")
-  : ethers.getSigner()  
+  : await ethers.getSigner()  
 
   const jurisdictions = JSON.parse(taskArgs.settings)
 
