@@ -645,6 +645,76 @@
     ]
   },
   {
+    "fileName": "contracts/initializers/GovernorInitializer.sol",
+    "lines": [
+      {
+        "lineNumber": 36,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 52,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 55,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 57,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 61,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 64,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 65,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 68,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 69,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 72,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 74,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 82,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 83,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
     "fileName": "contracts/jurisdictions/Delaware.sol",
     "lines": [
       {
@@ -743,16 +813,6 @@
     "fileName": "contracts/OtoCoJurisdictionV2.sol",
     "lines": [
       {
-        "lineNumber": 19,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 20,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
         "lineNumber": 21,
         "hue": 1,
         "suspiciousness": 0
@@ -768,7 +828,17 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 24,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 25,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 27,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -783,12 +853,22 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 69,
         "hue": 1,
         "suspiciousness": 0
       },
       {
         "lineNumber": 79,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 88,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 92,
         "hue": 1,
         "suspiciousness": 0
       }
@@ -1038,22 +1118,27 @@
     "fileName": "contracts/OtoCoMasterV2.sol",
     "lines": [
       {
+        "lineNumber": 75,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
         "lineNumber": 76,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 83,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 87,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 94,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1063,12 +1148,12 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 99,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 103,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1078,7 +1163,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 114,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1103,7 +1188,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 119,
+        "lineNumber": 120,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1118,27 +1203,22 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 136,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 137,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 140,
+        "lineNumber": 141,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 148,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 150,
+        "lineNumber": 143,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1148,7 +1228,12 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 171,
+        "lineNumber": 153,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 154,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1158,12 +1243,12 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 175,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 177,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1173,7 +1258,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 181,
+        "lineNumber": 184,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1198,17 +1283,37 @@
         "suspiciousness": 0
       },
       {
+        "lineNumber": 193,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 194,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 195,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 196,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 207,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
         "lineNumber": 208,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 210,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 215,
+        "lineNumber": 211,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1223,17 +1328,12 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 218,
+        "lineNumber": 226,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 229,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 230,
+        "lineNumber": 227,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1248,87 +1348,72 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 233,
+        "lineNumber": 245,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 238,
+        "lineNumber": 246,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 247,
+        "lineNumber": 256,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 248,
+        "lineNumber": 265,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 261,
+        "lineNumber": 266,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 262,
+        "lineNumber": 276,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 272,
+        "lineNumber": 277,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 281,
+        "lineNumber": 278,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 282,
+        "lineNumber": 279,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 292,
+        "lineNumber": 280,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 293,
+        "lineNumber": 290,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 294,
+        "lineNumber": 291,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 295,
+        "lineNumber": 300,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 296,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 306,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 307,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 316,
+        "lineNumber": 301,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1338,47 +1423,42 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 333,
+        "lineNumber": 319,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 335,
+        "lineNumber": 327,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 343,
+        "lineNumber": 329,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 345,
+        "lineNumber": 330,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 346,
+        "lineNumber": 340,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 356,
+        "lineNumber": 341,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 357,
+        "lineNumber": 342,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 358,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 370,
+        "lineNumber": 354,
         "hue": 1,
         "suspiciousness": 0
       }
@@ -2423,12 +2503,17 @@
         "suspiciousness": 0
       },
       {
+        "lineNumber": 35,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
         "lineNumber": 36,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 58,
         "hue": 1,
         "suspiciousness": 0
       }

@@ -44,6 +44,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "93": [
@@ -973,6 +977,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "63": [
@@ -991,6 +999,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "64": [
@@ -1009,6 +1021,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "65": [
@@ -1027,6 +1043,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "68": [
@@ -1045,6 +1065,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "69": [
@@ -1063,6 +1087,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "70": [
@@ -1081,6 +1109,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "71": [
@@ -1099,6 +1131,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "72": [
@@ -1117,6 +1153,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "73": [
@@ -1135,6 +1175,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "80": [
@@ -1166,6 +1210,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "111": [
@@ -1422,6 +1470,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "37": [
@@ -1464,6 +1516,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "69": [
@@ -1482,6 +1538,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "70": [
@@ -1500,6 +1560,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "72": [
@@ -1518,6 +1582,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ]
  },
@@ -1564,6 +1632,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "40": [
@@ -1618,6 +1690,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "77": [
@@ -1636,6 +1712,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "87": [
@@ -1654,6 +1734,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "88": [
@@ -1672,6 +1756,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "89": [
@@ -1690,6 +1778,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "98": [
@@ -1708,6 +1800,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "99": [
@@ -1726,6 +1822,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ]
  },
@@ -1746,6 +1846,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "23": [
@@ -1764,6 +1868,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "30": [
@@ -1785,6 +1893,86 @@
    }
   ]
  },
+ "contracts/initializers/GovernorInitializer.sol": {
+  "36": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "52": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "55": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "57": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "61": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "64": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "65": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "68": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "69": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "72": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "74": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "82": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "83": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ]
+ },
  "contracts/jurisdictions/Delaware.sol": {
   "21": [
    {
@@ -1801,7 +1989,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -1845,7 +2033,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -1885,6 +2073,10 @@
    },
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -1929,7 +2121,7 @@
    },
    {
     "title": "Create Jurisdictions",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Create Jurisdictions",
@@ -1971,7 +2163,7 @@
    },
    {
     "title": "Create Jurisdictions",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Create Jurisdictions",
@@ -2013,7 +2205,7 @@
    },
    {
     "title": "Create Jurisdictions",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Create Jurisdictions",
@@ -2072,26 +2264,6 @@
   ]
  },
  "contracts/OtoCoJurisdictionV2.sol": {
-  "19": [
-   {
-    "title": "Create Jurisdictions",
-    "file": "test/10-migrate-masterV2.test.js"
-   },
-   {
-    "title": "Create Jurisdictions",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "20": [
-   {
-    "title": "Create Jurisdictions",
-    "file": "test/10-migrate-masterV2.test.js"
-   },
-   {
-    "title": "Create Jurisdictions",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
   "21": [
    {
     "title": "Create Jurisdictions",
@@ -2122,7 +2294,37 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "42": [
+  "24": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "25": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "27": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "51": [
    {
     "title": "Check jurisdiction order and count",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2136,19 +2338,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "51": [
-   {
-    "title": "Update URI Sources and check if TokenURI are correct",
-    "file": "test/10-migrate-masterV2.test.js"
-   }
-  ],
   "60": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "70": [
+  "69": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "79": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2158,7 +2360,7 @@
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "79": [
+  "88": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2181,6 +2383,40 @@
    },
    {
     "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "92": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -2217,7 +2453,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2275,7 +2511,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2317,7 +2553,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2355,7 +2591,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2393,7 +2629,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2431,7 +2667,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2469,7 +2705,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2507,7 +2743,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2545,7 +2781,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2583,7 +2819,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2621,7 +2857,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2651,7 +2887,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2681,7 +2917,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2711,7 +2947,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -2741,7 +2977,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -3161,7 +3397,7 @@
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Initialize Master, add jurisdictions and create Series",
@@ -3234,28 +3470,58 @@
   ]
  },
  "contracts/OtoCoMasterV2.sol": {
+  "75": [
+   {
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
   "76": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "77": [
-   {
-    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
-    "file": "test/10-migrate-masterV2.test.js"
-   }
-  ],
-  "84": [
+  "83": [
    {
     "title": "Closing series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "88": [
+  "87": [
    {
     "title": "Closing series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "94": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "95": [
@@ -3282,9 +3548,13 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "96": [
+  "99": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3308,11 +3578,19 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "100": [
+  "103": [
    {
     "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Extend entity expiration date",
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
@@ -3333,6 +3611,10 @@
    },
    {
     "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3342,29 +3624,7 @@
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
-    "title": "Creating series with correct fees and wrong fees",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "105": [
-   {
-    "title": "Creating series with correct fees and wrong fees",
+    "title": "Extend entity expiration date",
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
@@ -3385,6 +3645,16 @@
    },
    {
     "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "114": [
+   {
+    "title": "Initialize Master and add jurisdictions",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3412,7 +3682,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "119": [
+  "120": [
    {
     "title": "Initialize Master and add jurisdictions",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3430,13 +3700,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "123": [
-   {
-    "title": "Initialize Master and add jurisdictions",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "138": [
+  "136": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3460,9 +3724,14 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "140": [
+  "137": [],
+  "141": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3486,9 +3755,13 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "148": [
+  "143": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3512,31 +3785,9 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "150": [
-   {
-    "title": "Creating series with correct fees and wrong fees",
-    "file": "test/10-migrate-masterV2.test.js"
    },
    {
-    "title": "Creating series with correct fees and wrong fees",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
+    "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3564,15 +3815,69 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "171": [
+  "153": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
    {
     "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "154": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3584,9 +3889,22 @@
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "178": [
+  "175": [],
+  "177": [
    {
     "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3594,15 +3912,17 @@
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "179": [
+   },
    {
-    "title": "Should create a new entity using Multisig initializer without plugins",
+    "title": "Should create a new entity without initializer and without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new entity using Multisig initializer with plugins",
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3614,15 +3934,39 @@
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "181": [
+  "184": [
    {
     "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3634,6 +3978,18 @@
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "186": [
@@ -3643,6 +3999,10 @@
    },
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3654,15 +4014,35 @@
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "188": [
    {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
     "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "208": [
+  "193": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
    {
     "title": "Should create a new entity without initializer and without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3670,9 +4050,21 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "210": [
+  "194": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
    {
     "title": "Should create a new entity without initializer and without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3680,9 +4072,21 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "215": [
+  "195": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
    {
     "title": "Should create a new entity without initializer and without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3690,11 +4094,15 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "216": [
+  "196": [
    {
-    "title": "Should create a new entity without initializer and without plugins",
+    "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
@@ -3702,89 +4110,79 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "217": [
-   {
-    "title": "Should create a new entity without initializer and without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "218": [
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "229": [
+  "207": [
    {
     "title": "Extend entity expiration date",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "230": [
+  "208": [
    {
     "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "211": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "216": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "217": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "226": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "227": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
   "231": [
    {
-    "title": "Extend entity expiration date",
+    "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
   "232": [
    {
-    "title": "Extend entity expiration date",
+    "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "233": [
-   {
-    "title": "Extend entity expiration date",
-    "file": "test/10-migrate-masterV2.test.js"
-   }
-  ],
-  "238": [
-   {
-    "title": "Extend entity expiration date",
-    "file": "test/10-migrate-masterV2.test.js"
-   }
-  ],
-  "247": [
-   {
-    "title": "Closing series with correct fees and wrong fees",
-    "file": "test/10-migrate-masterV2.test.js"
-   }
-  ],
-  "248": [
-   {
-    "title": "Closing series with correct fees and wrong fees",
-    "file": "test/10-migrate-masterV2.test.js"
-   }
-  ],
-  "261": [
+  "245": [
    {
     "title": "Add new jurisdiction and update existing jurisdiction's address",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "262": [
+  "246": [
    {
     "title": "Add new jurisdiction and update existing jurisdiction's address",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "272": [
+  "256": [
    {
     "title": "Add new jurisdiction and update existing jurisdiction's address",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "281": [
+  "265": [
    {
     "title": "Change payment fees and price feed source",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3794,7 +4192,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "282": [
+  "266": [
    {
     "title": "Change payment fees and price feed source",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3804,49 +4202,59 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "292": [
+  "276": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "293": [
+  "277": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "294": [
+  "278": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "295": [
+  "279": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "296": [
+  "280": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "306": [
+  "290": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "307": [
+  "291": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "316": [
+  "300": [
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Change payment fees and price feed source",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "301": [
    {
     "title": "Change payment fees and price feed source",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3858,63 +4266,53 @@
   ],
   "317": [
    {
-    "title": "Change payment fees and price feed source",
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
-   },
-   {
-    "title": "Change payment fees and price feed source",
-    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "333": [
+  "319": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "335": [
+  "327": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "343": [
+  "329": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "345": [
+  "330": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "346": [
-   {
-    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
-    "file": "test/10-migrate-masterV2.test.js"
-   }
-  ],
-  "356": [
+  "340": [
    {
     "title": "Should withdraw fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "357": [
+  "341": [
    {
     "title": "Should withdraw fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "358": [
+  "342": [
    {
     "title": "Should withdraw fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "370": [
+  "354": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3937,7 +4335,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Deploy plugin, add and remove",
@@ -3962,10 +4360,6 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "19": [
@@ -3983,7 +4377,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Deploy plugin, add and remove",
@@ -4008,10 +4402,6 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "28": [
@@ -4029,7 +4419,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Deploy plugin, add and remove",
@@ -4054,10 +4444,6 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "29": [
@@ -4075,7 +4461,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Deploy plugin, add and remove",
@@ -4100,10 +4486,6 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "33": [
@@ -4121,7 +4503,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Deploy plugin, add and remove",
@@ -4134,10 +4516,6 @@
    {
     "title": "Deploy source contracts and plugin",
     "file": "test/08-otoco-governor.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "52": [
@@ -4553,11 +4931,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "43": [
@@ -4567,11 +4941,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "44": [
@@ -4581,11 +4951,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "45": [
@@ -4595,11 +4961,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "46": [
@@ -4609,11 +4971,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "56": [
@@ -4623,7 +4981,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "69": [
@@ -4633,11 +4991,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "75": [
@@ -4647,11 +5001,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "76": [
@@ -4661,11 +5011,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "77": [
@@ -4675,11 +5021,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "78": [
@@ -4689,11 +5031,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "79": [
@@ -4703,11 +5041,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "90": [
@@ -4717,7 +5051,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "93": [
@@ -4727,7 +5061,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "94": [
@@ -4737,7 +5071,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "95": [
@@ -4747,7 +5081,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "106": [
@@ -4757,7 +5091,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "109": [
@@ -4767,7 +5101,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "111": [
@@ -4777,7 +5111,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "113": [
@@ -4787,7 +5121,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "114": [
@@ -4797,7 +5131,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "115": [
@@ -4807,7 +5141,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ]
  },
@@ -5194,6 +5528,10 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ]
  },
@@ -5202,6 +5540,10 @@
    {
     "title": "Deploy source contracts and plugin",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "45": [
@@ -5220,6 +5562,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "46": [
@@ -5238,6 +5584,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "47": [
@@ -5256,6 +5606,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "48": [
@@ -5274,6 +5628,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "49": [
@@ -5292,6 +5650,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "50": [
@@ -5310,6 +5672,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "51": [
@@ -5328,6 +5694,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "52": [
@@ -5346,6 +5716,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "53": [
@@ -5364,9 +5738,18 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "54": [],
+  "54": [
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
   "64": [
    {
     "title": "Deploy source contracts and plugin",
@@ -5379,6 +5762,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "73": [
@@ -5423,6 +5810,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "91": [
@@ -5643,6 +6034,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "185": [
@@ -5683,6 +6078,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "216": [
@@ -5693,6 +6092,10 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "217": [
@@ -5703,18 +6106,30 @@
    {
     "title": "Test Cast Vote with Signature and Resign",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "218": [
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "220": [
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "230": [
@@ -5736,7 +6151,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    },
    {
     "title": "Should create a new entity without initializer and with plugins",
@@ -5750,11 +6165,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "19": [
@@ -5764,11 +6175,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "20": [
@@ -5778,11 +6185,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "27": [
@@ -5792,7 +6195,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ],
   "35": [
@@ -5802,7 +6205,7 @@
    },
    {
     "title": "Deploy and remove Token plugin",
-    "file": "test/05-otoco-token-nofee.js"
+    "file": "test/05-otoco-token-nofee.test.js"
    }
   ]
  },
@@ -5811,6 +6214,10 @@
    {
     "title": "Deploy source contracts and plugin",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "18": [
@@ -5821,6 +6228,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "20": [
@@ -5831,6 +6242,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "21": [
@@ -5841,6 +6256,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "22": [
@@ -5851,6 +6270,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "26": [
@@ -5861,6 +6284,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "27": [
@@ -5871,6 +6298,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "31": [
@@ -5887,6 +6318,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "41": [
@@ -5897,6 +6332,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "48": [
@@ -5907,6 +6346,10 @@
    {
     "title": "Test Change Governor Settings",
     "file": "test/08-otoco-governor.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "55": [
@@ -6079,13 +6522,19 @@
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
+  "35": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
   "36": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "56": [
+  "58": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"

@@ -3,8 +3,6 @@ const { task } = require("hardhat/config");
 const br = "\x1b[1m";
 const gr = "\x1b[32m";
 const red = "\x1b[31m";
-const fc = "\x1b[30m";
-const bg = "\x1b[44m";
 const r = "\x1b[0m";
 
 const defaultMaxTries = "8";
@@ -17,8 +15,8 @@ async function delay(ms) {
 }
 
 task(
-  `verification`, 
-  `${fc}${bg}${br}Handles verification of deployed contracts${r}`)
+  "verification", 
+  "Handles verification of deployed contracts")
 
 .addParam(
   "addr", 
