@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "./IOtoCoMaster.sol";
 
-interface IOtoCoPlugin {
+interface IOtoCoPluginV2 {
 
     /**
      * Plugin initializer with a function template to be used.

@@ -1,8 +1,8 @@
 {
  "stats": {
   "suites": 13,
-  "tests": 69,
-  "passes": 69,
+  "tests": 70,
+  "passes": 70,
   "pending": 0,
   "failures": 0
  },
@@ -479,6 +479,13 @@
   {
    "title": "Should create a new DAO using Governor initializer",
    "fullTitle": "OtoCo Master Test Should create a new DAO using Governor initializer",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should estimate gas for createEntityWithInitializer",
+   "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}
@@ -965,6 +972,13 @@
   {
    "title": "Should create a new DAO using Governor initializer",
    "fullTitle": "OtoCo Master Test Should create a new DAO using Governor initializer",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should estimate gas for createEntityWithInitializer",
+   "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}

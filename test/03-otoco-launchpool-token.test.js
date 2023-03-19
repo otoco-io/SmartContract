@@ -1,8 +1,6 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const { solidity } = require("ethereum-waffle");
 const chai = require("chai");
-chai.use(solidity);
 
 const { Artifacts } = require("hardhat/internal/artifacts");
 const { zeroAddress } = require("ethereumjs-util");

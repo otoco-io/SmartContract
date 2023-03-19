@@ -63,7 +63,7 @@ async function main() {
         master: deploysJson.master,
         jurisdictions: JSON.stringify(deploysJson.jurisdictions),
         baseFee: process.env.BASE_FEE
-      });
+    });
 
     /******************
      * STORAGE CHECKS *

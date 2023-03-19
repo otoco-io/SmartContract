@@ -24,7 +24,7 @@ task("setup", "OtoCo V2 scripts setup pusher")
     }
 
      // Mine blocks automatically to allow use with front-end
-     if (hre.network.config.chainId == 31337){
+    if (hre.network.config.chainId == 31337){
       await network.provider.send("evm_setIntervalMining", [5000]);
       await (await ethers.getSigner()).sendTransaction({
         to: '0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30',

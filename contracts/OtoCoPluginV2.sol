@@ -1,21 +1,33 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-import "./utils/IOtoCoMaster.sol";
-import "./utils/IOtoCoPlugin.sol";
+import "./utils/IOtoCoMasterV2.sol";
+import "./utils/IOtoCoPluginV2.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
+
+abstract contract OtoCoPluginV2 is IOtoCoPluginV2, Ownable {
+
+    // Custom errors
+    /// @dev 0x82b42900
+    error Unauthorized();
+    /// @dev 0xdd4f4ace
+    error AttachNotAllowed();
+    /// @dev 0x713e7aee
+    error RemoveNotAllowed();
 
     // Reference to the OtoCo Master to transfer plugin cost
-    IOtoCoMaster public otocoMaster;
+    IOtoCoMasterV2 public otocoMaster;
 
     /**
-     * Modifier to allow only series owners to change content.
+     * Modifier to allow only series owners to change content or OtoCo Master itself.
      * @param tokenId The plugin index to update.
      */
     modifier onlySeriesOwner(uint256 tokenId) {
-        require(otocoMaster.ownerOf(tokenId) == msg.sender, "OtoCoPlugin: Not the entity owner.");
+        if(
+            msg.sender != address(otocoMaster) &&
+            otocoMaster.ownerOf(tokenId) != msg.sender  
+        ) revert Unauthorized();
         _;
     }
 
@@ -25,12 +37,15 @@ abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
      * @dev in the future add/attach/remove could be called from OtoCo Master. In those cases no transfer should be called.
      */
     modifier transferFees() {
-        if (otocoMaster.baseFee() > 0 && msg.sender != address(otocoMaster)) payable(otocoMaster).transfer(msg.value);
+        if (
+            otocoMaster.baseFee() > 0 && 
+            msg.sender != address(otocoMaster)
+        ) payable(otocoMaster).transfer(msg.value);
         _;
     }
 
     constructor(address payable _otocoMaster) Ownable() {
-        otocoMaster = IOtoCoMaster(_otocoMaster);
+        otocoMaster = IOtoCoMasterV2(_otocoMaster);
     }
 
     /**
@@ -49,7 +64,7 @@ abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
      * @param pluginData The parameters to remove a instance of the plugin.
      */
     function attachPlugin(uint256 seriesId, bytes calldata pluginData) external payable virtual override {
-        revert("OtoCoPlugin: Attach elements are not possible on this plugin.");
+        revert AttachNotAllowed();
     }
 
     /**
@@ -59,6 +74,6 @@ abstract contract OtoCoPlugin is IOtoCoPlugin, Ownable {
      * @param pluginData The parameters to remove a instance of the plugin.
      */
     function removePlugin(uint256 seriesId, bytes calldata pluginData) external payable virtual override {
-        revert("OtoCoPlugin: Remove elements are not possible on this plugin.");
+        revert RemoveNotAllowed();
     }
 }

@@ -1,9 +1,7 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const { solidity } = require("ethereum-waffle");
 const chai = require("chai");
 const { json } = require("hardhat/internal/core/params/argumentTypes");
-chai.use(solidity);
 const fs = require('fs').promises;
 
 const readline = require('readline');

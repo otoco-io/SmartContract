@@ -1,10 +1,7 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const { solidity } = require("ethereum-waffle");
 const chai = require("chai");
 const { zeroAddress } = require("ethereumjs-util");
-// const { ConsensusAlgorithm } = require("@ethereumjs/common");
-chai.use(solidity);
 
 describe("OtoCo Master Test", function () {
 

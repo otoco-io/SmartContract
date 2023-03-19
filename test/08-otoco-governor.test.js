@@ -1,9 +1,7 @@
 const { expect } = require("chai");
 const { ethers, network, upgrades } = require("hardhat");
-const { solidity } = require("ethereum-waffle");
 const { zeroAddress } = require("ethereumjs-util");
 const chai = require("chai");
-chai.use(solidity);
 
 const hre = require("hardhat");
 

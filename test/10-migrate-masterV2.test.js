@@ -1,10 +1,7 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const { solidity } = require("ethereum-waffle");
 const chai = require("chai");
 const { zeroAddress } = require("ethereumjs-util");
-// const { ConsensusAlgorithm } = require("@ethereumjs/common");
-chai.use(solidity);
 
 const EthDividend = ethers.BigNumber.from(ethers.utils.parseUnits('1', 18)).mul(ethers.utils.parseUnits('1', 9)).div(10);
 

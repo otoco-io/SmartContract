@@ -1505,6 +1505,46 @@
     ]
   },
   {
+    "fileName": "contracts/OtoCoPluginV2.sol",
+    "lines": [
+      {
+        "lineNumber": 27,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 31,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 40,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 44,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 48,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 67,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 77,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
     "fileName": "contracts/plugins/ENS.sol",
     "lines": [
       {
@@ -2074,6 +2114,601 @@
       },
       {
         "lineNumber": 130,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
+    "fileName": "contracts/pluginsV2/ENSV2.sol",
+    "lines": [
+      {
+        "lineNumber": 41,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 45,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 46,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 47,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 67,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 68,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 69,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 71,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 72,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 73,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 74,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 89,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 94,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 95,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 96,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 97,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 99,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 108,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 109,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 110,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 111,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
+    "fileName": "contracts/pluginsV2/LaunchpoolV2.sol",
+    "lines": [
+      {
+        "lineNumber": 46,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 47,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 49,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 50,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 51,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 53,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 63,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 72,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 78,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 87,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 88,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 89,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 91,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 98,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 99,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 101,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
+    "fileName": "contracts/pluginsV2/MultisigV2.sol",
+    "lines": [
+      {
+        "lineNumber": 32,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 33,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 35,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 36,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 37,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 39,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 44,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 48,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 54,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 58,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 59,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 61,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 74,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 77,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 78,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 80,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 86,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 89,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 93,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 97,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 98,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 100,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
+    "fileName": "contracts/pluginsV2/TimestampV2.sol",
+    "lines": [
+      {
+        "lineNumber": 32,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 37,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 47,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 53,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
+    "fileName": "contracts/pluginsV2/TokenizationV2.sol",
+    "lines": [
+      {
+        "lineNumber": 53,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 61,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 74,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 90,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 91,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 93,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 94,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 95,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 98,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 99,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 102,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 103,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 107,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 109,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 110,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 112,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 125,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 135,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 136,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 138,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 139,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 142,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 143,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 145,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 158,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 159,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 161,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 163,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
+    "fileName": "contracts/pluginsV2/TokenV2.sol",
+    "lines": [
+      {
+        "lineNumber": 48,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 50,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 51,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 52,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 54,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 64,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 79,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 86,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 87,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 88,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 89,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 91,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 104,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 107,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 108,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 110,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 123,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 126,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 129,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 133,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 134,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 136,
         "hue": 1,
         "suspiciousness": 0
       }

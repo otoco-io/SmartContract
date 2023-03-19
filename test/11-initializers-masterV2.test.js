@@ -2,11 +2,8 @@ const hre = require('hardhat');
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
 const { zeroAddress } = require("ethereumjs-util");
-const { solidity,  deployMockContract } = require("ethereum-waffle");
 const { Artifacts } = require("hardhat/internal/artifacts");
 const chai = require("chai");
-// const { ConsensusAlgorithm } = require("@ethereumjs/common");
-chai.use(solidity);
 
 
 async function getExternalArtifact(contract) {
@@ -123,12 +120,16 @@ describe("OtoCo Master Test", function () {
       .mul(await wy.getJurisdictionDeployPrice())
       .add(baseFee.mul(gasLimit));
 
-    const GnosisSafeArtifact = await getExternalArtifact("GnosisSafe");
-    const GnosisSafeFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
+    const GnosisSafeArtifact = 
+      await getExternalArtifact("GnosisSafe");
+    const GnosisSafeFactory = 
+      await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
     gnosisSafe = await GnosisSafeFactory.deploy();
 
-    const GnosisSafeProxyFactoryArtifact = await getExternalArtifact("GnosisSafeProxyFactory");
-    const GnosisSafeProxyFactoryFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
+    const GnosisSafeProxyFactoryArtifact = 
+      await getExternalArtifact("GnosisSafeProxyFactory");
+    const GnosisSafeProxyFactoryFactory = 
+      await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
     gnosisSafeProxyFactory = await GnosisSafeProxyFactoryFactory.deploy();
 
     gnosisSafeInterface = new ethers.utils.Interface(GnosisSafeArtifact.abi);
@@ -143,34 +144,36 @@ describe("OtoCo Master Test", function () {
         zeroAddress()
     ]);
 
-    const gnosisSafeFactoryInterface = new ethers.utils.Interface(GnosisSafeProxyFactoryArtifact.abi);
-    const dataFactory = gnosisSafeFactoryInterface.encodeFunctionData('createProxy', [
-      gnosisSafe.address,
-      data
-    ]);
+    const gnosisSafeFactoryInterface = 
+      new ethers.utils.Interface(GnosisSafeProxyFactoryArtifact.abi);
+    const dataFactory = 
+      gnosisSafeFactoryInterface.encodeFunctionData('createProxy', [
+        gnosisSafe.address,
+        data
+      ],
+    );
 
-    const initArgs =
-      [ 
-        2,
-        [gnosisSafeProxyFactory.address],
-        [dataFactory],
-        0,
-        "New Entity",
-      ];
+    const initArgs = [ 
+      2,
+      [gnosisSafeProxyFactory.address],
+      [dataFactory],
+      0,
+      "New Entity",
+    ];
 
     const values = [
-    // correct amount
-    [{gasPrice, gasLimit, value:amountToPayForSpinUp}],
-    // incorrect amount
-    [{gasPrice, gasLimit, value:ethers.constants.Zero}],
-  ];
+      // correct amount
+      [{gasPrice, gasLimit, value:amountToPayForSpinUp}],
+      // incorrect amount
+      [{gasPrice, gasLimit, value:ethers.constants.Zero}],
+    ];
 
-  const fundedArgs = initArgs.concat(values[0]);
-  const unfundedArgs = initArgs.concat(values[1]);
-  const initError = fundedArgs.slice();
-  initError.splice(1,1,[otocoMaster.address]);
-  const initError2 = fundedArgs.slice();
-  initError2.splice(1,1,[owner.address]);
+    const fundedArgs = initArgs.concat(values[0]);
+    const unfundedArgs = initArgs.concat(values[1]);
+    const initError = fundedArgs.slice();
+    initError.splice(1,1,[otocoMaster.address]);
+    const initError2 = fundedArgs.slice();
+    initError2.splice(1,1,[owner.address]);
 
     const transaction =
       await otocoMaster
@@ -195,7 +198,7 @@ describe("OtoCo Master Test", function () {
 
   it("Should create a new entity using Multisig initializer with plugins", async function () {
     const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("600000");
+    const gasLimit = ethers.BigNumber.from("680000");
     const Unincorporated = 
       await ethers.getContractFactory("JurisdictionUnincorporatedV2");
     const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
@@ -217,52 +220,88 @@ describe("OtoCo Master Test", function () {
       await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
     gnosisSafeProxyFactory = await GnosisSafeProxyFactoryFactory.deploy();
     gnosisSafeInterface = new ethers.utils.Interface(GnosisSafeArtifact.abi);
+    const signers = await ethers.getSigners();
 
-    const data = gnosisSafeInterface.encodeFunctionData('setup', [
-        [owner.address, wallet2.address],
-        1,
-        zeroAddress(),
-        [],
-        zeroAddress(),
-        zeroAddress(),
-        0,
-        zeroAddress(),
-    ]);
+    const getSignerAddrs = ( amount, addrs ) => {
+      return addrs.slice(0, amount).map(({ address }) => address);
+    };
+
+    // Build Encoded Setup Function Data with owners array
+      const data = (_owners) => { 
+        return gnosisSafeInterface.encodeFunctionData(
+        'setup', [
+          // address[] calldata _owners,
+          _owners,
+          // uint256 _threshold,
+          1,
+          // address to,
+          zeroAddress(),
+          // bytes calldata data,
+          [],
+          // address fallbackHandler,
+          zeroAddress(),
+          // address paymentToken,
+          zeroAddress(),
+          // uint256 payment,
+          0,
+          // address payable paymentReceiver
+          zeroAddress(),
+        ]);
+      };
 
     const gnosisSafeFactoryInterface = 
       new ethers.utils.Interface(GnosisSafeProxyFactoryArtifact.abi);
+      
+    // 405957 gas for 8 owners
     const dataFactory = 
       gnosisSafeFactoryInterface.encodeFunctionData(
         'createProxy', 
-        [ gnosisSafe.address, data ],
+        [ 
+          gnosisSafe.address, 
+          data(getSignerAddrs(8, signers)), // [owner, wallet2] 
+        ],
     );
 
-    // `gnosisSafeProxyFactory` returns a new address and all otoco v1 plugins' 
-    // `addPlugin` functions require the msg.sender to be the owner of `seriesID`/`tokenId`.
-    // Since this renders using v1 plugins unfeaseble and V2 plugins have not yet been released,
-    // we will temporaly use dynamic mocking for the `IOtoCoPlugin` interface in order to cover
-    // the branch designed to call `addPlugin` in otoco v2 plugins.
 
-    const pluginABI = 
-        (await hre.artifacts.readArtifact("IOtoCoPlugin")).abi;
+    const TimestampPlugin = 
+      await ethers.getContractFactory("TimestampV2");
+    const timestampPlugin = 
+      await TimestampPlugin.deploy(otocoMaster.address);
+    const pluginData = 
+      ethers.utils.defaultAbiCoder.encode(
+        ['string', 'string'], 
+        ['filename', 'cid'],
+      );
 
-    const mockData = 
-      ethers.utils.defaultAbiCoder.encode(['string'],['mckd'],);
-
-    const mockPlugin = await deployMockContract(owner, pluginABI);
-    await mockPlugin.deployed();
-    await mockPlugin.mock.addPlugin.withArgs(2,mockData).returns();
+      // ethers estimation fail returns fixed 30_000_000 cost
+      // console.log(await otocoMaster.estimateGas.createEntityWithInitializer(
+      //     0,
+      //     [gnosisSafeProxyFactory.address, timestampPlugin.address],
+      //     [dataFactory, pluginData],
+      //     0,
+      //     "New Entity 2",
+      //     {gasPrice, gasLimit, value:amountToPayForSpinUp},
+      //   ),
+      // );
 
     const transaction = await otocoMaster.createEntityWithInitializer(
       0,
-      [gnosisSafeProxyFactory.address, mockPlugin.address],
-      [dataFactory, mockData],
+      [gnosisSafeProxyFactory.address, timestampPlugin.address],
+      [dataFactory, pluginData],
       0,
       "New Entity 2",
       {gasPrice, gasLimit, value:amountToPayForSpinUp},
     );
 
-    const proxyAddress = (await transaction.wait()).events.pop().args.to;
+    const bn = await transaction.blockNumber;
+    const timestampCheck = (await ethers.provider.getBlock(bn)).timestamp;
+
+    const proxyAddress = 
+      ((await transaction.wait())
+      .events.filter(event => event.event === 'Transfer')
+      .map(event => (event.args.to)).toString()
+    );
+
     const storageCheck =  
       [
         await otocoMaster.callStatic.seriesCount(), 
@@ -278,6 +317,8 @@ describe("OtoCo Master Test", function () {
     
     await expect(transaction).to.emit(gnosisSafeProxyFactory, 'ProxyCreation')
       .withArgs(proxyAddress, gnosisSafe.address);
+      await expect(transaction).to.emit(timestampPlugin, 'DocumentTimestamped')
+      .withArgs(2, timestampCheck, 'filename', 'cid');
     await expect(transaction).to.emit(otocoMaster, 'Transfer')
       .withArgs(zeroAddress(), proxyAddress, ethers.constants.Two);
 
@@ -352,39 +393,29 @@ describe("OtoCo Master Test", function () {
 
     const TokenFactory = await ethers.getContractFactory("OtoCoToken");
     const token = await TokenFactory.deploy();
-    // const TokenPluginFactory = await ethers.getContractFactory("Token");
-    // tokenPlugin = await TokenPluginFactory.deploy(
-    //   otocoMaster.address,
-    //   token.address,
-    //   [1],
-    //   [token.address],
-    // );
+    const TokenPluginFactory = await ethers.getContractFactory("TokenV2");
+    const tokenPlugin = await TokenPluginFactory.deploy(
+      otocoMaster.address,
+      token.address,
+      [1],
+      [token.address],
+    );
 
-    // const pluginData = ethers.utils.defaultAbiCoder.encode(
-    //   ['uint256', 'string', 'string', 'address'],
-    //   [
-    //     ethers.utils.parseEther('100'), 
-    //     'Test Token', 
-    //     'TEST', 
-    //     owner.address,
-    //   ],
-    // );
-
-    const pluginABI = 
-    (await hre.artifacts.readArtifact("IOtoCoPlugin")).abi;
-
-    const mockData = 
-      ethers.utils.defaultAbiCoder.encode(['string'],['mckd'],);
-    
-    const mockPlugin = await deployMockContract(owner, pluginABI);
-    await mockPlugin.deployed();
-    await mockPlugin.mock.addPlugin.withArgs(4,mockData).returns();
+    const pluginData = ethers.utils.defaultAbiCoder.encode(
+      ['uint256', 'string', 'string', 'address'],
+      [
+        ethers.utils.parseEther('100'), 
+        'Test Token', 
+        'TEST', 
+        owner.address,
+      ],
+    );
 
     const initArgs =
     [ 
       1,
-      [zeroAddress(), mockPlugin.address],
-      [ethers.constants.HashZero, mockData],
+      [zeroAddress(), tokenPlugin.address],
+      [ethers.constants.HashZero, pluginData],
       0,
       "New Entity 4",
     ];
@@ -417,6 +448,8 @@ describe("OtoCo Master Test", function () {
       await otocoMaster.callStatic.ownerOf(4),
     ];
 
+  const tokenProxyCheck = await tokenPlugin.callStatic.tokensDeployed(4,0);
+
 
     expect(transaction).to.be.ok;
     expect(storageCheck[0]).to.eq(ethers.BigNumber.from(5));
@@ -425,6 +458,8 @@ describe("OtoCo Master Test", function () {
     
     await expect(transaction).to.emit(otocoMaster, 'Transfer')
       .withArgs(zeroAddress(), owner.address, ethers.BigNumber.from(4));
+    await expect(transaction).to.emit(tokenPlugin, 'TokenAdded')
+      .withArgs(ethers.BigNumber.from(4), tokenProxyCheck);
     await expect(otocoMaster.createEntityWithInitializer(...unfundedArgs))
       .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
   });
@@ -581,4 +616,111 @@ describe("OtoCo Master Test", function () {
     ).to.be.revertedWithCustomError(otocoMaster, "InitializerError");
 
   });
+  it("Should estimate gas for createEntityWithInitializer", async function () {
+    const gasPrice = ethers.BigNumber.from("2000000000");
+    const gasLimit = ethers.BigNumber.from("450000");
+    const Unincorporated = 
+      await ethers.getContractFactory("JurisdictionUnincorporatedV2");
+    const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
+    const baseFee = await otocoMaster.baseFee();
+    const amountToPayForSpinUp = 
+      EthDividend.div((await priceFeed.latestRoundData()).answer)
+      .mul(await unc.getJurisdictionDeployPrice())
+      .add(baseFee.mul(gasLimit));
+
+
+    const GnosisSafeArtifact = 
+      await getExternalArtifact("GnosisSafe");
+    const GnosisSafeFactory = 
+      await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
+    gnosisSafe = await GnosisSafeFactory.deploy();
+
+    const GnosisSafeProxyFactoryArtifact = 
+    await getExternalArtifact("GnosisSafeProxyFactory");
+    const GnosisSafeProxyFactoryFactory = 
+    await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
+    gnosisSafeProxyFactory = await GnosisSafeProxyFactoryFactory.deploy();
+    gnosisSafeInterface = new ethers.utils.Interface(GnosisSafeArtifact.abi);
+    const signers = await ethers.getSigners();
+
+    const getSignerAddrs = ( amount, addrs ) => {
+      return addrs.slice(0, amount).map(({ address }) => address);
+    };
+
+    // Build Encoded Setup Function Data with owners array
+      const data = (_owners) => { 
+        return gnosisSafeInterface.encodeFunctionData(
+        'setup', [
+          // address[] calldata _owners,
+          _owners,
+          // uint256 _threshold,
+          1,
+          // address to,
+          zeroAddress(),
+          // bytes calldata data,
+          [],
+          // address fallbackHandler,
+          zeroAddress(),
+          // address paymentToken,
+          zeroAddress(),
+          // uint256 payment,
+          0,
+          // address payable paymentReceiver
+          zeroAddress(),
+        ]);
+      };
+
+      const numberOfOwners = 8;
+      const numberOfPlugins = 1;
+      // console.log(`\nEstimation for 
+        // Number of Owners: ${numberOfOwners}; 
+        // Number of Plugins: ${numberOfPlugins}.\n`);
+
+      const gnosisCost = 
+      Number((await gnosisSafeProxyFactory.estimateGas.createProxy(
+        gnosisSafe.address, 
+        data(getSignerAddrs( numberOfOwners, signers )),
+      )).toString());
+
+      // console.log(`Owners: `)
+      // console.table(
+        // getSignerAddrs( numberOfOwners, signers )
+      // );
+      // console.log(
+      //   `Gas cost for ${numberOfOwners} owner addresses: `,
+      //   gnosisCost, `gas units.`
+      // );
+
+      const TimestampPlugin = 
+      await ethers.getContractFactory("TimestampV2");
+    const timestampPlugin = 
+      await TimestampPlugin.deploy(otocoMaster.address);
+    const pluginData = 
+      ethers.utils.defaultAbiCoder.encode(
+        ['string', 'string'], 
+        ['filename', 'cid'],
+      );
+
+    await otocoMaster.createEntityWithInitializer(
+      0,
+      [zeroAddress(), timestampPlugin.address],
+      [ethers.constants.HashZero, pluginData],
+      0,
+      "New Entity 6",
+      {gasPrice, gasLimit, value:amountToPayForSpinUp},
+    );
+
+    await otocoMaster.changeBaseFees(0);
+    const pluginCost = 
+      Number((await timestampPlugin
+      .estimateGas.addPlugin(6, pluginData)).toString());
+
+      const baseCost = (gnosisCost + (pluginCost * numberOfPlugins));
+
+      // console.log(`Gas cost increase per addPlugin call:`, pluginCost, `gas units`);
+
+      // console.log(`\nSafe Hardcoded gasLimit Suggestion: > `, baseCost + (baseCost / 2) );
+
+  });
+
 });
