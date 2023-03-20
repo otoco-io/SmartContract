@@ -5,6 +5,13 @@ const { zeroAddress } = require("ethereumjs-util");
 const { Artifacts } = require("hardhat/internal/artifacts");
 const chai = require("chai");
 
+const EthDividend = 
+  ethers.BigNumber.from(
+    ethers.utils.parseUnits('1', 18))
+      .mul(ethers.utils.parseUnits('1', 9))
+      .div(10);
+
+const defaultGasPrice = "2000000000";
 
 async function getExternalArtifact(contract) {
     const artifactsPath = "./artifacts-external";
@@ -12,8 +19,32 @@ async function getExternalArtifact(contract) {
     return artifacts.readArtifact(contract);
 }
 
+async function getAmountToPay(
+  jurisdiction, 
+  master, 
+  gasPrice, 
+  gasLimit, 
+  priceFeed, 
+) {
+  const Factory = await ethers.getContractFactory([
+    "JurisdictionUnincorporatedV2",
+    "JurisdictionDelawareV2",
+    "JurisdictionWyomingV2",
+  ][jurisdiction]);
+  const jurisdictionContract = 
+    await Factory.attach(await master.jurisdictionAddress(jurisdiction));
+  const baseFee = await master.callStatic.baseFee();
+  const { answer } = await priceFeed.callStatic.latestRoundData();
+  const amountToPayForSpinUp = EthDividend.div(answer)
+    .mul(await jurisdictionContract.callStatic.getJurisdictionDeployPrice())
+    .add(baseFee.mul(gasLimit));
+  return [
+    amountToPayForSpinUp, 
+    ethers.BigNumber.from(gasPrice), 
+    ethers.BigNumber.from(gasLimit),
+  ];
+}
 
-const EthDividend = ethers.BigNumber.from(ethers.utils.parseUnits('1', 18)).mul(ethers.utils.parseUnits('1', 9)).div(10);
 
 describe("OtoCo Master Test", function () {
   let owner, wallet2, wallet3, wallet4;
@@ -108,17 +139,14 @@ describe("OtoCo Master Test", function () {
   });
 
   it("Should create a new entity using Multisig initializer without plugins", async function () {
-
-    const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("600000");
-    // Check the amount of ETH has to be paid after pass the priceFeed
-    const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
-    const wy = Wyoming.attach(await otocoMaster.jurisdictionAddress(2));
-    const baseFee = await otocoMaster.baseFee();
-    const amountToPayForSpinUp = 
-      EthDividend.div((await priceFeed.latestRoundData()).answer)
-      .mul(await wy.getJurisdictionDeployPrice())
-      .add(baseFee.mul(gasLimit));
+    const [amountToPayForSpinUp, gasPrice, gasLimit] = 
+      await getAmountToPay(
+        2, 
+        otocoMaster,
+        defaultGasPrice,
+        "450000",
+        priceFeed,
+      );
 
     const GnosisSafeArtifact = 
       await getExternalArtifact("GnosisSafe");
@@ -197,16 +225,14 @@ describe("OtoCo Master Test", function () {
   });
 
   it("Should create a new entity using Multisig initializer with plugins", async function () {
-    const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("680000");
-    const Unincorporated = 
-      await ethers.getContractFactory("JurisdictionUnincorporatedV2");
-    const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
-    const baseFee = await otocoMaster.baseFee();
-    const amountToPayForSpinUp = 
-      EthDividend.div((await priceFeed.latestRoundData()).answer)
-      .mul(await unc.getJurisdictionDeployPrice())
-      .add(baseFee.mul(gasLimit));
+      const [amountToPayForSpinUp, gasPrice, gasLimit] = 
+      await getAmountToPay(
+        0, 
+        otocoMaster,
+        defaultGasPrice,
+        "680000",
+        priceFeed,
+      );
 
     const GnosisSafeArtifact = 
       await getExternalArtifact("GnosisSafe");
@@ -325,16 +351,14 @@ describe("OtoCo Master Test", function () {
   });
 
   it("Should create a new entity without initializer and without plugins", async function () {
-    const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("600000");
-    const Delaware = 
-      await ethers.getContractFactory("JurisdictionDelawareV2");
-    const de = Delaware.attach(await otocoMaster.jurisdictionAddress(1));
-    const baseFee = await otocoMaster.baseFee();
-    const amountToPayForSpinUp = 
-      EthDividend.div((await priceFeed.latestRoundData()).answer)
-      .mul(await de.getJurisdictionDeployPrice())
-      .add(baseFee.mul(gasLimit));
+    const [amountToPayForSpinUp, gasPrice, gasLimit] = 
+    await getAmountToPay(
+      1, 
+      otocoMaster,
+      defaultGasPrice,
+      "180000",
+      priceFeed,
+    );
 
     const initArgs =
       [ 
@@ -380,16 +404,14 @@ describe("OtoCo Master Test", function () {
   });
 
   it("Should create a new entity without initializer and with plugins", async function () {
-    const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("600000");
-    const Delaware = 
-      await ethers.getContractFactory("JurisdictionDelawareV2");
-    const de = Delaware.attach(await otocoMaster.jurisdictionAddress(1));
-    const baseFee = await otocoMaster.baseFee();
-    const amountToPayForSpinUp = 
-      EthDividend.div((await priceFeed.latestRoundData()).answer)
-      .mul(await de.getJurisdictionDeployPrice())
-      .add(baseFee.mul(gasLimit));
+    const [amountToPayForSpinUp, gasPrice, gasLimit] = 
+    await getAmountToPay(
+      1, 
+      otocoMaster,
+      defaultGasPrice,
+      "450000",
+      priceFeed,
+    );
 
     const TokenFactory = await ethers.getContractFactory("OtoCoToken");
     const token = await TokenFactory.deploy();
@@ -617,17 +639,14 @@ describe("OtoCo Master Test", function () {
 
   });
   it("Should estimate gas for createEntityWithInitializer", async function () {
-    const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("450000");
-    const Unincorporated = 
-      await ethers.getContractFactory("JurisdictionUnincorporatedV2");
-    const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
-    const baseFee = await otocoMaster.baseFee();
-    const amountToPayForSpinUp = 
-      EthDividend.div((await priceFeed.latestRoundData()).answer)
-      .mul(await unc.getJurisdictionDeployPrice())
-      .add(baseFee.mul(gasLimit));
-
+    const [amountToPayForSpinUp, gasPrice, gasLimit] = 
+    await getAmountToPay(
+      0, 
+      otocoMaster,
+      defaultGasPrice,
+      "450000",
+      priceFeed,
+    );
 
     const GnosisSafeArtifact = 
       await getExternalArtifact("GnosisSafe");
@@ -670,8 +689,9 @@ describe("OtoCo Master Test", function () {
         ]);
       };
 
-      const numberOfOwners = 8;
-      const numberOfPlugins = 1;
+      const numberOfOwners = 2;   // Min. value as safety measure := 2
+      const numberOfPlugins = 1;  // Min. value as safety measure := 1
+
       // console.log(`\nEstimation for 
         // Number of Owners: ${numberOfOwners}; 
         // Number of Plugins: ${numberOfPlugins}.\n`);
