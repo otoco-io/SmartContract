@@ -1,8 +1,8 @@
 {
  "stats": {
   "suites": 13,
-  "tests": 70,
-  "passes": 70,
+  "tests": 71,
+  "passes": 71,
   "pending": 0,
   "failures": 0
  },
@@ -484,8 +484,15 @@
    "err": {}
   },
   {
-   "title": "Should estimate gas for createEntityWithInitializer",
-   "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer",
+   "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+   "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer with Multisig initializer",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+   "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer with Governor initializer",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}
@@ -977,8 +984,15 @@
    "err": {}
   },
   {
-   "title": "Should estimate gas for createEntityWithInitializer",
-   "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer",
+   "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+   "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer with Multisig initializer",
+   "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+   "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer with Governor initializer",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}

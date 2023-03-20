@@ -1,49 +1,7 @@
 const hre = require('hardhat');
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const { zeroAddress } = require("ethereumjs-util");
-const { Artifacts } = require("hardhat/internal/artifacts");
-const chai = require("chai");
-
-const EthDividend = 
-  ethers.BigNumber.from(
-    ethers.utils.parseUnits('1', 18))
-      .mul(ethers.utils.parseUnits('1', 9))
-      .div(10);
-
-const defaultGasPrice = "2000000000";
-
-async function getExternalArtifact(contract) {
-    const artifactsPath = "./artifacts-external";
-    const artifacts = new Artifacts(artifactsPath);
-    return artifacts.readArtifact(contract);
-}
-
-async function getAmountToPay(
-  jurisdiction, 
-  master, 
-  gasPrice, 
-  gasLimit, 
-  priceFeed, 
-) {
-  const Factory = await ethers.getContractFactory([
-    "JurisdictionUnincorporatedV2",
-    "JurisdictionDelawareV2",
-    "JurisdictionWyomingV2",
-  ][jurisdiction]);
-  const jurisdictionContract = 
-    await Factory.attach(await master.jurisdictionAddress(jurisdiction));
-  const baseFee = await master.callStatic.baseFee();
-  const { answer } = await priceFeed.callStatic.latestRoundData();
-  const amountToPayForSpinUp = EthDividend.div(answer)
-    .mul(await jurisdictionContract.callStatic.getJurisdictionDeployPrice())
-    .add(baseFee.mul(gasLimit));
-  return [
-    amountToPayForSpinUp, 
-    ethers.BigNumber.from(gasPrice), 
-    ethers.BigNumber.from(gasLimit),
-  ];
-}
+const utils = require('./utils')
 
 
 describe("OtoCo Master Test", function () {
@@ -52,6 +10,9 @@ describe("OtoCo Master Test", function () {
   let otocoMaster;
   let jurisdictions;
   let priceFeed;
+
+  const zeroAddress = ethers.constants.AddressZero;
+  const defaultGasPrice = "2000000000";
 
   it("Create Jurisdictions", async function () {
 
@@ -106,20 +67,28 @@ describe("OtoCo Master Test", function () {
 
     await expect(otocoMaster.connect(wallet4).changeBaseFees("0"))
       .to.be.revertedWith('Ownable: caller is not the owner');
-    await expect(otocoMaster.connect(wallet4).changePriceFeed(zeroAddress()))
+    await expect(otocoMaster.connect(wallet4).changePriceFeed(zeroAddress))
       .to.be.revertedWith('Ownable: caller is not the owner');
   })
 
   it("Creating series with correct fees and wrong fees", async function () {
 
-    const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("200000");
-    // Check the amount of ETH has to be paid after pass the priceFeed
-    const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
-    const wy = Wyoming.attach(await otocoMaster.jurisdictionAddress(2));
-    const amountToPayForSpinUp = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await wy.getJurisdictionDeployPrice());
+    const [amount, gasPrice, gasLimit, baseFee] = 
+    await utils.getAmountToPay(
+      2, 
+      otocoMaster,
+      defaultGasPrice,
+      "200000",
+      priceFeed,
+    );
+    const amountToPayForSpinUp = amount.sub(baseFee.mul(gasLimit));
+    
     // Remove 1% from the correct amount needed
-    const notEnoughToPayForSpinUp = amountToPayForSpinUp.mul(100).div(101);
+    const notEnoughToPayForSpinUp = 
+    amountToPayForSpinUp
+    .sub(amountToPayForSpinUp
+      .mul(ethers.constants.One)
+      .div(ethers.BigNumber.from(100)));
 
     // Try to create without the proper amount of ETH Value, expect to fail
     await expect(otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:notEnoughToPayForSpinUp}))
@@ -129,7 +98,7 @@ describe("OtoCo Master Test", function () {
 
     // Expected to successfully create a new entity
     const transaction = await otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 0);
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 0);
     expect((await otocoMaster.series(0)).jurisdiction).to.be.equal(2)
     expect((await otocoMaster.series(0)).name).to.be.equal("New Entity - Series 1")
     
@@ -140,7 +109,7 @@ describe("OtoCo Master Test", function () {
 
   it("Should create a new entity using Multisig initializer without plugins", async function () {
     const [amountToPayForSpinUp, gasPrice, gasLimit] = 
-      await getAmountToPay(
+      await utils.getAmountToPay(
         2, 
         otocoMaster,
         defaultGasPrice,
@@ -149,13 +118,13 @@ describe("OtoCo Master Test", function () {
       );
 
     const GnosisSafeArtifact = 
-      await getExternalArtifact("GnosisSafe");
+      await utils.getExternalArtifact("GnosisSafe");
     const GnosisSafeFactory = 
       await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
     gnosisSafe = await GnosisSafeFactory.deploy();
 
     const GnosisSafeProxyFactoryArtifact = 
-      await getExternalArtifact("GnosisSafeProxyFactory");
+      await utils.getExternalArtifact("GnosisSafeProxyFactory");
     const GnosisSafeProxyFactoryFactory = 
       await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
     gnosisSafeProxyFactory = await GnosisSafeProxyFactoryFactory.deploy();
@@ -164,12 +133,12 @@ describe("OtoCo Master Test", function () {
     const data = gnosisSafeInterface.encodeFunctionData('setup', [
         [owner.address, wallet2.address],
         1,
-        zeroAddress(),
+        zeroAddress,
         [],
-        zeroAddress(),
-        zeroAddress(),
+        zeroAddress,
+        zeroAddress,
         0,
-        zeroAddress()
+        zeroAddress
     ]);
 
     const gnosisSafeFactoryInterface = 
@@ -209,7 +178,7 @@ describe("OtoCo Master Test", function () {
 
     const proxyAddress = (await transaction.wait()).events.pop().args.to;
     await expect(transaction).to.emit(gnosisSafeProxyFactory, 'ProxyCreation').withArgs(proxyAddress, gnosisSafe.address)
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), proxyAddress, 1)
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, proxyAddress, 1)
     
     const proxyInstance = await GnosisSafeFactory.attach(proxyAddress);
     expect(await proxyInstance.getOwners()).to.be.eql([owner.address, wallet2.address])
@@ -226,7 +195,7 @@ describe("OtoCo Master Test", function () {
 
   it("Should create a new entity using Multisig initializer with plugins", async function () {
       const [amountToPayForSpinUp, gasPrice, gasLimit] = 
-      await getAmountToPay(
+      await utils.getAmountToPay(
         0, 
         otocoMaster,
         defaultGasPrice,
@@ -235,13 +204,13 @@ describe("OtoCo Master Test", function () {
       );
 
     const GnosisSafeArtifact = 
-      await getExternalArtifact("GnosisSafe");
+      await utils.getExternalArtifact("GnosisSafe");
     const GnosisSafeFactory = 
       await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
     gnosisSafe = await GnosisSafeFactory.deploy();
 
     const GnosisSafeProxyFactoryArtifact = 
-      await getExternalArtifact("GnosisSafeProxyFactory");
+      await utils.getExternalArtifact("GnosisSafeProxyFactory");
     const GnosisSafeProxyFactoryFactory = 
       await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
     gnosisSafeProxyFactory = await GnosisSafeProxyFactoryFactory.deploy();
@@ -261,17 +230,17 @@ describe("OtoCo Master Test", function () {
           // uint256 _threshold,
           1,
           // address to,
-          zeroAddress(),
+          zeroAddress,
           // bytes calldata data,
           [],
           // address fallbackHandler,
-          zeroAddress(),
+          zeroAddress,
           // address paymentToken,
-          zeroAddress(),
+          zeroAddress,
           // uint256 payment,
           0,
           // address payable paymentReceiver
-          zeroAddress(),
+          zeroAddress,
         ]);
       };
 
@@ -346,13 +315,13 @@ describe("OtoCo Master Test", function () {
       await expect(transaction).to.emit(timestampPlugin, 'DocumentTimestamped')
       .withArgs(2, timestampCheck, 'filename', 'cid');
     await expect(transaction).to.emit(otocoMaster, 'Transfer')
-      .withArgs(zeroAddress(), proxyAddress, ethers.constants.Two);
+      .withArgs(zeroAddress, proxyAddress, ethers.constants.Two);
 
   });
 
   it("Should create a new entity without initializer and without plugins", async function () {
     const [amountToPayForSpinUp, gasPrice, gasLimit] = 
-    await getAmountToPay(
+    await utils.getAmountToPay(
       1, 
       otocoMaster,
       defaultGasPrice,
@@ -363,7 +332,7 @@ describe("OtoCo Master Test", function () {
     const initArgs =
       [ 
         1,
-        [zeroAddress()],
+        [zeroAddress],
         [],
         0,
         "New Entity 3",
@@ -397,7 +366,7 @@ describe("OtoCo Master Test", function () {
     expect(storageCheck[2]).to.eq(ownerOf);
     
     await expect(transaction).to.emit(otocoMaster, 'Transfer')
-      .withArgs(zeroAddress(), owner.address, ethers.BigNumber.from(3));
+      .withArgs(zeroAddress, owner.address, ethers.BigNumber.from(3));
     await expect(otocoMaster.createEntityWithInitializer(...unfundedArgs))
       .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
 
@@ -405,7 +374,7 @@ describe("OtoCo Master Test", function () {
 
   it("Should create a new entity without initializer and with plugins", async function () {
     const [amountToPayForSpinUp, gasPrice, gasLimit] = 
-    await getAmountToPay(
+    await utils.getAmountToPay(
       1, 
       otocoMaster,
       defaultGasPrice,
@@ -436,7 +405,7 @@ describe("OtoCo Master Test", function () {
     const initArgs =
     [ 
       1,
-      [zeroAddress(), tokenPlugin.address],
+      [zeroAddress, tokenPlugin.address],
       [ethers.constants.HashZero, pluginData],
       0,
       "New Entity 4",
@@ -479,7 +448,7 @@ describe("OtoCo Master Test", function () {
     expect(storageCheck[2]).to.eq(owner.address);
     
     await expect(transaction).to.emit(otocoMaster, 'Transfer')
-      .withArgs(zeroAddress(), owner.address, ethers.BigNumber.from(4));
+      .withArgs(zeroAddress, owner.address, ethers.BigNumber.from(4));
     await expect(transaction).to.emit(tokenPlugin, 'TokenAdded')
       .withArgs(ethers.BigNumber.from(4), tokenProxyCheck);
     await expect(otocoMaster.createEntityWithInitializer(...unfundedArgs))
@@ -488,15 +457,14 @@ describe("OtoCo Master Test", function () {
   
   it("Should create a new DAO using Governor initializer", async function () 
   {
-    const gasPrice = ethers.BigNumber.from("2000000000");
-    const gasLimit = ethers.BigNumber.from("1500000");
-    const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporatedV2");
-    const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
-    const baseFee = await otocoMaster.baseFee();
-    const amountToPayForSpinUp = 
-      EthDividend.div((await priceFeed.latestRoundData()).answer)
-      .mul(await unc.getJurisdictionDeployPrice())
-      .add(baseFee.mul(gasLimit));
+    const [amountToPayForSpinUp, gasPrice, gasLimit] = 
+    await utils.getAmountToPay(
+      2, 
+      otocoMaster,
+      defaultGasPrice,
+      "1200000",
+      priceFeed,
+    );
 
     const Token = await ethers.getContractFactory("OtoCoTokenMintable");
     const tokenRef = await Token.deploy();
@@ -638,9 +606,9 @@ describe("OtoCo Master Test", function () {
     ).to.be.revertedWithCustomError(otocoMaster, "InitializerError");
 
   });
-  it("Should estimate gas for createEntityWithInitializer", async function () {
+  it("Should estimate gas for createEntityWithInitializer with Multisig initializer", async function () {
     const [amountToPayForSpinUp, gasPrice, gasLimit] = 
-    await getAmountToPay(
+    await utils.getAmountToPay(
       0, 
       otocoMaster,
       defaultGasPrice,
@@ -649,13 +617,13 @@ describe("OtoCo Master Test", function () {
     );
 
     const GnosisSafeArtifact = 
-      await getExternalArtifact("GnosisSafe");
+      await utils.getExternalArtifact("GnosisSafe");
     const GnosisSafeFactory = 
       await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
     gnosisSafe = await GnosisSafeFactory.deploy();
 
     const GnosisSafeProxyFactoryArtifact = 
-    await getExternalArtifact("GnosisSafeProxyFactory");
+    await utils.getExternalArtifact("GnosisSafeProxyFactory");
     const GnosisSafeProxyFactoryFactory = 
     await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
     gnosisSafeProxyFactory = await GnosisSafeProxyFactoryFactory.deploy();
@@ -675,17 +643,17 @@ describe("OtoCo Master Test", function () {
           // uint256 _threshold,
           1,
           // address to,
-          zeroAddress(),
+          zeroAddress,
           // bytes calldata data,
           [],
           // address fallbackHandler,
-          zeroAddress(),
+          zeroAddress,
           // address paymentToken,
-          zeroAddress(),
+          zeroAddress,
           // uint256 payment,
           0,
           // address payable paymentReceiver
-          zeroAddress(),
+          zeroAddress,
         ]);
       };
 
@@ -723,7 +691,7 @@ describe("OtoCo Master Test", function () {
 
     await otocoMaster.createEntityWithInitializer(
       0,
-      [zeroAddress(), timestampPlugin.address],
+      [zeroAddress, timestampPlugin.address],
       [ethers.constants.HashZero, pluginData],
       0,
       "New Entity 6",
@@ -741,6 +709,43 @@ describe("OtoCo Master Test", function () {
 
       // console.log(`\nSafe Hardcoded gasLimit Suggestion: > `, baseCost + (baseCost / 2) );
 
+  });
+  it("Should estimate gas for createEntityWithInitializer with Governor initializer", async function () {
+    const governorRef = 
+      await (await ethers.getContractFactory("OtoCoGovernor")).deploy();
+    const tokenRef = await (await ethers.getContractFactory("OtoCoTokenMintable")).deploy();
+    
+      const addresses  = [
+        // Manager
+        otocoMaster.address,
+        // Token Source 
+        tokenRef.address, 
+        // Member addresses
+        owner.address,
+        wallet2.address, 
+      ];
+      const settings = [
+        2,  // Member size 
+        10, // Voting period
+        50, // `owner` shares 
+        50, // `wallet2` shares
+      ];
+      const pluginData = ethers.utils.defaultAbiCoder.encode(
+        ['string', 'string', 'address[]', 'address[]', 'uint256[]'],
+        [
+          'Test Token', 'TEST',
+          [addresses[0]],
+          addresses,
+          settings
+        ],
+      );
+    const governorProxyFactory  = 
+      await hre.run("initializers");
+    const intializeCost = Number((await governorProxyFactory.estimateGas.setup(
+      governorRef.address, pluginData
+    )).toString());
+
+    // console.log(`\nSafe Hardcoded gasLimit Suggestion: > `, intializeCost + (intializeCost / 2) );
   });
 
 });

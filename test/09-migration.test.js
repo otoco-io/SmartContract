@@ -1,10 +1,7 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const chai = require("chai");
-const { json } = require("hardhat/internal/core/params/argumentTypes");
 const fs = require('fs').promises;
 
-const readline = require('readline');
 
 describe("Test Entities migration", function () {
 

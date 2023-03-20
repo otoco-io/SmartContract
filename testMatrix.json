@@ -48,6 +48,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "93": [
@@ -981,6 +985,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "63": [
@@ -1002,6 +1010,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1025,6 +1037,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "65": [
@@ -1046,6 +1062,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1069,6 +1089,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "69": [
@@ -1090,6 +1114,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1113,6 +1141,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "71": [
@@ -1134,6 +1166,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1157,6 +1193,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "73": [
@@ -1178,6 +1218,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1213,6 +1257,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1474,6 +1522,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "37": [
@@ -1520,6 +1572,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "69": [
@@ -1541,6 +1597,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1564,6 +1624,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "72": [
@@ -1585,6 +1649,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -1694,6 +1762,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "77": [
@@ -1715,6 +1787,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1738,6 +1814,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "88": [
@@ -1759,6 +1839,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1782,6 +1866,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "98": [
@@ -1804,6 +1892,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "99": [
@@ -1825,6 +1917,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -1850,6 +1946,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "23": [
@@ -1871,6 +1971,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1898,11 +2002,19 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "52": [
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1910,11 +2022,19 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "57": [
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1922,11 +2042,19 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "64": [
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1934,11 +2062,19 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "68": [
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1946,11 +2082,19 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "72": [
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1958,17 +2102,29 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "82": [
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "83": [
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -2080,7 +2236,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -2394,7 +2550,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -2428,7 +2584,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -3536,7 +3692,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3570,7 +3726,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3604,7 +3760,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3642,7 +3798,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3680,7 +3836,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3762,7 +3918,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3797,7 +3953,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3831,7 +3987,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3865,7 +4021,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3899,7 +4055,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3933,7 +4089,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3959,7 +4115,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3986,7 +4142,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4012,7 +4168,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4038,7 +4194,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4064,7 +4220,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4132,7 +4288,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4158,7 +4314,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4184,7 +4340,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4198,7 +4354,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4284,7 +4440,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4298,7 +4454,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4654,7 +4810,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4668,7 +4824,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4682,7 +4838,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4696,7 +4852,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4710,7 +4866,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5735,7 +5891,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5745,7 +5901,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5906,7 +6062,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should estimate gas for createEntityWithInitializer",
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -5919,6 +6075,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5942,6 +6102,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "46": [
@@ -5963,6 +6127,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5986,6 +6154,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "48": [
@@ -6007,6 +6179,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6030,6 +6206,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "50": [
@@ -6051,6 +6231,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6074,6 +6258,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "52": [
@@ -6095,6 +6283,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6118,11 +6310,19 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "54": [
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6606,6 +6806,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "18": [
@@ -6619,6 +6823,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6634,6 +6842,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "21": [
@@ -6647,6 +6859,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6662,6 +6878,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "26": [
@@ -6676,6 +6896,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "27": [
@@ -6689,6 +6913,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6710,6 +6938,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "41": [
@@ -6724,6 +6956,10 @@
    {
     "title": "Should create a new DAO using Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "48": [
@@ -6737,6 +6973,10 @@
    },
    {
     "title": "Should create a new DAO using Governor initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],

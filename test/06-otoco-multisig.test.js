@@ -1,15 +1,7 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const chai = require("chai");
+const utils = require('./utils');
 
-const { Artifacts } = require("hardhat/internal/artifacts");
-const { zeroAddress } = require("ethereumjs-util");
-
-async function getExternalArtifact(contract) {
-    const artifactsPath = "./artifacts-external";
-    const artifacts = new Artifacts(artifactsPath);
-    return artifacts.readArtifact(contract);
-}
 
 describe("OtoCo Multisig Plugin Test", function () {
 
@@ -20,6 +12,8 @@ describe("OtoCo Multisig Plugin Test", function () {
   let gnosisSafe;
   let gnosisSafeProxyFactory;
   let multisigPlugin;
+
+  const zeroAddress = ethers.constants.AddressZero;
 
   it("Create Jurisdictions", async function () {
 
@@ -58,11 +52,11 @@ describe("OtoCo Multisig Plugin Test", function () {
   it("Deploy External artifacts and test them", async function () {
     const [owner, wallet2, wallet3, wallet4] = await ethers.getSigners();
 
-    const GnosisSafeArtifact = await getExternalArtifact("GnosisSafe");
+    const GnosisSafeArtifact = await utils.getExternalArtifact("GnosisSafe");
     const GnosisSafeFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeArtifact);
     gnosisSafe = await GnosisSafeFactory.deploy();
 
-    const GnosisSafeProxyFactoryArtifact = await getExternalArtifact("GnosisSafeProxyFactory");
+    const GnosisSafeProxyFactoryArtifact = await utils.getExternalArtifact("GnosisSafeProxyFactory");
     const GnosisSafeProxyFactoryFactory = await ethers.getContractFactoryFromArtifact(GnosisSafeProxyFactoryArtifact);
     gnosisSafeProxyFactory = await GnosisSafeProxyFactoryFactory.deploy();
 
@@ -70,12 +64,12 @@ describe("OtoCo Multisig Plugin Test", function () {
     const data = gnosisSafeInterface.encodeFunctionData('setup', [
         [owner.address, wallet2.address],
         1,
-        zeroAddress(),
+        zeroAddress,
         [],
-        zeroAddress(),
-        zeroAddress(),
+        zeroAddress,
+        zeroAddress,
         0,
-        zeroAddress()
+        zeroAddress
     ]);
 
     // Testing proxy creation
@@ -117,12 +111,12 @@ describe("OtoCo Multisig Plugin Test", function () {
     let encoded = gnosisSafeInterface.encodeFunctionData('setup', [
         [owner.address, wallet2.address],
         1,
-        zeroAddress(),
+        zeroAddress,
         [],
-        zeroAddress(),
-        zeroAddress(),
+        zeroAddress,
+        zeroAddress,
         0,
-        zeroAddress()
+        zeroAddress
     ]);
 
     const prevBalance = await ethers.provider.getBalance(otocoMaster.address);

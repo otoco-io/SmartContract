@@ -1,15 +1,6 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const chai = require("chai");
 
-const { Artifacts } = require("hardhat/internal/artifacts");
-const { zeroAddress } = require("ethereumjs-util");
-
-async function getExternalArtifact(contract) {
-    const artifactsPath = "./artifacts-external";
-    const artifacts = new Artifacts(artifactsPath);
-    return artifacts.readArtifact(contract);
-}
 
 describe("OtoCo Token Without Fees Plugin Test", function () {
 
@@ -20,6 +11,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
   let tokenPlugin;
   let tokenAddress;
   let TokenFactory;
+
+  const zeroAddress = ethers.constants.AddressZero;
 
   it("Create Jurisdictions", async function () {
 
@@ -92,7 +85,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     expect(await tokenPlugin.tokensPerEntity(0)).to.be.equals(1);
     expect(await tokenPlugin.tokensDeployed(0,0)).to.be.equals(tokenAddress);
     
-    await expect(tokenDeployed.initialize('', '', "100", zeroAddress()))
+    await expect(tokenDeployed.initialize('', '', "100", zeroAddress))
     .to.be.revertedWith('Initializable: contract is already initialized');
 
     encoded = ethers.utils.defaultAbiCoder.encode(['uint256'],[0]);
@@ -111,11 +104,11 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     await expect(tokenPlugin.connect(wallet3).removePlugin(0, encoded))
     .to.be.revertedWith('OtoCoPlugin: Not the entity owner.');
 
-    await expect(tokenPlugin.connect(wallet2).updateTokenContract(zeroAddress()))
+    await expect(tokenPlugin.connect(wallet2).updateTokenContract(zeroAddress))
     .to.be.revertedWith('Ownable: caller is not the owner');
 
-     await tokenPlugin.updateTokenContract(zeroAddress())
-     expect(await tokenPlugin.tokenContract()).to.be.equal(zeroAddress());
+     await tokenPlugin.updateTokenContract(zeroAddress)
+     expect(await tokenPlugin.tokenContract()).to.be.equal(zeroAddress);
   });
 
 });

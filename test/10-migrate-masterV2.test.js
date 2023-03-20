@@ -1,7 +1,5 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const chai = require("chai");
-const { zeroAddress } = require("ethereumjs-util");
 
 const EthDividend = ethers.BigNumber.from(ethers.utils.parseUnits('1', 18)).mul(ethers.utils.parseUnits('1', 9)).div(10);
 
@@ -12,6 +10,8 @@ describe("OtoCo Master Test", function () {
   let otocoMaster;
   let jurisdictions;
   let priceFeed;
+
+  const zeroAddress = ethers.constants.AddressZero;
 
   it("Create Jurisdictions", async function () {
 
@@ -80,7 +80,7 @@ describe("OtoCo Master Test", function () {
   it("Test migration entities", async function () {
 
     const jurisdictions = [2,2,2,1];
-    const controllers = [wallet2.address, wallet3.address, wallet4.address, zeroAddress()];
+    const controllers = [wallet2.address, wallet3.address, wallet4.address, zeroAddress];
     const creations = [10000, 20000, 30000, 40000];
     const names = ['Entity 1 - Series 2', 'Entity 2 - Series 3', 'Entity 3 - Series 4', 'Closed LLC'];
 
@@ -157,9 +157,9 @@ describe("OtoCo Master Test", function () {
     const transaction = await otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
     const transaction2 = await otocoMaster.createSeries(1, owner.address, "New Entity 2", {gasPrice, gasLimit, value:amountToPayForSpinUp2});
     const transaction3 = await otocoMaster.createSeries(0, owner.address, "New Entity 3", {gasPrice, gasLimit, value:amountToPayForSpinUp3});
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 7);
-    await expect(transaction2).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 8);
-    await expect(transaction3).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 9);
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 7);
+    await expect(transaction2).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 8);
+    await expect(transaction3).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 9);
     expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2);
     expect((await otocoMaster.series(8)).jurisdiction).to.be.equal(1);
     expect((await otocoMaster.series(9)).jurisdiction).to.be.equal(0);
@@ -194,7 +194,7 @@ describe("OtoCo Master Test", function () {
 
     // Close the company
     const transactionClose = await otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose});
-    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress(), 7);
+    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress, 7);
 
     await expect(otocoMaster.ownerOf(6)).to.be.reverted;
 
@@ -271,7 +271,7 @@ describe("OtoCo Master Test", function () {
     expect(transaction2).to.be.ok;
     await expect(otocoMaster
       .connect(wallet4)
-      .setMarketplaceAddresses([zeroAddress()], [true])
+      .setMarketplaceAddresses([zeroAddress], [true])
     ).to.be.revertedWith("Ownable: caller is not the owner");
     await expect(otocoMaster
       .connect(wallet4)
@@ -330,27 +330,27 @@ describe("OtoCo Master Test", function () {
     const transaction2 = await otocoMaster.updateJurisdiction(3, owner.address);
     const storageUpdate = await otocoMaster.callStatic.jurisdictionAddress(3);
 
-    const transaction3 = await otocoMaster.updateJurisdiction(3, zeroAddress());
+    const transaction3 = await otocoMaster.updateJurisdiction(3, zeroAddress);
     const storageUpdate2 = await otocoMaster.callStatic.jurisdictionAddress(3);
 
 
     expect(transaction).to.be.ok;
     expect(oldStorage[0]).to.eq(3);
-    expect(oldStorage[1]).to.eq(zeroAddress());
+    expect(oldStorage[1]).to.eq(zeroAddress);
     expect(newStorage[0]).to.eq(4);
     expect(newStorage[1]).to.eq(addr);
     expect(transaction2).to.be.ok;
     expect(transaction3).to.be.ok;
     expect(storageUpdate).to.eq(owner.address);
-    expect(storageUpdate2).to.eq(zeroAddress());
+    expect(storageUpdate2).to.eq(zeroAddress);
 
     await expect(otocoMaster
       .connect(wallet3)
-      .addJurisdiction(zeroAddress()))
+      .addJurisdiction(zeroAddress))
     .to.be.revertedWith("Ownable: caller is not the owner");
     await expect(otocoMaster
       .connect(wallet4)
-      .updateJurisdiction(0,zeroAddress()))
+      .updateJurisdiction(0,zeroAddress))
     .to.be.revertedWith("Ownable: caller is not the owner");
       
   });

@@ -1,16 +1,7 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const chai = require("chai");
-const sha3 = require('web3-utils').sha3;
+const utils = require('./utils');
 
-const { Artifacts } = require("hardhat/internal/artifacts");
-const { zeroAddress } = require("ethereumjs-util");
-
-async function getExternalArtifact(contract) {
-    const artifactsPath = "./artifacts-external";
-    const artifacts = new Artifacts(artifactsPath);
-    return artifacts.readArtifact(contract);
-}
 
 const labelhash = (label) => ethers.utils.solidityKeccak256(['string'],[label])
 
@@ -19,6 +10,8 @@ describe("OtoCo ENS Plugin Test", function () {
   let owner, wallet2, wallet3, wallet4;
   let OtoCoMaster, otocoMaster, jurisdictions;
   let ensRegistry, ensPlugin, fifsRegistrar, publicResolver;
+
+  const zeroAddress = ethers.constants.AddressZero;
 
   it("Create Jurisdictions", async function () {
 
@@ -56,17 +49,17 @@ describe("OtoCo ENS Plugin Test", function () {
 
   it("Deploy External artifacts", async function () {
     
-    const ENSRegistryArtifact = await getExternalArtifact("ENSRegistry");
+    const ENSRegistryArtifact = await utils.getExternalArtifact("ENSRegistry");
     const ENSRegistryFactory = await ethers.getContractFactoryFromArtifact(ENSRegistryArtifact);
     ensRegistry = await ENSRegistryFactory.deploy();
     
-    const FIFSRegistrarArtifact = await getExternalArtifact("FIFSRegistrar");
+    const FIFSRegistrarArtifact = await utils.getExternalArtifact("FIFSRegistrar");
     const FIFSRegistrarFactory = await ethers.getContractFactoryFromArtifact(FIFSRegistrarArtifact);
     fifsRegistrar = await FIFSRegistrarFactory.deploy(ensRegistry.address, ethers.utils.namehash("eth"));
 
-    const PublicResolverArtifact = await getExternalArtifact("PublicResolver");
+    const PublicResolverArtifact = await utils.getExternalArtifact("PublicResolver");
     const PublicResolverFactory = await ethers.getContractFactoryFromArtifact(PublicResolverArtifact);
-    publicResolver = await PublicResolverFactory.deploy(ensRegistry.address, zeroAddress(), zeroAddress(), zeroAddress());
+    publicResolver = await PublicResolverFactory.deploy(ensRegistry.address, zeroAddress, zeroAddress, zeroAddress);
 
   });
 

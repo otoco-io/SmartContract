@@ -1,7 +1,5 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const chai = require("chai");
-const { zeroAddress } = require("ethereumjs-util");
 
 describe("OtoCo Master Test", function () {
 
@@ -9,6 +7,8 @@ describe("OtoCo Master Test", function () {
   let OtoCoMaster;
   let otocoMaster;
   let jurisdictions;
+
+  const zeroAddress = ethers.constants.AddressZero;
 
   it("Create Jurisdictions", async function () {
 
@@ -80,7 +80,7 @@ describe("OtoCo Master Test", function () {
   it("Test migration entities", async function () {
 
     const jurisdictions = [2,2,2,1];
-    const controllers = [wallet2.address, wallet3.address, wallet4.address, zeroAddress()];
+    const controllers = [wallet2.address, wallet3.address, wallet4.address, zeroAddress];
     const creations = [10000, 20000, 30000, 40000];
     const names = ['Entity 1 - Series 2', 'Entity 2 - Series 3', 'Entity 3 - Series 4', 'Closed LLC'];
 
@@ -155,7 +155,7 @@ describe("OtoCo Master Test", function () {
 
     // Expected to successfully create a new entity
     const transaction = await otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 7);
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 7);
     expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2)
     expect((await otocoMaster.series(7)).name).to.be.equal("New Entity - Series 5")
     
@@ -183,7 +183,7 @@ describe("OtoCo Master Test", function () {
 
     // Close the company
     const transactionClose = await otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose});
-    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress(), 7);
+    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress, 7);
 
     await expect(otocoMaster.ownerOf(6)).to.be.reverted
 
