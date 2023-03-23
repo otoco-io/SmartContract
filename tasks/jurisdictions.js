@@ -18,7 +18,8 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
   factoryNames = [
     'JurisdictionUnincorporatedV2',
     'JurisdictionDelawareV2',
-    'JurisdictionWyomingV2'
+    'JurisdictionWyomingV2',
+    'JurisdictionSwissAssociationV2'
   ]
 
   let contracts = [];
