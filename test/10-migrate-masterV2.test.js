@@ -1,5 +1,6 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
+const crypto = require('crypto');
 
 const EthDividend = ethers.BigNumber.from(ethers.utils.parseUnits('1', 18)).mul(ethers.utils.parseUnits('1', 9)).div(10);
 
@@ -229,6 +230,7 @@ describe("OtoCo Master Test", function () {
     // Decode base64 data to read JSON data
     let buff = Buffer.from(tokenURI.split(',')[1], 'base64');
     let json = JSON.parse(buff.toString('utf-8'));
+
     expect(json.name).to.be.equal("Entity 2 - Series 3");
     expect(json.image).to.be.equal("goldBadgeURLWY");
 
@@ -248,12 +250,19 @@ describe("OtoCo Master Test", function () {
       .to.be.revertedWith('Ownable: caller is not the owner');
 
     // update docs parameter
-    const tx = await otocoMaster.connect(wallet3).setDocs(4, "CID");
+    const cid = (crypto.randomBytes(32)).toString('hex');
+    const docsJson = {
+      LitCID: cid , 
+      Description: "Decrypt the CID with LitProtocol to access Entity documentation.",
+    };
+
+    const tx = await otocoMaster.connect(wallet3).setDocs(4, JSON.stringify(docsJson));
     buff = Buffer.from((await otocoMaster.tokenURI(4)).split(',')[1], 'base64');
     json = JSON.parse(buff.toString('utf-8'));
 
     expect(tx).to.be.ok;
-    expect(json.docs).to.eq("CID");
+    expect(json.docs).to.deep.eq(docsJson);
+    expect(tx).to.emit("DocsUpdated").withArgs(4);
     await expect(otocoMaster.connect(wallet2).setDocs(4,"fail")).to.be.revertedWithCustomError(otocoMaster, "IncorrectOwner");
 
   });
