@@ -30,7 +30,6 @@ describe("OtoCo Master Test", function () {
   });
 
   it("Initialize Master and add jurisdictions", async function () {
-    const [owner, wallet2, wallet3, wallet4] = await ethers.getSigners();
 
     OtoCoMasterV2 = await ethers.getContractFactory("OtoCoMasterV2");
     otocoMaster = await upgrades.deployProxy(OtoCoMasterV2, [jurisdictions, 'https://otoco.io/dashpanel/entity/']);
@@ -178,10 +177,28 @@ describe("OtoCo Master Test", function () {
 
     const proxyAddress = (await transaction.wait()).events.pop().args.to;
     await expect(transaction).to.emit(gnosisSafeProxyFactory, 'ProxyCreation').withArgs(proxyAddress, gnosisSafe.address)
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, proxyAddress, 1)
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, proxyAddress, 1);
+
+    const tokenId = "1";
+    const BadgeVerifier = await ethers.getContractFactory("BadgeVerifier");
+    const badgeVerifier = await BadgeVerifier.deploy(otocoMaster.address);
+    const dataStruct = [
+      { tokenId, account: wallet4.address },
+      { tokenId, account: owner.address },
+      { tokenId, account: wallet2.address }
+    ];
+    const [badges, badgeStates] = await Promise.all([
+      Promise.all(dataStruct.map(d => badgeVerifier.callStatic.getBadges(d))),
+      Promise.all(dataStruct.map(d => badgeVerifier.callStatic.getBadgeState(d)))
+    ]);
+    const expectedBadges = [[0],[2],[2]];
+    const expectedBadgeStates = [false,true,true];
+
+    expect(badges).to.deep.eq(expectedBadges);
+    expect(badgeStates).to.deep.eq(expectedBadgeStates);
     
     const proxyInstance = await GnosisSafeFactory.attach(proxyAddress);
-    expect(await proxyInstance.getOwners()).to.be.eql([owner.address, wallet2.address])
+    expect(await proxyInstance.getOwners()).to.be.eql([owner.address, wallet2.address]);
 
     await expect(otocoMaster.createEntityWithInitializer(...unfundedArgs))
       .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
@@ -253,7 +270,7 @@ describe("OtoCo Master Test", function () {
         'createProxy', 
         [ 
           gnosisSafe.address, 
-          data(getSignerAddrs(8, signers)), // [owner, wallet2] 
+          data(getSignerAddrs(8, signers)), // [owner, wallet2, wallet3, ...] 
         ],
     );
 
@@ -297,12 +314,11 @@ describe("OtoCo Master Test", function () {
       .map(event => (event.args.to)).toString()
     );
 
-    const storageCheck =  
-      [
-        await otocoMaster.callStatic.seriesCount(), 
-        await otocoMaster.callStatic.seriesPerJurisdiction(0),
-        await otocoMaster.callStatic.ownerOf(2),
-      ];
+    const storageCheck =  [
+      await otocoMaster.callStatic.seriesCount(), 
+      await otocoMaster.callStatic.seriesPerJurisdiction(0),
+      await otocoMaster.callStatic.ownerOf(2),
+    ];
 
 
     expect(transaction).to.be.ok;
@@ -352,19 +368,36 @@ describe("OtoCo Master Test", function () {
       await otocoMaster.createEntityWithInitializer(...fundedArgs);
 
     const ownerOf = (await transaction.wait()).events.pop().args.to;
-    const storageCheck =  
-      [
-        await otocoMaster.callStatic.seriesCount(), 
-        await otocoMaster.callStatic.seriesPerJurisdiction(1),
-        await otocoMaster.callStatic.ownerOf(3),
-      ];
+    const storageCheck =  [
+      await otocoMaster.callStatic.seriesCount(), 
+      await otocoMaster.callStatic.seriesPerJurisdiction(1),
+      await otocoMaster.callStatic.ownerOf(3),
+    ];
 
+    const tokenId = "3";
+    const BadgeVerifier = await ethers.getContractFactory("BadgeVerifier");
+    const badgeVerifier = await BadgeVerifier.deploy(otocoMaster.address);
+    const dataStruct = [
+      { tokenId, account: wallet4.address },
+      { tokenId, account: owner.address },
+      { tokenId, account: wallet2.address }
+    ];
+    const [badges, badgeStates] = await Promise.all([
+      Promise.all(dataStruct.map(d => badgeVerifier.callStatic.getBadges(d))),
+      Promise.all(dataStruct.map(d => badgeVerifier.callStatic.getBadgeState(d)))
+    ]);
+    const expectedBadges = [[0],[1],[0]];
+    const expectedBadgeStates = [false,true,false];
 
+    
     expect(transaction).to.be.ok;
     expect(storageCheck[0]).to.eq(ethers.BigNumber.from(4));
     expect(storageCheck[1]).to.eq(ethers.constants.One);
     expect(storageCheck[2]).to.eq(ownerOf);
     
+    expect(badges).to.deep.eq(expectedBadges);
+    expect(badgeStates).to.deep.eq(expectedBadgeStates);
+
     await expect(transaction).to.emit(otocoMaster, 'Transfer')
       .withArgs(zeroAddress, owner.address, ethers.BigNumber.from(3));
     await expect(otocoMaster.createEntityWithInitializer(...unfundedArgs))
@@ -455,7 +488,7 @@ describe("OtoCo Master Test", function () {
       .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
   });
   
-  it("Should create a new DAO using Governor initializer", async function () 
+  it("Should create a new DAO using Governor initializer without plugins", async function () 
   {
     const [amountToPayForSpinUp, gasPrice, gasLimit] = 
     await utils.getAmountToPay(
@@ -474,7 +507,7 @@ describe("OtoCo Master Test", function () {
     const tokenInfo = ['Test Token', 'TEST'];
     const addresses  = [
       // Manager
-      otocoMaster.address,
+      owner.address,
       // Token Source 
       tokenRef.address, 
       // Member addresses
@@ -568,6 +601,22 @@ describe("OtoCo Master Test", function () {
       tokenInfo[0],
     ];
 
+    const tokenId = "5";
+    const BadgeVerifier = await ethers.getContractFactory("BadgeVerifier");
+    const badgeVerifier = await BadgeVerifier.deploy(otocoMaster.address);
+    const data = [
+      { tokenId, account: wallet4.address },
+      { tokenId, account: owner.address },
+      { tokenId, account: wallet2.address }
+    ];
+    const [badges, badgeStates] = await Promise.all([
+      Promise.all(data.map(d => badgeVerifier.callStatic.getBadges(d))),
+      Promise.all(data.map(d => badgeVerifier.callStatic.getBadgeState(d)))
+    ]);
+    const expectedBadges = [[0],[3,4],[3]];
+    const expectedBadgeStates = [false,true,true];
+
+
     expect(transaction).to.be.ok;
 
     expect(currBal).to.eq(10);
@@ -597,6 +646,9 @@ describe("OtoCo Master Test", function () {
       .to.eq(newGovernor.address,
     );
     expect(...governorInfoCheck).to.eq(...expectedGovernorArgs);
+
+    expect(badges).to.deep.eq(expectedBadges);
+    expect(badgeStates).to.deep.eq(expectedBadgeStates);
 
     await expect(
       otocoMaster.createEntityWithInitializer(...unfundedArgs),
@@ -708,7 +760,6 @@ describe("OtoCo Master Test", function () {
       // console.log(`Gas cost increase per addPlugin call:`, pluginCost, `gas units`);
 
       // console.log(`\nSafe Hardcoded gasLimit Suggestion: > `, baseCost + (baseCost / 2) );
-
   });
   it("Should estimate gas for createEntityWithInitializer with Governor initializer", async function () {
     const governorRef = 
