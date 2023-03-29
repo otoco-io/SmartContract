@@ -24,7 +24,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     event UpdatedPriceFeed(address newPriceFeed);
     event BaseFeeChanged(uint256 newFee);
     event ChangedURISource(address newSource);
-    event DocsUpdated(uint256 tokenId);
+    event DocsUpdated(uint256 indexed tokenId);
 
     // Series Structs
     struct Series {

@@ -230,7 +230,6 @@ describe("OtoCo Master Test", function () {
     // Decode base64 data to read JSON data
     let buff = Buffer.from(tokenURI.split(',')[1], 'base64');
     let json = JSON.parse(buff.toString('utf-8'));
-
     expect(json.name).to.be.equal("Entity 2 - Series 3");
     expect(json.image).to.be.equal("goldBadgeURLWY");
 
@@ -258,6 +257,7 @@ describe("OtoCo Master Test", function () {
 
     const tx = await otocoMaster.connect(wallet3).setDocs(4, JSON.stringify(docsJson));
     buff = Buffer.from((await otocoMaster.tokenURI(4)).split(',')[1], 'base64');
+    console.log(buff.toString('utf-8'))
     json = JSON.parse(buff.toString('utf-8'));
 
     expect(tx).to.be.ok;
