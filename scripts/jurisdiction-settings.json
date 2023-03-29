@@ -8,18 +8,25 @@
       "goldBadge": "ipfs://QmWxh2WRenahJ4MKrFLXgN8477drh2xMLYhuWHpJpvAvE4"
     },
     {
-      "deployPrice": 30,
-      "renewPrice": 30,
+      "deployPrice": 49,
+      "renewPrice": 49,
       "name": "DELAWARE", 
       "defaultBadge": "ipfs://QmdAkYaMqyycEJ2Rq67zh6Y5x6FW1nBkEBxctL3SvPpkjW", 
       "goldBadge": "ipfs://QmYxTdUeU8txxdHUVuSTnTjqDFSPdgX5Vd4bcrvK5NByBT"
     },
     {
-      "deployPrice": 40,
-      "renewPrice": 40,
+      "deployPrice": 49,
+      "renewPrice": 49,
       "name": "WYOMING", 
       "defaultBadge": "ipfs://QmdbFYPhyyoGF7oZ13f3p8dPG66dzrNyK9483wSaoPooyY", 
       "goldBadge": "ipfs://QmSayfhjrnAFeVkqAcwYimtcrTZdmyqPKJQDA6HCC6K2x8"
+    },
+    {
+      "deployPrice": 0,
+      "renewPrice": 0,
+      "name": "SWISSASSOCIATION", 
+      "defaultBadge": "ipfs://bafkreifag5ya33czteiy2ql2yz3rgfltxgahrrrm62soihowi5rlbh4op4", 
+      "goldBadge": "ipfs://bafkreibrf5q5vh5fml6lc7pcwugnedoejagrqbyafvl3do246mm3ejh5mu"
     }
   ],
   "polygon": [
@@ -31,18 +38,25 @@
       "goldBadge": "ipfs://Qme1MfHkTRF1ZGmCjL21JJyQm2gbBbxDHzghM4euEuNpDZ"
     },
     {
-      "deployPrice": 30,
-      "renewPrice": 30,
+      "deployPrice": 49,
+      "renewPrice": 49,
       "name": "DELAWARE", 
       "defaultBadge": "ipfs://QmbKJ9PibuMM1RWarUPj3L5TViaRJJazafWKdQkN279LNs", 
       "goldBadge": "ipfs://QmPrfVvhMxsNWVd6UpmxLCNEuSWeUBnW65RuHnuMA1jjPa"
     },
     {
-      "deployPrice": 40,
-      "renewPrice": 40,
+      "deployPrice": 49,
+      "renewPrice": 49,
       "name": "WYOMING", 
       "defaultBadge": "ipfs://QmSZq2bELrttCWcnHNZP16iwNEF2GxS6jgzpjR8AFJCoSw", 
       "goldBadge": "ipfs://QmUR3nGosdHbavY3aSvsAsxvJLyVcVJxDL9Xh8bv851r8Q"
+    },
+    {
+      "deployPrice": 0,
+      "renewPrice": 0,
+      "name": "SWISSASSOCIATION", 
+      "defaultBadge": "ipfs://bafkreiajggrqwsejtbz7hpl6mriuhidzdksu24ucv6xqmbnj2nkjuajqqe", 
+      "goldBadge": "ipfs://bafkreiglahqbv3kuknwkdmbf2guzhed65unmv2jfr4lsa5fqzpe6h3yqry"
     }
   ],
   "default": [
@@ -66,6 +80,13 @@
       "name": "WYOMING", 
       "defaultBadge": "ipfs://Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_default.png", 
       "goldBadge": "ipfs://Qmf8rDBUz6JzLXRjjxiEiD8cXMuHNCbo4LbcksUVA1wUnR/wy_gold.png"
+    },
+    {
+      "deployPrice": 0,
+      "renewPrice": 0,
+      "name": "SWISSASSOCIATION", 
+      "defaultBadge": "ipfs://bafkreihthnq5ljffs2zcnwr5gxuvjvmqhmswdt76bteubapaszahofu7ze", 
+      "goldBadge": "ipfs://bafkreicsmjghsqp3c77v475vzk5dlj5lrurxngxsobt6ib3rymvdu2ylyy"
     }
   ]
 }

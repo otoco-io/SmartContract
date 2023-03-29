@@ -35,7 +35,7 @@ const chainIds = {
         path: "m/44'/60'/0'/0",
       },
       chainId: chainIds[chain],
-      url: jsonRpcUrl,
+      url: jsonRpcUrl
     };
   }
 
@@ -65,7 +65,7 @@ module.exports = {
       mainnet: process.env.ETHERSCAN_API_KEY || "",
       goerli: process.env.ETHERSCAN_API_KEY || "",
       polygon: process.env.POLYGONSCAN_API_KEY || "",
-      mumbai: process.env.POLYGONSCAN_API_KEY || "",
+      polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
     },
   },
   solidity: {

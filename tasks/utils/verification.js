@@ -60,7 +60,7 @@ task(
         String(error).includes('ProxyAdmin')
       ) {
         console.log(
-          `${br}${gr}Contract at address` + 
+          `${br}${gr}Contract at address ` + 
           `${taskArgs.addr} has already been verified${r}`);
         break; 
       };

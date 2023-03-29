@@ -57,7 +57,7 @@ async function main() {
      * ONCHAIN TASK *
      ****************/
 
-  [entityURI, master] = 
+  const {uri, master} = 
     await hre.run("uri", { master: deploysJson.master });
 
 
@@ -67,17 +67,17 @@ async function main() {
 
   const returnedAddress = await master.callStatic.entitiesURI(); 
 
-  if(returnedAddress === entityURI.address) {
+  if(returnedAddress === uri.address) {
     console.log(`${Bright}🚀 URI Source has been updated correctly!${Reset}
-      Deployed Address: ${FgMagenta}${entityURI.address}${Reset}`);
+      Deployed Address: ${FgMagenta}${uri.address}${Reset}`);
   } else {
     console.log(`${Bright}URI Source address differs from the expected!${Reset}
-      ${FgCyan}Expected: ${FgGreen}${entityURI.address}
+      ${FgCyan}Expected: ${FgGreen}${uri.address}
       ${FgCyan}Actual: ${FgRed}${returnedAddress}`
     );
   }
 
-	deploysJson.uri = entityURI.address;
+	deploysJson.uri = uri.address;
 
 	fs.writeFileSync(`./deploys/v2/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 

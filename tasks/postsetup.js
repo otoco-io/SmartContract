@@ -18,7 +18,7 @@ task("postsetup", "Make all post-setup changes to Master Contract")
   // In case of FORKED LOCAL NODE will impersonate OtoCo deployer
   const deployer = isForkedLocalNode
       ? await ethers.getImpersonatedSigner("0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30")
-      : ethers.getSigner()
+      : await ethers.getSigner()
 
   const MasterFactoryV2 = await ethers.getContractFactory("OtoCoMasterV2");
   const otocoMaster = MasterFactoryV2.attach(taskArgs.master);
