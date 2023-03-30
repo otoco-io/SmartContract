@@ -18,8 +18,7 @@ async function main() {
     const networkId = network.config.chainId;
     const [deployer] = await ethers.getSigners();
 
-    let object = {}
-    let badges = {}
+    let deployed = {}
     let settings
 
     try {
@@ -32,6 +31,17 @@ async function main() {
             `${FgRed}Error loading jurisdiction badges: ${err}${Reset}`
         );
 		process.exit(1);
+    }
+
+    try {
+        deployed = JSON.parse(fs.readFileSync(
+            `./deploys/v2/${network.name}.json`,
+            {encoding:"utf-8"},
+        ));
+    } catch (err) {
+        console.log(
+            `${FgRed}Error loading jurisdiction predeploys: ${err}${Reset}`
+        );
     }
 
     switch (network.name) {
@@ -65,9 +75,12 @@ async function main() {
      ****************/
 
     const jurisdictions = 
-    await hre.run( "jurisdictions", { settings: JSON.stringify(settings) });
-
-    object.jurisdictions = jurisdictions.map(({ address }) => address);
+    await hre.run( "jurisdictions", { 
+        settings: JSON.stringify(settings),
+        predeployed: JSON.stringify(deployed.jurisdictions),
+        master: deployed.master
+    });
+    deployed.jurisdictions = jurisdictions.map(({ address }) => address);
     
     
     /******************
@@ -95,7 +108,7 @@ async function main() {
 
     fs.writeFileSync(
         `./deploys/v2/${network.name}.json`, 
-        JSON.stringify(object, undefined, 2),
+        JSON.stringify(deployed, undefined, 2),
     );
 
 
