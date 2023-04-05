@@ -8,11 +8,13 @@ abstract contract OtoCoJurisdictionV2 {
     string private goldBadge;
     uint256 private renewCost;
     uint256 private deployCost;
+    uint256 private closeCost;
     bool private standalone;
 
     constructor (
         uint256 _renewCost,
         uint256 _deployCost,
+        uint256 _closeCost,
         string memory _name,
         string memory _defaultBadge,
         string memory _goldBadge,
@@ -20,6 +22,7 @@ abstract contract OtoCoJurisdictionV2 {
     ) {
         renewCost = _renewCost;
         deployCost = _deployCost;
+        closeCost = _closeCost;
         name = _name;
         defaultBadge = _defaultBadge;
         goldBadge = _goldBadge;
@@ -86,6 +89,15 @@ abstract contract OtoCoJurisdictionV2 {
      */
     function getJurisdictionDeployPrice() external view returns(uint256) {
         return deployCost;
+    }
+
+    /**
+     * Return the close price in USD.
+     * 
+     * @return closeCost the cost to close the entity.
+     */
+    function getJurisdictionClosePrice() external view returns(uint256) {
+        return closeCost;
     }
 
     function isStandalone() external view returns(bool) {
