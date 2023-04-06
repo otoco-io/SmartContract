@@ -8,10 +8,11 @@ contract JurisdictionUnincorporatedV2 is OtoCoJurisdictionV2 {
     constructor (
         uint256 renewPrice,
         uint256 deployPrice,
+        uint256 closePrice,
         string memory name,
         string memory defaultBadge,
         string memory goldBadge
-    ) OtoCoJurisdictionV2(renewPrice, deployPrice, name, defaultBadge, goldBadge, false) {}
+    ) OtoCoJurisdictionV2(renewPrice, deployPrice, closePrice, name, defaultBadge, goldBadge, false) {}
 
 
     /**

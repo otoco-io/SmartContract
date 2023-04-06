@@ -7,5 +7,6 @@
   ],
   "master": "0x54dED98a6720EcEAA54EB0F858c81737CDe9FF9E",
   "uri": "0xb0BE3d086aFeFF531A75FD8f41C9bdEbfBC90e9c",
-  "governorInitializer": "0x5D65989F05DD57cCee713547db17ddEcE36055eb"
+  "governorInitializer": "0x5D65989F05DD57cCee713547db17ddEcE36055eb",
+  "verifier": "0x632F76793cC026B2826c76A534523eBcd0bcD916"
 }

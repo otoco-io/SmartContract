@@ -10,6 +10,7 @@ require("./master");
 require("./uri");
 require("./postsetup");
 require("./initializers");
+require("./verifier");
 require("./utils/verification");
 
 task("setup", "OtoCo V2 scripts setup pusher")
@@ -45,6 +46,10 @@ task("setup", "OtoCo V2 scripts setup pusher")
     });
     // Deploy tokenURI contract
     await hre.run("uri", {
+      master: master.address
+    });
+    // Deploy Badge Verifier contract
+    await hre.run("verifier", {
       master: master.address
     });
     // Set required additional settings
