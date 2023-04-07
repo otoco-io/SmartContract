@@ -32,10 +32,25 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
     const jurisdictionFactory = await ethers.getContractFactory(factoryNames[idx], deployer)
     let jurisdictionInstance;
     if (predeployed[idx]) {
-      jurisdictionInstance = await jurisdictionFactory.attach(predeployed[idx]);  
-      contracts.push(jurisdictionInstance);
-      continue
+      jurisdictionInstance = await jurisdictionFactory.attach(predeployed[idx]);
+      const jurisdictionData = [
+        (await jurisdictionInstance.callStatic.getJurisdictionDeployPrice()).toString(),
+        (await jurisdictionInstance.callStatic.getJurisdictionRenewalPrice()).toString(),
+        (await jurisdictionInstance.callStatic.getJurisdictionGoldBadge()).toString(),
+        (await jurisdictionInstance.callStatic.getJurisdictionBadge()).toString()
+      ]
+      const settingsData = [
+        jurisdictions[idx].deployPrice.toString(),
+        jurisdictions[idx].renewPrice.toString(),
+        jurisdictions[idx].goldBadge.toString(),
+        jurisdictions[idx].defaultBadge.toString(),
+      ]
+      if (JSON.stringify(jurisdictionData) == JSON.stringify(settingsData)){
+        contracts.push(jurisdictionInstance);
+        continue
+      }
     }
+    console.log('Not equal will redeploy', idx)
     jurisdictionInstance = await jurisdictionFactory.deploy(...Object.values(j));
     await jurisdictionInstance.deployed();
     contracts.push(jurisdictionInstance);
@@ -46,15 +61,16 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
   let transaction
   for (const [idx,j] of contracts.entries()) {
     if (predeployed[idx]) {
-      console.log((await master.callStatic.jurisdictionAddress(idx)).toString())
-      const currAddress = (await master.callStatic.jurisdictionAddress(idx)).toString()
-      if (currAddress != predeployed[idx]){
-        console.log(currAddress, predeployed[idx])
-        transaction = await master.connect(deployer).updateJurisdiction(idx, predeployed[idx])
+      if (j.address != predeployed[idx]){
+        console.log('Will update from ',j.address,' to ', predeployed[idx])
+        transaction = await master.connect(deployer).updateJurisdiction(idx, j.address)
         await transaction.wait(1); 
+      } else {
+        console.log('Same address for ',idx,' will keep ', predeployed[idx])
       }
       continue
     }
+    console.log('Will add jurisdiction', idx, j.address )
     transaction = await master.connect(deployer).addJurisdiction(j.address);
     await transaction.wait(1);
   }
