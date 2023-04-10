@@ -22,7 +22,7 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
     'JurisdictionUnincorporatedV2',
     'JurisdictionDelawareV2',
     'JurisdictionWyomingV2',
-    'JurisdictionUnincorporatedV2'
+    'JurisdictionSwissAssociationV2'
   ]
 
   let contracts = [];
@@ -67,6 +67,13 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
         await transaction.wait(1); 
       } else {
         console.log('Same address for ',idx,' will keep ', predeployed[idx])
+      }
+      const jurisdictionSet = (await master.callStatic.jurisdictionAddress(idx)).toString()
+      if (jurisdictionSet != j.address) {
+        transaction = await master.connect(deployer).updateJurisdiction(idx, j.address)
+        await transaction.wait(1); 
+      } else {
+        console.log('Same address for ',idx,' will keep ', j.address)
       }
       continue
     }

@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "../OtoCoJurisdictionV2.sol";
 
-contract SwissAssociationV2 is OtoCoJurisdictionV2 {
+contract JurisdictionSwissAssociationV2 is OtoCoJurisdictionV2 {
 
     constructor (
         uint256 renewPrice,

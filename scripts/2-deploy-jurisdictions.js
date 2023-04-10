@@ -94,6 +94,8 @@ async function main() {
             (await jurisdiction.callStatic.getJurisdictionRenewalPrice()).toString();
         const deployPrice = 
             (await jurisdiction.callStatic.getJurisdictionDeployPrice()).toString();
+        const closePrice = 
+            (await jurisdiction.callStatic.getJurisdictionClosePrice()).toString();
         const name = 
             (await jurisdiction.callStatic.getJurisdictionName()).toString();
         const defaultBadge = 
@@ -101,7 +103,7 @@ async function main() {
         const goldBadge = 
             (await jurisdiction.callStatic.getJurisdictionGoldBadge()).toString();
         jurisdictionData[jurisdiction.address] = 
-            { renewalPrice, deployPrice, name, defaultBadge, goldBadge };
+            { renewalPrice, deployPrice, closePrice, name, defaultBadge, goldBadge };
     }
 
     console.log(`${Bright}🚀 OtoCo V2 Jurisdictions Deployed:${Reset}`, jurisdictionData);
