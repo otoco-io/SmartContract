@@ -22,9 +22,9 @@ describe("OtoCo Master Test", function () {
     const Delaware = await ethers.getContractFactory("JurisdictionDelawareV2");
     const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
     
-    const unincorporated = await Unincorporated.deploy(100, 2, 'DAO', 'defaultBadgeURL', 'goldBadgeURL');
-    const delaware = await Delaware.deploy(5, 5, 'DELAWARE', 'defaultBadgeURLDE', 'goldBadgeURLDE');
-    const wyoming = await Wyoming.deploy(50, 40, 'WYOMING', 'defaultBadgeURLWY', 'goldBadgeURLWY');
+    const unincorporated = await Unincorporated.deploy(100, 2, 0, 'DAO', 'defaultBadgeURL', 'goldBadgeURL');
+    const delaware = await Delaware.deploy(5, 5, 10, 'DELAWARE', 'defaultBadgeURLDE', 'goldBadgeURLDE');
+    const wyoming = await Wyoming.deploy(50, 40, 150000, 'WYOMING', 'defaultBadgeURLWY', 'goldBadgeURLWY');
     
     jurisdictions = [unincorporated.address, delaware.address, wyoming.address];
   });
@@ -187,14 +187,14 @@ describe("OtoCo Master Test", function () {
     // Remove 1% from the correct amount needed
     const notEnoughToPayForClose = amountToPayForClose.mul(100).div(110);
 
-    await expect(otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:notEnoughToPayForClose}))
+    await expect(otocoMaster.closeSeries(7, {/* gasPrice, gasLimit, */ value:notEnoughToPayForClose}))
     .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue")
 
-    await expect(otocoMaster.connect(wallet2).closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose}))
+    await expect(otocoMaster.connect(wallet2).closeSeries(7, {/* gasPrice, gasLimit, */ value:amountToPayForClose}))
     .to.be.revertedWithCustomError(otocoMaster, 'IncorrectOwner');
 
     // Close the company
-    const transactionClose = await otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose});
+    const transactionClose = await otocoMaster.closeSeries(7, {/* gasPrice, gasLimit,  */value:amountToPayForClose});
     await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress, 7);
 
     await expect(otocoMaster.ownerOf(6)).to.be.reverted;
@@ -257,7 +257,6 @@ describe("OtoCo Master Test", function () {
 
     const tx = await otocoMaster.connect(wallet3).setDocs(4, JSON.stringify(docsJson));
     buff = Buffer.from((await otocoMaster.tokenURI(4)).split(',')[1], 'base64');
-    console.log(buff.toString('utf-8'))
     json = JSON.parse(buff.toString('utf-8'));
 
     expect(tx).to.be.ok;

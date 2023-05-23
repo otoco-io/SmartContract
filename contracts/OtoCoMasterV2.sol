@@ -224,7 +224,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param tokenId of the series to be burned.
      */
     function closeSeries(uint256 tokenId) public enoughAmountUSD(
-        IOtoCoJurisdiction(jurisdictionAddress[series[tokenId].jurisdiction]).getJurisdictionDeployPrice()
+        IOtoCoJurisdiction(jurisdictionAddress[series[tokenId].jurisdiction]).getJurisdictionClosePrice()
     ) payable {
         if(ownerOf(tokenId) != msg.sender) revert IncorrectOwner();
         _burn(tokenId);

@@ -22,9 +22,9 @@ describe("OtoCo Master Test", function () {
     const Delaware = await ethers.getContractFactory("JurisdictionDelawareV2");
     const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
     
-    const unincorporated = await Unincorporated.deploy(0, 2, 'DAO', 'defaultBadgeURL', 'goldBadgeURL');
-    const delaware = await Delaware.deploy(5, 5, 'DELAWARE', 'defaultBadgeURLDE', 'goldBadgeURLDE');
-    const wyoming = await Wyoming.deploy(50, 40, 'WYOMING', 'defaultBadgeURLWY', 'goldBadgeURLWY');
+    const unincorporated = await Unincorporated.deploy(0, 2, 0, 'DAO', 'defaultBadgeURL', 'goldBadgeURL');
+    const delaware = await Delaware.deploy(5, 5, 0, 'DELAWARE', 'defaultBadgeURLDE', 'goldBadgeURLDE');
+    const wyoming = await Wyoming.deploy(50, 40, 10, 'WYOMING', 'defaultBadgeURLWY', 'goldBadgeURLWY');
     
     jurisdictions = [unincorporated.address, delaware.address, wyoming.address];
   });
