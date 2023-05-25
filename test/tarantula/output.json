@@ -748,14 +748,14 @@
     "fileName": "contracts/jurisdictionsV2/DelawareV2.sol",
     "lines": [
       {
-        "lineNumber": 23,
+        "lineNumber": 24,
         "hue": 1,
         "suspiciousness": 0
       }
     ]
   },
   {
-    "fileName": "contracts/jurisdictionsV2/UnincorporatedV2.sol",
+    "fileName": "contracts/jurisdictionsV2/SwissAssociationV2.sol",
     "lines": [
       {
         "lineNumber": 24,
@@ -765,10 +765,20 @@
     ]
   },
   {
+    "fileName": "contracts/jurisdictionsV2/UnincorporatedV2.sol",
+    "lines": [
+      {
+        "lineNumber": 25,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
     "fileName": "contracts/jurisdictionsV2/WyomingV2.sol",
     "lines": [
       {
-        "lineNumber": 28,
+        "lineNumber": 29,
         "hue": 1,
         "suspiciousness": 0
       }
@@ -813,16 +823,6 @@
     "fileName": "contracts/OtoCoJurisdictionV2.sol",
     "lines": [
       {
-        "lineNumber": 21,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
-        "lineNumber": 22,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
         "lineNumber": 23,
         "hue": 1,
         "suspiciousness": 0
@@ -838,37 +838,57 @@
         "suspiciousness": 0
       },
       {
+        "lineNumber": 26,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
         "lineNumber": 27,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 28,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 30,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 54,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 63,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 72,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 82,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 91,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 100,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 104,
         "hue": 1,
         "suspiciousness": 0
       }
@@ -1118,27 +1138,22 @@
     "fileName": "contracts/OtoCoMasterV2.sol",
     "lines": [
       {
-        "lineNumber": 75,
-        "hue": 1,
-        "suspiciousness": 0
-      },
-      {
         "lineNumber": 76,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 77,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 84,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 88,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1148,12 +1163,12 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 96,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 100,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1163,7 +1178,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 105,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1188,7 +1203,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 119,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1203,7 +1218,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 123,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1213,22 +1228,22 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 141,
+        "lineNumber": 138,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 142,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 144,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 152,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1238,7 +1253,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 174,
+        "lineNumber": 155,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1248,17 +1263,17 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 176,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 178,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 184,
+        "lineNumber": 181,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1283,7 +1298,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 193,
+        "lineNumber": 189,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1303,7 +1318,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 207,
+        "lineNumber": 197,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1313,12 +1328,12 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 211,
+        "lineNumber": 209,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 216,
+        "lineNumber": 212,
         "hue": 1,
         "suspiciousness": 0
       },
@@ -1328,137 +1343,147 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 226,
+        "lineNumber": 218,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 227,
+        "lineNumber": 229,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 231,
+        "lineNumber": 230,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 232,
+        "lineNumber": 234,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 245,
+        "lineNumber": 235,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 246,
+        "lineNumber": 237,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 256,
+        "lineNumber": 250,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 265,
+        "lineNumber": 251,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 266,
+        "lineNumber": 261,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 276,
+        "lineNumber": 270,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 277,
+        "lineNumber": 271,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 278,
+        "lineNumber": 281,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 279,
+        "lineNumber": 282,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 280,
+        "lineNumber": 283,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 290,
+        "lineNumber": 284,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 291,
+        "lineNumber": 285,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 300,
+        "lineNumber": 295,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 301,
+        "lineNumber": 296,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 317,
+        "lineNumber": 305,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 319,
+        "lineNumber": 306,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 327,
+        "lineNumber": 322,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 329,
+        "lineNumber": 324,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 330,
+        "lineNumber": 332,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 340,
+        "lineNumber": 334,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 341,
+        "lineNumber": 335,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 342,
+        "lineNumber": 345,
         "hue": 1,
         "suspiciousness": 0
       },
       {
-        "lineNumber": 354,
+        "lineNumber": 346,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 347,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 359,
         "hue": 1,
         "suspiciousness": 0
       }
@@ -2715,6 +2740,126 @@
     ]
   },
   {
+    "fileName": "contracts/utils/BadgeVerifier.sol",
+    "lines": [
+      {
+        "lineNumber": 30,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 39,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 41,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 45,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 46,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 47,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 51,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 53,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 54,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 57,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 61,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 62,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 63,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 67,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 69,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 70,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 81,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 89,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 153,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 158,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 159,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 178,
+        "hue": 1,
+        "suspiciousness": 0
+      },
+      {
+        "lineNumber": 181,
+        "hue": 1,
+        "suspiciousness": 0
+      }
+    ]
+  },
+  {
     "fileName": "contracts/utils/MockAggregatorV3.sol",
     "lines": [
       {
@@ -3148,7 +3293,7 @@
         "suspiciousness": 0
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 59,
         "hue": 1,
         "suspiciousness": 0
       }

@@ -477,8 +477,8 @@
    "err": {}
   },
   {
-   "title": "Should create a new DAO using Governor initializer",
-   "fullTitle": "OtoCo Master Test Should create a new DAO using Governor initializer",
+   "title": "Should create a new DAO using Governor initializer without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new DAO using Governor initializer without plugins",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}
@@ -977,8 +977,8 @@
    "err": {}
   },
   {
-   "title": "Should create a new DAO using Governor initializer",
-   "fullTitle": "OtoCo Master Test Should create a new DAO using Governor initializer",
+   "title": "Should create a new DAO using Governor initializer without plugins",
+   "fullTitle": "OtoCo Master Test Should create a new DAO using Governor initializer without plugins",
    "file": "test/11-initializers-masterV2.test.js",
    "currentRetry": 0,
    "err": {}

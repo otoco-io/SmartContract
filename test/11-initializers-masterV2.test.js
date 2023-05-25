@@ -196,6 +196,9 @@ describe("OtoCo Master Test", function () {
 
     expect(badges).to.deep.eq(expectedBadges);
     expect(badgeStates).to.deep.eq(expectedBadgeStates);
+    expect(await badgeVerifier.callStatic.getBadges(
+      {tokenId: "99", account: owner.address},
+    )).to.deep.eq([0]);
     
     const proxyInstance = await GnosisSafeFactory.attach(proxyAddress);
     expect(await proxyInstance.getOwners()).to.be.eql([owner.address, wallet2.address]);
