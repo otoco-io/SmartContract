@@ -33,29 +33,36 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
     let jurisdictionInstance;
     if (predeployed[idx]) {
       jurisdictionInstance = await jurisdictionFactory.attach(predeployed[idx]);
-      const jurisdictionData = [
-        (await jurisdictionInstance.callStatic.getJurisdictionDeployPrice()).toString(),
-        (await jurisdictionInstance.callStatic.getJurisdictionRenewalPrice()).toString(),
-        (await jurisdictionInstance.callStatic.getJurisdictionGoldBadge()).toString(),
-        (await jurisdictionInstance.callStatic.getJurisdictionBadge()).toString()
-      ]
+        const jurisdictionData = []
+      try {
+          jurisdictionData.push((await jurisdictionInstance.callStatic.getJurisdictionDeployPrice()).toString())
+          jurisdictionData.push((await jurisdictionInstance.callStatic.getJurisdictionRenewalPrice()).toString())
+          jurisdictionData.push((await jurisdictionInstance.callStatic.getJurisdictionClosePrice()).toString())
+          jurisdictionData.push((await jurisdictionInstance.callStatic.getJurisdictionGoldBadge()).toString())
+          jurisdictionData.push((await jurisdictionInstance.callStatic.getJurisdictionBadge()).toString())
+      } catch (err){
+        // If some of the calls above fails, ignore the rest since it has to be redeployed
+        console.log(`Predeployed ${jurisdictions[idx].name} fails to return some of the properties required on V2.`)
+      }
       const settingsData = [
         jurisdictions[idx].deployPrice.toString(),
         jurisdictions[idx].renewPrice.toString(),
+        jurisdictions[idx].closePrice.toString(),
         jurisdictions[idx].goldBadge.toString(),
         jurisdictions[idx].defaultBadge.toString(),
       ]
       if (JSON.stringify(jurisdictionData) == JSON.stringify(settingsData)){
+        console.log(`Jurisdiction ${jurisdictions[idx].name} exactly the same, will skip redeploy.`)
         contracts.push(jurisdictionInstance);
         continue
       }
     }
-    console.log('Not equal will redeploy', idx)
+    console.log(`Jurisdiction ${jurisdictions[idx].name} not equal, will redeploy.`)
     jurisdictionInstance = await jurisdictionFactory.deploy(...Object.values(j));
     await jurisdictionInstance.deployed();
     contracts.push(jurisdictionInstance);
   }
-
+   
   // Setting addresses on mainnet
   const master = (await ethers.getContractFactory("OtoCoMasterV2")).attach(taskArgs.master);
   let transaction

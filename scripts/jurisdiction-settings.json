@@ -60,8 +60,8 @@
     },
     {
       "deployPrice": 99,
-      "renewPrice": 0,
-      "closePrice": 0,
+      "renewPrice": 99,
+      "closePrice": 29,
       "name": "SWISSASSOCIATION", 
       "defaultBadge": "ipfs://bafkreiajggrqwsejtbz7hpl6mriuhidzdksu24ucv6xqmbnj2nkjuajqqe", 
       "goldBadge": "ipfs://bafkreiglahqbv3kuknwkdmbf2guzhed65unmv2jfr4lsa5fqzpe6h3yqry"
