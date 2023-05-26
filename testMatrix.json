@@ -46,7 +46,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -979,7 +983,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1001,7 +1009,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1023,7 +1035,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1045,7 +1061,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1067,7 +1087,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1089,7 +1113,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1111,7 +1139,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1133,7 +1165,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1155,7 +1191,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1177,7 +1217,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1212,7 +1256,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1472,7 +1520,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1518,7 +1570,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1540,7 +1596,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1562,7 +1622,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1584,7 +1648,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -1634,7 +1702,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1692,7 +1760,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1714,7 +1786,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1736,7 +1812,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1758,7 +1838,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1780,7 +1864,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1802,7 +1890,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1824,7 +1916,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -1848,7 +1944,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1870,7 +1970,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -1896,79 +2000,131 @@
  "contracts/initializers/GovernorInitializer.sol": {
   "36": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "52": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "55": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "57": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "61": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "64": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "65": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "68": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "69": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "72": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "74": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "82": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "83": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -2050,7 +2206,7 @@
   ]
  },
  "contracts/jurisdictionsV2/DelawareV2.sol": {
-  "23": [
+  "24": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2065,8 +2221,16 @@
    }
   ]
  },
- "contracts/jurisdictionsV2/UnincorporatedV2.sol": {
+ "contracts/jurisdictionsV2/SwissAssociationV2.sol": {
   "24": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ]
+ },
+ "contracts/jurisdictionsV2/UnincorporatedV2.sol": {
+  "25": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2076,13 +2240,17 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
  },
  "contracts/jurisdictionsV2/WyomingV2.sol": {
-  "28": [
+  "29": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2264,26 +2432,6 @@
   ]
  },
  "contracts/OtoCoJurisdictionV2.sol": {
-  "21": [
-   {
-    "title": "Create Jurisdictions",
-    "file": "test/10-migrate-masterV2.test.js"
-   },
-   {
-    "title": "Create Jurisdictions",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "22": [
-   {
-    "title": "Create Jurisdictions",
-    "file": "test/10-migrate-masterV2.test.js"
-   },
-   {
-    "title": "Create Jurisdictions",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
   "23": [
    {
     "title": "Create Jurisdictions",
@@ -2314,6 +2462,16 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
+  "26": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
   "27": [
    {
     "title": "Create Jurisdictions",
@@ -2324,7 +2482,27 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "51": [
+  "28": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "30": [
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Create Jurisdictions",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "54": [
    {
     "title": "Check jurisdiction order and count",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2338,19 +2516,19 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "60": [
+  "63": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "69": [
+  "72": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "79": [
+  "82": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2360,7 +2538,7 @@
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "88": [
+  "91": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2386,11 +2564,21 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "92": [
+  "100": [
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "104": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -2416,7 +2604,11 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -3470,66 +3662,35 @@
   ]
  },
  "contracts/OtoCoMasterV2.sol": {
-  "75": [
-   {
-    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
-    "file": "test/10-migrate-masterV2.test.js"
-   }
-  ],
   "76": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "83": [
+  "77": [
    {
-    "title": "Closing series with correct fees and wrong fees",
+    "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "87": [
+  "84": [
    {
-    "title": "Closing series with correct fees and wrong fees",
+    "title": "Should withdraw fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "94": [
-   {
-    "title": "Creating series with correct fees and wrong fees",
-    "file": "test/10-migrate-masterV2.test.js"
-   },
-   {
-    "title": "Creating series with correct fees and wrong fees",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new DAO using Governor initializer",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
+  "88": [],
   "95": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/11-initializers-masterV2.test.js"
    },
@@ -3550,13 +3711,21 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "99": [
+  "96": [
    {
     "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Closing series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
@@ -3580,17 +3749,21 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "103": [
+  "100": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
-    "title": "Extend entity expiration date",
+    "title": "Closing series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
@@ -3614,7 +3787,11 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3624,6 +3801,10 @@
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
     "title": "Extend entity expiration date",
     "file": "test/10-migrate-masterV2.test.js"
    },
@@ -3648,13 +3829,53 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "114": [
+  "105": [
    {
-    "title": "Initialize Master and add jurisdictions",
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Closing series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3682,7 +3903,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "120": [
+  "119": [
    {
     "title": "Initialize Master and add jurisdictions",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3700,38 +3921,13 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "136": [
+  "123": [
    {
-    "title": "Creating series with correct fees and wrong fees",
-    "file": "test/10-migrate-masterV2.test.js"
-   },
-   {
-    "title": "Creating series with correct fees and wrong fees",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity without initializer and with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Initialize Master and add jurisdictions",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "137": [],
-  "141": [
+  "137": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3757,11 +3953,16 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "143": [
+  "138": [],
+  "142": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3787,11 +3988,15 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "151": [
+  "144": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3817,11 +4022,15 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "153": [
+  "152": [
    {
     "title": "Creating series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
@@ -3847,7 +4056,11 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3877,11 +4090,23 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "174": [
+  "155": [
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Creating series with correct fees and wrong fees",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
    {
     "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3899,12 +4124,15 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "175": [],
-  "177": [
+  "175": [
    {
     "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3922,11 +4150,16 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "180": [
+  "176": [],
+  "178": [
    {
     "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3944,11 +4177,15 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "184": [
+  "181": [
    {
     "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -3966,7 +4203,11 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -3988,53 +4229,15 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "186": [
-   {
-    "title": "Should create a new entity using Multisig initializer without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new DAO using Governor initializer",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "187": [
-   {
-    "title": "Should create a new entity using Multisig initializer without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new DAO using Governor initializer",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "188": [
-   {
-    "title": "Should create a new entity using Multisig initializer without plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new entity using Multisig initializer with plugins",
-    "file": "test/11-initializers-masterV2.test.js"
-   },
-   {
-    "title": "Should create a new DAO using Governor initializer",
-    "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "193": [
    {
     "title": "Should create a new entity using Multisig initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -4052,7 +4255,53 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "187": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "188": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "189": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4074,7 +4323,11 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -4096,11 +4349,41 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "196": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "197": [
    {
     "title": "Should create a new entity using Multisig initializer with plugins",
     "file": "test/11-initializers-masterV2.test.js"
@@ -4108,12 +4391,10 @@
    {
     "title": "Should create a new entity without initializer and with plugins",
     "file": "test/11-initializers-masterV2.test.js"
-   }
-  ],
-  "207": [
+   },
    {
-    "title": "Extend entity expiration date",
-    "file": "test/10-migrate-masterV2.test.js"
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "208": [
@@ -4122,13 +4403,13 @@
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "211": [
+  "209": [
    {
     "title": "Extend entity expiration date",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "216": [
+  "212": [
    {
     "title": "Extend entity expiration date",
     "file": "test/10-migrate-masterV2.test.js"
@@ -4140,49 +4421,61 @@
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "226": [
+  "218": [
+   {
+    "title": "Extend entity expiration date",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "229": [
    {
     "title": "Closing series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "227": [
+  "230": [
    {
     "title": "Closing series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "231": [
+  "234": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "232": [
+  "235": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "245": [
+  "237": [
+   {
+    "title": "Update URI Sources and check if TokenURI are correct",
+    "file": "test/10-migrate-masterV2.test.js"
+   }
+  ],
+  "250": [
    {
     "title": "Add new jurisdiction and update existing jurisdiction's address",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "246": [
+  "251": [
    {
     "title": "Add new jurisdiction and update existing jurisdiction's address",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "256": [
+  "261": [
    {
     "title": "Add new jurisdiction and update existing jurisdiction's address",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "265": [
+  "270": [
    {
     "title": "Change payment fees and price feed source",
     "file": "test/10-migrate-masterV2.test.js"
@@ -4190,9 +4483,13 @@
    {
     "title": "Change payment fees and price feed source",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "266": [
+  "271": [
    {
     "title": "Change payment fees and price feed source",
     "file": "test/10-migrate-masterV2.test.js"
@@ -4200,51 +4497,55 @@
    {
     "title": "Change payment fees and price feed source",
     "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "276": [
+  "281": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "277": [
+  "282": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "278": [
+  "283": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "279": [
+  "284": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "280": [
+  "285": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "290": [
+  "295": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "291": [
+  "296": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "300": [
+  "305": [
    {
     "title": "Change payment fees and price feed source",
     "file": "test/10-migrate-masterV2.test.js"
@@ -4254,7 +4555,7 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "301": [
+  "306": [
    {
     "title": "Change payment fees and price feed source",
     "file": "test/10-migrate-masterV2.test.js"
@@ -4264,55 +4565,55 @@
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
-  "317": [
+  "322": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "319": [
+  "324": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "327": [
+  "332": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "329": [
+  "334": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "330": [
+  "335": [
    {
     "title": "Add addresses as allowed marketplaces and add entity as marketplace",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "340": [
+  "345": [
    {
     "title": "Should withdraw fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "341": [
+  "346": [
    {
     "title": "Should withdraw fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "342": [
+  "347": [
    {
     "title": "Should withdraw fees",
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "354": [
+  "359": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"
@@ -4542,6 +4843,80 @@
     "file": "test/07-otoco-ens.test.js"
    }
   ]
+ },
+ "contracts/OtoCoPluginV2.sol": {
+  "27": [
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "31": [
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "40": [
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "44": [
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "48": [
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "67": [],
+  "77": []
  },
  "contracts/plugins/ENS.sol": {
   "37": [
@@ -5489,6 +5864,440 @@
    }
   ]
  },
+ "contracts/pluginsV2/ENSV2.sol": {
+  "41": [],
+  "45": [],
+  "46": [],
+  "47": [],
+  "67": [],
+  "68": [],
+  "69": [],
+  "71": [],
+  "72": [],
+  "73": [],
+  "74": [],
+  "89": [],
+  "94": [],
+  "95": [],
+  "96": [],
+  "97": [],
+  "99": [],
+  "108": [],
+  "109": [],
+  "110": [],
+  "111": []
+ },
+ "contracts/pluginsV2/LaunchpoolV2.sol": {
+  "46": [],
+  "47": [],
+  "49": [],
+  "50": [],
+  "51": [],
+  "53": [],
+  "63": [],
+  "72": [],
+  "78": [],
+  "87": [],
+  "88": [],
+  "89": [],
+  "91": [],
+  "98": [],
+  "99": [],
+  "101": []
+ },
+ "contracts/pluginsV2/MultisigV2.sol": {
+  "32": [],
+  "33": [],
+  "35": [],
+  "36": [],
+  "37": [],
+  "39": [],
+  "44": [],
+  "48": [],
+  "54": [],
+  "58": [],
+  "59": [],
+  "61": [],
+  "74": [],
+  "77": [],
+  "78": [],
+  "80": [],
+  "86": [],
+  "89": [],
+  "93": [],
+  "97": [],
+  "98": [],
+  "100": []
+ },
+ "contracts/pluginsV2/TimestampV2.sol": {
+  "32": [
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "37": [
+   {
+    "title": "Should create a new entity using Multisig initializer with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "47": [],
+  "53": []
+ },
+ "contracts/pluginsV2/TokenizationV2.sol": {
+  "53": [],
+  "61": [],
+  "74": [],
+  "90": [],
+  "91": [],
+  "93": [],
+  "94": [],
+  "95": [],
+  "98": [],
+  "99": [],
+  "102": [],
+  "103": [],
+  "107": [],
+  "109": [],
+  "110": [],
+  "112": [],
+  "125": [],
+  "135": [],
+  "136": [],
+  "138": [],
+  "139": [],
+  "142": [],
+  "143": [],
+  "145": [],
+  "158": [],
+  "159": [],
+  "161": [],
+  "163": []
+ },
+ "contracts/pluginsV2/TokenV2.sol": {
+  "48": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "50": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "51": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "52": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "54": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "64": [],
+  "79": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "86": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "87": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "88": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "89": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "91": [
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "104": [],
+  "107": [],
+  "108": [],
+  "110": [],
+  "123": [],
+  "126": [],
+  "129": [],
+  "133": [],
+  "134": [],
+  "136": []
+ },
+ "contracts/utils/BadgeVerifier.sol": {
+  "30": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "39": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "41": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "45": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "46": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "47": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "51": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "53": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "54": [
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "57": [
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "61": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "62": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "63": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "67": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "69": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "70": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "81": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "89": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "153": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "158": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "159": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "178": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ],
+  "181": [
+   {
+    "title": "Should create a new entity using Multisig initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   }
+  ]
+ },
  "contracts/utils/MockAggregatorV3.sol": {
   "9": [
    {
@@ -5503,6 +6312,10 @@
   "24": [
    {
     "title": "Creating series with correct fees and wrong fees",
+    "file": "test/10-migrate-masterV2.test.js"
+   },
+   {
+    "title": "Closing series with correct fees and wrong fees",
     "file": "test/10-migrate-masterV2.test.js"
    },
    {
@@ -5530,7 +6343,11 @@
     "file": "test/11-initializers-masterV2.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Multisig initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ]
@@ -5542,7 +6359,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5564,7 +6385,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5586,7 +6411,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5608,7 +6437,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5630,7 +6463,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5652,7 +6489,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5674,7 +6515,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5696,7 +6541,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5718,7 +6567,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5740,13 +6593,21 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "54": [
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5764,7 +6625,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -5812,7 +6673,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6036,7 +6897,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6080,7 +6941,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6094,7 +6955,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6108,7 +6969,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6118,7 +6979,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6128,7 +6989,7 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6166,6 +7027,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "19": [
@@ -6176,6 +7041,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "20": [
@@ -6186,6 +7055,10 @@
    {
     "title": "Deploy and remove Token plugin",
     "file": "test/05-otoco-token-nofee.test.js"
+   },
+   {
+    "title": "Should create a new entity without initializer and with plugins",
+    "file": "test/11-initializers-masterV2.test.js"
    }
   ],
   "27": [
@@ -6216,7 +7089,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6230,7 +7107,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6244,7 +7125,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6258,7 +7143,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6272,7 +7161,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6286,7 +7179,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6300,7 +7197,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6320,7 +7221,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6334,7 +7239,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6348,7 +7257,11 @@
     "file": "test/08-otoco-governor.test.js"
    },
    {
-    "title": "Should create a new DAO using Governor initializer",
+    "title": "Should create a new DAO using Governor initializer without plugins",
+    "file": "test/11-initializers-masterV2.test.js"
+   },
+   {
+    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
     "file": "test/11-initializers-masterV2.test.js"
    }
   ],
@@ -6534,7 +7447,7 @@
     "file": "test/10-migrate-masterV2.test.js"
    }
   ],
-  "58": [
+  "59": [
    {
     "title": "Update URI Sources and check if TokenURI are correct",
     "file": "test/10-migrate-masterV2.test.js"

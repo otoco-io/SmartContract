@@ -1,17 +1,5 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const { solidity } = require("ethereum-waffle");
-const chai = require("chai");
-chai.use(solidity);
-
-const { Artifacts } = require("hardhat/internal/artifacts");
-const { zeroAddress } = require("ethereumjs-util");
-
-async function getExternalArtifact(contract) {
-    const artifactsPath = "./artifacts-external";
-    const artifacts = new Artifacts(artifactsPath);
-    return artifacts.readArtifact(contract);
-}
 
 describe("OtoCo Timestamp Plugins Test", function () {
 
@@ -19,9 +7,6 @@ describe("OtoCo Timestamp Plugins Test", function () {
   let OtoCoMaster;
   let otocoMaster;
   let jurisdictions;
-  let tokenPlugin;
-  let tokenAddress;
-  let TokenFactory;
 
   it("Create Jurisdictions", async function () {
 

@@ -1,7 +1,6 @@
 const fs = require('fs');
 const { network } = require("hardhat");
 const hre = require("hardhat");
-require('dotenv').config();
 
 const Reset = "\x1b[0m";
 const Bright = "\x1b[1m";
@@ -58,44 +57,31 @@ async function main() {
      * ONCHAIN TASK *
      ****************/
 
-    // Set required additional settings
-    const {priceFeed, baseFee, jurisdictions} = await hre.run("postsetup", {
-        master: deploysJson.master,
-        jurisdictions: JSON.stringify(deploysJson.jurisdictions),
-        baseFee: process.env.BASE_FEE
-    });
+  const {verifier} = 
+    await hre.run("verifier", { master: deploysJson.master });
+
 
     /******************
      * STORAGE CHECKS *
      ******************/
 
-    const MasterFactoryV2 = await ethers.getContractFactory("OtoCoMasterV2");
-    const master = MasterFactoryV2.attach(deploysJson.master)
+    console.log(`${Bright}🚀 Badge Verifier Deployed Address:${Reset}${FgMagenta}${verifier.address}${Reset}`);
 
-    // Check base Fee
-    const baseFeeReturned = await master.callStatic.baseFee();
-    if(baseFeeReturned.toString() === process.env.BASE_FEE) {
-        console.log(`${Bright}🚀 Base Fee has been updated correctly!${Reset}`)
-    } else {
-        console.log(`${Bright} Base Fee differs from the expected!${Reset}
-        ${FgCyan}Expected: ${FgGreen}${process.env.BASE_FEE}
-        ${FgCyan}  Actual: ${FgRed}${baseFeeReturned}`
-        );
-    }
-    // Check Jurisdictions
-    for (const [idx, j] of deploysJson.jurisdictions.entries()) {
-        const address = await master.callStatic.jurisdictionAddress(idx);
-        if(address === j) {
-            console.log(`${Bright}🚀 Jurisdiction ${idx} has been updated correctly!${Reset}
-            Deployed Address: ${FgMagenta}${address}${Reset}`);
-        } else {
-            console.log(`${Bright}URI Source address differs from the expected!${Reset}
-            ${FgCyan}Expected: ${FgGreen}${j}
-            ${FgCyan}Actual: ${FgRed}${address}`
-            );
-        }
-    }
+	deploysJson.verifier = verifier.address;
 
+	fs.writeFileSync(`./deploys/v2/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
+
+
+    /**********************
+     * SOURCE VERIFICATON *
+     **********************/
+
+	if (network.config.chainId != '31337') {
+		await hre.run( "verification", { 
+			addr: deploysJson.verifier,
+			args: JSON.stringify([deploysJson.master]),
+		});
+	}
 }
 
 main()

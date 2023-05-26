@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "../OtoCoJurisdictionV2.sol";
 
-contract JurisdictionDelawareV2 is OtoCoJurisdictionV2 {
+contract JurisdictionSwissAssociationV2 is OtoCoJurisdictionV2 {
 
     constructor (
         uint256 renewPrice,
@@ -21,7 +21,7 @@ contract JurisdictionDelawareV2 is OtoCoJurisdictionV2 {
         uint256 count,
         string calldata nameToFormat
     ) public pure override returns(string memory){
-        return string(abi.encodePacked(nameToFormat, ' LLC'));
+        return string(abi.encodePacked(nameToFormat, ' Association'));
     }
 
 }

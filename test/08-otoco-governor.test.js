@@ -1,11 +1,7 @@
 const { expect } = require("chai");
 const { ethers, network, upgrades } = require("hardhat");
-const { solidity } = require("ethereum-waffle");
-const { zeroAddress } = require("ethereumjs-util");
-const chai = require("chai");
-chai.use(solidity);
-
 const hre = require("hardhat");
+
 
 function getInterfaceID(contractInterface) {
   let interfaceID = ethers.constants.Zero;
@@ -30,6 +26,8 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
   let tokenNonTransferableSource;
   let governorSource;
   let governorPlugin;
+
+  const zeroAddress = ethers.constants.AddressZero;
 
   it("Create Jurisdictions", async function () {
     [owner, wallet2, wallet3, wallet4, externalWallet] = await ethers.getSigners();
@@ -663,7 +661,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     expect(governor.connect(wallet2).resignAsManager())
       .to.be.revertedWith('OtocoGovernor: Only manager itself could resign');
     await (await governor.resignAsManager()).wait();
-    expect(await governor.getManager()).to.be.equals(zeroAddress());
+    expect(await governor.getManager()).to.be.equals(zeroAddress);
 
     // -------------------- CHECKING TOKEN SUPPLY AND BALANCES ---------------------------
     expect(await token.totalSupply()).to.be.equal(ethers.utils.parseEther('100'));
@@ -778,7 +776,7 @@ describe("OtoCo Token Without Fees Plugin Test", function () {
     transaction = await tokenizationPlugin.connect(wallet2).removePlugin(0, encoded);
     await expect(transaction).to.emit(tokenizationPlugin, 'Untokenized');
 
-    await expect(await governor.isAllowedContracts([zeroAddress()])).to.be.false;
+    await expect(await governor.isAllowedContracts([zeroAddress])).to.be.false;
   });
 
 });

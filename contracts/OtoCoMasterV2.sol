@@ -24,6 +24,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     event UpdatedPriceFeed(address newPriceFeed);
     event BaseFeeChanged(uint256 newFee);
     event ChangedURISource(address newSource);
+    event DocsUpdated(uint256 indexed tokenId);
 
     // Series Structs
     struct Series {
@@ -222,7 +223,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      *
      * @param tokenId of the series to be burned.
      */
-    function closeSeries(uint256 tokenId) public enoughAmountFees() payable {
+    function closeSeries(uint256 tokenId) public enoughAmountUSD(
+        IOtoCoJurisdiction(jurisdictionAddress[series[tokenId].jurisdiction]).getJurisdictionClosePrice()
+    ) payable {
         if(ownerOf(tokenId) != msg.sender) revert IncorrectOwner();
         _burn(tokenId);
     }
@@ -230,6 +233,8 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     function setDocs(uint256 tokenId, string memory documentation) external {
         if(ownerOf(tokenId) != msg.sender) revert IncorrectOwner();
         docs[tokenId] = documentation;
+
+        emit DocsUpdated(tokenId);
     }
 
     receive() enoughAmountFees() external payable {}

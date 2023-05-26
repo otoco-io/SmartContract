@@ -18,8 +18,7 @@ async function main() {
     const networkId = network.config.chainId;
     const [deployer] = await ethers.getSigners();
 
-    let object = {}
-    let badges = {}
+    let deployed = {}
     let settings
 
     try {
@@ -32,6 +31,17 @@ async function main() {
             `${FgRed}Error loading jurisdiction badges: ${err}${Reset}`
         );
 		process.exit(1);
+    }
+
+    try {
+        deployed = JSON.parse(fs.readFileSync(
+            `./deploys/v2/${network.name}.json`,
+            {encoding:"utf-8"},
+        ));
+    } catch (err) {
+        console.log(
+            `${FgRed}Error loading jurisdiction predeploys: ${err}${Reset}`
+        );
     }
 
     switch (network.name) {
@@ -65,9 +75,12 @@ async function main() {
      ****************/
 
     const jurisdictions = 
-    await hre.run( "jurisdictions", { settings: JSON.stringify(settings) });
-
-    object.jurisdictions = jurisdictions.map(({ address }) => address);
+    await hre.run( "jurisdictions", { 
+        settings: JSON.stringify(settings),
+        predeployed: JSON.stringify(deployed.jurisdictions),
+        master: deployed.master
+    });
+    deployed.jurisdictions = jurisdictions.map(({ address }) => address);
     
     
     /******************
@@ -81,6 +94,8 @@ async function main() {
             (await jurisdiction.callStatic.getJurisdictionRenewalPrice()).toString();
         const deployPrice = 
             (await jurisdiction.callStatic.getJurisdictionDeployPrice()).toString();
+        const closePrice = 
+            (await jurisdiction.callStatic.getJurisdictionClosePrice()).toString();
         const name = 
             (await jurisdiction.callStatic.getJurisdictionName()).toString();
         const defaultBadge = 
@@ -88,14 +103,14 @@ async function main() {
         const goldBadge = 
             (await jurisdiction.callStatic.getJurisdictionGoldBadge()).toString();
         jurisdictionData[jurisdiction.address] = 
-            { renewalPrice, deployPrice, name, defaultBadge, goldBadge };
+            { renewalPrice, deployPrice, closePrice, name, defaultBadge, goldBadge };
     }
 
     console.log(`${Bright}🚀 OtoCo V2 Jurisdictions Deployed:${Reset}`, jurisdictionData);
 
     fs.writeFileSync(
         `./deploys/v2/${network.name}.json`, 
-        JSON.stringify(object, undefined, 2),
+        JSON.stringify(deployed, undefined, 2),
     );
 
 

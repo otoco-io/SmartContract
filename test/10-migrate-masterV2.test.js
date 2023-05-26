@@ -1,10 +1,6 @@
 const { expect } = require("chai");
 const { ethers, upgrades } = require("hardhat");
-const { solidity } = require("ethereum-waffle");
-const chai = require("chai");
-const { zeroAddress } = require("ethereumjs-util");
-// const { ConsensusAlgorithm } = require("@ethereumjs/common");
-chai.use(solidity);
+const crypto = require('crypto');
 
 const EthDividend = ethers.BigNumber.from(ethers.utils.parseUnits('1', 18)).mul(ethers.utils.parseUnits('1', 9)).div(10);
 
@@ -16,6 +12,8 @@ describe("OtoCo Master Test", function () {
   let jurisdictions;
   let priceFeed;
 
+  const zeroAddress = ethers.constants.AddressZero;
+
   it("Create Jurisdictions", async function () {
 
     [owner, wallet2, wallet3, wallet4] = await ethers.getSigners();
@@ -23,12 +21,14 @@ describe("OtoCo Master Test", function () {
     const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporatedV2");
     const Delaware = await ethers.getContractFactory("JurisdictionDelawareV2");
     const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
+    const Swiss = await ethers.getContractFactory("JurisdictionSwissAssociationV2");
     
-    const unincorporated = await Unincorporated.deploy(100, 2, 'DAO', 'defaultBadgeURL', 'goldBadgeURL');
-    const delaware = await Delaware.deploy(5, 5, 'DELAWARE', 'defaultBadgeURLDE', 'goldBadgeURLDE');
-    const wyoming = await Wyoming.deploy(50, 40, 'WYOMING', 'defaultBadgeURLWY', 'goldBadgeURLWY');
+    const unincorporated = await Unincorporated.deploy(100, 2, 0, 'DAO', 'defaultBadgeURL', 'goldBadgeURL');
+    const delaware = await Delaware.deploy(5, 5, 10, 'DELAWARE', 'defaultBadgeURLDE', 'goldBadgeURLDE');
+    const wyoming = await Wyoming.deploy(50, 40, 150000, 'WYOMING', 'defaultBadgeURLWY', 'goldBadgeURLWY');
+    const swiss = await Swiss.deploy(10, 10, 10, 'SWISS', 'defaultBadgeURLSA', 'goldBadgeURLSA');
     
-    jurisdictions = [unincorporated.address, delaware.address, wyoming.address];
+    jurisdictions = [unincorporated.address, delaware.address, wyoming.address, swiss.address];
   });
 
   it("Initialize Master and add jurisdictions", async function () {
@@ -48,12 +48,14 @@ describe("OtoCo Master Test", function () {
     const unincorporated = await ethers.getContractAt("OtoCoJurisdiction", await otocoMaster.jurisdictionAddress(0));
     const delaware = await ethers.getContractAt("OtoCoJurisdiction", await otocoMaster.jurisdictionAddress(1));
     const wyoming = await ethers.getContractAt("OtoCoJurisdiction", await otocoMaster.jurisdictionAddress(2));
+    const swiss = await ethers.getContractAt("OtoCoJurisdiction", await otocoMaster.jurisdictionAddress(3));
 
-    expect(await otocoMaster.jurisdictionCount()).to.equal(3);
+    expect(await otocoMaster.jurisdictionCount()).to.equal(4);
 
     expect(await unincorporated.getJurisdictionName()).to.equal("DAO");
     expect(await delaware.getJurisdictionName()).to.equal("DELAWARE");
     expect(await wyoming.getJurisdictionName()).to.equal("WYOMING");
+    expect(await swiss.getJurisdictionName()).to.equal("SWISS");
 
   });
 
@@ -83,7 +85,7 @@ describe("OtoCo Master Test", function () {
   it("Test migration entities", async function () {
 
     const jurisdictions = [2,2,2,1];
-    const controllers = [wallet2.address, wallet3.address, wallet4.address, zeroAddress()];
+    const controllers = [wallet2.address, wallet3.address, wallet4.address, zeroAddress];
     const creations = [10000, 20000, 30000, 40000];
     const names = ['Entity 1 - Series 2', 'Entity 2 - Series 3', 'Entity 3 - Series 4', 'Closed LLC'];
 
@@ -132,21 +134,25 @@ describe("OtoCo Master Test", function () {
     const gasPrice = ethers.BigNumber.from("2000000000");
     const gasLimit = ethers.BigNumber.from("200000");
     // Check the amount of ETH has to be paid after pass the priceFeed
-    const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
     const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporatedV2");
     const Delaware = await ethers.getContractFactory("JurisdictionDelawareV2");
-    const wy = Wyoming.attach(await otocoMaster.jurisdictionAddress(2));
-    const de = Delaware.attach(await otocoMaster.jurisdictionAddress(1));
+    const Wyoming = await ethers.getContractFactory("JurisdictionWyomingV2");
+    const Swiss = await ethers.getContractFactory("JurisdictionSwissAssociationV2");
     const unc = Unincorporated.attach(await otocoMaster.jurisdictionAddress(0));
+    const de = Delaware.attach(await otocoMaster.jurisdictionAddress(1));
+    const wy = Wyoming.attach(await otocoMaster.jurisdictionAddress(2));
+    const swiss = Swiss.attach(await otocoMaster.jurisdictionAddress(3));
     const renewalPrices = [
       await wy.callStatic.getJurisdictionRenewalPrice(), 
       await de.callStatic.getJurisdictionRenewalPrice(),
       await unc.callStatic.getJurisdictionRenewalPrice(),
+      await swiss.callStatic.getJurisdictionRenewalPrice(),
     ];
     const amountToPayForSpinUp = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await wy.getJurisdictionDeployPrice());
     const amountToPayForSpinUp2 = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await de.getJurisdictionDeployPrice());
     const amountToPayForSpinUp3 = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await unc.getJurisdictionDeployPrice());
-    const totalFeePaid = amountToPayForSpinUp.add(amountToPayForSpinUp2.add(amountToPayForSpinUp3));
+    const amountToPayForSpinUp4 = EthDividend.div((await priceFeed.latestRoundData()).answer).mul(await swiss.getJurisdictionDeployPrice());
+    const totalFeePaid = amountToPayForSpinUp.add(amountToPayForSpinUp2.add(amountToPayForSpinUp3).add(amountToPayForSpinUp4));
     // Remove 1% from the correct amount needed
     const notEnoughToPayForSpinUp = amountToPayForSpinUp.mul(100).div(101);
 
@@ -160,18 +166,23 @@ describe("OtoCo Master Test", function () {
     const transaction = await otocoMaster.createSeries(2, owner.address, "New Entity", {gasPrice, gasLimit, value:amountToPayForSpinUp});
     const transaction2 = await otocoMaster.createSeries(1, owner.address, "New Entity 2", {gasPrice, gasLimit, value:amountToPayForSpinUp2});
     const transaction3 = await otocoMaster.createSeries(0, owner.address, "New Entity 3", {gasPrice, gasLimit, value:amountToPayForSpinUp3});
-    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 7);
-    await expect(transaction2).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 8);
-    await expect(transaction3).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress(), owner.address, 9);
+    const transaction4 = await otocoMaster.createSeries(3, owner.address, "New Entity 4", {gasPrice, gasLimit, value:amountToPayForSpinUp4});
+    await expect(transaction).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 7);
+    await expect(transaction2).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 8);
+    await expect(transaction3).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 9);
+    await expect(transaction4).to.emit(otocoMaster, 'Transfer').withArgs(zeroAddress, owner.address, 10);
     expect((await otocoMaster.series(7)).jurisdiction).to.be.equal(2);
     expect((await otocoMaster.series(8)).jurisdiction).to.be.equal(1);
     expect((await otocoMaster.series(9)).jurisdiction).to.be.equal(0);
+    expect((await otocoMaster.series(10)).jurisdiction).to.be.equal(3);
     expect((await otocoMaster.series(7)).name).to.be.equal("New Entity - Series 5");
     expect((await otocoMaster.series(8)).name).to.be.equal("New Entity 2 LLC");
     expect((await otocoMaster.series(9)).name).to.be.equal("New Entity 3");
+    expect((await otocoMaster.series(10)).name).to.be.equal("New Entity 4 Association");
     expect(renewalPrices[0]).to.eq(ethers.BigNumber.from(50));
     expect(renewalPrices[1]).to.eq(ethers.BigNumber.from(5));
     expect(renewalPrices[2]).to.eq(ethers.BigNumber.from(100));
+    expect(renewalPrices[3]).to.eq(ethers.BigNumber.from(10));
     
     // Check if the amount to pay was transferred
     expect(await ethers.provider.getBalance(otocoMaster.address)).to.be.equal(previousBalance.add(totalFeePaid));
@@ -180,7 +191,7 @@ describe("OtoCo Master Test", function () {
 
   it("Closing series with correct fees and wrong fees", async function () {
 
-    const gasPrice = ethers.BigNumber.from("2000000000");
+    // const gasPrice = ethers.BigNumber.from("2000000000");
     const gasLimit = ethers.BigNumber.from("60000");
     const otocoBaseFee = await otocoMaster.baseFee();
 
@@ -189,17 +200,23 @@ describe("OtoCo Master Test", function () {
     // Remove 1% from the correct amount needed
     const notEnoughToPayForClose = amountToPayForClose.mul(100).div(110);
 
-    await expect(otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:notEnoughToPayForClose}))
+    await expect(otocoMaster.closeSeries(7, {/* gasPrice, gasLimit, */ value:notEnoughToPayForClose}))
     .to.be.revertedWithCustomError(otocoMaster, "InsufficientValue")
 
-    await expect(otocoMaster.connect(wallet2).closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose}))
+    await expect(otocoMaster.connect(wallet2).closeSeries(7, {/* gasPrice, gasLimit, */ value:amountToPayForClose}))
     .to.be.revertedWithCustomError(otocoMaster, 'IncorrectOwner');
 
     // Close the company
-    const transactionClose = await otocoMaster.closeSeries(7, {gasPrice, gasLimit, value:amountToPayForClose});
-    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress(), 7);
+    const transactionClose = await otocoMaster.closeSeries(7, {/* gasPrice, gasLimit,  */value:amountToPayForClose});
+    await expect(transactionClose).to.emit(otocoMaster, 'Transfer').withArgs(owner.address, zeroAddress, 7);
 
     await expect(otocoMaster.ownerOf(6)).to.be.reverted;
+
+    // test enoughAmountFees modifier
+    const val = (await otocoMaster.callStatic.baseFee()).mul(ethers.constants.Two);
+    await expect(ethers.provider.call(
+      {to:otocoMaster.address, value:val }
+    )).to.be.ok;
 
   });
 
@@ -251,30 +268,36 @@ describe("OtoCo Master Test", function () {
       .to.be.revertedWith('Ownable: caller is not the owner');
 
     // update docs parameter
-    const tx = await otocoMaster.connect(wallet3).setDocs(4, "CID");
+    const cid = (crypto.randomBytes(32)).toString('hex');
+    const docsJson = {
+      LitCID: cid , 
+      Description: "Decrypt the CID with LitProtocol to access Entity documentation.",
+    };
+
+    const tx = await otocoMaster.connect(wallet3).setDocs(4, JSON.stringify(docsJson));
     buff = Buffer.from((await otocoMaster.tokenURI(4)).split(',')[1], 'base64');
     json = JSON.parse(buff.toString('utf-8'));
 
     expect(tx).to.be.ok;
-    expect(json.docs).to.eq("CID");
+    expect(json.docs).to.deep.eq(docsJson);
+    expect(tx).to.emit("DocsUpdated").withArgs(4);
     await expect(otocoMaster.connect(wallet2).setDocs(4,"fail")).to.be.revertedWithCustomError(otocoMaster, "IncorrectOwner");
 
   });
 
   it("Add addresses as allowed marketplaces and add entity as marketplace", async function () {
-
     const addrs = [owner.address, wallet2.address];
     const states = [true, true];
     const name = "Standalone Entity";
     const transaction = await otocoMaster.setMarketplaceAddresses(addrs, states);
     // only addresses allowed as marketplaces can call addEntity
-    const transaction2 = await otocoMaster.connect(wallet2).addEntity(0,1,"Standalone Entity");
+    const transaction2 = await otocoMaster.connect(wallet2).addEntity(0, 1, "Standalone Entity");
 
     expect(transaction).to.be.ok;
     expect(transaction2).to.be.ok;
     await expect(otocoMaster
       .connect(wallet4)
-      .setMarketplaceAddresses([zeroAddress()], [true])
+      .setMarketplaceAddresses([zeroAddress], [true])
     ).to.be.revertedWith("Ownable: caller is not the owner");
     await expect(otocoMaster
       .connect(wallet4)
@@ -282,11 +305,11 @@ describe("OtoCo Master Test", function () {
     ).to.be.revertedWithCustomError(otocoMaster, "NotAllowed");
 
     // check for storage update in nft methods and in otocoMaster storage
-    expect(await otocoMaster.ownerOf(10)).to.eq(wallet2.address);
-    expect((await otocoMaster.callStatic.series(10)).name).to.eq(name);
-    expect((await otocoMaster.callStatic.series(10)).jurisdiction).to.eq(ethers.constants.Zero);
-    expect((await otocoMaster.callStatic.series(10)).entityType).to.eq(ethers.constants.One);
-    expect(await otocoMaster.callStatic.seriesCount()).to.eq(ethers.BigNumber.from(11));
+    expect(await otocoMaster.ownerOf(11)).to.eq(wallet2.address);
+    expect((await otocoMaster.callStatic.series(11)).name).to.eq(name);
+    expect((await otocoMaster.callStatic.series(11)).jurisdiction).to.eq(ethers.constants.Zero);
+    expect((await otocoMaster.callStatic.series(11)).entityType).to.eq(ethers.constants.One);
+    expect(await otocoMaster.callStatic.seriesCount()).to.eq(ethers.BigNumber.from(12));
     expect(await otocoMaster.callStatic.seriesPerJurisdiction(0)).to.eq(ethers.BigNumber.from(3));
 
   });
@@ -300,10 +323,10 @@ describe("OtoCo Master Test", function () {
     const amountToPayForRenew = EthDividend.div(conversion).mul(renewalPrice);
     const yearInSecs = ethers.BigNumber.from(31536000);
 
-    const oldExpiration1 = (await otocoMaster.callStatic.series(10)).expiration;
-    const transaction = await otocoMaster.connect(wallet2).renewEntity(10,1, { value: amountToPayForRenew });
-    const transaction2 = await otocoMaster.renewEntity(5,2, { value: amountToPayForRenew.mul(ethers.constants.Two) });
-    const newExpiration1 = (await otocoMaster.callStatic.series(10)).expiration;
+    const oldExpiration1 = (await otocoMaster.callStatic.series(11)).expiration;
+    const transaction = await otocoMaster.connect(wallet2).renewEntity(11, 1, { value: amountToPayForRenew });
+    const transaction2 = await otocoMaster.renewEntity(5, 2, { value: amountToPayForRenew.mul(ethers.constants.Two) });
+    const newExpiration1 = (await otocoMaster.callStatic.series(11)).expiration;
     const newExpiration2 = (await otocoMaster.callStatic.series(5)).expiration;
     const bn = await otocoMaster.provider.getBlockNumber();
     const timestamp = ethers.BigNumber.from((await otocoMaster.provider.getBlock(bn)).timestamp);
@@ -314,46 +337,46 @@ describe("OtoCo Master Test", function () {
     expect(newExpiration2).to.eq(timestamp.add(yearInSecs.mul(ethers.constants.Two)));
 
     await expect(otocoMaster.connect(wallet2)
-      .renewEntity(10,1)).to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
+      .renewEntity(11, 1)).to.be.revertedWithCustomError(otocoMaster, "InsufficientValue");
 
   });
 
   it("Add new jurisdiction and update existing jurisdiction's address", async function () {
     const oldStorage = [
       await otocoMaster.callStatic.jurisdictionCount(), 
-      await otocoMaster.callStatic.jurisdictionAddress(3),
+      await otocoMaster.callStatic.jurisdictionAddress(4),
     ];
     const addr = (ethers.Wallet.createRandom()).address;
     const transaction = await otocoMaster.addJurisdiction(addr);
     const newStorage = [
       await otocoMaster.callStatic.jurisdictionCount(), 
-      await otocoMaster.callStatic.jurisdictionAddress(3),
+      await otocoMaster.callStatic.jurisdictionAddress(4),
     ];
 
-    const transaction2 = await otocoMaster.updateJurisdiction(3, owner.address);
-    const storageUpdate = await otocoMaster.callStatic.jurisdictionAddress(3);
+    const transaction2 = await otocoMaster.updateJurisdiction(2, owner.address);
+    const storageUpdate = await otocoMaster.callStatic.jurisdictionAddress(2);
 
-    const transaction3 = await otocoMaster.updateJurisdiction(3, zeroAddress());
-    const storageUpdate2 = await otocoMaster.callStatic.jurisdictionAddress(3);
+    const transaction3 = await otocoMaster.updateJurisdiction(2, zeroAddress);
+    const storageUpdate2 = await otocoMaster.callStatic.jurisdictionAddress(2);
 
 
     expect(transaction).to.be.ok;
-    expect(oldStorage[0]).to.eq(3);
-    expect(oldStorage[1]).to.eq(zeroAddress());
-    expect(newStorage[0]).to.eq(4);
+    expect(oldStorage[0]).to.eq(4);
+    expect(oldStorage[1]).to.eq(zeroAddress);
+    expect(newStorage[0]).to.eq(5);
     expect(newStorage[1]).to.eq(addr);
     expect(transaction2).to.be.ok;
     expect(transaction3).to.be.ok;
     expect(storageUpdate).to.eq(owner.address);
-    expect(storageUpdate2).to.eq(zeroAddress());
+    expect(storageUpdate2).to.eq(zeroAddress);
 
     await expect(otocoMaster
       .connect(wallet3)
-      .addJurisdiction(zeroAddress()))
+      .addJurisdiction(zeroAddress))
     .to.be.revertedWith("Ownable: caller is not the owner");
     await expect(otocoMaster
       .connect(wallet4)
-      .updateJurisdiction(0,zeroAddress()))
+      .updateJurisdiction(0, zeroAddress))
     .to.be.revertedWith("Ownable: caller is not the owner");
       
   });

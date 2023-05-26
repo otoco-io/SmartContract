@@ -10,6 +10,7 @@ require("./master");
 require("./uri");
 require("./postsetup");
 require("./initializers");
+require("./verifier");
 require("./utils/verification");
 
 task("setup", "OtoCo V2 scripts setup pusher")
@@ -25,7 +26,7 @@ task("setup", "OtoCo V2 scripts setup pusher")
     }
 
      // Mine blocks automatically to allow use with front-end
-     if (hre.network.config.chainId == 31337){
+    if (hre.network.config.chainId == 31337){
       await network.provider.send("evm_setIntervalMining", [5000]);
       await (await ethers.getSigner()).sendTransaction({
         to: '0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30',
@@ -45,6 +46,10 @@ task("setup", "OtoCo V2 scripts setup pusher")
     });
     // Deploy tokenURI contract
     await hre.run("uri", {
+      master: master.address
+    });
+    // Deploy Badge Verifier contract
+    await hre.run("verifier", {
       master: master.address
     });
     // Set required additional settings

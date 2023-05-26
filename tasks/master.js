@@ -1,10 +1,7 @@
 const { task } =  require("hardhat/config");
 
 const defaultUrl = "https://otoco.io/dashpanel/entity/";  
-
 task("master", "Deploys a OtoCo V2 Master proxy")
-// In case of non-fork the deploy will require jurisdictions
-.addOptionalParam("jurisdictions", "The V2 jurisdiction addresses")
 // leave empty for default value
 .addOptionalParam("url", "The entities page base external url", defaultUrl)
 
@@ -39,10 +36,9 @@ task("master", "Deploys a OtoCo V2 Master proxy")
     );
   // In case of running locally but not forked
   } else {
-    if (!taskArgs.jurisdictions) throw Error("No Jurisdiction defined for master deployment")
     otocoMaster = await upgrades.deployProxy(
       MasterFactoryV2,
-      [JSON.parse(taskArgs.jurisdictions), taskArgs.url],
+      [[], taskArgs.url],
     );
   }
 
