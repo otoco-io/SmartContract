@@ -1,8 +1,8 @@
 {
  "stats": {
-  "suites": 13,
-  "tests": 71,
-  "passes": 71,
+  "suites": 14,
+  "tests": 75,
+  "passes": 75,
   "pending": 0,
   "failures": 0
  },
@@ -494,6 +494,34 @@
    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
    "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer with Governor initializer",
    "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Setup OtoCoV2",
+   "fullTitle": "Test Otonomos token distribution strategy Setup OtoCoV2",
+   "file": "test/12-token-distribution-strategy.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Setup Entity",
+   "fullTitle": "Test Otonomos token distribution strategy Setup Entity",
+   "file": "test/12-token-distribution-strategy.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Transfer ownership & distribute tokens",
+   "fullTitle": "Test Otonomos token distribution strategy Transfer ownership & distribute tokens",
+   "file": "test/12-token-distribution-strategy.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Transfer ownership back & mint new tokens via proposal",
+   "fullTitle": "Test Otonomos token distribution strategy Transfer ownership back & mint new tokens via proposal",
+   "file": "test/12-token-distribution-strategy.test.js",
    "currentRetry": 0,
    "err": {}
   },
@@ -994,6 +1022,34 @@
    "title": "Should estimate gas for createEntityWithInitializer with Governor initializer",
    "fullTitle": "OtoCo Master Test Should estimate gas for createEntityWithInitializer with Governor initializer",
    "file": "test/11-initializers-masterV2.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Setup OtoCoV2",
+   "fullTitle": "Test Otonomos token distribution strategy Setup OtoCoV2",
+   "file": "test/12-token-distribution-strategy.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Setup Entity",
+   "fullTitle": "Test Otonomos token distribution strategy Setup Entity",
+   "file": "test/12-token-distribution-strategy.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Transfer ownership & distribute tokens",
+   "fullTitle": "Test Otonomos token distribution strategy Transfer ownership & distribute tokens",
+   "file": "test/12-token-distribution-strategy.test.js",
+   "currentRetry": 0,
+   "err": {}
+  },
+  {
+   "title": "Transfer ownership back & mint new tokens via proposal",
+   "fullTitle": "Test Otonomos token distribution strategy Transfer ownership back & mint new tokens via proposal",
+   "file": "test/12-token-distribution-strategy.test.js",
    "currentRetry": 0,
    "err": {}
   },
