@@ -4,7 +4,7 @@
   "description": "Onchain entity assembly and tooling marketplace for Web3 projects.",
   "dependencies": {
     "@chainlink/contracts": "^0.4.1",
-    "@openzeppelin/contracts-upgradeable": "^4.6.0"
+    "@openzeppelin/contracts-upgradeable": "^4.9.1"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.4",
