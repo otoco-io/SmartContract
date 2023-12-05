@@ -10,14 +10,14 @@ require("./master");
 require("./uri");
 require("./postsetup");
 require("./initializers");
+require("./plugins")
 require("./verifier");
-require("./utils/verification");
 
 task("setup", "OtoCo V2 scripts setup pusher")
   .setAction(async (undefined, hre) => {
-    
+
     const jurisdictionSettings = require(`../scripts/jurisdiction-settings.json`)
-    
+
     let settings
     switch (process.env.FORKED_NETWORK) {
       case "mainnet": settings = jurisdictionSettings.mainnet; break;
@@ -25,8 +25,18 @@ task("setup", "OtoCo V2 scripts setup pusher")
       default: settings = jurisdictionSettings.default; break;
     }
 
-     // Mine blocks automatically to allow use with front-end
-    if (hre.network.config.chainId == 31337){
+    let previousJson
+    // Import previous source contracts
+    try {
+      const data = fs.readFileSync(`./deploys/previous.${network.name}.json`, { encoding: "utf-8" });
+      previousJson = JSON.parse(data);
+    } catch (err) {
+      previousJson = []
+      console.log(err);
+    }
+
+    // Mine blocks automatically to allow use with front-end
+    if (hre.network.config.chainId == 31337) {
       await network.provider.send("evm_setIntervalMining", [5000]);
       await (await ethers.getSigner()).sendTransaction({
         to: '0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30',
@@ -41,8 +51,8 @@ task("setup", "OtoCo V2 scripts setup pusher")
     );
 
     // Deploy/Migrate MasterV2 contract
-    const master = await hre.run( "master", {
-      jurisdictions: JSON.stringify(jurisdictions.map(({address} ) => address))
+    const master = await hre.run("master", {
+      jurisdictions: JSON.stringify(jurisdictions.map(({ address }) => address))
     });
     // Deploy tokenURI contract
     await hre.run("uri", {
@@ -52,16 +62,17 @@ task("setup", "OtoCo V2 scripts setup pusher")
     await hre.run("verifier", {
       master: master.address
     });
+
     // Set required additional settings
     await hre.run("postsetup", {
       master: master.address,
-      jurisdictions: JSON.stringify(jurisdictions.map(({address} ) => address)),
+      jurisdictions: JSON.stringify(jurisdictions.map(({ address }) => address)),
     });
     // Deploy Initializers contracts
     await hre.run("initializers", {});
 
   });
 
-  module.exports = {
-    solidity: "0.8.4",
-  };
+module.exports = {
+  solidity: "0.8.4",
+};

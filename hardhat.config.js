@@ -15,29 +15,30 @@ require("./tasks/setup");
 process.removeAllListeners('warning');
 
 const chainIds = {
-    hardhat: 31337,
-    mainnet: 1,
-    goerli: 5,
-    polygon: 137,
-    mumbai: 80001,
-  };
+  hardhat: 31337,
+  mainnet: 1,
+  goerli: 5,
+  polygon: 137,
+  mumbai: 80001,
+  sepolia: 11155111,
+};
 
-  function getChainConfig(chain){
-    
-    const jsonRpcUrl = process.env[`RPC_${chain.toUpperCase()}_API`]
-    if (!jsonRpcUrl) throw new Error("API KEY not fount for "+chain);
-    
-    return {
-      // Comment out for default hardhat account settings
-      accounts: {
-        count: 10,
-        mnemonic: process.env.MNEMONIC_PHRASE,
-        path: "m/44'/60'/0'/0",
-      },
-      chainId: chainIds[chain],
-      url: jsonRpcUrl
-    };
-  }
+function getChainConfig(chain) {
+
+  const jsonRpcUrl = process.env[`RPC_${chain.toUpperCase()}_API`]
+  if (!jsonRpcUrl) throw new Error("API KEY not fount for " + chain);
+
+  return {
+    // Comment out for default hardhat account settings
+    accounts: {
+      count: 10,
+      mnemonic: process.env.MNEMONIC_PHRASE,
+      path: "m/44'/60'/0'/0",
+    },
+    chainId: chainIds[chain],
+    url: jsonRpcUrl
+  };
+}
 
 
 module.exports = {
@@ -59,6 +60,7 @@ module.exports = {
     goerli: getChainConfig("goerli"),
     polygon: getChainConfig("polygon"),
     mumbai: getChainConfig("mumbai"),
+    sepolia: getChainConfig("sepolia"),
   },
   etherscan: {
     apiKey: {
@@ -66,6 +68,7 @@ module.exports = {
       goerli: process.env.ETHERSCAN_API_KEY || "",
       polygon: process.env.POLYGONSCAN_API_KEY || "",
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
+      sepolia: process.env.ETHERSCAN_API_KEY || "",
     },
   },
   solidity: {
@@ -73,7 +76,7 @@ module.exports = {
       { version: "0.8.0" },
       { version: "0.8.4" },
     ],
-      settings: {
+    settings: {
       metadata: {
         bytecodeHash: "none",
       },
