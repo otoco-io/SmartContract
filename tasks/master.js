@@ -1,47 +1,47 @@
-const { task } =  require("hardhat/config");
+const { task } = require("hardhat/config");
 
-const defaultUrl = "https://otoco.io/dashpanel/entity/";  
+const defaultUrl = "https://otoco.io/dashpanel/entity/";
 task("master", "Deploys a OtoCo V2 Master proxy")
-// leave empty for default value
-.addOptionalParam("url", "The entities page base external url", defaultUrl)
+  // leave empty for default value
+  .addOptionalParam("url", "The entities page base external url", defaultUrl)
 
-.setAction(async (taskArgs, hre) => {
+  .setAction(async (taskArgs, hre) => {
 
-  const isForkedLocalNode = hre.network.config.chainId == 31337 && process.env.FORK_ENABLED == "true"
+    const isForkedLocalNode = hre.network.config.chainId == 31337 && process.env.FORK_ENABLED == "true"
 
-  // IN case of FORKED LOCAL NODE will grab deploys from forked network
-  // Otherwise will grab addresses directly from connected network
-  const deploysSource = isForkedLocalNode ? process.env.FORKED_NETWORK : hre.network.name;
-  const deploys = require(`../deploys/v1/${deploysSource}.json`)
+    // IN case of FORKED LOCAL NODE will grab deploys from forked network
+    // Otherwise will grab addresses directly from connected network
+    const deploysSource = isForkedLocalNode ? process.env.FORKED_NETWORK : hre.network.name;
+    const deploys = require(`../deploys/v1/${deploysSource}.json`)
 
-  // In case of FORKED LOCAL NODE will impersonate OtoCo deployer
-  const deployer = isForkedLocalNode ?
+    // In case of FORKED LOCAL NODE will impersonate OtoCo deployer
+    const deployer = isForkedLocalNode ?
       await ethers.getImpersonatedSigner("0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30")
       : await ethers.getSigner()
-  
-  const MasterFactoryV1 = await ethers.getContractFactory("OtoCoMaster", deployer);
-  const MasterFactoryV2 = await ethers.getContractFactory("OtoCoMasterV2", deployer);
-  // In case of running locally and forked will force implementation locally
-  if (isForkedLocalNode){
-    await upgrades.forceImport(deploys.master, MasterFactoryV1)
-    otocoMaster = await upgrades.upgradeProxy(
-      deploys.master,
-      MasterFactoryV2
-    );
-  // In case of running a migration on testnets/mainnets
-  } else if (hre.network.config.chainId != 31337){
-    otocoMaster = await upgrades.upgradeProxy(
-      deploys.master,
-      MasterFactoryV2
-    );
-  // In case of running locally but not forked
-  } else {
-    otocoMaster = await upgrades.deployProxy(
-      MasterFactoryV2,
-      [[], taskArgs.url],
-    );
-  }
 
-  return await otocoMaster.deployed()
+    const MasterFactoryV1 = await ethers.getContractFactory("OtoCoMaster", deployer);
+    const MasterFactoryV2 = await ethers.getContractFactory("OtoCoMasterV2", deployer);
+    // In case of running locally and forked will force implementation locally
+    if (isForkedLocalNode) {
+      await upgrades.forceImport(deploys.master, MasterFactoryV1)
+      otocoMaster = await upgrades.upgradeProxy(
+        deploys.master,
+        MasterFactoryV2
+      );
+      // In case of running a migration on testnets/mainnets
+    } else if (hre.network.config.chainId != 31337) {
+      otocoMaster = await upgrades.upgradeProxy(
+        deploys.master,
+        MasterFactoryV2
+      );
+      // In case of running locally but not forked
+    } else {
+      otocoMaster = await upgrades.deployProxy(
+        MasterFactoryV2,
+        [[], taskArgs.url],
+      );
+    }
 
-});
+    return await otocoMaster.deployed()
+
+  });
