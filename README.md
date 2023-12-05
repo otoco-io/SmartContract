@@ -264,17 +264,6 @@ Ethereum Mainnet
 | Launchpool Plugin | `0x1477E9f01B78Ec20405542e5ee07469a7c93c83e` | [link](https://etherscan.io/address/0x1477E9f01B78Ec20405542e5ee07469a7c93c83e#code) |
 | ENS Plugin        | `0x355894349219dccf4825B66b2f383877C77304c9` | [link](https://etherscan.io/address/0x355894349219dccf4825B66b2f383877C77304c9#code) |
 
-Ethereum Testnet (Goerli)
-
-| Name              | Address                                      | Explorer                                                                                    |
-| ----------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| OtoCo Master      | `0x5B9aE6234Cf1E447680c245200E066091E631Bf3` | [link](https://goerli.etherscan.io/address/0x5B9aE6234Cf1E447680c245200E066091E631Bf3#code) |
-| Timestamp Plugin  | `0x0d3BC598F0F75590CD75D60D40e0510F515EBE51` | [link](https://goerli.etherscan.io/address/0x0d3BC598F0F75590CD75D60D40e0510F515EBE51#code) |
-| Token Plugin      | `0xbaAbb166463221ffE04Fd7F06262bD670e26F823` | [link](https://goerli.etherscan.io/address/0xbaAbb166463221ffE04Fd7F06262bD670e26F823#code) |
-| Multisig Plugin   | `0x6a4E318410521b97feA47c52E1ae3Ab0ca67335D` | [link](https://goerli.etherscan.io/address/0x6a4E318410521b97feA47c52E1ae3Ab0ca67335D#code) |
-| Launchpool Plugin | `0x26b17999f109b3ee24Ef26a60495d5c583f3EE6f` | [link](https://goerli.etherscan.io/address/0x26b17999f109b3ee24Ef26a60495d5c583f3EE6f#code) |
-| ENS Plugin        | `0x58F6C99Ded465950cc06113Ca168404ec842B8c8` | [link](https://goerli.etherscan.io/address/0x58F6C99Ded465950cc06113Ca168404ec842B8c8#code) |
-
 ## REFERENCES
 
 [Batch Minting NFTs](https://blog.alchemy.com/blog/erc721-vs-erc721a-batch-minting-nfts)
