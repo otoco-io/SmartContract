@@ -68,8 +68,7 @@ async function main() {
 
     const { token, tokenPlugin } =
         await hre.run("token", {
-            deploys: JSON.stringify(deploysJson),
-            previous: JSON.stringify(previousJson)
+            deployed: JSON.stringify(deploysJson)
         });
 
 

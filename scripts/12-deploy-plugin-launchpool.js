@@ -59,7 +59,7 @@ async function main() {
 
     const { launchpool, launchpoolSource, launchpoolCurve } =
         await hre.run("launchpool", {
-            deploys: JSON.stringify(deploysJson)
+            deployed: JSON.stringify(deploysJson)
         });
 
 
@@ -91,7 +91,7 @@ async function main() {
             args: JSON.stringify([]),
         });
         await hre.run("verification", {
-            addr: tokenization.address,
+            addr: launchpool.address,
             args: JSON.stringify([deploysJson.master, launchpoolSource.address, launchpoolCurve.address, [], []]),
         });
     }

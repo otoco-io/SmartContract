@@ -12,6 +12,13 @@ require("./postsetup");
 require("./initializers");
 require("./verifier");
 
+require("./plugins/token");
+require("./plugins/multisig");
+require("./plugins/ens");
+require("./plugins/launchpool");
+require("./plugins/timestamp");
+require("./plugins/tokenization");
+
 task("setup", "OtoCo V2 scripts setup pusher")
   .setAction(async (undefined, hre) => {
 

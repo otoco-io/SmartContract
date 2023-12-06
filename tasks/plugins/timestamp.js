@@ -1,11 +1,5 @@
 const { task } = require("hardhat/config");
 
-async function getExternalArtifact(contract) {
-    const artifactsPath = "./artifacts-external";
-    const artifacts = new Artifacts(artifactsPath);
-    return artifacts.readArtifact(contract);
-}
-
 task("timestamp", "Deploy Timestamp plugin")
     .addOptionalParam("deployed", "Current deployed contract", '{}')
     .setAction(async (taskArgs) => {
@@ -19,7 +13,7 @@ task("timestamp", "Deploy Timestamp plugin")
             : await ethers.getSigner()
 
         // Deploy Timestamp contract
-        const timestamp = await ethers.getContractFactory("Timestamp", deployer).deploy(deploysJson.master);
+        const timestamp = await (await ethers.getContractFactory("Timestamp", deployer)).deploy(deploysJson.master);
         await timestamp.deployed()
 
         return { timestamp };

@@ -68,7 +68,7 @@ async function main() {
 
     const { timestamp } =
         await hre.run("timestamp", {
-            deploys: JSON.stringify(deploysJson)
+            deployed: JSON.stringify(deploysJson)
         });
 
 
@@ -76,7 +76,7 @@ async function main() {
      * STORAGE CHECKS *
      ******************/
 
-    console.log(`${Bright}🚀 Badge Verifier Deployed Address:${Reset}${FgMagenta}${timestamp.address}${Reset}`);
+    console.log(`${Bright}🚀 Timestamp plugin Address:${Reset}${FgMagenta}${timestamp.address}${Reset}`);
 
     deploysJson.timestamp = timestamp.address;
 

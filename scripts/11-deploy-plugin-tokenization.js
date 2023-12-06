@@ -68,7 +68,7 @@ async function main() {
 
     const { otocoTokenMintable, otocoTokenNonTransferable, otocoGovernor, tokenization } =
         await hre.run("tokenization", {
-            deploys: JSON.stringify(deploysJson)
+            deployed: JSON.stringify(deploysJson)
         });
 
 

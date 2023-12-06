@@ -1,4 +1,5 @@
 const { task } = require("hardhat/config");
+const { Artifacts } = require("hardhat/internal/artifacts");
 
 async function getExternalArtifact(contract) {
     const artifactsPath = "./artifacts-external";
@@ -33,17 +34,17 @@ task("multisig", "Deploy multisig plugin")
         }
 
         const MultisigPluginFactory = await ethers.getContractFactory("Multisig", deployer);
-        const multisigPlugin = await MultisigPluginFactory.deploy(
-            otocoMaster.address,
+        const multisig = await MultisigPluginFactory.deploy(
+            deploysJson.master,
             previousJson.safe ? previousJson.safe : deploysJson.gnosisSafe,
             previousJson.safeFactory ? previousJson.safeFactory : deploysJson.gnosisSafeProxyFactory,
             [],
             []
         );
-        await multisigPlugin.deployed()
+        await multisig.deployed()
 
         return {
-            multisigPlugin,
+            multisig,
             safe: deploysJson.gnosisSafe,
             safeFactory: deploysJson.gnosisSafeProxyFactory,
         };

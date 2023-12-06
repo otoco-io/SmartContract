@@ -1,4 +1,5 @@
 const { task } = require("hardhat/config");
+const { Artifacts } = require("hardhat/internal/artifacts");
 
 async function getExternalArtifact(contract) {
     const artifactsPath = "./artifacts-external";
@@ -6,7 +7,7 @@ async function getExternalArtifact(contract) {
     return artifacts.readArtifact(contract);
 }
 
-task("plugins", "Deploys all plugins to a specific chain")
+task("launchpool", "Deploy launchpool plugin")
     .addOptionalParam("deployed", "Current deployed contract", '{}')
     .setAction(async (taskArgs) => {
 
@@ -19,11 +20,11 @@ task("plugins", "Deploys all plugins to a specific chain")
             : await ethers.getSigner()
 
         const LaunchPoolArtifact = await getExternalArtifact("LaunchPool", deployer);
-        const launchpoolSource = await ethers.getContractFactoryFromArtifact(LaunchPoolArtifact).deploy();
+        const launchpoolSource = await (await ethers.getContractFactoryFromArtifact(LaunchPoolArtifact)).deploy();
         await launchpoolSource.deployed()
 
         const LaunchCurveArtifact = await getExternalArtifact("LaunchCurveExponential", deployer);
-        const launchpoolCurve = await ethers.getContractFactoryFromArtifact(LaunchCurveArtifact).deploy();
+        const launchpoolCurve = await (await ethers.getContractFactoryFromArtifact(LaunchCurveArtifact)).deploy();
         await launchpoolCurve.deployed()
 
         const LaunchpoolPluginFactory = await ethers.getContractFactory("Launchpool", deployer);

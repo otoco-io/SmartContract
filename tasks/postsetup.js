@@ -13,7 +13,7 @@ task("postsetup", "Make all post-setup changes to Master Contract")
     // IN case of FORKED LOCAL NODE will grab deploys from forked network
     // Otherwise will grab addresses directly from connected network
     const deploysSource = isForkedLocalNode ? process.env.FORKED_NETWORK : hre.network.name;
-    const deploys = require(`../deploys/v1/${deploysSource}.json`);
+    const deploys = require(`../deploys/v2/previous.${deploysSource}.json`);
 
     // In case of FORKED LOCAL NODE will impersonate OtoCo deployer
     const deployer = isForkedLocalNode

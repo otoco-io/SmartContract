@@ -13,18 +13,18 @@ const FgCyan = "\x1b[36m";
 
 async function main() {
 
-    /*****************
-     * GENERAL SETUP *
-     *****************/
+	/*****************
+	 * GENERAL SETUP *
+	 *****************/
 
 	const networkId = network.config.chainId;
 	const [deployer] = await ethers.getSigners();
 
-  let deploysJson;
+	let deploysJson;
 
 	// Load deployed master contract
 	try {
-		const data = fs.readFileSync(`./deploys/v2/${network.name}.json`, {encoding:"utf-8"});
+		const data = fs.readFileSync(`./deploys/v2/${network.name}.json`, { encoding: "utf-8" });
 		deploysJson = JSON.parse(data);
 	} catch (err) {
 		console.log(`${FgRed}Error loading Master address: ${err}${Reset}`);
@@ -32,14 +32,14 @@ async function main() {
 	}
 
 
-    /******************
-     * USER PROMPTING *
-     ******************/
+	/******************
+	 * USER PROMPTING *
+	 ******************/
 
 	console.log(
 		`\n${Bright}\t👤 Deploying contracts with ${FgCyan}${deployer.address}${Reset}`);
 
-	const deployerBalance = 
+	const deployerBalance =
 		parseInt((await deployer.getBalance()).toString()) / 1e18;
 
 	console.log(
@@ -48,26 +48,26 @@ async function main() {
 	const explorer = networkId == '1' ? 'Etherscan' : networkId == '137' ? 'Polygonscan' : null;
 
 	if (explorer != null) {
-			console.log(`${Bright} ${explorer} Gas Tracker Data: ${Reset}`);
-			await hre.run("gas", { [network.name]: true });
+		console.log(`${Bright} ${explorer} Gas Tracker Data: ${Reset}`);
+		await hre.run("gas", { [network.name]: true });
 	}
 
 
-    /****************
-     * ONCHAIN TASK *
-     ****************/
+	/****************
+	 * ONCHAIN TASK *
+	 ****************/
 
 	let governorInitializer;
-	if (!deploysJson.governorInitializer){
+	if (!deploysJson.governorInitializer) {
 		// Deploy Initializers contracts
 		governorInitializer = await hre.run("initializers", {});
 	} else {
-		governorInitializer = {address: deploysJson.governorInitializer}
+		governorInitializer = { address: deploysJson.governorInitializer }
 	}
 
-    /******************
-     * STORAGE CHECKS *
-     ******************/
+	/******************
+	 * STORAGE CHECKS *
+	 ******************/
 
 	console.log(`${Bright}🚀 Governor intializer was sucessfully deployed!${Reset}
 	Deployed Address: ${FgMagenta}${governorInitializer.address}${Reset}`);
@@ -77,21 +77,20 @@ async function main() {
 	fs.writeFileSync(`./deploys/v2/${network.name}.json`, JSON.stringify(deploysJson, undefined, 2));
 
 
-    /**********************
-     * SOURCE VERIFICATON *
-     **********************/
+	/**********************
+	 * SOURCE VERIFICATON *
+	 **********************/
 
 	if (network.config.chainId != '31337') {
-		await hre.run( "verification", { 
-			addr: deploysJson.uri,
-			args: JSON.stringify([deploysJson.master]),
+		await hre.run("verification", {
+			addr: deploysJson.governorInitializer,
 		});
 	}
 }
 
 main()
-.then(() => process.exit(0))
-.catch((error) => {
-	console.error(error);
-	process.exit(1);
-});
+	.then(() => process.exit(0))
+	.catch((error) => {
+		console.error(error);
+		process.exit(1);
+	});

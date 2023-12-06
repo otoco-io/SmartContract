@@ -29,7 +29,7 @@ task("master", "Deploys a OtoCo V2 Master proxy")
         MasterFactoryV2
       );
       // In case of running a migration on testnets/mainnets
-    } else if (hre.network.config.chainId != 31337) {
+    } else if (hre.network.config.chainId != 31337 && deploys.master) {
       otocoMaster = await upgrades.upgradeProxy(
         deploys.master,
         MasterFactoryV2

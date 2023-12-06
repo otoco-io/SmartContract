@@ -1,4 +1,5 @@
 const { task } = require("hardhat/config");
+const { Artifacts } = require("hardhat/internal/artifacts");
 
 async function getExternalArtifact(contract) {
     const artifactsPath = "./artifacts-external";
@@ -6,7 +7,7 @@ async function getExternalArtifact(contract) {
     return artifacts.readArtifact(contract);
 }
 
-task("plugins", "Deploys all plugins to a specific chain")
+task("ens", "Deploy ENS plugin")
     .addOptionalParam("deployed", "Current deployed contract", '{}')
     .addOptionalParam("previous", "Previous deployments and external contracts", '{}')
     .setAction(async (taskArgs) => {
@@ -53,6 +54,7 @@ task("plugins", "Deploys all plugins to a specific chain")
         const ens = await ENSPluginFactory.deploy(
             deploysJson.master, previousJson.ensRegistry, previousJson.ensResolver, rootNode, [], []
         );
+        await ens.deployed()
 
         if (hre.network.config.chainId == 31337) {
             await fifsRegistrar.register(labelhash('otoco'), ens.address);
@@ -60,7 +62,7 @@ task("plugins", "Deploys all plugins to a specific chain")
 
         return {
             ens,
-            verifyValues: [deploysJson.master, previousJson.ensRegistry, previousJson.ensResolver, rootNode]
+            verifyValues: [deploysJson.master, previousJson.ensRegistry, previousJson.ensResolver, rootNode, [], []]
         };
     });
 

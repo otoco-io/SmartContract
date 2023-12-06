@@ -68,7 +68,7 @@ async function main() {
 
     const { multisig, safe, safeFactory } =
         await hre.run("multisig", {
-            deploys: JSON.stringify(deploysJson),
+            deployed: JSON.stringify(deploysJson),
             previous: JSON.stringify(previousJson)
         });
 
@@ -77,7 +77,7 @@ async function main() {
      * STORAGE CHECKS *
      ******************/
 
-    console.log(`${Bright}🚀 Badge Verifier Deployed Address:${Reset}${FgMagenta}${multisig.address}${Reset}`);
+    console.log(`${Bright}🚀 Multisig Plugin Deployed Address:${Reset}${FgMagenta}${multisig.address}${Reset}`);
 
     deploysJson.multisig = multisig.address;
 
@@ -90,8 +90,8 @@ async function main() {
 
     if (network.config.chainId != '31337') {
         await hre.run("verification", {
-            addr: deploysJson.verifier,
-            args: JSON.stringify([deploysJson.master, safe, safeFactory, [], []]),
+            addr: deploysJson.multisig,
+            args: JSON.stringify([deploysJson.master, previousJson.safe, previousJson.safeFactory, [], []]),
         });
     }
 }

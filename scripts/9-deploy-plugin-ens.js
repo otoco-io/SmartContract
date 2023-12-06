@@ -68,7 +68,7 @@ async function main() {
 
     const { ens, verifyValues } =
         await hre.run("ens", {
-            deploys: JSON.stringify(deploysJson),
+            deployed: JSON.stringify(deploysJson),
             previous: JSON.stringify(previousJson)
         });
 
@@ -77,7 +77,7 @@ async function main() {
      * STORAGE CHECKS *
      ******************/
 
-    console.log(`${Bright}🚀 Badge Verifier Deployed Address:${Reset}${FgMagenta}${ens.address}${Reset}`);
+    console.log(`${Bright}🚀 ENS Plugin Address:${Reset}${FgMagenta}${ens.address}${Reset}`);
 
     deploysJson.ens = ens.address;
 
