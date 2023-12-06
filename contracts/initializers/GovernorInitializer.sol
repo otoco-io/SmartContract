@@ -31,7 +31,7 @@ contract GovernorInitializer {
     * @param pluginData Encoded parameters to create a new token.
      */
     function setup(address governorInstance, bytes calldata pluginData) 
-      public payable returns (address governorProxy, address tokenProxy) 
+      public returns (address governorProxy, address tokenProxy) 
     {
       (
         // Token and Governor name

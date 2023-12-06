@@ -10,7 +10,6 @@ require("./master");
 require("./uri");
 require("./postsetup");
 require("./initializers");
-require("./plugins")
 require("./verifier");
 
 task("setup", "OtoCo V2 scripts setup pusher")
