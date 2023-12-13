@@ -4,33 +4,41 @@
       "deployPrice": 0,
       "renewPrice": 0,
       "closePrice": 0,
-      "name": "DAO", 
-      "defaultBadge": "ipfs://QmZPXo7N2qDMWaCVezr6Mm7FEmxwDitoWkKC3AjELQqS7N", 
+      "name": "DAO",
+      "defaultBadge": "ipfs://QmZPXo7N2qDMWaCVezr6Mm7FEmxwDitoWkKC3AjELQqS7N",
       "goldBadge": "ipfs://QmWxh2WRenahJ4MKrFLXgN8477drh2xMLYhuWHpJpvAvE4"
     },
     {
       "deployPrice": 49,
       "renewPrice": 49,
       "closePrice": 29,
-      "name": "DELAWARE", 
-      "defaultBadge": "ipfs://QmdAkYaMqyycEJ2Rq67zh6Y5x6FW1nBkEBxctL3SvPpkjW", 
+      "name": "DELAWARE",
+      "defaultBadge": "ipfs://QmdAkYaMqyycEJ2Rq67zh6Y5x6FW1nBkEBxctL3SvPpkjW",
       "goldBadge": "ipfs://QmYxTdUeU8txxdHUVuSTnTjqDFSPdgX5Vd4bcrvK5NByBT"
     },
     {
       "deployPrice": 49,
       "renewPrice": 49,
       "closePrice": 29,
-      "name": "WYOMING", 
-      "defaultBadge": "ipfs://QmdbFYPhyyoGF7oZ13f3p8dPG66dzrNyK9483wSaoPooyY", 
+      "name": "WYOMING",
+      "defaultBadge": "ipfs://QmdbFYPhyyoGF7oZ13f3p8dPG66dzrNyK9483wSaoPooyY",
       "goldBadge": "ipfs://QmSayfhjrnAFeVkqAcwYimtcrTZdmyqPKJQDA6HCC6K2x8"
     },
     {
       "deployPrice": 99,
       "renewPrice": 99,
       "closePrice": 29,
-      "name": "SWISSASSOCIATION", 
-      "defaultBadge": "ipfs://bafkreifag5ya33czteiy2ql2yz3rgfltxgahrrrm62soihowi5rlbh4op4", 
+      "name": "SWISSASSOCIATION",
+      "defaultBadge": "ipfs://bafkreifag5ya33czteiy2ql2yz3rgfltxgahrrrm62soihowi5rlbh4op4",
       "goldBadge": "ipfs://bafkreibrf5q5vh5fml6lc7pcwugnedoejagrqbyafvl3do246mm3ejh5mu"
+    },
+    {
+      "deployPrice": 149,
+      "renewPrice": 149,
+      "closePrice": 29,
+      "name": "MARSHALLISLANDS",
+      "defaultBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT Ethereum RMI.png",
+      "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT Ethereum RMI.png"
     }
   ],
   "polygon": [
@@ -38,33 +46,41 @@
       "deployPrice": 0,
       "renewPrice": 0,
       "closePrice": 0,
-      "name": "DAO", 
-      "defaultBadge": "ipfs://QmcCeDkQJyYA6JsrnXSLRFW3Wq9FyrVSvmdntJfnu4gjR7", 
+      "name": "DAO",
+      "defaultBadge": "ipfs://QmcCeDkQJyYA6JsrnXSLRFW3Wq9FyrVSvmdntJfnu4gjR7",
       "goldBadge": "ipfs://Qme1MfHkTRF1ZGmCjL21JJyQm2gbBbxDHzghM4euEuNpDZ"
     },
     {
       "deployPrice": 49,
       "renewPrice": 49,
       "closePrice": 29,
-      "name": "DELAWARE", 
-      "defaultBadge": "ipfs://QmbKJ9PibuMM1RWarUPj3L5TViaRJJazafWKdQkN279LNs", 
+      "name": "DELAWARE",
+      "defaultBadge": "ipfs://QmbKJ9PibuMM1RWarUPj3L5TViaRJJazafWKdQkN279LNs",
       "goldBadge": "ipfs://QmPrfVvhMxsNWVd6UpmxLCNEuSWeUBnW65RuHnuMA1jjPa"
     },
     {
       "deployPrice": 49,
       "renewPrice": 49,
       "closePrice": 29,
-      "name": "WYOMING", 
-      "defaultBadge": "ipfs://QmSZq2bELrttCWcnHNZP16iwNEF2GxS6jgzpjR8AFJCoSw", 
+      "name": "WYOMING",
+      "defaultBadge": "ipfs://QmSZq2bELrttCWcnHNZP16iwNEF2GxS6jgzpjR8AFJCoSw",
       "goldBadge": "ipfs://QmUR3nGosdHbavY3aSvsAsxvJLyVcVJxDL9Xh8bv851r8Q"
     },
     {
       "deployPrice": 99,
       "renewPrice": 99,
       "closePrice": 29,
-      "name": "SWISSASSOCIATION", 
-      "defaultBadge": "ipfs://bafkreiajggrqwsejtbz7hpl6mriuhidzdksu24ucv6xqmbnj2nkjuajqqe", 
+      "name": "SWISSASSOCIATION",
+      "defaultBadge": "ipfs://bafkreiajggrqwsejtbz7hpl6mriuhidzdksu24ucv6xqmbnj2nkjuajqqe",
       "goldBadge": "ipfs://bafkreiglahqbv3kuknwkdmbf2guzhed65unmv2jfr4lsa5fqzpe6h3yqry"
+    },
+    {
+      "deployPrice": 149,
+      "renewPrice": 149,
+      "closePrice": 29,
+      "name": "MARSHALLISLANDS",
+      "defaultBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon.png",
+      "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon.png"
     }
   ],
   "default": [
@@ -72,33 +88,41 @@
       "deployPrice": 0,
       "renewPrice": 0,
       "closePrice": 0,
-      "name": "DAO", 
-      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DAO TESTNET.png", 
+      "name": "DAO",
+      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DAO TESTNET.png",
       "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DAO TESTNET.png"
     },
     {
       "deployPrice": 1,
       "renewPrice": 1,
       "closePrice": 1,
-      "name": "DELAWARE", 
-      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DE TESTNET.png", 
+      "name": "DELAWARE",
+      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DE TESTNET.png",
       "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DE TESTNET.png"
     },
     {
       "deployPrice": 2,
       "renewPrice": 2,
       "closePrice": 2,
-      "name": "WYOMING", 
-      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT WY TESTNET.png", 
+      "name": "WYOMING",
+      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT WY TESTNET.png",
       "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT WY TESTNET.png"
     },
     {
       "deployPrice": 1,
       "renewPrice": 1,
       "closePrice": 1,
-      "name": "SWISSASSOCIATION", 
-      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET.png", 
+      "name": "SWISSASSOCIATION",
+      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET.png",
       "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET.png"
+    },
+    {
+      "deployPrice": 1,
+      "renewPrice": 1,
+      "closePrice": 1,
+      "name": "MARSHALLISLANDS",
+      "defaultBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Ethereum TESTNET.png",
+      "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Ethereum TESTNET.png"
     }
   ]
 }
