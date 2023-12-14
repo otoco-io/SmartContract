@@ -113,16 +113,16 @@
       "renewPrice": 1,
       "closePrice": 1,
       "name": "SWISSASSOCIATION",
-      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET.png",
-      "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET.png"
+      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET Polygon.png",
+      "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET Polygon.png"
     },
     {
       "deployPrice": 1,
       "renewPrice": 1,
       "closePrice": 1,
       "name": "MARSHALLISLANDS",
-      "defaultBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Ethereum TESTNET.png",
-      "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Ethereum TESTNET.png"
+      "defaultBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon TESTNET.png",
+      "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon TESTNET.png"
     }
   ]
 }

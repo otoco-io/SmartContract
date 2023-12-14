@@ -22,7 +22,8 @@ task("jurisdictions", "Deploys OtoCo V2 Jurisdictions")
       'JurisdictionUnincorporatedV2',
       'JurisdictionDelawareV2',
       'JurisdictionWyomingV2',
-      'JurisdictionSwissAssociationV2'
+      'JurisdictionSwissAssociationV2',
+      'JurisdictionMarshallIslandsV2'
     ]
 
     let contracts = [];
