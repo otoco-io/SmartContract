@@ -64,6 +64,7 @@ module.exports = {
     mumbai: getChainConfig("mumbai"),
     sepolia: getChainConfig("sepolia"),
     basesepolia: getChainConfig("basesepolia"),
+    base: getChainConfig("base"),
   },
   etherscan: {
     apiKey: {
