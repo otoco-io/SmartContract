@@ -13,9 +13,11 @@ contract OtoCoURI {
     using Strings for uint256;
 
     IOtoCoMasterV2 private otocoMaster;
+    string private networkPrefix;
 
-    constructor (address payable masterAddress) {
+    constructor (address payable masterAddress, string memory prefix) {
         otocoMaster = IOtoCoMasterV2(masterAddress);
+        networkPrefix = prefix;
     }
 
     // -- TOKEN VISUALS AND DESCRIPTIVE ELEMENTS --
@@ -29,9 +31,8 @@ contract OtoCoURI {
      */
     function tokenExternalURI(uint256 tokenId, uint256 lastMigrated) external view returns (string memory) {
         (uint16 jurisdiction,,uint64 creation,,string memory name) = otocoMaster.series(tokenId);
-        IOtoCoJurisdiction jurisdictionContract = IOtoCoJurisdiction(otocoMaster.jurisdictionAddress(jurisdiction));
-        string memory badge = jurisdictionContract.getJurisdictionBadge();
-        if (tokenId < lastMigrated) badge = jurisdictionContract.getJurisdictionGoldBadge();
+        string memory badge = IOtoCoJurisdiction(otocoMaster.jurisdictionAddress(jurisdiction)).getJurisdictionBadge();
+        if (tokenId < lastMigrated) badge = IOtoCoJurisdiction(otocoMaster.jurisdictionAddress(jurisdiction)).getJurisdictionGoldBadge();
         string memory docs = otocoMaster.docs(tokenId);
         string memory json = Base64.encode(bytes(string(abi.encodePacked(
             '{"name": "',
@@ -45,13 +46,15 @@ contract OtoCoURI {
             badge,
             '", "external_url": "',
             otocoMaster.externalUrl(),
+            networkPrefix,
+            ':',
             tokenId.toString(),
-            '/"',
+            '"',
             ',"attributes":[',
             '{"display_type": "date","trait_type": "Creation", "value": "',
             uint256(creation).toString(),
             '"},{"trait_type": "Jurisdiction", "value": "',
-            jurisdictionContract.getJurisdictionName(),
+            IOtoCoJurisdiction(otocoMaster.jurisdictionAddress(jurisdiction)).getJurisdictionName(),
             '"}]',
             bytes(docs).length != 0 ? string(abi.encodePacked(', "docs": ', docs)) : "",
             '}'
