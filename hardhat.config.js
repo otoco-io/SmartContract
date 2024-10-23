@@ -1,6 +1,6 @@
 require("@nomicfoundation/hardhat-chai-matchers");
+require("@nomicfoundation/hardhat-verify");
 require('@openzeppelin/hardhat-upgrades');
-require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-ethers");
 require('hardhat-contract-sizer');
 require('solidity-coverage');
@@ -21,6 +21,8 @@ const chainIds = {
   polygon: 137,
   mumbai: 80001,
   sepolia: 11155111,
+  base: 8453,
+  basesepolia: 84532
 };
 
 function getChainConfig(chain) {
@@ -61,6 +63,8 @@ module.exports = {
     polygon: getChainConfig("polygon"),
     mumbai: getChainConfig("mumbai"),
     sepolia: getChainConfig("sepolia"),
+    basesepolia: getChainConfig("basesepolia"),
+    base: getChainConfig("base"),
   },
   etherscan: {
     apiKey: {
@@ -69,7 +73,27 @@ module.exports = {
       polygon: process.env.POLYGONSCAN_API_KEY || "",
       polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
       sepolia: process.env.ETHERSCAN_API_KEY || "",
+      base: process.env.BASESCAN_API_KEY || "",
+      basesepolia: process.env.BASESCAN_API_KEY || "",
     },
+    customChains: [
+      {
+        network: "basesepolia",
+        chainId: chainIds.basesepolia,
+        urls: {
+          apiURL: "https://api-sepolia.basescan.org/api",
+          browserURL: "https://sepolia.basescan.org/"
+        }
+      },
+      {
+        network: "base",
+        chainId: chainIds.base,
+        urls: {
+          apiURL: "https://api.basescan.org/api",
+          browserURL: "https://basescan.org"
+        }
+      }
+    ]
   },
   solidity: {
     compilers: [
