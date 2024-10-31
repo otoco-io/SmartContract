@@ -11,7 +11,7 @@
     "@openzeppelin/contracts": "4.5.0",
     "@openzeppelin/hardhat-upgrades": "1.21.0",
     "@openzeppelin/contracts-upgradeable": "4.6.0",
-    "axios": "^1.6.7",
+    "axios": "^1.7.4",
     "dotenv": "^16.4.5",
     "hardhat": "^2.20.1",
     "hardhat-contract-sizer": "^2.10.0",
