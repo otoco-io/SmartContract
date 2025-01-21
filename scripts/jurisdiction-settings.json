@@ -191,9 +191,9 @@
       "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT RMI TESTNET Base.png"
     },
     {
-      "deployPrice": 299,
-      "renewPrice": 299,
-      "closePrice": 29,
+      "deployPrice": 1,
+      "renewPrice": 1,
+      "closePrice": 1,
       "name": "UNADUNA",
       "defaultBadge": "ipfs://QmZ4LDNZtdchDeLMwXvuqFYGZE446ab5NNw2ZQYB71ZrJ8",
       "goldBadge": "ipfs://QmZ4LDNZtdchDeLMwXvuqFYGZE446ab5NNw2ZQYB71ZrJ8"
@@ -241,9 +241,9 @@
       "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon TESTNET.png"
     },
     {
-      "deployPrice": 299,
-      "renewPrice": 299,
-      "closePrice": 29,
+      "deployPrice": 1,
+      "renewPrice": 1,
+      "closePrice": 1,
       "name": "UNADUNA",
       "defaultBadge": "ipfs://QmcjGC2CyeqJBL3vKCDi6Mqbv64eTNTZavHiocCPKjK7Xn",
       "goldBadge": "ipfs://QmcjGC2CyeqJBL3vKCDi6Mqbv64eTNTZavHiocCPKjK7Xn"
