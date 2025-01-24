@@ -41,8 +41,8 @@
       "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT Ethereum RMI.png"
     },
     {
-      "deployPrice": 299,
-      "renewPrice": 299,
+      "deployPrice": 499,
+      "renewPrice": 499,
       "closePrice": 29,
       "name": "UNADUNA",
       "defaultBadge": "ipfs://QmVj4U7PKvbadVmYCUyd6DZYWmgdy51BFbrTJUghrPBU7D",
@@ -91,8 +91,8 @@
       "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon.png"
     },
     {
-      "deployPrice": 299,
-      "renewPrice": 299,
+      "deployPrice": 499,
+      "renewPrice": 499,
       "closePrice": 29,
       "name": "UNADUNA",
       "defaultBadge": "ipfs://QmVmLRtCLBexzpTgs8Gfd8hdqAyti45ErdUcEf2r6BgDEg",
@@ -141,8 +141,8 @@
       "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT RMI Original Base.png"
     },
     {
-      "deployPrice": 299,
-      "renewPrice": 299,
+      "deployPrice": 499,
+      "renewPrice": 499,
       "closePrice": 29,
       "name": "UNADUNA",
       "defaultBadge": "ipfs://QmdehaWBZvqA2meJASEG8rjUmZDfERg7jC2YVfVEEumknS",
@@ -191,9 +191,9 @@
       "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT RMI TESTNET Base.png"
     },
     {
-      "deployPrice": 1,
-      "renewPrice": 1,
-      "closePrice": 1,
+      "deployPrice": 3,
+      "renewPrice": 3,
+      "closePrice": 3,
       "name": "UNADUNA",
       "defaultBadge": "ipfs://QmZ4LDNZtdchDeLMwXvuqFYGZE446ab5NNw2ZQYB71ZrJ8",
       "goldBadge": "ipfs://QmZ4LDNZtdchDeLMwXvuqFYGZE446ab5NNw2ZQYB71ZrJ8"
@@ -241,9 +241,9 @@
       "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon TESTNET.png"
     },
     {
-      "deployPrice": 1,
-      "renewPrice": 1,
-      "closePrice": 1,
+      "deployPrice": 3,
+      "renewPrice": 3,
+      "closePrice": 3,
       "name": "UNADUNA",
       "defaultBadge": "ipfs://QmcjGC2CyeqJBL3vKCDi6Mqbv64eTNTZavHiocCPKjK7Xn",
       "goldBadge": "ipfs://QmcjGC2CyeqJBL3vKCDi6Mqbv64eTNTZavHiocCPKjK7Xn"
