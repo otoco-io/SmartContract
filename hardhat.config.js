@@ -9,8 +9,6 @@ require("hardhat-tracer");
 
 require('dotenv').config();
 require("./tasks/setup");
-// require("hardhat-gas-reporter");
-
 
 process.removeAllListeners('warning');
 

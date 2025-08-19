@@ -4,19 +4,19 @@
   "description": "Onchain entity assembly and tooling marketplace for Web3 projects.",
   "devDependencies": {
     "@chainlink/contracts": "^0.4.1",
-    "@nomicfoundation/hardhat-chai-matchers": "^2.0.6",
-    "@nomicfoundation/hardhat-ethers": "^3.0.5",
-    "@nomicfoundation/hardhat-verify": "^2.0.4",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.1.0",
+    "@nomicfoundation/hardhat-ethers": "3.1.0",
+    "@nomicfoundation/hardhat-verify": "2.1.1",
     "@nomiclabs/hardhat-ethers": "^2.2.3",
     "@openzeppelin/contracts": "4.5.0",
-    "@openzeppelin/hardhat-upgrades": "1.21.0",
     "@openzeppelin/contracts-upgradeable": "4.6.0",
+    "@openzeppelin/hardhat-upgrades": "1.21.0",
     "axios": "^1.6.7",
     "dotenv": "^16.4.5",
-    "hardhat": "^2.20.1",
-    "hardhat-contract-sizer": "^2.10.0",
-    "hardhat-gas-reporter": "^1.0.10",
-    "hardhat-tracer": "^2.8.0",
+    "hardhat": "2.26.3",
+    "hardhat-contract-sizer": "^2.10.1",
+    "hardhat-gas-reporter": "^2.3.0",
+    "hardhat-tracer": "^3.2.1",
     "nodemon": "^3.0.3",
     "solidity-coverage": "^0.8.8",
     "solidity-docgen": "^0.6.0-beta.36",
@@ -41,5 +41,8 @@
   "bugs": {
     "url": "https://github.com/otocorp/SmartContract-POC/issues"
   },
-  "homepage": "https://github.com/otocorp/SmartContract-POC#readme"
+  "homepage": "https://github.com/otocorp/SmartContract-POC#readme",
+  "dependencies": {
+    "har": "^1.0.15"
+  }
 }

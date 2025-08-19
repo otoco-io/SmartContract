@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 import "../OtoCoPluginV2.sol";
 
 interface GnosisSafeProxyFactory {
-    function createProxy(address singleton, bytes memory data) external returns (address proxy);
+    function createProxyWithNonce(address _singleton, bytes memory data, uint256 saltNonce) external returns (address proxy);
 }
 
 /**
@@ -53,7 +53,7 @@ contract MultisigV2 is OtoCoPluginV2 {
     {
         address proxy = 
         GnosisSafeProxyFactory(gnosisProxyFactory)
-            .createProxy(gnosisMasterCopy, pluginData);
+            .createProxyWithNonce(gnosisMasterCopy, pluginData, seriesId + block.number);
         
         multisigDeployed[seriesId].push(proxy);
         multisigPerEntity[seriesId]++;
