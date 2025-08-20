@@ -53,7 +53,7 @@ contract MultisigV2 is OtoCoPluginV2 {
     {
         address proxy = 
         GnosisSafeProxyFactory(gnosisProxyFactory)
-            .createProxyWithNonce(gnosisMasterCopy, pluginData, seriesId + block.number);
+            .createProxyWithNonce(gnosisMasterCopy, pluginData, (seriesId * 1e18) + block.number);
         
         multisigDeployed[seriesId].push(proxy);
         multisigPerEntity[seriesId]++;
