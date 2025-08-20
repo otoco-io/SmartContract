@@ -5,7 +5,6 @@ require("@nomiclabs/hardhat-ethers");
 require('hardhat-contract-sizer');
 require('solidity-coverage');
 require('solidity-docgen');
-require("hardhat-tracer");
 
 require('dotenv').config();
 require("./tasks/setup");
@@ -15,9 +14,7 @@ process.removeAllListeners('warning');
 const chainIds = {
   hardhat: 31337,
   mainnet: 1,
-  goerli: 5,
   polygon: 137,
-  mumbai: 80001,
   sepolia: 11155111,
   base: 8453,
   basesepolia: 84532
@@ -57,9 +54,7 @@ module.exports = {
       } : undefined,
     },
     mainnet: getChainConfig("mainnet"),
-    goerli: getChainConfig("goerli"),
     polygon: getChainConfig("polygon"),
-    mumbai: getChainConfig("mumbai"),
     sepolia: getChainConfig("sepolia"),
     basesepolia: getChainConfig("basesepolia"),
     base: getChainConfig("base"),
