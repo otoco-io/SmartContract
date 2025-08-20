@@ -10,12 +10,16 @@ async function getExternalArtifact(contract) {
 task("multisig", "Deploy multisig plugin")
     .addOptionalParam("deployed", "Current deployed contract", '{}')
     .addOptionalParam("previous", "Previous deployments and external contracts", '{}')
+    .addOptionalParam("seriesids", "Series IDs from multisig events", '[]')
+    .addOptionalParam("multisigs", "Multisig addresses from multisig events", '[]')
     .setAction(async (taskArgs) => {
 
         // IN case of FORKED LOCAL NODE will grab deploys from forked network
         // Otherwise will grab addresses directly from connected network
         const deploysJson = JSON.parse(taskArgs.deployed)
         const previousJson = JSON.parse(taskArgs.previous)
+        const seriesIds = JSON.parse(taskArgs.seriesids)
+        const multisigs = JSON.parse(taskArgs.multisigs)
 
         const deployer = hre.network.config.chainId == 31337 && process.env.FORK_ENABLED == "true" ?
             await ethers.getImpersonatedSigner("0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30")
@@ -33,13 +37,13 @@ task("multisig", "Deploy multisig plugin")
             deploysJson.gnosisSafeProxyFactory = (await GnosisSafeProxyFactoryFactory.deploy()).address;
         }
 
-        const MultisigPluginFactory = await ethers.getContractFactory("Multisig", deployer);
+        const MultisigPluginFactory = await ethers.getContractFactory("MultisigV2", deployer);
         const multisig = await MultisigPluginFactory.deploy(
             deploysJson.master,
             previousJson.safe ? previousJson.safe : deploysJson.gnosisSafe,
             previousJson.safeFactory ? previousJson.safeFactory : deploysJson.gnosisSafeProxyFactory,
-            [],
-            []
+            seriesIds,
+            multisigs
         );
         await multisig.deployed()
 

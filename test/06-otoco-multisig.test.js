@@ -214,14 +214,6 @@ describe("OtoCo Multisig Plugin Test", function () {
       migrationData.events.map(e => e.series),
       migrationData.events.map(e => e.multisig)
     );
-
-    // Test that MultisigAdded events were emitted for all migration data
-    // for (let i = 0; i < migrationData.events.length; i++) {
-    //   const event = migrationData.events[i];
-    //   await expect(deployTransaction).to.emit(multisigPlugin, 'MultisigAdded')
-    //     .withArgs(event.series, event.multisig);
-    // }
-
     // Test that multisigPerEntity is correctly set for each series
     // Series 0 should have 2 multisigs, others should have 1
     expect(await multisigPlugin.multisigPerEntity(0)).to.be.equals(2);

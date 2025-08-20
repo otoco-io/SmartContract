@@ -60,29 +60,29 @@ module.exports = {
     base: getChainConfig("base"),
   },
   etherscan: {
-    apiKey: {
-      mainnet: process.env.ETHERSCAN_API_KEY || "",
-      goerli: process.env.ETHERSCAN_API_KEY || "",
-      polygon: process.env.POLYGONSCAN_API_KEY || "",
-      polygonMumbai: process.env.POLYGONSCAN_API_KEY || "",
-      sepolia: process.env.ETHERSCAN_API_KEY || "",
-      base: process.env.BASESCAN_API_KEY || "",
-      basesepolia: process.env.BASESCAN_API_KEY || "",
-    },
+    apiKey: process.env.ETHERSCAN_API_KEY,
     customChains: [
+      {
+        network: "sepolia",
+        chainId: chainIds.sepolia,
+        urls: {
+          apiURL: `https://api.etherscan.io/v2/api?chainid=${chainIds.sepolia}`,
+          browserURL: "https://sepolia.etherscan.io/"
+        }
+      },
       {
         network: "basesepolia",
         chainId: chainIds.basesepolia,
         urls: {
-          apiURL: "https://api-sepolia.basescan.org/api",
-          browserURL: "https://sepolia.basescan.org/"
+          apiURL: `https://api.etherscan.io/v2/api?chainid=${chainIds.basesepolia}`,
+          browserURL: "https://basesepolia.etherscan.io/"
         }
       },
       {
         network: "base",
         chainId: chainIds.base,
         urls: {
-          apiURL: "https://api.basescan.org/api",
+          apiURL: `https://api.etherscan.io/v2/api?chainid=${chainIds.base}`,
           browserURL: "https://basescan.org"
         }
       }

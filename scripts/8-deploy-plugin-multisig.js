@@ -41,6 +41,18 @@ async function main() {
         console.log(`${FgRed}Error loading Previous/External addresses: ${err}${Reset}`);
     }
 
+    let multisigEventsData = { events: [] };
+    // Load multisig events data
+    try {
+        const eventsFileName = `multisig-events-${network.name}.json`;
+        const data = fs.readFileSync(`./migrations_data/${eventsFileName}`, { encoding: "utf-8" });
+        multisigEventsData = JSON.parse(data);
+        console.log(`${FgGreen}✅ Loaded ${multisigEventsData.totalEvents} multisig events from ${eventsFileName}${Reset}`);
+    } catch (err) {
+        console.log(`${FgRed}Warning: Could not load multisig events file: ${err.message}${Reset}`);
+        console.log(`${FgRed}Proceeding with empty arrays for seriesIds and multisigs${Reset}`);
+    }
+
     /******************
      * USER PROMPTING *
      ******************/
@@ -66,10 +78,21 @@ async function main() {
      * ONCHAIN TASK *
      ****************/
 
+    // Extract seriesIds and multisig addresses from events
+    const seriesIds = multisigEventsData.events.map(event => event.series);
+    const multisigAddresses = multisigEventsData.events.map(event => event.multisig);
+
+    console.log(`${Bright}📊 Processing ${seriesIds.length} multisig events${Reset}`);
+    if (seriesIds.length > 0) {
+        console.log(`${FgCyan}   First few series: ${seriesIds.slice(0, 3).join(', ')}${seriesIds.length > 3 ? '...' : ''}${Reset}`);
+    }
+
     const { multisig, safe, safeFactory } =
         await hre.run("multisig", {
             deployed: JSON.stringify(deploysJson),
-            previous: JSON.stringify(previousJson)
+            previous: JSON.stringify(previousJson),
+            seriesids: JSON.stringify(seriesIds),
+            multisigs: JSON.stringify(multisigAddresses)
         });
 
 
@@ -89,9 +112,19 @@ async function main() {
      **********************/
 
     if (network.config.chainId != '31337') {
+        // Extract seriesIds and multisig addresses for verification
+        const seriesIds = multisigEventsData.events.map(event => event.series);
+        const multisigAddresses = multisigEventsData.events.map(event => event.multisig);
+
         await hre.run("verification", {
             addr: deploysJson.multisig,
-            args: JSON.stringify([deploysJson.master, previousJson.safe, previousJson.safeFactory, [], []]),
+            args: JSON.stringify([
+                deploysJson.master,
+                previousJson.safe,
+                previousJson.safeFactory,
+                seriesIds,
+                multisigAddresses
+            ]),
         });
     }
 }

@@ -8,8 +8,8 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomicfoundation/hardhat-verify": "^2.1.1",
     "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "@nomiclabs/hardhat-etherscan": "^3.1.8",
     "@openzeppelin/contracts": "^4.5.0",
     "@openzeppelin/hardhat-upgrades": "^1.28.0",
     "axios": "^1.11.0",
@@ -18,7 +18,6 @@
     "hardhat": "^2.26.3",
     "hardhat-contract-sizer": "^2.10.1",
     "hardhat-gas-reporter": "^1.0.10",
-    "hardhat-tracer": "^2.8.3",
     "nodemon": "^2.0.22",
     "solidity-coverage": "^0.8.16",
     "solidity-docgen": "^0.6.0-beta.36",

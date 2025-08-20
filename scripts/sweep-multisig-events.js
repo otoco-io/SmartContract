@@ -156,7 +156,7 @@ async function main() {
             // Export after each chain sweep
             const currentData = generateOutputData(networkEvents);
             const incrementalFile = `multisig-events-${networkName}.json`;
-            fs.writeFileSync(incrementalFile, JSON.stringify(currentData, null, 2));
+            fs.writeFileSync(`migrations_data/` + incrementalFile, JSON.stringify(currentData, null, 2));
             console.log(`${FgCyan}📁 Exported to: ${incrementalFile}${Reset}`);
 
         } catch (err) {
@@ -167,7 +167,6 @@ async function main() {
     console.log(`\n${Bright}📊 Summary:${Reset}`);
     console.log(`Total events found: ${FgGreen}${allEvents.length}${Reset}`);
 
-    console.log(`\n${FgGreen}✅ Final results saved to: ${finalOutputFile}${Reset}`);
 }
 
 main()
