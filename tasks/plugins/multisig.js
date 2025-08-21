@@ -38,6 +38,7 @@ task("multisig", "Deploy multisig plugin")
         }
 
         const MultisigPluginFactory = await ethers.getContractFactory("MultisigV2", deployer);
+
         const multisig = await MultisigPluginFactory.deploy(
             deploysJson.master,
             previousJson.safe ? previousJson.safe : deploysJson.gnosisSafe,
