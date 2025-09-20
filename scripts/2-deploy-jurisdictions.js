@@ -122,8 +122,8 @@ async function main() {
       await jurisdiction.callStatic.getJurisdictionGoldBadge()
     ).toString();
     jurisdictionData[jurisdiction.address] = {
-      renewalPrice,
       deployPrice,
+      renewalPrice,
       closePrice,
       name,
       defaultBadge,

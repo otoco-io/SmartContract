@@ -13,24 +13,24 @@
       "renewPrice": 49,
       "closePrice": 29,
       "name": "DELAWARE",
-      "defaultBadge": "ipfs://QmdAkYaMqyycEJ2Rq67zh6Y5x6FW1nBkEBxctL3SvPpkjW",
-      "goldBadge": "ipfs://QmYxTdUeU8txxdHUVuSTnTjqDFSPdgX5Vd4bcrvK5NByBT"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_DELAWARE.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_DELAWARE.jpg"
     },
     {
       "deployPrice": 49,
       "renewPrice": 49,
       "closePrice": 29,
       "name": "WYOMING",
-      "defaultBadge": "ipfs://QmdbFYPhyyoGF7oZ13f3p8dPG66dzrNyK9483wSaoPooyY",
-      "goldBadge": "ipfs://QmSayfhjrnAFeVkqAcwYimtcrTZdmyqPKJQDA6HCC6K2x8"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_WYOMING.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_WYOMING.jpg"
     },
     {
       "deployPrice": 99,
       "renewPrice": 99,
       "closePrice": 29,
       "name": "SWISSASSOCIATION",
-      "defaultBadge": "ipfs://QmUENtSWsYgXjWkHuddzHJD8eYpYfTDKsTw3rXTJ3sXpvT",
-      "goldBadge": "ipfs://QmUENtSWsYgXjWkHuddzHJD8eYpYfTDKsTw3rXTJ3sXpvT"
+      "defaultBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/ETH_SWISSASSOCIATION.jpg",
+      "goldBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/ETH_SWISSASSOCIATION.jpg"
     },
     {
       "deployPrice": 149,
@@ -45,8 +45,24 @@
       "renewPrice": 499,
       "closePrice": 299,
       "name": "UNADUNA",
-      "defaultBadge": "ipfs://QmVj4U7PKvbadVmYCUyd6DZYWmgdy51BFbrTJUghrPBU7D",
-      "goldBadge": "ipfs://QmaQ4qLpTbQxQWd8oudj5Ba6qjTHWrnHnv3tcuQ3NcrgMb"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_UNADUNA.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_UNADUNA.jpg"
+    },
+    {
+      "deployPrice": 19,
+      "renewPrice": 19,
+      "closePrice": 0,
+      "name": "DELAWARELLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_DELAWARELLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_DELAWARELLC.jpg"
+    },
+    {
+      "deployPrice": 19,
+      "renewPrice": 19,
+      "closePrice": 0,
+      "name": "WYOMINGLLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_WYOMINGLLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/ETH_WYOMINGLLC.jpg"
     }
   ],
   "polygon": [
@@ -63,24 +79,24 @@
       "renewPrice": 49,
       "closePrice": 29,
       "name": "DELAWARE",
-      "defaultBadge": "ipfs://QmbKJ9PibuMM1RWarUPj3L5TViaRJJazafWKdQkN279LNs",
-      "goldBadge": "ipfs://QmPrfVvhMxsNWVd6UpmxLCNEuSWeUBnW65RuHnuMA1jjPa"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_DELAWARE.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_DELAWARE.jpg"
     },
     {
       "deployPrice": 49,
       "renewPrice": 49,
       "closePrice": 29,
       "name": "WYOMING",
-      "defaultBadge": "ipfs://QmSZq2bELrttCWcnHNZP16iwNEF2GxS6jgzpjR8AFJCoSw",
-      "goldBadge": "ipfs://QmUR3nGosdHbavY3aSvsAsxvJLyVcVJxDL9Xh8bv851r8Q"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_WYOMING.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_WYOMING.jpg"
     },
     {
       "deployPrice": 99,
       "renewPrice": 99,
       "closePrice": 29,
       "name": "SWISSASSOCIATION",
-      "defaultBadge": "ipfs://bafkreiajggrqwsejtbz7hpl6mriuhidzdksu24ucv6xqmbnj2nkjuajqqe",
-      "goldBadge": "ipfs://bafkreiglahqbv3kuknwkdmbf2guzhed65unmv2jfr4lsa5fqzpe6h3yqry"
+      "defaultBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/POL_SWISSASSOCIATION.jpg",
+      "goldBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/POL_SWISSASSOCIATION.jpg"
     },
     {
       "deployPrice": 149,
@@ -95,8 +111,24 @@
       "renewPrice": 499,
       "closePrice": 299,
       "name": "UNADUNA",
-      "defaultBadge": "ipfs://QmVmLRtCLBexzpTgs8Gfd8hdqAyti45ErdUcEf2r6BgDEg",
-      "goldBadge": "ipfs://Qmbjf7sqfxuKf7CmPbW26F2dpKdZ3BvfvGXogcKnFk6U1T"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_UNADUNA.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_UNADUNA.jpg"
+    },
+    {
+      "deployPrice": 19,
+      "renewPrice": 19,
+      "closePrice": 0,
+      "name": "DELAWARELLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_DELAWARELLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_DELAWARELLC.jpg"
+    },
+    {
+      "deployPrice": 19,
+      "renewPrice": 19,
+      "closePrice": 0,
+      "name": "WYOMINGLLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_WYOMINGLLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/POL_WYOMINGLLC.jpg"
     }
   ],
   "base": [
@@ -113,24 +145,24 @@
       "renewPrice": 49,
       "closePrice": 29,
       "name": "DELAWARE",
-      "defaultBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT DE Base.png",
-      "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT DE Original Base.png"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_DELAWARE.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_DELAWARE.jpg"
     },
     {
       "deployPrice": 49,
       "renewPrice": 49,
       "closePrice": 29,
       "name": "WYOMING",
-      "defaultBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT WY Base.png",
-      "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT WY Original Base.png"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_WYOMING.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_WYOMING.jpg"
     },
     {
       "deployPrice": 99,
       "renewPrice": 99,
       "closePrice": 29,
       "name": "SWISSASSOCIATION",
-      "defaultBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT CH Base.png",
-      "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT CH Polygon Base.png"
+      "defaultBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/BASE_SWISSASSOCIATION.jpg",
+      "goldBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/BASE_SWISSASSOCIATION.jpg"
     },
     {
       "deployPrice": 149,
@@ -145,8 +177,24 @@
       "renewPrice": 499,
       "closePrice": 299,
       "name": "UNADUNA",
-      "defaultBadge": "ipfs://QmdehaWBZvqA2meJASEG8rjUmZDfERg7jC2YVfVEEumknS",
-      "goldBadge": "ipfs://QmQm3ZXYaeKeaNfDyyFhKjbXmmgB3129gCg9PVVbBojUqd"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_UNADUNA.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_UNADUNA.jpg"
+    },
+    {
+      "deployPrice": 19,
+      "renewPrice": 19,
+      "closePrice": 0,
+      "name": "DELAWARELLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_DELAWARELLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_DELAWARELLC.jpg"
+    },
+    {
+      "deployPrice": 19,
+      "renewPrice": 19,
+      "closePrice": 0,
+      "name": "WYOMINGLLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_WYOMINGLLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASE_WYOMINGLLC.jpg"
     }
   ],
   "basesepolia": [
@@ -159,28 +207,28 @@
       "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT DAO TESTNET Base.png"
     },
     {
-      "deployPrice": 1,
+      "deployPrice": 2,
       "renewPrice": 1,
       "closePrice": 1,
       "name": "DELAWARE",
-      "defaultBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT DE TESTNET Base.png",
-      "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT DE TESTNET Base.png"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_DELAWARE.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_DELAWARE.jpg"
     },
     {
-      "deployPrice": 1,
+      "deployPrice": 2,
       "renewPrice": 1,
       "closePrice": 1,
       "name": "WYOMING",
-      "defaultBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT WY TESTNET Base.png",
-      "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT WY TESTNET Base.png"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_WYOMING.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_WYOMING.jpg"
     },
     {
       "deployPrice": 2,
       "renewPrice": 1,
       "closePrice": 1,
       "name": "SWISSASSOCIATION",
-      "defaultBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT CH TESTNET Base.png",
-      "goldBadge": "ipfs://QmP1cscVLfLfFpXnmXqSYzYZ76iBAwx8haaV9dEmQJE6cX/NFT CH TESTNET Base.png"
+      "defaultBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/BASESEP_SWISSASSOCIATION.jpg",
+      "goldBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/BASESEP_SWISSASSOCIATION.jpg"
     },
     {
       "deployPrice": 1,
@@ -195,8 +243,24 @@
       "renewPrice": 3,
       "closePrice": 3,
       "name": "UNADUNA",
-      "defaultBadge": "ipfs://QmZ4LDNZtdchDeLMwXvuqFYGZE446ab5NNw2ZQYB71ZrJ8",
-      "goldBadge": "ipfs://QmZ4LDNZtdchDeLMwXvuqFYGZE446ab5NNw2ZQYB71ZrJ8"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_UNADUNA.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_UNADUNA.jpg"
+    },
+    {
+      "deployPrice": 4,
+      "renewPrice": 4,
+      "closePrice": 0,
+      "name": "DELAWARELLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_DELAWARELLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_DELAWARELLC.jpg"
+    },
+    {
+      "deployPrice": 4,
+      "renewPrice": 4,
+      "closePrice": 0,
+      "name": "WYOMINGLLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_WYOMINGLLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/BASESEP_WYOMINGLLC.jpg"
     }
   ],
   "default": [
@@ -209,33 +273,33 @@
       "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DAO TESTNET.png"
     },
     {
-      "deployPrice": 1,
-      "renewPrice": 1,
-      "closePrice": 1,
+      "deployPrice": 2,
+      "renewPrice": 2,
+      "closePrice": 2,
       "name": "DELAWARE",
-      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DE TESTNET.png",
-      "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT DE TESTNET.png"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_DELAWARE.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_DELAWARE.jpg"
     },
     {
       "deployPrice": 2,
       "renewPrice": 2,
       "closePrice": 2,
       "name": "WYOMING",
-      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT WY TESTNET.png",
-      "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT WY TESTNET.png"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_WYOMING.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_WYOMING.jpg"
     },
     {
-      "deployPrice": 1,
-      "renewPrice": 1,
-      "closePrice": 1,
+      "deployPrice": 2,
+      "renewPrice": 2,
+      "closePrice": 2,
       "name": "SWISSASSOCIATION",
-      "defaultBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET Polygon.png",
-      "goldBadge": "ipfs://QmaVqhfo8Ch19JJxbRAhPJYHo3KwUiBjq3EPardLPJRcKU/NFT CH TESTNET Polygon.png"
+      "defaultBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/SEP_SWISSASSOCIATION.jpg",
+      "goldBadge": "ipfs://QmefUikb7cTKFqGBzGhXwppYva3zDNuYa9ENvRpNPfamVp/NFT/SEP_SWISSASSOCIATION.jpg"
     },
     {
-      "deployPrice": 1,
-      "renewPrice": 1,
-      "closePrice": 1,
+      "deployPrice": 2,
+      "renewPrice": 2,
+      "closePrice": 2,
       "name": "MARSHALLISLANDS",
       "defaultBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon TESTNET.png",
       "goldBadge": "ipfs://QmZxtxMS2qJ8WyFGGJFxFzGBcKogJF4HLJ7GFcqJ2gie3W/NFT RMI Polygon TESTNET.png"
@@ -245,8 +309,24 @@
       "renewPrice": 3,
       "closePrice": 3,
       "name": "UNADUNA",
-      "defaultBadge": "ipfs://QmcjGC2CyeqJBL3vKCDi6Mqbv64eTNTZavHiocCPKjK7Xn",
-      "goldBadge": "ipfs://QmcjGC2CyeqJBL3vKCDi6Mqbv64eTNTZavHiocCPKjK7Xn"
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_UNADUNA.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_UNADUNA.jpg"
+    },
+    {
+      "deployPrice": 4,
+      "renewPrice": 4,
+      "closePrice": 0,
+      "name": "DELAWARELLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_DELAWARELLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_DELAWARELLC.jpg"
+    },
+    {
+      "deployPrice": 4,
+      "renewPrice": 4,
+      "closePrice": 0,
+      "name": "WYOMINGLLC",
+      "defaultBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_WYOMINGLLC.jpg",
+      "goldBadge": "ipfs://QmQPxZ7JZ7ffxf7vpePwdGdENjAjATrR3id6pq9o9yBF61/NFT/SEP_WYOMINGLLC.jpg"
     }
   ]
 }
