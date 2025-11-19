@@ -4,6 +4,7 @@ pragma solidity ^0.8.4;
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 import "./utils/IOtoCoJurisdiction.sol";
@@ -11,7 +12,7 @@ import "./utils/IOtoCoURI.sol";
 import "./utils/IOtoCoPlugin.sol";
 
 
-contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
+contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable, ReentrancyGuardUpgradeable {
 
     // Custom Errors
     error NotAllowed();
@@ -25,6 +26,12 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     event BaseFeeChanged(uint256 newFee);
     event ChangedURISource(address newSource);
     event DocsUpdated(uint256 indexed tokenId);
+    event AdminAdded(address indexed admin);
+    event AdminRemoved(address indexed admin);
+    event WithdrawalWalletUpdated(address indexed oldWallet, address indexed newWallet);
+    event JurisdictionAdded(uint16 indexed jurisdictionId, address indexed jurisdictionAddress);
+    event JurisdictionUpdated(uint16 indexed jurisdictionId, address indexed oldAddress, address indexed newAddress);
+    event EntityNameUpdated(uint256 indexed tokenId, string newName, address indexed updatedBy);
 
     // Series Structs
     struct Series {
@@ -69,6 +76,27 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     mapping(address=>bool) internal marketplaceAddress;
     mapping(address=>bool) internal allowedPlugins;
     mapping(uint256=>string) public docs;
+    
+    // ADMIN AND WITHDRAWAL STORAGE VARIABLES
+    
+    // Array of admin wallets that can perform owner functions and create entities for free
+    address[] public adminWallets;
+    // Mapping for quick admin lookup
+    mapping(address=>bool) public isAdmin;
+    // Withdrawal wallet where fees are sent
+    address public withdrawalWallet;
+    
+    // Reserve storage space for future variables in upgradeable contracts
+    uint256[50] private __gap;
+    
+    /**
+     * Check if the sender is owner or admin
+     */
+    modifier onlyOwnerOrAdmin() {
+        if (msg.sender != owner() && !isAdmin[msg.sender]) revert NotAllowed();
+        _;
+    }
+
     /**
      * Check if there's enough ETH paid for public transactions.
      */
@@ -79,29 +107,42 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
 
      /**
      * Check if there's enough ETH paid for public transactions.
+     * Admin wallets can skip this fee.
      */
     modifier enoughAmountFees() {
-        if (msg.value < gasleft() * baseFee) revert InsufficientValue({
-            available: msg.value,
-            required: gasleft() * baseFee
-        });
+        if (!isAdmin[msg.sender]) {
+            if (msg.value < gasleft() * baseFee) revert InsufficientValue({
+                available: msg.value,
+                required: gasleft() * baseFee
+            });
+        }
         _;
     }
 
      /**
      * Check if there's enough ETH paid for USD priced transactions.
+     * Admin wallets can skip this fee.
      */
     modifier enoughAmountUSD(uint256 usdPrice) {
-        uint256 requiredValue= priceConverter(usdPrice);
-        if (msg.value < requiredValue) revert InsufficientValue({
-            available: msg.value,
-            required: requiredValue
-        });
+        if (!isAdmin[msg.sender]) {
+            uint256 requiredValue= priceConverter(usdPrice);
+            if (msg.value < requiredValue) revert InsufficientValue({
+                available: msg.value,
+                required: requiredValue
+            });
+        }
         _;
     }
 
     function priceConverter(uint256 usdPrice) public view returns (uint256) {
-        (,int256 quote,,,) = priceFeed.latestRoundData();
+        require(address(priceFeed) != address(0), "OtoCoMasterV2: Price feed not set");
+        
+        (uint80 roundId, int256 quote, , uint256 updatedAt, uint80 answeredInRound) = priceFeed.latestRoundData();
+        
+        require(quote > 0, "OtoCoMasterV2: Invalid price feed");
+        require(answeredInRound >= roundId, "OtoCoMasterV2: Stale price");
+        require(updatedAt > block.timestamp - 3600, "OtoCoMasterV2: Price too old");
+        
         return (priceFeedEth/uint256(quote))*usdPrice;
     }
 
@@ -110,10 +151,15 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      *
      * @param jurisdictionAddresses Initial juridiction pre-deployed addresses.
      * @param url Initial external URL.
+     * @param _priceFeed Chainlink price feed address.
      */
-    function initialize(address[] calldata jurisdictionAddresses, string calldata url) initializer external {
+    function initialize(address[] calldata jurisdictionAddresses, string calldata url, address _priceFeed) initializer external {
         __Ownable_init();
         __ERC721_init("OtoCo Series", "OTOCO");
+        __ReentrancyGuard_init();
+        
+        require(_priceFeed != address(0), "OtoCoMasterV2: Invalid price feed");
+        
         uint16 counter = uint16(jurisdictionAddresses.length);
         for (uint16 i = 0; i < counter; i++){
             jurisdictionAddress[i] = jurisdictionAddresses[i];
@@ -121,6 +167,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         jurisdictionCount = counter;
         baseFee = 10;
         externalUrl = url;
+        priceFeed = AggregatorV3Interface(_priceFeed);
     }
 
     /**
@@ -134,6 +181,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
     public enoughAmountUSD(
         IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice()
     ) payable {
+        require(jurisdiction < jurisdictionCount, "OtoCoMasterV2: Invalid jurisdiction");
+        require(jurisdictionAddress[jurisdiction] != address(0), "OtoCoMasterV2: Jurisdiction not set");
+        
         if (IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).isStandalone() == true) {
             revert NotAllowed();
         }
@@ -171,17 +221,25 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
         bytes[] calldata pluginsData,
         uint256 value,
         string calldata name
-    ) public payable {
+    ) public payable nonReentrant {
+        require(jurisdiction < jurisdictionCount, "OtoCoMasterV2: Invalid jurisdiction");
+        require(jurisdictionAddress[jurisdiction] != address(0), "OtoCoMasterV2: Jurisdiction not set");
+        
         if (IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).isStandalone() == true) {
             revert NotAllowed();
         }
-        uint256 valueRequired = gasleft()*baseFee
-            + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice())
-            + value;
-        if (msg.value < valueRequired) revert InsufficientValue({
-            available: msg.value,
-            required: valueRequired
-        });
+        
+        // Admin wallets can skip fees
+        if (!isAdmin[msg.sender]) {
+            uint256 valueRequired = gasleft()*baseFee
+                + priceConverter(IOtoCoJurisdiction(jurisdictionAddress[jurisdiction]).getJurisdictionDeployPrice())
+                + value;
+            if (msg.value < valueRequired) revert InsufficientValue({
+                available: msg.value,
+                required: valueRequired
+            });
+        }
+        
         address controller = msg.sender;
         if (plugins[0] != address(0x0)) {
             (bool success, bytes memory initializerBytes) = plugins[0].call{value: value}(pluginsData[0]);
@@ -205,6 +263,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param periodInYears Period in Years to be extended
      */
     function renewEntity(uint256 tokenId, uint256 periodInYears) payable external {
+        require(_exists(tokenId), "OtoCoMasterV2: Entity does not exist");
+        require(periodInYears > 0 && periodInYears <= 100, "OtoCoMasterV2: Invalid period");
+        
         Series storage s = series[tokenId];
         uint256 renewalPrice = 
             priceConverter(IOtoCoJurisdiction(jurisdictionAddress[s.jurisdiction]).getJurisdictionRenewalPrice());
@@ -213,9 +274,15 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
             available: msg.value,
             required: (renewalPrice * periodInYears)
         });
+        
         // 31536000 = 1 Year of renewal in seconds
         if (s.expiration < 1) { s.expiration = uint64(block.timestamp); }
-        s.expiration += uint64(31536000*periodInYears);
+        
+        // Check for overflow before adding
+        uint64 extensionSeconds = uint64(31536000 * periodInYears);
+        require(s.expiration <= type(uint64).max - extensionSeconds, "OtoCoMasterV2: Expiration overflow");
+        
+        s.expiration += extensionSeconds;
     }
 
     /**
@@ -246,8 +313,11 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      *
      * @param newAddress the address of the jurisdiction.
      */
-    function addJurisdiction(address newAddress) external onlyOwner {
+    function addJurisdiction(address newAddress) external onlyOwnerOrAdmin {
+        require(newAddress != address(0), "OtoCoMasterV2: Invalid jurisdiction address");
+        
         jurisdictionAddress[jurisdictionCount] = newAddress;
+        emit JurisdictionAdded(jurisdictionCount, newAddress);
         jurisdictionCount++;
     } 
 
@@ -257,8 +327,13 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param jurisdiction the index of the jurisdiction.
      * @param newAddress the new address of the jurisdiction.
      */
-    function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwner {
+    function updateJurisdiction(uint16 jurisdiction, address newAddress) external onlyOwnerOrAdmin {
+        require(jurisdiction < jurisdictionCount, "OtoCoMasterV2: Invalid jurisdiction");
+        require(newAddress != address(0), "OtoCoMasterV2: Invalid jurisdiction address");
+        
+        address oldAddress = jurisdictionAddress[jurisdiction];
         jurisdictionAddress[jurisdiction] = newAddress;
+        emit JurisdictionUpdated(jurisdiction, oldAddress, newAddress);
     }
 
     /**
@@ -266,7 +341,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      *
      * @param newFee new price to be charged for base fees.
      */
-    function changeBaseFees(uint256 newFee) external onlyOwner {
+    function changeBaseFees(uint256 newFee) external onlyOwnerOrAdmin {
         baseFee = newFee;
         emit BaseFeeChanged(newFee);
     }
@@ -277,7 +352,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param addresses the address of the jurisdiction.
      * @param enabled the address of the jurisdiction.
      */
-    function setMarketplaceAddresses(address[] calldata addresses, bool[] calldata enabled) external onlyOwner {
+    function setMarketplaceAddresses(address[] calldata addresses, bool[] calldata enabled) external onlyOwnerOrAdmin {
+        require(addresses.length == enabled.length, "OtoCoMasterV2: Array length mismatch");
+        
         uint256 i;
         uint256 addressesSize = addresses.length;  
         for (i; i < addressesSize;){
@@ -291,7 +368,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      *
      * @param newEntitiesURI New URI builder contract
      */
-    function changeURISources(address newEntitiesURI) external onlyOwner {
+    function changeURISources(address newEntitiesURI) external onlyOwnerOrAdmin {
         entitiesURI = IOtoCoURI(newEntitiesURI);
         emit ChangedURISource(newEntitiesURI);
     }
@@ -301,7 +378,7 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      *
      * @param newPriceFeed New price feed address
      */
-    function changePriceFeed(address newPriceFeed) external onlyOwner {
+    function changePriceFeed(address newPriceFeed) external onlyOwnerOrAdmin {
         priceFeed = AggregatorV3Interface(newPriceFeed);
         emit UpdatedPriceFeed(newPriceFeed);
     }
@@ -337,14 +414,116 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
 
     /**
      * Withdraw fees paid by series creation.
-     * Fees are transfered to the caller of the function that should be the contract owner.
+     * Fees are transferred to the withdrawal wallet.
+     * Can be called by owner or admin wallets.
      *
      * Emits a {FeesWithdraw} event.
      */
-    function withdrawFees() external onlyOwner {
+    function withdrawFees() external onlyOwnerOrAdmin {
         uint256 balance = address(this).balance;
-        payable(msg.sender).transfer(balance);
-        emit FeesWithdrawn(msg.sender, balance);
+        require(balance > 0, "OtoCoMasterV2: No balance to withdraw");
+        
+        address recipient = withdrawalWallet != address(0) ? withdrawalWallet : owner();
+        
+        (bool success, ) = payable(recipient).call{value: balance}("");
+        require(success, "OtoCoMasterV2: Transfer failed");
+        
+        emit FeesWithdrawn(recipient, balance);
+    }
+
+    /**
+     * Set the withdrawal wallet address where fees will be sent.
+     *
+     * @param _withdrawalWallet The address of the withdrawal wallet.
+     */
+    function setWithdrawalWallet(address _withdrawalWallet) external onlyOwner {
+        address oldWallet = withdrawalWallet;
+        withdrawalWallet = _withdrawalWallet;
+        emit WithdrawalWalletUpdated(oldWallet, _withdrawalWallet);
+    }
+
+    /**
+     * Get the withdrawal wallet address.
+     *
+     * @return The address of the withdrawal wallet.
+     */
+    function getWithdrawalWallet() external view returns (address) {
+        return withdrawalWallet;
+    }
+
+    /**
+     * Add an admin wallet to the admin array.
+     * Admin wallets can perform owner functions and create entities for free.
+     *
+     * @param admin The address to add as an admin.
+     */
+    function addAdmin(address admin) external onlyOwner {
+        require(!isAdmin[admin], "OtoCoMasterV2: Address is already an admin");
+        require(admin != address(0), "OtoCoMasterV2: Cannot add zero address as admin");
+        
+        adminWallets.push(admin);
+        isAdmin[admin] = true;
+        
+        emit AdminAdded(admin);
+    }
+
+    /**
+     * Remove an admin wallet from the admin array.
+     *
+     * @param admin The address to remove from admins.
+     */
+    function removeAdmin(address admin) external onlyOwner {
+        require(isAdmin[admin], "OtoCoMasterV2: Address is not an admin");
+        
+        isAdmin[admin] = false;
+        
+        // Remove from array
+        for (uint256 i = 0; i < adminWallets.length; i++) {
+            if (adminWallets[i] == admin) {
+                adminWallets[i] = adminWallets[adminWallets.length - 1];
+                adminWallets.pop();
+                break;
+            }
+        }
+        
+        emit AdminRemoved(admin);
+    }
+
+    /**
+     * Get all admin wallets.
+     *
+     * @return Array of admin wallet addresses.
+     */
+    function getAdminWallets() external view returns (address[] memory) {
+        return adminWallets;
+    }
+
+    /**
+     * Check if an address is an admin.
+     *
+     * @param account The address to check.
+     * @return Boolean indicating if the address is an admin.
+     */
+    function checkIsAdmin(address account) external view returns (bool) {
+        return isAdmin[account];
+    }
+
+    /**
+     * Update the name of an existing entity.
+     * Can be called by owner or admin wallets for free.
+     *
+     * @param tokenId The token ID of the entity to update.
+     * @param newName The new name for the entity.
+     */
+    function updateEntityName(uint256 tokenId, string calldata newName) external onlyOwnerOrAdmin {
+        require(_exists(tokenId), "OtoCoMasterV2: Entity does not exist");
+        require(bytes(newName).length > 0, "OtoCoMasterV2: Name cannot be empty");
+        
+        // Update the name in storage
+        series[tokenId].name = newName;
+        
+        // Emit event for transparency
+        emit EntityNameUpdated(tokenId, newName, msg.sender);
     }
 
     // -- TOKEN VISUALS AND DESCRIPTIVE ELEMENTS --
@@ -356,6 +535,9 @@ contract OtoCoMasterV2 is OwnableUpgradeable, ERC721Upgradeable {
      * @param tokenId must exist.
      */
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        require(_exists(tokenId), "OtoCoMasterV2: Token does not exist");
+        require(address(entitiesURI) != address(0), "OtoCoMasterV2: URI source not set");
+        
         return entitiesURI.tokenExternalURI(tokenId, lastMigrated);
     }
 }
