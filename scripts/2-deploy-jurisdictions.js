@@ -145,16 +145,16 @@ async function main() {
    * SOURCE VERIFICATON *
    **********************/
 
-  if (networkId != "31337") {
-    for (const jurisdiction of jurisdictions) {
-      await hre.run("verification", {
-        addr: jurisdiction.address,
-        args: JSON.stringify(
-          Object.values(jurisdictionData[jurisdiction.address])
-        ),
-      });
-    }
-  }
+  // if (networkId != "31337") {
+  //   for (const jurisdiction of jurisdictions) {
+  //     await hre.run("verification", {
+  //       addr: jurisdiction.address,
+  //       args: JSON.stringify(
+  //         Object.values(jurisdictionData[jurisdiction.address])
+  //       ),
+  //     });
+  //   }
+  // }
 }
 
 main()
