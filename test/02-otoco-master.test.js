@@ -236,29 +236,202 @@ describe("OtoCo Master Test", function () {
 
   });
 
-  it("Check if TokenURI are correct", async function () {
+  it("Check tokenURI format and structure", async function () {
 
     const tokenURI = await otocoMaster.tokenURI(4);
-    const tokenURI2 = await otocoMaster.tokenURI(7);
+    const tokenURI2 = await otocoMaster.tokenURI(0);
+
+    // Verify URI starts with correct data URL scheme
+    expect(tokenURI).to.include('data:application/json;base64,');
+    expect(tokenURI2).to.include('data:application/json;base64,');
 
     // Decode base64 data to read JSON data
     let buff = Buffer.from(tokenURI.split(',')[1], 'base64');
     let json = JSON.parse(buff.toString('utf-8'));
 
+    // Verify migrated entity (tokenId < lastMigrated) has gold badge
     expect(json.name).to.be.equal("Entity 2 - Series 3");
     expect(json.image).to.be.equal("goldBadgeURLWY");
+    expect(json.description).to.include("OtoCo NFTs are minted to represent each entity");
+    expect(json.description).to.include("Entity 2 - Series 3");
+    expect(json.description).to.include("https://otoco.io");
+    expect(json.external_url).to.include("https://otoco.io/dashpanel/entity/");
+    expect(json.external_url).to.include("4/");
 
-    // Decode base64 data to read JSON data
+    // Verify attributes array structure
+    expect(json.attributes).to.be.an('array');
+    expect(json.attributes).to.have.lengthOf(2);
+
+    // Verify creation date attribute
+    expect(json.attributes[0].display_type).to.be.equal("date");
+    expect(json.attributes[0].trait_type).to.be.equal("Creation");
+    expect(json.attributes[0].value).to.be.equal("20000");
+
+    // Verify jurisdiction attribute
+    expect(json.attributes[1].trait_type).to.be.equal("Jurisdiction");
+    expect(json.attributes[1].value).to.be.equals("WYOMING");
+
+    // Decode base64 data for first migrated entity
     buff = Buffer.from(tokenURI2.split(',')[1], 'base64');
     json = JSON.parse(buff.toString('utf-8'));
 
-    expect(json.name).to.be.equal("New Entity - Series 5");
-    expect(json.image).to.be.equal("defaultBadgeURLWY");
+    // Verify entity name and badge
+    expect(json.name).to.be.equal("Entity 1");
+    expect(json.image).to.be.equal("goldBadgeURL");
+    expect(json.external_url).to.include("0/");
     expect(json.attributes[0].trait_type).to.be.equal("Creation");
-    expect(parseInt(json.attributes[0].value)).to.be.above(Date.now() * 0.0001 - 5000);
+    expect(json.attributes[0].value).to.be.equal("10000");
     expect(json.attributes[1].trait_type).to.be.equal("Jurisdiction");
+    expect(json.attributes[1].value).to.be.equals("DAO");
+  });
+
+  it("Check tokenURI with different jurisdictions", async function () {
+
+    // Test entity with Unincorporated jurisdiction (index 0)
+    const tokenURI0 = await otocoMaster.tokenURI(0);
+    let buff = Buffer.from(tokenURI0.split(',')[1], 'base64');
+    let json = JSON.parse(buff.toString('utf-8'));
+
+    expect(json.name).to.be.equal("Entity 1");
+    expect(json.image).to.be.equal("goldBadgeURL"); // Unincorporated gold badge
+    expect(json.attributes[1].value).to.be.equals("DAO");
+    expect(json.external_url).to.include("https://otoco.io/dashpanel/entity/0/");
+
+    // Test entity with Delaware jurisdiction (index 1)
+    const tokenURI1 = await otocoMaster.tokenURI(1);
+    buff = Buffer.from(tokenURI1.split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+
+    expect(json.name).to.be.equal("Entity 2 LLC");
+    expect(json.image).to.be.equal("goldBadgeURLDE"); // Delaware gold badge
+    expect(json.attributes[1].value).to.be.equals("DELAWARE");
+    expect(json.external_url).to.include("https://otoco.io/dashpanel/entity/1/");
+
+    // Test entity with Wyoming jurisdiction (index 2)
+    const tokenURI2 = await otocoMaster.tokenURI(2);
+    buff = Buffer.from(tokenURI2.split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+
+    expect(json.name).to.be.equal("Entity 3 - Series 1");
+    expect(json.image).to.be.equal("goldBadgeURLWY"); // Wyoming gold badge
     expect(json.attributes[1].value).to.be.equals("WYOMING");
-    // console.log(json)
+    expect(json.external_url).to.include("https://otoco.io/dashpanel/entity/2/");
+  });
+
+  it("Check tokenURI for migrated vs new entities badge differences", async function () {
+
+    // All entities before lastMigrated should have gold badges
+    const tokenURI0 = await otocoMaster.tokenURI(0);
+    const tokenURI1 = await otocoMaster.tokenURI(1);
+    const tokenURI2 = await otocoMaster.tokenURI(2);
+    const tokenURI3 = await otocoMaster.tokenURI(3);
+    const tokenURI4 = await otocoMaster.tokenURI(4);
+    const tokenURI5 = await otocoMaster.tokenURI(5);
+    const tokenURI6 = await otocoMaster.tokenURI(6);
+
+    // Verify all migrated entities have gold badges
+    let buff = Buffer.from(tokenURI0.split(',')[1], 'base64');
+    let json = JSON.parse(buff.toString('utf-8'));
+    expect(json.image).to.be.equal("goldBadgeURL");
+
+    buff = Buffer.from(tokenURI1.split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+    expect(json.image).to.be.equal("goldBadgeURLDE");
+
+    buff = Buffer.from(tokenURI2.split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+    expect(json.image).to.be.equal("goldBadgeURLWY");
+
+    buff = Buffer.from(tokenURI3.split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+    expect(json.image).to.be.equal("goldBadgeURLWY");
+
+    buff = Buffer.from(tokenURI4.split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+    expect(json.image).to.be.equal("goldBadgeURLWY");
+
+    buff = Buffer.from(tokenURI5.split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+    expect(json.image).to.be.equal("goldBadgeURLWY");
+
+    buff = Buffer.from(tokenURI6.split(',')[1], 'base64');
+    json = JSON.parse(buff.toString('utf-8'));
+    expect(json.image).to.be.equal("goldBadgeURLDE");
+
+    // Note: lastMigrated is internal, but we've verified its behavior through badge checks
+    // All 7 entities created via createBatchSeries should have gold badges
+  });
+
+  it("Check tokenURI validates all required JSON fields", async function () {
+
+    const tokenURI = await otocoMaster.tokenURI(4);
+    const buff = Buffer.from(tokenURI.split(',')[1], 'base64');
+    const json = JSON.parse(buff.toString('utf-8'));
+
+    // Verify all required NFT metadata fields exist
+    expect(json).to.have.property('name');
+    expect(json).to.have.property('description');
+    expect(json).to.have.property('image');
+    expect(json).to.have.property('external_url');
+    expect(json).to.have.property('attributes');
+
+    // Verify field types
+    expect(json.name).to.be.a('string');
+    expect(json.description).to.be.a('string');
+    expect(json.image).to.be.a('string');
+    expect(json.external_url).to.be.a('string');
+    expect(json.attributes).to.be.an('array');
+
+    // Verify description contains required text
+    expect(json.description).to.include("OtoCo NFTs");
+    expect(json.description).to.include("holder of this NFT");
+    expect(json.description).to.include(json.name);
+    expect(json.description).to.include("https://otoco.io");
+
+    // Verify attributes have correct structure
+    json.attributes.forEach(attr => {
+      expect(attr).to.have.property('trait_type');
+      expect(attr).to.have.property('value');
+      expect(attr.trait_type).to.be.a('string');
+      expect(attr.value).to.be.a('string');
+    });
+
+    // Verify Creation attribute has display_type
+    expect(json.attributes[0]).to.have.property('display_type');
+    expect(json.attributes[0].display_type).to.equal('date');
+
+    // Verify external_url format
+    expect(json.external_url).to.match(/^https:\/\/otoco\.io\/dashpanel\/entity\/\d+\/$/);
+  });
+
+  it("Check tokenURI JSON is valid base64 and parseable", async function () {
+
+    // Test multiple entities to ensure consistent encoding
+    const tokenIds = [0, 1, 2, 3, 4, 5, 6];
+    
+    for (const tokenId of tokenIds) {
+      const tokenURI = await otocoMaster.tokenURI(tokenId);
+      
+      // Verify it starts with the correct data URI scheme
+      expect(tokenURI).to.match(/^data:application\/json;base64,/);
+      
+      // Extract and decode base64
+      const base64Data = tokenURI.split(',')[1];
+      const buff = Buffer.from(base64Data, 'base64');
+      const jsonString = buff.toString('utf-8');
+      
+      // Parse JSON and verify it doesn't throw
+      let json;
+      expect(() => {
+        json = JSON.parse(jsonString);
+      }).to.not.throw();
+      
+      // Verify essential fields are present
+      expect(json).to.have.property('name');
+      expect(json).to.have.property('image');
+      expect(json).to.have.property('attributes');
+      expect(json.attributes).to.be.an('array').with.lengthOf(2);
+    }
   });
 
 
