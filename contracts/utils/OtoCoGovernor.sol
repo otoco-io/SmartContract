@@ -28,6 +28,8 @@ InitializableEIP712 {
     mapping(uint256=>bool) private _managerProposal;
     // Allowed contract permitted to Manager interact without requiring quorum
     mapping(address=>bool) private _allowedContracts;
+    // Track proposal proposers
+    mapping(uint256=>address) private _proposalProposers;
 
     constructor() {
         _disableInitializers();
@@ -148,6 +150,7 @@ InitializableEIP712 {
         string calldata description
     ) public virtual override returns (uint256) {
         uint256 proposalId = super.propose(targets, values, calldatas, description);
+        _proposalProposers[proposalId] = _msgSender();
         if (_msgSender() == _manager && isAllowedContracts(targets)){
             _managerProposal[proposalId] = true;
         }
@@ -165,7 +168,7 @@ InitializableEIP712 {
         uint256[] calldata values,
         bytes[] calldata calldatas,
         bytes32 descriptionHash
-    ) public returns (uint256) {
+    ) public override returns (uint256) {
         return _cancel(targets, values, calldatas, descriptionHash);
     }
 
@@ -228,5 +231,75 @@ InitializableEIP712 {
      */
     function isManagerProposal(uint256 proposalId) public view returns (bool) {
         return _managerProposal[proposalId];
+    }
+
+    // IERC6372 implementations
+
+    /**
+     * @dev Clock used for flagging checkpoints. Uses block numbers by default.
+     */
+    function clock() public view virtual override returns (uint48) {
+        return uint48(block.number);
+    }
+
+    /**
+     * @dev Machine-readable description of the clock as specified in EIP-6372.
+     */
+    // solhint-disable-next-line func-name-mixedcase
+    function CLOCK_MODE() public view virtual override returns (string memory) {
+        return "mode=blocknumber&from=default";
+    }
+
+    // IGovernor additional implementations
+
+    /**
+     * @dev See {IGovernor-getVotesWithParams}.
+     */
+    function getVotesWithParams(
+        address account,
+        uint256 blockNumber,
+        bytes memory /*params*/
+    ) public view virtual override returns (uint256) {
+        return getVotes(account, blockNumber);
+    }
+
+    /**
+     * @dev See {IGovernor-castVoteWithReasonAndParams}.
+     */
+    function castVoteWithReasonAndParams(
+        uint256 proposalId,
+        uint8 support,
+        string calldata reason,
+        bytes memory /*params*/
+    ) public virtual override returns (uint256) {
+        return _castVote(proposalId, _msgSender(), support, reason);
+    }
+
+    /**
+     * @dev See {IGovernor-castVoteWithReasonAndParamsBySig}.
+     */
+    function castVoteWithReasonAndParamsBySig(
+        uint256 proposalId,
+        uint8 support,
+        string calldata reason,
+        bytes memory /*params*/,
+        uint8 v,
+        bytes32 r,
+        bytes32 s
+    ) public virtual override returns (uint256) {
+        address voter = ECDSA.recover(
+            _hashTypedDataV4(keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support, keccak256(bytes(reason))))),
+            v,
+            r,
+            s
+        );
+        return _castVote(proposalId, voter, support, reason);
+    }
+
+    /**
+     * @dev See {IGovernor-proposalProposer}.
+     */
+    function proposalProposer(uint256 proposalId) public view virtual override returns (address) {
+        return _proposalProposers[proposalId];
     }
 }
