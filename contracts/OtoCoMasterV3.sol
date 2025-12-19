@@ -221,6 +221,24 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
     }
 
     /**
+     * Update the name of an existing series.
+     * Only owner or marketplace addresses can call this function.
+     *
+     * @param tokenId The ID of the series to update.
+     * @param newName The new name for the series.
+     */
+    function updateEntityName(uint256 tokenId, string memory newName) external onlyOwnerOrMarketplace {
+        series[tokenId].name = newName;
+    }
+
+    /**
+     * Withdraw accumulated funds to the withdrawal address.
+     */
+    function withdraw() external onlyOwner {
+        payable(withdrawalAddress).transfer(address(this).balance);
+    }
+
+    /**
      * Close series previously created.
      *
      * @param tokenId of the series to be burned.

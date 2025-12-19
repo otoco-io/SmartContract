@@ -540,4 +540,37 @@ describe("OtoCo Master V2 to V3 Upgrade Test", function () {
     expect(await otocoMaster.baseFee()).to.equal("5000000000000000");
   });
 
+  it("Test V3: updateEntityName - owner can update entity name", async function () {
+    const tokenId = 0;
+    const oldName = (await otocoMaster.series(tokenId)).name;
+    const newName = "Updated Entity Name";
+
+    // Owner updates the entity name
+    await otocoMaster.updateEntityName(tokenId, newName);
+
+    // Verify the name was updated
+    expect((await otocoMaster.series(tokenId)).name).to.equal(newName);
+    expect((await otocoMaster.series(tokenId)).name).to.not.equal(oldName);
+  });
+
+  it("Test V3: updateEntityName - marketplace can update entity name", async function () {
+    const tokenId = 2;
+    const newName = "Marketplace Updated Name";
+
+    // Marketplace updates the entity name
+    await otocoMaster.connect(marketplace).updateEntityName(tokenId, newName);
+
+    // Verify the name was updated
+    expect((await otocoMaster.series(tokenId)).name).to.equal(newName);
+  });
+
+  it("Test V3: updateEntityName - non-owner/non-marketplace cannot update", async function () {
+    const tokenId = 3;
+    const newName = "Unauthorized Update";
+
+    // Regular user (wallet2) should not be able to update
+    await expect(otocoMaster.connect(wallet2).updateEntityName(tokenId, newName))
+      .to.be.revertedWithCustomError(otocoMaster, "NotAllowed");
+  });
+
 });
