@@ -18,6 +18,10 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
     error InitializerError();
     error IncorrectOwner();
     error InsufficientValue(uint256 available, uint256 required);
+    error InvalidPriceFeed();
+    error InvalidOraclePrice();
+    error StaleOracleData();
+    error InvalidOracleRound();
 
     // Events
     event FeesWithdrawn(address owner, uint256 amount);
@@ -68,15 +72,15 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
     mapping(address=>bool) internal marketplaceAddress;
     mapping(address=>bool) internal allowedPlugins;
     mapping(uint256=>string) public docs;
+    address public withdrawalAddress;
 
-     /**
-     * Check if there's enough ETH paid for public transactions.
+    /**
+     * Check if caller is owner or marketplace address.
      */
-    modifier enoughAmountFees() {
-        if (msg.value < gasleft() * baseFee) revert InsufficientValue({
-            available: msg.value,
-            required: gasleft() * baseFee
-        });
+    modifier onlyOwnerOrMarketplace() {
+        if (msg.sender != owner() && !marketplaceAddress[msg.sender]) {
+            revert NotAllowed();
+        }
         _;
     }
 
@@ -96,8 +100,28 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
     }
 
     function priceConverter(uint256 usdPrice) public view returns (uint256) {
-        (,int256 quote,,,) = priceFeed.latestRoundData();
-        return (priceFeedEth/uint256(quote))*usdPrice;
+        // Validate price feed address is not null
+        if (address(priceFeed) == address(0)) revert InvalidPriceFeed();
+        
+        (
+            uint80 roundId,
+            int256 price,
+            ,
+            uint256 updatedAt,
+            uint80 answeredInRound
+        ) = priceFeed.latestRoundData();
+        
+        // Validate price is positive
+        if (price <= 0) revert InvalidOraclePrice();
+        
+        // Validate staleness - data should be recent
+        if (block.timestamp - updatedAt > 2 hours) revert StaleOracleData();
+        
+        // Validate round is complete and valid
+        if (answeredInRound < roundId) revert InvalidOracleRound();
+        if (updatedAt == 0) revert InvalidOracleRound();
+        
+        return (priceFeedEth/uint256(price))*usdPrice;
     }
 
     /**
@@ -215,7 +239,7 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
         emit DocsUpdated(tokenId);
     }
 
-    receive() enoughAmountFees() external payable {}
+    receive() external payable {}
 
     // --- ADMINISTRATION FUNCTIONS ---
 
@@ -269,9 +293,18 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
      *
      * @param newPriceFeed New price feed address
      */
-    function changePriceFeed(address newPriceFeed) external onlyOwner {
+    function changePriceFeed(address newPriceFeed) external onlyOwnerOrMarketplace {
         priceFeed = AggregatorV3Interface(newPriceFeed);
         emit UpdatedPriceFeed(newPriceFeed);
+    }
+
+    /**
+     * Change the withdrawal address.
+     *
+     * @param newWithdrawalAddress The new address to set for withdrawals.
+     */
+    function changeWithdrawalAddress(address newWithdrawalAddress) external onlyOwner {
+        withdrawalAddress = newWithdrawalAddress;
     }
 
     /**
@@ -280,10 +313,11 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
      *
      * Emits a {FeesWithdraw} event.
      */
-    function withdrawFees() external onlyOwner {
+    function withdrawFees() external onlyOwnerOrMarketplace {
+        if (withdrawalAddress == address(0)) revert NotAllowed();
         uint256 balance = address(this).balance;
-        payable(msg.sender).transfer(balance);
-        emit FeesWithdrawn(msg.sender, balance);
+        payable(withdrawalAddress).transfer(balance);
+        emit FeesWithdrawn(withdrawalAddress, balance);
     }
 
     // -- TOKEN VISUALS AND DESCRIPTIVE ELEMENTS --

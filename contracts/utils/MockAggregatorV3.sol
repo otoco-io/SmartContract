@@ -24,9 +24,9 @@ contract MockAggregatorV3 {
         return (
             10,
             lastPrice, // 1000 USD fixed value
-            100000,
-            100000,
-            100
+            block.timestamp,
+            block.timestamp,
+            10
         );
     }
 }
