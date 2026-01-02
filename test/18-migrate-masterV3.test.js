@@ -442,7 +442,11 @@ describe("OtoCo Master V2 to V3 Upgrade Test", function () {
       priceFeed,
     );
 
+    // First whitelist the wallet address as a plugin (even though it's not a contract)
+    await otocoMaster.setAllowedPlugins([wallet3.address], [true]);
+
     // Try to use wallet address (not a contract) as initializer
+    // This should fail with InitializerError because code.length check
     await expect(otocoMaster.createEntityWithInitializer(
       2,
       [wallet3.address],
@@ -458,11 +462,14 @@ describe("OtoCo Master V2 to V3 Upgrade Test", function () {
     const TimestampPlugin = await ethers.getContractFactory("TimestampV2");
     const timestampPlugin = await TimestampPlugin.deploy(otocoMaster.address);
 
+    // Whitelist the timestamp plugin
+    await otocoMaster.setAllowedPlugins([timestampPlugin.address], [true]);
+
     const [amountToPayForSpinUp, gasPrice, gasLimit] = await utils.getAmountToPay(
       2,
       otocoMaster,
       "2000000000",
-      "200000",
+      "500000", // Increased gas limit for plugin execution
       priceFeed,
     );
 
@@ -571,6 +578,46 @@ describe("OtoCo Master V2 to V3 Upgrade Test", function () {
     // Regular user (wallet2) should not be able to update
     await expect(otocoMaster.connect(wallet2).updateEntityName(tokenId, newName))
       .to.be.revertedWithCustomError(otocoMaster, "NotAllowed");
+  });
+
+  it("Test V3: withdraw function sends to withdrawalAddress, not msg.sender", async function () {
+    // Set withdrawal address to wallet3
+    const withdrawalAddr = wallet3.address;
+    await otocoMaster.changeWithdrawalAddress(withdrawalAddr);
+    
+    // Send some ETH to the contract
+    const amountToSend = ethers.utils.parseEther("1.0");
+    await owner.sendTransaction({
+      to: otocoMaster.address,
+      value: amountToSend
+    });
+    
+    // Verify contract has the balance
+    const contractBalanceBefore = await ethers.provider.getBalance(otocoMaster.address);
+    expect(contractBalanceBefore).to.be.gte(amountToSend);
+    
+    // Get balances before withdrawal
+    const ownerBalanceBefore = await ethers.provider.getBalance(owner.address);
+    const withdrawalBalanceBefore = await ethers.provider.getBalance(withdrawalAddr);
+    
+    // Owner calls withdraw (but funds should go to withdrawalAddress, not owner)
+    const tx = await otocoMaster.withdraw();
+    const receipt = await tx.wait();
+    const gasCost = receipt.gasUsed.mul(receipt.effectiveGasPrice);
+    
+    // Get balances after withdrawal
+    const ownerBalanceAfter = await ethers.provider.getBalance(owner.address);
+    const withdrawalBalanceAfter = await ethers.provider.getBalance(withdrawalAddr);
+    const contractBalanceAfter = await ethers.provider.getBalance(otocoMaster.address);
+    
+    // Verify contract balance is now zero
+    expect(contractBalanceAfter).to.equal(0);
+    
+    // Verify owner's balance only decreased by gas cost (didn't receive the funds)
+    expect(ownerBalanceAfter).to.equal(ownerBalanceBefore.sub(gasCost));
+    
+    // Verify withdrawalAddress received the funds
+    expect(withdrawalBalanceAfter).to.equal(withdrawalBalanceBefore.add(contractBalanceBefore));
   });
 
 });
