@@ -59,7 +59,7 @@ async function main() {
 		jurisdictions: JSON.stringify(deploysJson.jurisdictions),
 	});
 
-	console.log(`${Bright}🚀 OtoCo V2 Master Deployed: ${FgMagenta}${master.address}${Reset}`);
+	console.log(`${Bright}🚀 OtoCo V3 Master Deployed: ${FgMagenta}${master.address}${Reset}`);
 
 
 	/******************

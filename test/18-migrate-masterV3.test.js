@@ -370,15 +370,19 @@ describe("OtoCo Master V2 to V3 Upgrade Test", function () {
   it("Test V3: Set marketplace addresses", async function () {
     const newMarketplace = wallet4.address;
 
-    // Add a new marketplace address and verify it was set
-    await otocoMaster.setMarketplaceAddresses([newMarketplace], [true]);
+    // Add a new marketplace address and verify event is emitted
+    await expect(otocoMaster.setMarketplaceAddresses([newMarketplace], [true]))
+      .to.emit(otocoMaster, 'MarketPlaceAddressChanged')
+      .withArgs(newMarketplace, true);
 
     // Verify marketplace can create without payment
     await expect(otocoMaster.connect(wallet4).createSeries(0, wallet4.address, "Test Marketplace", {value: 0}))
       .to.emit(otocoMaster, 'Transfer');
 
-    // Remove the marketplace address
-    await otocoMaster.setMarketplaceAddresses([newMarketplace], [false]);
+    // Remove the marketplace address and verify event is emitted
+    await expect(otocoMaster.setMarketplaceAddresses([newMarketplace], [false]))
+      .to.emit(otocoMaster, 'MarketPlaceAddressChanged')
+      .withArgs(newMarketplace, false);
 
     // Get the actual required amount to pay for Unincorporated jurisdiction
     const Unincorporated = await ethers.getContractFactory("JurisdictionUnincorporatedV2");
@@ -552,8 +556,10 @@ describe("OtoCo Master V2 to V3 Upgrade Test", function () {
     const oldName = (await otocoMaster.series(tokenId)).name;
     const newName = "Updated Entity Name";
 
-    // Owner updates the entity name
-    await otocoMaster.updateEntityName(tokenId, newName);
+    // Owner updates the entity name and verify event is emitted
+    await expect(otocoMaster.updateEntityName(tokenId, newName))
+      .to.emit(otocoMaster, 'NameChanged')
+      .withArgs(tokenId, newName);
 
     // Verify the name was updated
     expect((await otocoMaster.series(tokenId)).name).to.equal(newName);
@@ -564,8 +570,10 @@ describe("OtoCo Master V2 to V3 Upgrade Test", function () {
     const tokenId = 2;
     const newName = "Marketplace Updated Name";
 
-    // Marketplace updates the entity name
-    await otocoMaster.connect(marketplace).updateEntityName(tokenId, newName);
+    // Marketplace updates the entity name and verify event is emitted
+    await expect(otocoMaster.connect(marketplace).updateEntityName(tokenId, newName))
+      .to.emit(otocoMaster, 'NameChanged')
+      .withArgs(tokenId, newName);
 
     // Verify the name was updated
     expect((await otocoMaster.series(tokenId)).name).to.equal(newName);
@@ -600,8 +608,8 @@ describe("OtoCo Master V2 to V3 Upgrade Test", function () {
     const ownerBalanceBefore = await ethers.provider.getBalance(owner.address);
     const withdrawalBalanceBefore = await ethers.provider.getBalance(withdrawalAddr);
     
-    // Owner calls withdraw (but funds should go to withdrawalAddress, not owner)
-    const tx = await otocoMaster.withdraw();
+    // Owner calls withdrawFees (but funds should go to withdrawalAddress, not owner)
+    const tx = await otocoMaster.withdrawFees();
     const receipt = await tx.wait();
     const gasCost = receipt.gasUsed.mul(receipt.effectiveGasPrice);
     

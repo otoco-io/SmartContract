@@ -12,18 +12,18 @@ task("master", "Deploys a OtoCo V2 Master proxy")
     // IN case of FORKED LOCAL NODE will grab deploys from forked network
     // Otherwise will grab addresses directly from connected network
     const deploysSource = isForkedLocalNode ? process.env.FORKED_NETWORK : hre.network.name;
-    const deploys = require(`../deploys/v1/${deploysSource}.json`)
+    const deploys = require(`../deploys/v2/${deploysSource}.json`)
 
     // In case of FORKED LOCAL NODE will impersonate OtoCo deployer
     const deployer = isForkedLocalNode ?
       await ethers.getImpersonatedSigner("0x1216a72b7822Bbf7c38707F9a602FC241Cd6df30")
       : await ethers.getSigner()
 
-    const MasterFactoryV1 = await ethers.getContractFactory("OtoCoMaster", deployer);
     const MasterFactoryV2 = await ethers.getContractFactory("OtoCoMasterV2", deployer);
+    const MasterFactoryV3 = await ethers.getContractFactory("OtoCoMasterV3", deployer);
     // In case of running locally and forked will force implementation locally
     if (isForkedLocalNode) {
-      await upgrades.forceImport(deploys.master, MasterFactoryV1)
+      await upgrades.forceImport(deploys.master, MasterFactoryV2)
       otocoMaster = await upgrades.upgradeProxy(
         deploys.master,
         MasterFactoryV2
@@ -32,7 +32,7 @@ task("master", "Deploys a OtoCo V2 Master proxy")
     } else if (hre.network.config.chainId != 31337 && deploys.master) {
       otocoMaster = await upgrades.upgradeProxy(
         deploys.master,
-        MasterFactoryV2
+        MasterFactoryV3
       );
       // In case of running locally but not forked
     } else {

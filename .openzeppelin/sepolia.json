@@ -1,0 +1,1764 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x68Ac7D256668aE74730B17B32b1b8359C0de6Ffa",
+    "txHash": "0x1cc7eb63e3deaff8f9613b577d1668dc8db002c6fb39219428a70eb20ef5222e"
+  },
+  "proxies": [
+    {
+      "address": "0x746aAC8f3C7596808893618865888f6345077e0b",
+      "txHash": "0xca33437e8b5d4a34b438b3ac1e7d8e19021e4a7b3806e950c808d0c57a7fbcc0",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "39e84087d3913cd652d0f54e9bd57364d08a759c376893aa4a288a3ae2cda096": {
+      "address": "0xf1D275Ad3B4F3540a7a5884029D5672F69f3C492",
+      "txHash": "0xfd979a29f0315da111108618ff079d62cdb8be26826057ef536a0f2eeec46520",
+      "layout": {
+        "solcVersion": "0.8.4",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:87"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:41"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:25"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:28"
+          },
+          {
+            "label": "_owners",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:31"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "154",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:34"
+          },
+          {
+            "label": "_tokenApprovals",
+            "offset": 0,
+            "slot": "155",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:37"
+          },
+          {
+            "label": "_operatorApprovals",
+            "offset": 0,
+            "slot": "156",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:40"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "157",
+            "type": "t_array(t_uint256)44_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:458"
+          },
+          {
+            "label": "seriesCount",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:41"
+          },
+          {
+            "label": "lastMigrated",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:43"
+          },
+          {
+            "label": "series",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_mapping(t_uint256,t_struct(Series)2039_storage)",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:45"
+          },
+          {
+            "label": "jurisdictionCount",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_uint16",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:48"
+          },
+          {
+            "label": "jurisdictionAddress",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_mapping(t_uint16,t_address)",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:50"
+          },
+          {
+            "label": "seriesPerJurisdiction",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_mapping(t_uint16,t_uint256)",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:52"
+          },
+          {
+            "label": "externalUrl",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_string_storage",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:55"
+          },
+          {
+            "label": "baseFee",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:58"
+          },
+          {
+            "label": "priceFeed",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_contract(AggregatorV3Interface)45",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:65"
+          },
+          {
+            "label": "entitiesURI",
+            "offset": 0,
+            "slot": "210",
+            "type": "t_contract(IOtoCoURI)2923",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:67"
+          },
+          {
+            "label": "marketplaceAddress",
+            "offset": 0,
+            "slot": "211",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:69"
+          },
+          {
+            "label": "allowedPlugins",
+            "offset": 0,
+            "slot": "212",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:70"
+          },
+          {
+            "label": "docs",
+            "offset": 0,
+            "slot": "213",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "contract": "OtoCoMasterV2",
+            "src": "contracts/OtoCoMasterV2.sol:71"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)44_storage": {
+            "label": "uint256[44]",
+            "numberOfBytes": "1408"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(AggregatorV3Interface)45": {
+            "label": "contract AggregatorV3Interface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IOtoCoURI)2923": {
+            "label": "contract IOtoCoURI",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_address)": {
+            "label": "mapping(uint16 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_uint256)": {
+            "label": "mapping(uint16 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Series)2039_storage)": {
+            "label": "mapping(uint256 => struct OtoCoMasterV2.Series)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Series)2039_storage": {
+            "label": "struct OtoCoMasterV2.Series",
+            "members": [
+              {
+                "label": "jurisdiction",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "entityType",
+                "type": "t_uint16",
+                "offset": 2,
+                "slot": "0"
+              },
+              {
+                "label": "creation",
+                "type": "t_uint64",
+                "offset": 4,
+                "slot": "0"
+              },
+              {
+                "label": "expiration",
+                "type": "t_uint64",
+                "offset": 12,
+                "slot": "0"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "1803a133c5ca41d1588e415a4783be80c6da488e1b763db5120d9377a5d7ead5": {
+      "address": "0xcf1e70FbDaFcDa3Fe3344f4b89330F6b003717D8",
+      "txHash": "0x77bfb9619842e3f78f7aec1a3730bf7fb4d1930a2d2fb94937f45ac46b23028e",
+      "layout": {
+        "solcVersion": "0.8.8",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:40"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:41"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:25"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:28"
+          },
+          {
+            "label": "_owners",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:31"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "154",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:34"
+          },
+          {
+            "label": "_tokenApprovals",
+            "offset": 0,
+            "slot": "155",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:37"
+          },
+          {
+            "label": "_operatorApprovals",
+            "offset": 0,
+            "slot": "156",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:40"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "157",
+            "type": "t_array(t_uint256)44_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:477"
+          },
+          {
+            "label": "seriesCount",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:46"
+          },
+          {
+            "label": "lastMigrated",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:48"
+          },
+          {
+            "label": "series",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_mapping(t_uint256,t_struct(Series)14145_storage)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:50"
+          },
+          {
+            "label": "jurisdictionCount",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_uint16",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:53"
+          },
+          {
+            "label": "jurisdictionAddress",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_mapping(t_uint16,t_address)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:55"
+          },
+          {
+            "label": "seriesPerJurisdiction",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_mapping(t_uint16,t_uint256)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:57"
+          },
+          {
+            "label": "externalUrl",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_string_storage",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:60"
+          },
+          {
+            "label": "baseFee",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:63"
+          },
+          {
+            "label": "priceFeed",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_contract(AggregatorV3Interface)45",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:70"
+          },
+          {
+            "label": "entitiesURI",
+            "offset": 0,
+            "slot": "210",
+            "type": "t_contract(IOtoCoURI)21316",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:72"
+          },
+          {
+            "label": "marketplaceAddress",
+            "offset": 0,
+            "slot": "211",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:74"
+          },
+          {
+            "label": "allowedPlugins",
+            "offset": 0,
+            "slot": "212",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:76"
+          },
+          {
+            "label": "docs",
+            "offset": 0,
+            "slot": "213",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:78"
+          },
+          {
+            "label": "withdrawalAddress",
+            "offset": 0,
+            "slot": "214",
+            "type": "t_address",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:80"
+          },
+          {
+            "label": "_locked",
+            "offset": 0,
+            "slot": "215",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:83"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)44_storage": {
+            "label": "uint256[44]",
+            "numberOfBytes": "1408"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(AggregatorV3Interface)45": {
+            "label": "contract AggregatorV3Interface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IOtoCoURI)21316": {
+            "label": "contract IOtoCoURI",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_address)": {
+            "label": "mapping(uint16 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_uint256)": {
+            "label": "mapping(uint16 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Series)14145_storage)": {
+            "label": "mapping(uint256 => struct OtoCoMasterV3.Series)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Series)14145_storage": {
+            "label": "struct OtoCoMasterV3.Series",
+            "members": [
+              {
+                "label": "jurisdiction",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "entityType",
+                "type": "t_uint16",
+                "offset": 2,
+                "slot": "0"
+              },
+              {
+                "label": "creation",
+                "type": "t_uint64",
+                "offset": 4,
+                "slot": "0"
+              },
+              {
+                "label": "expiration",
+                "type": "t_uint64",
+                "offset": 12,
+                "slot": "0"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "ed7fddda8f774e02b29b071a695cf2a4f7e66ef0f43769fa59932074926cb31e": {
+      "address": "0x82B9B455f54B11C7B81f6EE33101B37db6e15206",
+      "txHash": "0xb34e1045fa15f31732e98fb237d2148dbb1a81b465b3614d846f2e3be05305f6",
+      "layout": {
+        "solcVersion": "0.8.8",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:40"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:41"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:25"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:28"
+          },
+          {
+            "label": "_owners",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:31"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "154",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:34"
+          },
+          {
+            "label": "_tokenApprovals",
+            "offset": 0,
+            "slot": "155",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:37"
+          },
+          {
+            "label": "_operatorApprovals",
+            "offset": 0,
+            "slot": "156",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:40"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "157",
+            "type": "t_array(t_uint256)44_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:477"
+          },
+          {
+            "label": "seriesCount",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:46"
+          },
+          {
+            "label": "lastMigrated",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:48"
+          },
+          {
+            "label": "series",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_mapping(t_uint256,t_struct(Series)14145_storage)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:50"
+          },
+          {
+            "label": "jurisdictionCount",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_uint16",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:53"
+          },
+          {
+            "label": "jurisdictionAddress",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_mapping(t_uint16,t_address)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:55"
+          },
+          {
+            "label": "seriesPerJurisdiction",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_mapping(t_uint16,t_uint256)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:57"
+          },
+          {
+            "label": "externalUrl",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_string_storage",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:60"
+          },
+          {
+            "label": "baseFee",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:63"
+          },
+          {
+            "label": "priceFeed",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_contract(AggregatorV3Interface)45",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:70"
+          },
+          {
+            "label": "entitiesURI",
+            "offset": 0,
+            "slot": "210",
+            "type": "t_contract(IOtoCoURI)21307",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:72"
+          },
+          {
+            "label": "marketplaceAddress",
+            "offset": 0,
+            "slot": "211",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:74"
+          },
+          {
+            "label": "allowedPlugins",
+            "offset": 0,
+            "slot": "212",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:76"
+          },
+          {
+            "label": "docs",
+            "offset": 0,
+            "slot": "213",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:78"
+          },
+          {
+            "label": "withdrawalAddress",
+            "offset": 0,
+            "slot": "214",
+            "type": "t_address",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:80"
+          },
+          {
+            "label": "_locked",
+            "offset": 0,
+            "slot": "215",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:83"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)44_storage": {
+            "label": "uint256[44]",
+            "numberOfBytes": "1408"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(AggregatorV3Interface)45": {
+            "label": "contract AggregatorV3Interface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IOtoCoURI)21307": {
+            "label": "contract IOtoCoURI",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_address)": {
+            "label": "mapping(uint16 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_uint256)": {
+            "label": "mapping(uint16 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Series)14145_storage)": {
+            "label": "mapping(uint256 => struct OtoCoMasterV3.Series)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Series)14145_storage": {
+            "label": "struct OtoCoMasterV3.Series",
+            "members": [
+              {
+                "label": "jurisdiction",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "entityType",
+                "type": "t_uint16",
+                "offset": 2,
+                "slot": "0"
+              },
+              {
+                "label": "creation",
+                "type": "t_uint64",
+                "offset": 4,
+                "slot": "0"
+              },
+              {
+                "label": "expiration",
+                "type": "t_uint64",
+                "offset": 12,
+                "slot": "0"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "42fcf8b8a111da129362f214279f0a8cbb612c4d410a166a385cbfa70f6dc129": {
+      "address": "0x29e5A15594221D48A485C5d2c5BCc50002901539",
+      "txHash": "0xde55df9554f3b06336909301a12eb996f3580b5d96ad452d8752106f4afcab13",
+      "layout": {
+        "solcVersion": "0.8.8",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:40"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:41"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:25"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:28"
+          },
+          {
+            "label": "_owners",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:31"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "154",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:34"
+          },
+          {
+            "label": "_tokenApprovals",
+            "offset": 0,
+            "slot": "155",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:37"
+          },
+          {
+            "label": "_operatorApprovals",
+            "offset": 0,
+            "slot": "156",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:40"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "157",
+            "type": "t_array(t_uint256)44_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:477"
+          },
+          {
+            "label": "seriesCount",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:46"
+          },
+          {
+            "label": "lastMigrated",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:48"
+          },
+          {
+            "label": "series",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_mapping(t_uint256,t_struct(Series)14145_storage)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:50"
+          },
+          {
+            "label": "jurisdictionCount",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_uint16",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:53"
+          },
+          {
+            "label": "jurisdictionAddress",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_mapping(t_uint16,t_address)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:55"
+          },
+          {
+            "label": "seriesPerJurisdiction",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_mapping(t_uint16,t_uint256)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:57"
+          },
+          {
+            "label": "externalUrl",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_string_storage",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:60"
+          },
+          {
+            "label": "baseFee",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:63"
+          },
+          {
+            "label": "priceFeed",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_contract(AggregatorV3Interface)45",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:70"
+          },
+          {
+            "label": "entitiesURI",
+            "offset": 0,
+            "slot": "210",
+            "type": "t_contract(IOtoCoURI)21307",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:72"
+          },
+          {
+            "label": "marketplaceAddress",
+            "offset": 0,
+            "slot": "211",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:74"
+          },
+          {
+            "label": "allowedPlugins",
+            "offset": 0,
+            "slot": "212",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:76"
+          },
+          {
+            "label": "docs",
+            "offset": 0,
+            "slot": "213",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:78"
+          },
+          {
+            "label": "withdrawalAddress",
+            "offset": 0,
+            "slot": "214",
+            "type": "t_address",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:80"
+          },
+          {
+            "label": "_locked",
+            "offset": 0,
+            "slot": "215",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:83"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)44_storage": {
+            "label": "uint256[44]",
+            "numberOfBytes": "1408"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(AggregatorV3Interface)45": {
+            "label": "contract AggregatorV3Interface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IOtoCoURI)21307": {
+            "label": "contract IOtoCoURI",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_address)": {
+            "label": "mapping(uint16 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_uint256)": {
+            "label": "mapping(uint16 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Series)14145_storage)": {
+            "label": "mapping(uint256 => struct OtoCoMasterV3.Series)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Series)14145_storage": {
+            "label": "struct OtoCoMasterV3.Series",
+            "members": [
+              {
+                "label": "jurisdiction",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "entityType",
+                "type": "t_uint16",
+                "offset": 2,
+                "slot": "0"
+              },
+              {
+                "label": "creation",
+                "type": "t_uint64",
+                "offset": 4,
+                "slot": "0"
+              },
+              {
+                "label": "expiration",
+                "type": "t_uint64",
+                "offset": 12,
+                "slot": "0"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "6f0ca798a15c8ceaff62882cb2f34fb21822813c08c1d9f005f97a120e6e5df5": {
+      "address": "0x59C85458410DD99ad150C219FB7EFBF1B237f14a",
+      "txHash": "0x1ee149b0fed5bba7398f6d1ab7694adef56721cf9e37ef1aad99dd28d32956bf",
+      "layout": {
+        "solcVersion": "0.8.8",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:40"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:41"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:25"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_string_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:28"
+          },
+          {
+            "label": "_owners",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:31"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "154",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:34"
+          },
+          {
+            "label": "_tokenApprovals",
+            "offset": 0,
+            "slot": "155",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:37"
+          },
+          {
+            "label": "_operatorApprovals",
+            "offset": 0,
+            "slot": "156",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_bool))",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:40"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "157",
+            "type": "t_array(t_uint256)44_storage",
+            "contract": "ERC721Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:477"
+          },
+          {
+            "label": "seriesCount",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:48"
+          },
+          {
+            "label": "lastMigrated",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:50"
+          },
+          {
+            "label": "series",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_mapping(t_uint256,t_struct(Series)3251_storage)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:52"
+          },
+          {
+            "label": "jurisdictionCount",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_uint16",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:55"
+          },
+          {
+            "label": "jurisdictionAddress",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_mapping(t_uint16,t_address)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:57"
+          },
+          {
+            "label": "seriesPerJurisdiction",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_mapping(t_uint16,t_uint256)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:59"
+          },
+          {
+            "label": "externalUrl",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_string_storage",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:62"
+          },
+          {
+            "label": "baseFee",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:65"
+          },
+          {
+            "label": "priceFeed",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_contract(AggregatorV3Interface)45",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:72"
+          },
+          {
+            "label": "entitiesURI",
+            "offset": 0,
+            "slot": "210",
+            "type": "t_contract(IOtoCoURI)4201",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:74"
+          },
+          {
+            "label": "marketplaceAddress",
+            "offset": 0,
+            "slot": "211",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:76"
+          },
+          {
+            "label": "allowedPlugins",
+            "offset": 0,
+            "slot": "212",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:78"
+          },
+          {
+            "label": "docs",
+            "offset": 0,
+            "slot": "213",
+            "type": "t_mapping(t_uint256,t_string_storage)",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:80"
+          },
+          {
+            "label": "withdrawalAddress",
+            "offset": 0,
+            "slot": "214",
+            "type": "t_address",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:82"
+          },
+          {
+            "label": "_locked",
+            "offset": 0,
+            "slot": "215",
+            "type": "t_uint256",
+            "contract": "OtoCoMasterV3",
+            "src": "contracts/OtoCoMasterV3.sol:85"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)44_storage": {
+            "label": "uint256[44]",
+            "numberOfBytes": "1408"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(AggregatorV3Interface)45": {
+            "label": "contract AggregatorV3Interface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IOtoCoURI)4201": {
+            "label": "contract IOtoCoURI",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_bool))": {
+            "label": "mapping(address => mapping(address => bool))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_address)": {
+            "label": "mapping(uint16 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint16,t_uint256)": {
+            "label": "mapping(uint16 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Series)3251_storage)": {
+            "label": "mapping(uint256 => struct OtoCoMasterV3.Series)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Series)3251_storage": {
+            "label": "struct OtoCoMasterV3.Series",
+            "members": [
+              {
+                "label": "jurisdiction",
+                "type": "t_uint16",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "entityType",
+                "type": "t_uint16",
+                "offset": 2,
+                "slot": "0"
+              },
+              {
+                "label": "creation",
+                "type": "t_uint64",
+                "offset": 4,
+                "slot": "0"
+              },
+              {
+                "label": "expiration",
+                "type": "t_uint64",
+                "offset": 12,
+                "slot": "0"
+              },
+              {
+                "label": "name",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    }
+  }
+}

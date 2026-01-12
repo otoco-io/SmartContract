@@ -30,6 +30,8 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
     event UpdatedPriceFeed(address newPriceFeed); // Emitted when Chainlink price feed address is updated
     event ChangedURISource(address newSource); // Emitted when URI builder contract is changed
     event DocsUpdated(uint256 indexed tokenId); // Emitted when entity documentation is updated
+    event NameChanged(uint256 indexed tokenId, string newName); // Emitted when entity name is changed
+    event MarketPlaceAddressChanged(address indexed marketplace, bool enabled); // Emitted when a marketplace address is added or removed
 
     // Series data structure representing a legal entity
     struct Series {
@@ -71,7 +73,7 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
     // URI builder contract for generating token metadata
     IOtoCoURI public entitiesURI;
     // Mapping of addresses authorized to create entities without payment
-    mapping(address=>bool) internal marketplaceAddress;
+    mapping(address=>bool) public marketplaceAddress;
     // Mapping of plugin addresses authorized for use
     mapping(address=>bool) internal allowedPlugins;
     // Mapping from token ID to documentation URL or IPFS hash
@@ -278,15 +280,7 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
      */
     function updateEntityName(uint256 tokenId, string memory newName) external onlyOwnerOrMarketplace {
         series[tokenId].name = newName;
-    }
-
-    /**
-     * @dev Withdraws all contract balance to the configured withdrawal address.
-     * Only callable by contract owner.
-     * Requires withdrawalAddress to be set.
-     */
-    function withdraw() external onlyOwner {
-        payable(withdrawalAddress).transfer(address(this).balance);
+        emit NameChanged(tokenId, newName);
     }
 
     /**
@@ -363,6 +357,7 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
         uint256 addressesSize = addresses.length;  
         for (i; i < addressesSize;){
             marketplaceAddress[addresses[i]] = enabled[i];
+            emit MarketPlaceAddressChanged(addresses[i], enabled[i]);
             unchecked { ++i; }
         }
     }
@@ -428,7 +423,8 @@ contract OtoCoMasterV3 is OwnableUpgradeable, ERC721Upgradeable {
     function withdrawFees() external onlyOwnerOrMarketplace {
         if (withdrawalAddress == address(0)) revert NotAllowed();
         uint256 balance = address(this).balance;
-        payable(withdrawalAddress).transfer(balance);
+        (bool success, ) = payable(withdrawalAddress).call{value: balance}("");
+        if (!success) revert NotAllowed();
         emit FeesWithdrawn(withdrawalAddress, balance);
     }
 
