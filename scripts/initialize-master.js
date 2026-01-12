@@ -1,7 +1,7 @@
 const hre = require("hardhat");
 
 async function main() {
-    const contractAddress = "0x15eF6C1fc78A4Fcd0B9dEdD19DFce2EC89e584ec";
+    const contractAddress = "0xe8C81680F1D1aee6299A93B6a1eF31e6b8D2BC1F";
     
     console.log("Connecting to OtoCoMasterV3 contract at:", contractAddress);
     
